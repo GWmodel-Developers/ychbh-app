@@ -1,3 +1,6 @@
+# nodemodules
+/node_modules
+
 # JavaScript Library
 /jquery*
 /nativeDroid2
