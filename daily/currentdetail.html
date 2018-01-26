@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>黄柏河流域综合执法信息管理系统</title>
+<link rel="stylesheet" href="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
+<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+<script type="text/javascript" src="../vuejs/vue.min.js" ></script>
+<style type="text/css">
+span.listview-aside {
+	font-size: 14px;
+	position: relative;
+	float: right;
+	margin: 0px auto;
+}
+</style>
+</head>
+<body>
+	<div data-role="page">
+		<div data-role="header" data-position="fixed" data-tap-toggle="false">
+			<a href="#" onclick="back()"
+				class="ui-btn ui-icon-back ui-btn-icon-left">返回</a>
+			<h1>监察记录详情详情</h1>
+		</div>
+		<div id="main" data-role="main" class="ui-content">
+			<h4>监察记录编号：{{ item.pro_id }}</h3>
+			<ul id="content" data-role="listview" data-inset="true">
+				<li>
+					<b>被监察单位</b>
+					<span class="listview-aside">{{ item.pro_zone }}</span>
+				</li>
+				<li>
+					<b>被监察时间</b>
+					<span class="listview-aside">{{ item.pro_project }}</span>
+				</li>
+				<li>
+					<b>公司地址</b>
+					<span class="listview-aside">{{ item.pro_date }}</span>
+				</li>
+				<li>
+					<b>项目地址</b>
+					<p style="font-size: 14px;">{{ item.pro_content }}</p>
+				</li>
+				<li>
+					<b>所属河段</b>
+					<p style="font-size: 14px;">{{ item.pro_request }}</p>
+				</li>
+				<li>
+					<b>法人代表</b>
+					<span class="listview-aside">{{ item.pro_person }}</span>
+				</li>
+				<li>
+					<b>法人电话</b>
+					<span class="listview-aside">{{ item.pro_finsh }}</span>
+				</li>
+				<li>
+					<b>现场负责人</b>
+					<span class="listview-aside">{{ item.pro_change }}</span>
+				</li>
+				<li>
+					<b>职务</b>
+					<span class="listview-aside">{{ item.pro_change }}</span>
+				</li>
+				<li>
+					<b>负责人电话</b>
+					<span class="listview-aside">{{ item.pro_change }}</span>
+				</li>
+			</ul>
+			<div data-role="collapsible">
+				
+			</div>
+		</div>
+		<div style="text-align: center;" data-role="footer"
+			data-position="fixed" data-tap-toggle="false">
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="#" onclick="gotomain('#page_company')"
+					class="ui-btn ui-icon-bullets ui-btn-icon-left">企业</a> <a href="#"
+					onclick="gotomain('#page_inspect')"
+					class="ui-btn ui-icon-edit ui-btn-icon-left">巡查</a> <a href="#"
+					onclick="gotomain('#page_case')"
+					class="ui-btn ui-icon-calendar ui-btn-icon-left">案件</a> <a href="#"
+					onclick="gotomain('#page_law')"
+					class="ui-btn ui-icon-tag ui-btn-icon-left">法律</a> <a href="#"
+					onclick="gotomain('#page_system')"
+					class="ui-btn ui-icon-gear ui-btn-icon-left">系统</a>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var content = new Vue({
+		el: "#main",
+		data: {
+			item: {}
+		}
+	})
+	
+	/**
+	 * 获取GET参数
+	 * @param {String} name 参数名
+	 */
+	function getURLParameter(name) {  
+	    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;  
+	}
+	
+	$(document).ready(function() {
+		var id = getURLParameter("index");
+		$.getJSON("http://39.106.145.68:8080/huangbaihe/InsProb/querybyid", {
+			id: id
+		}, function(data) {
+			content.item = data
+		})
+	});
+	function back() {
+		window.location = "problem.html";
+	}
+	function gotomain(name) {
+		window.location = "main.html" + name;
+	}
+</script>
+</html>

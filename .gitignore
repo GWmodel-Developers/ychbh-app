@@ -1,0 +1,13 @@
+# JavaScript Library
+/jquery*
+/nativeDroid2
+/vuejs
+/plugin
+/datejs
+
+# Package
+/unpackage
+manifest.json
+
+# SVN
+.svn

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>黄柏河流域综合执法信息管理系统</title>
+		<link rel="stylesheet" href="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+		<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
+		<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+		<script type="text/javascript" src="../vuejs/vue.min.js"></script>
+		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.css" />
+		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.color.green.css" />
+		<script src="../nativeDroid2/js/nativedroid2.js"></script>
+		<style type="text/css">
+			span.listview-aside {
+				font-size: 14px;
+				position: relative;
+				float: right;
+				margin: 0px auto;
+				vertical-align: middle;
+			}
+			
+			ul li p.listview-aside {
+				font-size: 14px;
+				word-wrap: break-word;
+				white-space: normal;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div data-role="page">
+			<div data-role="header" data-position="fixed" data-tap-toggle="false">
+				<a href="#" onclick="back()" class="ui-btn"><i class="zmdi zmdi-arrow-back"></i></a>
+				<h1>巡查记录</h1>
+			</div>
+			<div id="content" data-role="main" class="ui-content">
+			<ul id="content" data-role="listview" data-inset="false">
+					<li>
+						<b>巡查日期</b>
+						<span class="listview-aside"></span>
+					</li>
+					<li>
+						<b>巡查人员</b>
+						<span class="listview-aside"></span>
+					</li>
+					<li>
+						<b>巡查区域</b>
+						<span class="listview-aside"></span>
+					</li>
+				</ul>
+				<div data-role="collapsible">
+					<h1>巡查情况</h1>
+					<ul v-for="i in 2" data-role="listview" data-inset="true">
+						<li data-role="list-divider">巡查情况{{ i }}</li>
+						<li>
+							<b>时间</b>
+							<span class="listview-aside"></span>
+						</li>
+						<li>
+							<b>地点</b>
+							<span class="listview-aside"></span>
+						</li>
+						<li>
+							<b>内容</b>
+							<p class="listview-aside"></p>
+						</li>
+						<li>
+							<b>附件</b>
+							<p class="listview-aside"></p>
+						</li>
+					</ul>
+				</div>
+				<div data-role="collapsible">
+					<h1>工作情况</h1>
+					<ul v-for="i in 2" data-role="listview" data-inset="true">
+						<li data-role="list-divider">工作情况{{ i }}</li>
+						<li>
+							<b>内容</b>
+							<p class="listview-aside"></p>
+						</li>
+						<li>
+							<b>附件</b>
+							<p class="listview-aside"></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		var content = new Vue({
+			el: "#content",
+			data: {
+				items: []
+			}
+		})
+		var pageIndex = 1;
+		$(document).ready(function() {
+
+		});
+
+		function back() {
+			window.location = "daily.html";
+		}
+
+		function gotomain(name) {
+			window.location = "../company/main.html" + name;
+		}
+	</script>
+
+</html>

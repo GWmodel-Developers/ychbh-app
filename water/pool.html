@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>黄柏水库域综合执法信息管理系统</title>
+		<link rel="stylesheet" href="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+		<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.css">
+		<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.theme.css">
+		<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
+		<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+		<script src="../jquery.mobile-1.4.5/jquery.ui.datepicker.js"></script>
+		<script src="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.js"></script>
+		<script type="text/javascript" src="../vuejs/vue.min.js"></script>
+		<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
+		<style type="text/css">
+			span.listview-aside {
+				font-size: 14px;
+				position: relative;
+				float: right;
+				margin: 0px auto;
+			}
+			
+			ul li p.listview-aside {
+				font-size: 14px;
+				word-wrap: break-word;
+				white-space: normal;
+			}
+			
+			.ui-field-contain {
+				border-bottom-width: 0px;
+			}
+			
+			.item-title {
+				font-weight: bold;
+			}
+			
+			.ui-li-static.ui-collapsible > .ui-collapsible-heading {
+			    margin: 0;
+			}
+			
+			.ui-li-static.ui-collapsible {
+			    padding: 0;
+			}
+			
+			.ui-li-static.ui-collapsible > .ui-collapsible-heading > .ui-btn {
+			    border-top-width: 0;
+			}
+			
+			.ui-li-static.ui-collapsible > .ui-collapsible-heading.ui-collapsible-heading-collapsed > .ui-btn,
+			.ui-li-static.ui-collapsible > .ui-collapsible-content {
+			    border-bottom-width: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="root">
+			<div data-role="page" id="page_main">
+				<div data-role="header" data-position="fixed" data-tap-toggle="false">
+					<a href="#" onclick="back()" class="ui-btn ui-icon-back ui-btn-icon-left">返回</a>
+					<h1>水库水质报告</h1>
+					<a href="#page_new" v-on:click.capture="createForm()" class="ui-btn ui-icon-plus ui-btn-icon-left">新增</a>
+				</div>
+				<div data-role="main" class="ui-content">
+					<form v-on:submit.prevent> <input name="search" id="search" type="search" onchange="mainpageVM.searchText = this.value"> </form>
+					<ul data-role="listview" data-inset="true">
+						<li v-for="(item, index) in items">
+							<a href="#page_detail" v-on:click="selected = index" class="ui-btn ui-icon-eye ui-btn-icon-right">{{ item.com_name }}
+								<p class="listview-aside" style="margin: 0px;">{{ item.re_noid }}</p>
+							</a>
+						</li>
+					</ul>
+					<div v-show="showPagination" data-role="controlgroup" data-type="horizontal" data-mini="true" style="text-align: center;marin: 0 auto;">
+						<p>第{{page + (totalPages === 0) ? 0 : 1}}页，共{{ totalPages }}页，{{ total }}条记录。</p>
+						<a herf="#" v-bind:class="{ 'ui-state-disabled' : !previousPageEnable }" class="ui-btn ui-corner-all ui-icon-arrow-l ui-btn-icon-left" v-on:click="previousPage()">前一页</a>
+						<a herf="#" class="ui-btn ui-corner-all ui-icon-refresh ui-btn-icon-left" v-on:click="refresh()">刷新</a>
+						<a herf="#" v-bind:class="{ 'ui-state-disabled' : !nextPageEnable }" class="ui-btn ui-corner-all ui-icon-arrow-r ui-btn-icon-right" v-on:click="nextPage()">后一页</a>
+					</div>
+				</div>
+			</div>
+			<div data-role="page" id="page_detail">
+				<div data-role="header" data-position="fixed" data-tap-toggle="false">
+					<a href="#page_main" class="ui-btn ui-icon-back ui-btn-icon-left">返回</a>
+					<h1>水库水质报告</h1>
+				</div>
+				<div data-role="main" class="ui-content">
+					<h4>填写编号：{{ detail.tx_id }}</h4>
+					<ul data-role="listview" data-inset="true">
+						<li><b>填写人</b><span class="listview-aside">{{ detail.wperson }}</span></li>
+						<li><b>填写时间</b><span class="listview-aside">{{ detail.date }}</span></li>
+						<li><b>年月</b><span class="listview-aside">{{ detail.yearm }}</span></li>
+						<li><b>旬</b><span class="listview-aside">{{ detail.xun }}</span></li>
+					</ul>
+					<template v-for="(pool, i) in detail.poolZshus">
+						<div data-role="collapsible" data-inset="true">
+							<h4>水库{{ i + 1 }}</h4>
+							<ul data-role="listview">
+								<li><b>水库名称</b><span class="listview-aside">{{ pool.sk }}</span></li>
+								<li><b>检测点位置</b><span class="listview-aside">{{ pool.point }}</span></li>
+								<li data-role="list-divider">水质类别</li>
+								<li><b>总氮不参评</b><span class="listview-aside">{{ pool.sn }}</span></li>
+								<li><b>超标项目</b><span class="listview-aside">{{ pool.cb }}</span></li>
+								<li data-role="list-divider">营养化评价</li>
+								<li><b>评分值</b><span class="listview-aside">{{ pool.pf }}</span></li>
+								<li><b>营养状况</b><span class="listview-aside">{{ pool.yy }}</span></li>
+								<li data-role="list-divider">藻类状况</li>
+								<li><b>常见种或优势种</b><span class="listview-aside">{{ pool.ysz }}</span></li>
+								<li><b>藻细胞密度(10^4个/L)</b><span class="listview-aside">{{ pool.zxbmd }}</span></li>
+								<li><b>水华风险评估</b><span class="listview-aside">{{ pool.shfx }}</span></li>
+							</ul>
+						</div>
+					</template>
+				</div>
+			</div>
+			<div data-role="page" id="page_new">
+				<div data-role="header" data-position="fixed" data-tap-toggle="false">
+					<a href="#page_main" class="ui-btn ui-icon-back ui-btn-icon-left">返回</a>
+					<h1>新建水库水质报告</h1>
+				</div>
+				<div data-role="main" class="ui-content">
+					<h4>填写编号：{{ detail.tx_id }}</h4>
+					<form id="newitem">
+						<div class="ui-field-contain">
+							<label for="wperson">填写人</label>
+							<input type="text" name="wperson" id="wperson" value="wperson" />
+						</div>
+						<div class="ui-field-contain">
+							<label for="date">填写时间</label>
+							<input type="date" name="date" id="date" value="date" />
+						</div>
+						<div class="ui-grid-a">
+							<div class="ui-block-a">
+								<div class="ui-field-contain">
+									<label for="year">年</label>
+									<input type="number" name="year" id="year" value="year" />
+								</div>
+							</div>
+							<div class="ui-block-b">
+								<div class="ui-field-contain">
+									<label for="month">月</label>
+									<input type="number" name="month" id="month" value="month" />
+								</div>
+							</div>
+						</div>
+						<div class="ui-field-contain">
+							<label for="xun">旬</label>
+							<select type="text" name="xun" id="xun" value="xun">
+								<option v-for="xun in form.xunList" v-bind:value="xun">{{ xun }}</option>
+							</select>
+						</div>
+						<div v-for="(pool, index) in form.poolZshus" data-role="collapsible">
+							<h1>水库{{ index + 1}}</h1>
+							<div class="ui-field-contain">
+								<label for="">水库名称</label>
+								<select name="" id="" value="" v-model="pool.sk">
+									<option value="" disabled>请选择</option>
+									<option v-for="poolname in pool.poolList" v-bind:value="poolname">{{ poolname }}</option>
+								</select>
+							</div>
+							<div class="ui-field-contain">
+								<label for="'point_' + index">监测点位置</label>
+								<input type="text" name="point" v-bind:id="'point_' + index" v-model="pool.point"/>
+							</div>
+							<ul data-role="listview" data-inset="true">
+								<li data-role="list-divider">水质类别</li>
+								<li class="ui-field-contain">
+									<label for="'sn_' + index">总氮不参评</label>
+									<input type="text" name="sn" v-bind:id="'sn_' + index" v-model="pool.sn"/>
+								</li>
+								<li class="ui-field-contain">
+									<label for="'cb_' + index">超标项目</label>
+									<input type="text" name="cb" v-bind:id="'cb_' + index" v-model="pool.cb"/>
+								</li>
+							</ul>
+							<ul data-role="listview" data-inset="true">
+								<li data-role="list-divider">营养化评价</li>
+								<li class="ui-field-contain">
+									<label for="'pf_' + index">评分值</label>
+									<input type="text" name="pf" v-bind:id="'pf_' + index" v-model="pool.pf"/>
+								</li>
+								<li class="ui-field-contain">
+									<label for="'yy_' + index">营养状况</label>
+									<input type="text" name="yy" v-bind:id="'yy_' + index" v-model="pool.yy"/>
+								</li>
+							</ul>
+							<ul data-role="listview" data-inset="true">
+								<li data-role="list-divider">藻类状况</li>
+								<li class="ui-field-contain">
+									<label for="'ysz_' + index">常见种或优势种</label>
+									<input type="text" name="ysz" v-bind:id="'ysz_' + index" v-model="pool.ysz"/>
+								</li>
+								<li class="ui-field-contain">
+									<label for="'zxbmd_' + index">藻细胞密度(10^4个/L)</label>
+									<input type="text" name="zxbmd" v-bind:id="'zxbmd_' + index" v-model="pool.zxbmd"/>
+								</li>
+								<li class="ui-field-contain">
+									<label for="'shfx_' + index">水华风险评估</label>
+									<input type="text" name="shfx" v-bind:id="'shfx_' + index" v-model="pool.shfx"/>
+								</li>
+							</ul>
+							<div data-role="controlgroup" data-mini="true" data-type="horizontal" style="text-align: center; margin: 0 auto;">
+								<a href="#" class="ui-btn ui-icon-minus ui-btn-icon-left" v-on:click="minusInticator(index)">删除</a>
+							</div>
+						</div>
+					</form>
+					<div v-show="showPagination" data-role="controlgroup" data-mini="true" data-type="horizontal" style="text-align: center; margin: 0 auto;">
+						<a href="#" class="ui-btn ui-icon-check ui-btn-icon-left" v-on:click="submit()">提交</a>
+						<a href="#" class="ui-btn ui-icon-plus ui-btn-icon-left" v-on:click="addPool()">添加水库</a>
+						<a href="#" class="ui-btn ui-icon-delete ui-btn-icon-left" v-on:click="clean()">清空</a>
+					</div>
+					<div class="ui-content" id="submit-message" data-role="popup">
+			        	<p>{{ submit_status }}</p>
+			        </div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="model/Pool.js" ></script>
+	<script type="text/javascript" src="model/PoolRep.js" ></script>
+	<script type="text/javascript">
+		var mainpageVM = new Vue({
+			el: "#root",
+			data: {
+				items: [],
+				selected_id: 0,
+				total: 0,
+				page: 0,
+				form: new PoolRep(),
+				searchText: "",
+				showPagination: true,
+				detail: new PoolRep(),
+				submit_status: ""
+			},
+			methods: {
+				getItems: function(obj) {
+					$.ajax({
+						type: "get",
+						url: "http://39.106.145.68:8080/huangbaihe/WInsR/querybypage",
+						dataType: "JSON",
+						data: {
+							page: obj.page + 1,
+							rows: 10
+						},
+						success: function(data) {
+							obj.items = data.rows.map(function(item) {
+								return new PoolRep(item);
+							});
+							obj.total = data.total;
+						}
+					});
+				},
+				previousPage: function() {
+					mainpageVM.page -= 1;
+					mainpageVM.getItems();
+				},
+				nextPage: function() {
+					mainpageVM.page += 1;
+					mainpageVM.getItems();
+				},
+				refresh: function() {
+					mainpageVM.getItems(mainpageVM);
+					mainpageVM.queryAddress(mainpageVM);
+					mainpageVM.queryHcom(mainpageVM);
+				},
+				addPool: function() {
+					this.form.poolZshus.push(new Indicator());
+					setTimeout(function() {
+						$("form").trigger("create")
+					}, 10)
+				},
+				submit: function() {
+					// $.ajax({
+					// 	type: "POST",
+					// 	url: "http://39.106.145.68:8080/huangbaihe/WInsR/save",
+					// 	data: mainpageVM.form.toForm().substr(1),
+					// 	success: function() {
+					// 		mainpageVM.submit_status = "提交成功";
+					// 		$("#submit-message").popup("open");
+					// 		setTimeout(function() {
+					// 			$("#submit-message").popup("close");
+					// 		}, 1000)
+					// 	},
+					// 	error: function() {
+					// 		mainpageVM.submit_status = "提交失败";
+					// 		$("#submit-message").popup("open");
+					// 		setTimeout(function() {
+					// 			$("#submit-message").popup("close");
+					// 		}, 1000)
+					// 	}
+					// });
+				},
+				clean: function() {
+					mainpageVM.form.clean();
+				},
+				createForm: function() {
+					mainpageVM.form = new OtherBg();
+				},
+				minusInticator: function(index) {
+					mainpageVM.form.poolZshus.splice(index, 1);
+				},
+				searchItems: function(searchText) {
+					// $.ajax({
+					// 	type:"GET",
+					// 	url:"http://39.106.145.68:8080/huangbaihe/WInsR/query",
+					// 	dataType: "json",
+					// 	data: {
+					// 		address: searchText.address,
+					// 		startDate: searchText.startdate,
+					// 		endDate: searchText.enddate
+					// 	},
+					// 	success: function(data) {
+					// 		mainpageVM.items = data.rows;
+					// 		mainpageVM.showPagination = false;
+					// 	},
+					// 	error: function() {
+					// 		$("#submit-message").popup("open");
+					// 		setTimeout(function() {
+					// 			$("#submit-message").popup("close");
+					// 		}, 1000)
+					// 	}
+					// }).done(function() {
+					// 	$("#popupFilter").popup("close");
+					// });
+				},
+				clearSearch: function() {
+					mainpageVM.showPagination = true;
+					mainpageVM.getItems()
+				}
+			},
+			watch: {
+				// searchText: function (newSearch, oldSearch) {
+				// 	this.page = 0;
+				// 	if (newSearch !== "") {
+				// 		this.showPagination = false;
+				// 		this.searchItems(newSearch);
+				// 	} else {
+				// 		this.showPagination = true;
+				// 		this.getItems()
+				// 	}
+				// },
+				selected_id: function (newId, oldId) {
+					$.ajax({
+						type: "post",
+						url: "http://39.106.145.68:8080/huangbaihe/WInsR/querybyid",
+						dataType: "json",
+						data: {
+							tx_id: newId
+						},
+						success: function (data) {
+							mainpageVM.detail = new OtherBg(data);
+						}
+					});
+				}
+			},
+			computed: {
+				previousPageEnable: function() {
+					return this.page > 0
+				},
+				nextPageEnable: function() {
+					return this.page < (this.totalPages - 1)
+				},
+				totalPages: function() {
+					return Math.ceil(this.total / 10)
+				}
+			},
+			created: function() {
+				this.getItems(this);
+				// this.queryAddress(obj);
+				// this.queryHcom(obj);
+				// 获取检查地址
+				// 获取检测单位
+			}
+		});
+
+		function back() {
+			window.location = "../company/main.html#page_inspect";
+		}
+	</script>
+
+</html>
