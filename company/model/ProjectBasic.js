@@ -27,5 +27,11 @@ function ProjectBasic(params) {
 
 ProjectBasic.prototype.toForm = function () {
     var data = "";
+    for (const key in this) {
+        if (this.hasOwnProperty(key)) {
+            const element = this[key];
+            data += ("&" + key.toLowerCase() + "=" + element);
+        }
+    }
     return data;
 }
