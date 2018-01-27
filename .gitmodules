@@ -1,0 +1,3 @@
+[submodule "nativeDroid2"]
+	path = nativeDroid2
+	url = https://github.com/HPDell/nativeDroid2.git
