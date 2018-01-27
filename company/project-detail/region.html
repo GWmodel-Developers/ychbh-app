@@ -50,7 +50,7 @@
 					<a href="#" onclick="back()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
-					<h1>矿洞信息</h1>
+					<h1>办公生活基本信息</h1>
 					<a href="#page_new" v-on:click.capture="createForm()" class="ui-btn">
 						<i class="zmdi zmdi-plus"></i>
 					</a>
@@ -58,8 +58,8 @@
 				<div data-role="main" class="ui-content">
 					<ul data-role="listview" data-inset="true">
 						<li v-for="(item, index) in items">
-							<a href="#page_detail" v-on:click="selected_id = item.mineID" class="ui-btn ui-icon-eye ui-btn-icon-right">
-								<h2>{{ item.mineName }}</h2>
+							<a href="#page_detail" v-on:click="selected_id = item.regionID" class="ui-btn ui-icon-eye ui-btn-icon-right">
+								<h2>{{ item.regionName }}</h2>
 							</a>
 						</li>
 					</ul>
@@ -70,7 +70,7 @@
 					<a href="#" v-on:click="showMain()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
-					<h1>矿洞详细信息</h1>
+					<h1>办公生活区详细信息</h1>
 				</div>
 				<div id="detail-listview" data-role="main" class="ui-content">
 					<ul data-role="listview" data-inset="true">
@@ -87,7 +87,7 @@
 					<a href="#" v-on:click="showMain()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
-					<h1>新建矿洞信息</h1>
+					<h1>新建办公生活区信息</h1>
 				</div>
 				<div data-role="main" class="ui-content">
 					<form id="newitem">
@@ -112,7 +112,7 @@
 	<script src="../../nativeDroid2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="../../nativeDroid2/nd2settings.js" ></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/Mine.js" ></script>
+	<script type="text/javascript" src="model/Region.js" ></script>
 	<script type="text/javascript">
 		function getURLParameter(name) {  
 			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;  
@@ -124,21 +124,21 @@
                 items: [],
                 project_id: getURLParameter("index"),
 				selected_id: 0,
-				form: new Mine(),
-				detail: new Mine()
+				form: new Region(),
+				detail: new Region()
 			},
 			methods: {
 				getItems: function(obj) {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/Cmine/query",
+						url: "http://39.106.145.68:8080/huangbaihe/Clifebasic/query",
 						dataType: "JSON",
 						data: {
 							index: obj.project_id
 						},
 						success: function(data) {
 							obj.items = data.rows.map(function(item) {
-								return new Mine(item);
+								return new Region(item);
 							});
                         },
                         error: function () {
@@ -151,7 +151,7 @@
 				submit: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/Cmine/add",
+						url: "http://39.106.145.68:8080/huangbaihe/Clifebasic/add",
 						data: mainpageVM.form.toForm(mainpageVM.project_id).substr(1),
 						success: function() {
 							new $.nd2Toast({
@@ -169,26 +169,26 @@
 					mainpageVM.form.clean();
 				},
 				createForm: function() {
-					mainpageVM.form = new Mine();
+					mainpageVM.form = new Region();
 				},
 				minusInticator: function(index) {
 					mainpageVM.form.wInsRecordZs.splice(index, 1);
 				},
 				showMain: function () {
-					window.location = "mine.html?index=" + mainpageVM.project_id;
+					window.location = "Region.html?index=" + mainpageVM.project_id;
 				}
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/Cmine/edit",
+						url: "http://39.106.145.68:8080/huangbaihe/Clifebasic/edit",
 						dataType: "json",
 						data: {
 							index: newId
 						},
 						success: function (data) {
-							mainpageVM.detail = new Mine(data.rows);
+							mainpageVM.detail = new Region(data.rows);
 						}
 					});
 				}

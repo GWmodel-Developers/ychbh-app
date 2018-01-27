@@ -67,7 +67,7 @@
 			</div>
 			<div data-role="page" id="page_detail">
 				<div data-role="header" data-position="fixed" data-tap-toggle="false">
-					<a href="#page_main" v-on:click.capture="refresh()" class="ui-btn">
+					<a href="#" v-on:click="showMain()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
 					<h1>行政审批及许可详细信息</h1>
@@ -84,7 +84,7 @@
 			</div>
 			<div data-role="page" id="page_new">
 				<div data-role="header" data-position="fixed" data-tap-toggle="false">
-					<a href="#page_main" v-on:click.capture="refresh()" class="ui-btn">
+					<a href="#" v-on:click="showMain()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
 					<h1>新建行政审批及许可</h1>
@@ -93,7 +93,8 @@
 					<form id="newitem">
 						<div class="ui-field-contain" v-for="(dommap, index) in form.domMap" v-if="!dommap.hidden && !dommap.hidden.form">
 							<label v-bind:for="dommap.key">{{ dommap.name }}</label>
-							<input v-bind:type="dommap.type" v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="form[dommap.key]"/>
+							<textarea v-if="dommap.type === 'textarea'" v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="form[dommap.key]"></textarea>
+							<input v-else v-bind:type="dommap.type" v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="form[dommap.key]"/>
 						</div>
 					</form>
 					<div class="row between-xs">
@@ -150,8 +151,8 @@
 				submit: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/Capproval/save",
-						data: mainpageVM.form.toForm().substr(1),
+						url: "http://39.106.145.68:8080/huangbaihe/Capproval/add",
+						data: mainpageVM.form.toForm(mainpageVM.project_id).substr(1),
 						success: function() {
 							new $.nd2Toast({
 								message : "提交成功", // Required
@@ -172,6 +173,9 @@
 				},
 				minusInticator: function(index) {
 					mainpageVM.form.wInsRecordZs.splice(index, 1);
+				},
+				showMain: function () {
+					window.location = "approval.html?index=" + mainpageVM.project_id;
 				}
 			},
 			watch: {
@@ -208,7 +212,7 @@
 			},
 			beforeCreate: function() {
 				if (window.location.href.split("#").pop() === "page_detail") {
-					window.location = "Approval.html"
+					window.location = "#"
 				}
 			}
 		});

@@ -19,8 +19,8 @@ function Mine(params) {
     }
 }
 
-Mine.prototype.toForm = function () {
-    var data = "";
+Mine.prototype.toForm = function (project_id) {
+    var data = "&projectID=" + project_id;
     for (var key in object) {
         if (object.hasOwnProperty(key)) {
             var element = object[key];

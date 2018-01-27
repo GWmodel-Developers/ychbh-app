@@ -79,7 +79,7 @@
 			</div>
 			<div data-role="page" id="page_detail">
 				<div data-role="header" data-position="fixed" data-tap-toggle="false">
-					<a href="#page_main" v-on:click.capture="refresh()" class="ui-btn">
+					<a href="#" v-on:click="showMain()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
 					<h1>检测报告</h1>
@@ -185,22 +185,22 @@
 							<span class="listview-aside">{{ detail.projectStatus }}</span>
 						</li>
 						<li data-role="list-divider">其他</li>
-						<li><a href="#" v-on:click="gotoDetail('approval.html', detail.projectID)"><b>行政审批情况</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('mine.html', detail.projectID)"><b>矿硐</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>渣场</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>生产废水处理设施</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>排污口情况</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>办公生活基本情况</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>办公生活废水处理</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>通讯录</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>选矿厂区</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>尾矿厂区</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('approval', detail.projectID)"><b>行政审批情况</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('mine', detail.projectID)"><b>矿硐</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('site', detail.projectID)"><b>渣场</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('deposit', detail.projectID)"><b>生产废水处理设施</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('outlet', detail.projectID)"><b>排污口情况</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('region', detail.projectID)"><b>办公生活基本情况</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('masure', detail.projectID)"><b>办公生活废水处理</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('person', detail.projectID)"><b>通讯录</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('selectmine', detail.projectID)"><b>选矿厂区</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('tailmine', detail.projectID)"><b>尾矿厂区</b></a></li>
 					</ul>
 				</div>
 			</div>
 			<div data-role="page" id="page_new">
 				<div data-role="header" data-position="fixed" data-tap-toggle="false">
-					<a href="#page_main" v-on:click.capture="refresh()" class="ui-btn">
+					<a href="#" v-on:click="showMain()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
 					<h1>新建检测报告</h1>
@@ -459,7 +459,10 @@
 					mainpageVM.getItems(mainpageVM)
 				},
 				gotoDetail: function (page, index) {
-					window.location = ["project-detail/", page, "?index=", index].join("");
+					window.location = ["project-detail/", page, ".html?index=", index].join("");
+				},
+				showMain: function () {
+					window.location = "projectbasic.html"
 				}
 			},
 			watch: {
@@ -489,42 +492,45 @@
 				var projectID = getURLParameter("projectID");
 				if (window.location.href.split("#").pop() === "page_detail") {
 					if (!projectID || projectID === "") {
-						window.location = "ProjectBasic.html"
+						window.location = "#"
 					}
 				}
 			}
 		});
 
 		$(function () {
-			new $.nd2Search({
-				placeholder: "搜索企业名称", // Placeholder in the search field
-				defaultIcon: "null", // optional: icon | null
-				source: function (request, response) {
-					$.ajax({
-						method: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/Cprobasic/query",
-						dataType: "JSON",
-						data: {
-							companyname: request.term
-						},
-						success: function (data) {
-							response(data.rows.map(function (value) {
-								return {
-									label: value.mineName,
-									value: value.projectID
-								}
-							}))
-						},
-						error: function () {
-							response([])
-						}
-					})
-				}, // autocomplete : option-source
-				fn: function(result) { // this function will be executed when a valid result item is selected
-					mainpageVM.selected_id = result;
-					window.location = window.location.href + "#page_detail"
-				}
-			});
+			var hrefsplit = window.location.href.split("#");
+			if (hrefsplit.length < 2 || hrefsplit[1] === "" || hrefsplit[1] === "page_main") {
+				new $.nd2Search({
+					placeholder: "搜索企业名称", // Placeholder in the search field
+					defaultIcon: "null", // optional: icon | null
+					source: function (request, response) {
+						$.ajax({
+							method: "POST",
+							url: "http://39.106.145.68:8080/huangbaihe/Cprobasic/query",
+							dataType: "JSON",
+							data: {
+								companyname: request.term
+							},
+							success: function (data) {
+								response(data.rows.map(function (value) {
+									return {
+										label: value.mineName,
+										value: value.projectID
+									}
+								}))
+							},
+							error: function () {
+								response([])
+							}
+						})
+					}, // autocomplete : option-source
+					fn: function(result) { // this function will be executed when a valid result item is selected
+						mainpageVM.selected_id = result;
+						window.location = window.location.href + "#page_detail"
+					}
+				});
+			}
 		})
 
 		function back() {

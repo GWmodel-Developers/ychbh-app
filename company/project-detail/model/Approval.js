@@ -18,10 +18,10 @@ function Approval(params) {
     }
 }
 
-Approval.prototype.toForm = function () {
-    var data = "";
+Approval.prototype.toForm = function (project_id) {
+    var data = "&projectID=" + project_id;
     for (var key in this) {
-        if (this.hasOwnProperty(key)) {
+        if (this.hasOwnProperty(key) && key !== "projectID") {
             var element = this[key];
             data += ("&" + key + "=" + element);
         }
