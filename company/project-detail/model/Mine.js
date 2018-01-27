@@ -24,7 +24,7 @@ Mine.prototype.toForm = function (project_id) {
     for (var key in object) {
         if (object.hasOwnProperty(key)) {
             var element = object[key];
-            data += ("&" + key + "=" + element);
+            data += ("&" + key.toLowerCase() + "=" + element);
         }
     }
     return data;

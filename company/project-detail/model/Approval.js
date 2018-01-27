@@ -23,7 +23,7 @@ Approval.prototype.toForm = function (project_id) {
     for (var key in this) {
         if (this.hasOwnProperty(key) && key !== "projectID") {
             var element = this[key];
-            data += ("&" + key + "=" + element);
+            data += ("&" + key.toLowerCase() + "=" + element);
         }
     }
     return data;
@@ -34,7 +34,7 @@ Approval.prototype.domMap = [
         key: "approvalID",
         name: "行政审批及许可ID",
         type: "text",
-        hidden: false
+        hidden: true
     },{
         key: "approvalType",
         name: "审批类型",
@@ -58,7 +58,7 @@ Approval.prototype.domMap = [
     },{
         key: "approvalNumber",
         name: "审批数量",
-        type: "text",
+        type: "number",
         hidden: false
     },{
         key: "approvalTime",
