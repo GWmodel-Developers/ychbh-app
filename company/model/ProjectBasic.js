@@ -16,9 +16,9 @@ function ProjectBasic(params) {
     this.groundTankVolume = "";
     this.productOutletNumber = "";
     if (params) {
-        for (const key in params) {
+        for (var key in params) {
             if (params.hasOwnProperty(key)) {
-                const element = params[key];
+                var element = params[key];
                 this[key] = element;
             }
         }
@@ -27,9 +27,9 @@ function ProjectBasic(params) {
 
 ProjectBasic.prototype.toForm = function () {
     var data = "";
-    for (const key in this) {
+    for (var key in this) {
         if (this.hasOwnProperty(key)) {
-            const element = this[key];
+            var element = this[key];
             data += ("&" + key.toLowerCase() + "=" + element);
         }
     }

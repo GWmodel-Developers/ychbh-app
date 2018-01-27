@@ -50,7 +50,7 @@
 					<a href="#" onclick="back()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
-					<h1>行政审批及许可</h1>
+					<h1>矿洞信息</h1>
 					<a href="#page_new" v-on:click.capture="createForm()" class="ui-btn">
 						<i class="zmdi zmdi-plus"></i>
 					</a>
@@ -58,8 +58,8 @@
 				<div data-role="main" class="ui-content">
 					<ul data-role="listview" data-inset="true">
 						<li v-for="(item, index) in items">
-							<a href="#page_detail" v-on:click="selected_id = item.approvalID" class="ui-btn ui-icon-eye ui-btn-icon-right">
-								<h2>{{ item.approvalName }}</h2>
+							<a href="#page_detail" v-on:click="selected_id = item.mineID" class="ui-btn ui-icon-eye ui-btn-icon-right">
+								<h2>{{ item.mineName }}</h2>
 							</a>
 						</li>
 					</ul>
@@ -70,7 +70,7 @@
 					<a href="#page_main" v-on:click.capture="refresh()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
-					<h1>行政审批及许可详细信息</h1>
+					<h1>矿洞详细信息</h1>
 				</div>
 				<div id="detail-listview" data-role="main" class="ui-content">
 					<ul data-role="listview" data-inset="true">
@@ -87,7 +87,7 @@
 					<a href="#page_main" v-on:click.capture="refresh()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
-					<h1>新建行政审批及许可</h1>
+					<h1>新建矿洞信息</h1>
 				</div>
 				<div data-role="main" class="ui-content">
 					<form id="newitem">
@@ -111,33 +111,33 @@
 	<script src="../../nativeDroid2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="../../nativeDroid2/nd2settings.js" ></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/Approval.js" ></script>
+	<script type="text/javascript" src="model/Mine.js" ></script>
 	<script type="text/javascript">
 		function getURLParameter(name) {  
 			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;  
-		} 
-		
+		}
+
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
                 items: [],
                 project_id: getURLParameter("index"),
 				selected_id: 0,
-				form: new Approval(),
-				detail: new Approval()
+				form: new Mine(),
+				detail: new Mine()
 			},
 			methods: {
 				getItems: function(obj) {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/Capproval/query",
+						url: "http://39.106.145.68:8080/huangbaihe/Cmine/query",
 						dataType: "JSON",
 						data: {
 							index: obj.project_id
 						},
 						success: function(data) {
 							obj.items = data.rows.map(function(item) {
-								return new Approval(item);
+								return new Mine(item);
 							});
                         },
                         error: function () {
@@ -150,7 +150,7 @@
 				submit: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/Capproval/save",
+						url: "http://39.106.145.68:8080/huangbaihe/Cmine/save",
 						data: mainpageVM.form.toForm().substr(1),
 						success: function() {
 							new $.nd2Toast({
@@ -168,7 +168,7 @@
 					mainpageVM.form.clean();
 				},
 				createForm: function() {
-					mainpageVM.form = new Approval();
+					mainpageVM.form = new Mine();
 				},
 				minusInticator: function(index) {
 					mainpageVM.form.wInsRecordZs.splice(index, 1);
@@ -178,13 +178,13 @@
 				selected_id: function (newId, oldId) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/Capproval/edit",
+						url: "http://39.106.145.68:8080/huangbaihe/Cmine/edit",
 						dataType: "json",
 						data: {
 							index: newId
 						},
 						success: function (data) {
-							mainpageVM.detail = new Approval(data.rows);
+							mainpageVM.detail = new Mine(data.rows);
 						}
 					});
 				}
@@ -208,7 +208,7 @@
 			},
 			beforeCreate: function() {
 				if (window.location.href.split("#").pop() === "page_detail") {
-					window.location = "Approval.html"
+					window.location = "Mine.html"
 				}
 			}
 		});

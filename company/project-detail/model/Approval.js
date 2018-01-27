@@ -9,9 +9,9 @@ function Approval(params) {
     this.approvalCompany = "";
     this.approvalEndline = "";
     if (params) {
-        for (const key in params) {
+        for (var key in params) {
             if (params.hasOwnProperty(key)) {
-                const element = params[key];
+                var element = params[key];
                 this[key] = element
             }
         }
@@ -20,11 +20,55 @@ function Approval(params) {
 
 Approval.prototype.toForm = function () {
     var data = "";
-    for (const key in this) {
+    for (var key in this) {
         if (this.hasOwnProperty(key)) {
-            const element = this[key];
+            var element = this[key];
             data += ("&" + key + "=" + element);
         }
     }
     return data;
 }
+
+Approval.prototype.domMap = [
+    {
+        key: "approvalID",
+        name: "行政审批及许可ID",
+        type: "text",
+        hidden: false
+    },{
+        key: "approvalType",
+        name: "审批类型",
+        type: "text",
+        hidden: false
+    },{
+        key: "approvalName",
+        name: "名称",
+        type: "textarea",
+        hidden: false
+    },{
+        key: "approvalContent",
+        name: "审批内容",
+        type: "text",
+        hidden: false
+    },{
+        key: "approvalCompany",
+        name: "审批公司",
+        type: "text",
+        hidden: false
+    },{
+        key: "approvalNumber",
+        name: "审批数量",
+        type: "text",
+        hidden: false
+    },{
+        key: "approvalTime",
+        name: "审批时间",
+        type: "date",
+        hidden: false
+    },{
+        key: "approvalEndline",
+        name: "审批时限",
+        type: "date",
+        hidden: false
+    }
+]

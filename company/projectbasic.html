@@ -8,17 +8,17 @@
 		<link rel="stylesheet" href="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
 		<!--<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.css">
 		<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.theme.css">-->
-		<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
-		<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
-		<script src="../jquery.mobile-1.4.5/jquery.ui.datepicker.js"></script>
-		<script src="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.js"></script>
-		<script type="text/javascript" src="../vuejs/vue.min.js"></script>
-		<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
-		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.css" />
-		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.color.green.css" />
-		<link rel="stylesheet" href="../nativeDroid2/vendor/waves/waves.min.css" />
-		<link rel="stylesheet" type="text/css" href="../nativeDroid2/vendor/wow/animate.css"/>
-		<script src="../nativeDroid2/js/nativedroid2.js"></script>
+		<script src="../../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
+		<script src="../../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+		<script src="../../jquery.mobile-1.4.5/jquery.ui.datepicker.js"></script>
+		<script src="../../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.js"></script>
+		<script type="text/javascript" src="../../vuejs/vue.min.js"></script>
+		<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
+		<link rel="stylesheet" href="../../nativeDroid2/css/nativedroid2.css" />
+		<link rel="stylesheet" href="../../nativeDroid2/css/nativedroid2.color.green.css" />
+		<link rel="stylesheet" href="../../nativeDroid2/vendor/waves/waves.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../nativeDroid2/vendor/wow/animate.css"/>
+		<script src="../../nativeDroid2/js/nativedroid2.js"></script>
 		<style type="text/css">
 			span.listview-aside {
 				font-size: 14px;
@@ -59,8 +59,7 @@
 					<ul data-role="listview" data-inset="true">
 						<li v-for="(item, index) in items">
 							<a href="#page_detail" v-on:click="selected_id = item.projectID" class="ui-btn ui-icon-eye ui-btn-icon-right">
-								<h2>{{ item.companyName }}</h2>
-								<p class="listview-aside" style="margin: 0px;">{{ item.projectID }}</p>
+								<h2>{{ item.mineName }}</h2>
 							</a>
 						</li>
 					</ul>
@@ -86,7 +85,7 @@
 					<h1>检测报告</h1>
 				</div>
 				<div id="detail-listview" data-role="main" class="ui-content">
-					<ul data-role="listview" data-inset="false">
+					<ul data-role="listview" data-inset="true">
 						<li data-role="list-divider">基本信息</li>
 						<li>
 							<b>矿井名称</b>
@@ -186,16 +185,16 @@
 							<span class="listview-aside">{{ detail.projectStatus }}</span>
 						</li>
 						<li data-role="list-divider">其他</li>
-						<li><a href="#">行政审批情况</a></li>
-						<li><a href="#">矿硐</a></li>
-						<li><a href="#">渣场</a></li>
-						<li><a href="#">生产废水处理设施</a></li>
-						<li><a href="#">排污口情况</a></li>
-						<li><a href="#">办公生活基本情况</a></li>
-						<li><a href="#">办公生活废水处理</a></li>
-						<li><a href="#">通讯录</a></li>
-						<li><a href="#">选矿厂区</a></li>
-						<li><a href="#">尾矿厂区</a></li>
+						<li><a href="#" v-on:click="gotoDetail('approval.html', detail.projectID)"><b>行政审批情况</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('mine.html', detail.projectID)"><b>矿硐</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>渣场</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>生产废水处理设施</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>排污口情况</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>办公生活基本情况</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>办公生活废水处理</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>通讯录</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>选矿厂区</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('', detail.projectID)"><b>尾矿厂区</b></a></li>
 					</ul>
 				</div>
 			</div>
@@ -331,19 +330,23 @@
 			</div>
 		</div>
 	</body>
-	<script src="../nativeDroid2/vendor/waves/waves.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../nativeDroid2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" src="../nativeDroid2/nd2settings.js" ></script>
+	<script src="../../nativeDroid2/vendor/waves/waves.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../nativeDroid2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../../nativeDroid2/nd2settings.js" ></script>
 	<!-- Vue Model -->
 	<script type="text/javascript" src="model/ProjectBasic.js" ></script>
 	<script type="text/javascript" src="model/ProjectInfo.js" ></script>
 	<script type="text/javascript">
+		function getURLParameter(name) {  
+			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;  
+		} 
+
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
 				items: [],
-				selected_id: "",
+				selected_id: getURLParameter("projectID"),
 				total: 0,
 				page: 0,
 				basic_form: new ProjectBasic(),
@@ -355,7 +358,7 @@
 			methods: {
 				getItems: function(obj) {
 					$.ajax({
-						type: "get",
+						type: "POST",
 						url: "http://39.106.145.68:8080/huangbaihe/Cprobasic/showProbasic",
 						dataType: "JSON",
 						data: {
@@ -385,8 +388,6 @@
 				},
 				refresh: function() {
 					mainpageVM.getItems(mainpageVM);
-					mainpageVM.queryAddress(mainpageVM);
-					mainpageVM.queryHcom(mainpageVM);
 				},
 				submit: function() {
 					$.ajax({
@@ -429,60 +430,41 @@
 				createForm: function() {
 					mainpageVM.form = new ProjectBasic();
 				},
-				searchItems: function(searchText) {
+				queryItem: function(projectID, obj) {
 					$.ajax({
-						type:"GET",
-						url:"http://39.106.145.68:8080/huangbaihe/WInsR/query",
+						type: "post",
+						url: "http://39.106.145.68:8080/huangbaihe/Cprobasic/qurbyid",
 						dataType: "json",
 						data: {
-							address: searchText.address,
-							startDate: searchText.startdate,
-							endDate: searchText.enddate
-							
+							index: projectID
 						},
-						success: function(data) {
-							mainpageVM.items = data.rows;
-							mainpageVM.total = data.total;
-							mainpageVM.showPagination = false;
-						},
-						error: function() {
-							new $.nd2Toast({
-								message : "查询失败",
-							});
+						success: function (data) {
+							obj.basic = new ProjectBasic(data.result);
 						}
-					}).done(function() {
-						$("#popupFilter").popup("close");
 					});
+					$.ajax({
+						type: "post",
+						url: "http://39.106.145.68:8080/huangbaihe/Cproinfo/qurbyid",
+						dataType: "json",
+						data: {
+							index: projectID
+						},
+						success: function (data) {
+							obj.detail = new ProjectInfo(data.result);
+						}
+					})
 				},
 				clearSearch: function() {
 					mainpageVM.showPagination = true;
 					mainpageVM.getItems(mainpageVM)
+				},
+				gotoDetail: function (page, index) {
+					window.location = ["project-detail/", page, "?index=", index].join("");
 				}
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					$.ajax({
-						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/Cprobasic/querybyid",
-						dataType: "json",
-						data: {
-							index: newId
-						},
-						success: function (data) {
-							mainpageVM.basic = new ProjectBasic(data.result);
-						}
-					});
-					$.ajax({
-						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/Cproinfo/querybyid",
-						dataType: "json",
-						data: {
-							index: newId
-						},
-						success: function (data) {
-							mainpageVM.detail = new ProjectInfo(data.result);
-						}
-					})
+					mainpageVM.queryItem(newId, mainpageVM)
 				}
 			},
 			computed: {
@@ -499,19 +481,51 @@
 			created: function() {
 				var obj = this;
 				this.getItems(obj);
-				this.queryAddress(obj);
-				this.queryHcom(obj);
-				// 获取检查地址
-				// 获取检测单位
+				if (this.selected_id && this.selected_id !== "") {
+					this.queryItem(this.selected_id, this)
+				}
 			},
 			beforeCreate: function() {
-//				alert(window.location.href.split("#").pop())
+				var projectID = getURLParameter("projectID");
 				if (window.location.href.split("#").pop() === "page_detail") {
-//					alert("redirect")
-					window.location = "ProjectBasic.html"
+					if (!projectID || projectID === "") {
+						window.location = "ProjectBasic.html"
+					}
 				}
 			}
-});
+		});
+
+		$(function () {
+			new $.nd2Search({
+				placeholder: "搜索企业名称", // Placeholder in the search field
+				defaultIcon: "null", // optional: icon | null
+				source: function (request, response) {
+					$.ajax({
+						method: "POST",
+						url: "http://39.106.145.68:8080/huangbaihe/Cprobasic/query",
+						dataType: "JSON",
+						data: {
+							companyname: request.term
+						},
+						success: function (data) {
+							response(data.rows.map(function (value) {
+								return {
+									label: value.mineName,
+									value: value.projectID
+								}
+							}))
+						},
+						error: function () {
+							response([])
+						}
+					})
+				}, // autocomplete : option-source
+				fn: function(result) { // this function will be executed when a valid result item is selected
+					mainpageVM.selected_id = result;
+					window.location = window.location.href + "#page_detail"
+				}
+			});
+		})
 
 		function back() {
 			window.location = "../company/main.html#page_inspect";
