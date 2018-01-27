@@ -49,14 +49,12 @@
 				<div data-role="main" class="ui-content">
 					<div class="row between-xs">
 						<div class="col-xs-12">
-							<a class="ui-btn ui-btn-raised ui-btn-inline" href="#popupFilter" data-rel="popup" data-position-to="window" data-transition="pop">
+							<a class="ui-btn ui-btn-raised ui-btn-inline" href="#popupFilter" data-rel="popup" data-position-to="window" data-transition="slideup">
 								<i class="zmdi zmdi-filter-list"></i> 筛选
 							</a>						
 							<a v-show="!showPagination" class="ui-btn ui-btn-inline" href="#" v-on:click="clearSearch()">清除筛选</a>
 							<span v-show="!showPagination" class="align-right">查询到{{ total }}条记录</span>							
 						</div>
-
-
 					</div>
 					<div class="ui-corner-all" id="popupFilter" data-role="popup" style="padding: 10px 20px;min-width: 240px;">
 						<form v-on:submit.prevent>
@@ -81,7 +79,7 @@
 								<a href="#" class="ui-btn clr-primary" v-on:click="searchItems(searchText)">搜索</a>
 							</div>
 							<div class="col-xs-6">
-								<a href="#" class="ui-btn" data-rel="back" data-role="button">取消</a>																
+								<a href="#" class="ui-btn" onclick="$('#popupFilter').popup('close')" data-role="button">取消</a>																
 							</div>
 						</div>
 					</div>
@@ -120,7 +118,7 @@
 						<li><b>委托单位</b><span class="listview-aside">{{ detail.dcom }}</span></li>
 						<li><b>检测类型</b><span class="listview-aside">{{ detail.type }}</span></li>
 						<li><b>检测单位</b><span class="listview-aside">{{ detail.hcom }}</span></li>
-						<li><b>受测地址</b><span class="listview-aside">{{ detail.address }}</span></li>
+						<li><b>受测地址</b><p class="listview-aside">{{ detail.address }}</p></li>
 						<li><b>检测时间</b><span class="listview-aside">{{ detail.date }}</span></li>
 						<li><b>检测点位</b><span class="listview-aside">{{ detail.points }}</span></li>
 						<li><b>检测频次</b><span class="listview-aside">{{ detail.hz }}</span></li>
@@ -181,7 +179,7 @@
 						</div>
 						<div class="ui-field-contain">
 							<label for="address">受测地址</label>
-							<input type="text" name="address" id="address" value="address" v-model="form.address"/>
+							<textarea name="address" id="address" value="address" v-model="form.address"></textarea>
 						</div>
 						<div class="ui-field-contain">
 							<label for="date">检测时间</label>
@@ -232,7 +230,7 @@
 					</form>
 					<div class="row between-xs">
 						<div class="col-xs-12 align-center">
-							<button href="#" class="ui-btn ui-btn-icon-left ui-btn-inline" v-on:click="addIndicator()">添加检测指数 </button>
+							<button href="#" class="ui-btn ui-btn-icon-left ui-btn-inline clr-primary" v-on:click="addIndicator()">添加检测指数 </button>
 							<button href="#" class="ui-btn ui-btn-icon-left ui-btn-inline" v-on:click="clean()">清空 </button>
 							<button class="ui-btn ui-btn-icon-left ui-btn-inline ui-btn-raised clr-primary" v-on:click="submit()"> 提交 </button>
 						</div>
