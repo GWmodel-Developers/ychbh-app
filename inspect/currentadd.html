@@ -7,17 +7,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<title>黄柏河流域综合执法信息管理系统</title>
 		<link rel="stylesheet" href="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
-		<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.css">
-		<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.theme.css">
-		<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
-		<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
-		<script src="../jquery.mobile-1.4.5/jquery.ui.datepicker.js"></script>
-		<script src="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.js"></script>
-		<script type="text/javascript" src="../vuejs/vue.min.js"></script>
-		<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
+		<link rel="stylesheet" href="../nativeDroid2/vendor/waves/waves.min.css">
+		<link rel="stylesheet" href="../nativeDroid2/vendor/wow/animate.css">
 		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.css" />
 		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.color.green.css" />
-		<script src="../nativeDroid2/js/nativedroid2.js"></script>
 		<style type="text/css">
 			.ui-field-contain {
 				border-bottom-width: 0px;
@@ -81,9 +74,7 @@
 					</div>
 						<div class="nd2-card">
 							<div class="card-title has-supporting-text">
-								<h3 class="card-primary-title">
-									项目情况
-								</div>
+								<h3 class="card-primary-title">项目情况</h3>
 							</div>
 							<div class="card-supporting-text has-title">
 								<div class="ui-field-contain">
@@ -117,7 +108,7 @@
 						</div>
 					<div class="nd2-card">
 						<div class="card-title has-supporting-text">
-							<h3 class="card-primary-title">行政审批及许可</div>
+							<h3 class="card-primary-title">行政审批及许可</h3>
 						</div>
 						<div class="card-supporting-text has-title">
 							<div class="ui-grid-b">
@@ -249,7 +240,7 @@
 					</div>
 					<div class="nd2-card">
 						<div class="card-title has-supporting-text">
-							<h3 class="card-primary-title">水污染防治</div>
+							<h3 class="card-primary-title">水污染防治</h3>
 							<div class="card-subtitle">环评情况</div>
 						</div>
 						<div class="card-supporting-text has-title">
@@ -275,7 +266,7 @@
 					</div>
 					<div class="nd2-card">
 						<div class="card-title has-supporting-text">
-							<h3 class="card-primary-title">水污染防治</div>
+							<h3 class="card-primary-title">水污染防治</h3>
 							<div class="card-subtitle">排污口及排污情况 </div>
 						</div>
 						<div class="card-supporting-text has-title">
@@ -321,7 +312,7 @@
 					</div>
 					<div class="nd2-card">
 						<div class="card-title has-supporting-text">
-							<h3 class="card-primary-title">水污染防治</div>
+							<h3 class="card-primary-title">水污染防治</h3>
 							<div class="card-subtitle">“三同时”执行</div>
 						</div>
 						<div class="card-supporting-text has-title">
@@ -343,7 +334,7 @@
 					</div>
 					<div class="nd2-card">
 						<div class="card-title has-supporting-text">
-							<h3 class="card-primary-title">水污染防治</div>
+							<h3 class="card-primary-title">水污染防治</h3>
 							<div class="card-subtitle">设施建设、运行及管理 </div>
 						</div>
 						<div class="card-supporting-text has-title">
@@ -391,7 +382,7 @@
 					</div>
 					<div class="nd2-card">
 						<div class="card-title has-supporting-text">
-							<h3 class="card-primary-title">水污染防治 </div>
+							<h3 class="card-primary-title">水污染防治 </h3>
 							<div class="card-subtitle">自动在线监控 </div>
 						</div>
 						<div class="card-supporting-text has-title">
@@ -419,15 +410,15 @@
 					</div>
 					<div class="nd2-card">
 						<div class="card-title has-supporting-text">
-							<h3 class="card-primary-title">水污染防治</div>
+							<h3 class="card-primary-title">水污染防治</h3>
 							<div class="card-subtitle">固体废物</div>
 						</div>
 						<div class="card-supporting-text has-title">
 							<div class="ui-field-contain">
 								<fieldset data-role="controlgroup" data-mini="true" data-type="horizontal">
 									<legend>一般固废管理方案</legend>
-									<label><input v-model="form.normal_solid" onclick="content.form.normal_solid='是'" type="radio" name="normal_solid"value="是"/>是</label>
-									<label><input v-model="form.normal_solid" onclick="content.form.normal_solid='否'" type="radio" name="normal_solid"value="否"/>否</label>
+									<label><input v-model="form.normal_solid" onclick="content.form.normal_solid='是'" type="radio" name="normal_solid" value="是"/>是</label>
+									<label><input v-model="form.normal_solid" onclick="content.form.normal_solid='否'" type="radio" name="normal_solid" value="否"/>否</label>
 								</fieldset>
 							</div>
 							<div class="ui-field-contain">
@@ -445,7 +436,7 @@
 					</div>
 					<div class="nd2-card">
 						<div class="card-title has-supporting-text">
-							<h3 class="card-primary-title">水污染防治</div>
+							<h3 class="card-primary-title">水污染防治</h3>
 							<div class="card-subtitle">取水许可情况</div>
 						</div>
 						<div class="card-supporting-text has-title">
@@ -473,7 +464,7 @@
 					</div>
 					<div class="nd2-card">
 						<div class="card-title has-supporting-text">
-							<h3 class="card-primary-title">水土保持</div>
+							<h3 class="card-primary-title">水土保持</h3>
 						</div>
 						<div class="card-supporting-text has-title">
 							<div class="ui-field-contain">
@@ -515,7 +506,7 @@
 					</div>
 					<div class="nd2-card">
 						<div class="card-title has-supporting-text">
-							<h3 class="card-primary-title">河道及水工程</div>
+							<h3 class="card-primary-title">河道及水工程</h3>
 						</div>
 						<div class="card-supporting-text has-title">
 							<div class="ui-field-contain">
@@ -561,7 +552,7 @@
 					</div>
 					<div class="nd2-card">
 						<div class="card-title has-supporting-text">
-							<h3 class="card-primary-title">其他</div>
+							<h3 class="card-primary-title">其他</h3>
 						</div>
 						<div class="card-supporting-text has-title">
 							<div class="ui-field-contain">
@@ -609,6 +600,14 @@
 				</div>
 			</div>
 		</div>
+		<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
+		<script src="../nativeDroid2/jquery-ui.min.js"></script>
+		<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+		<script src="../nativeDroid2/vendor/waves/waves.min.js"></script>
+		<script src="../nativeDroid2/vendor/wow/wow.min.js"></script>
+		<script src="../nativeDroid2/js/nativedroid2.js"></script>
+		<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
+		<script type="text/javascript" src="../vuejs/vue.min.js"></script>
 		<script type="text/javascript">
 			var content = new Vue({
 				el: "div.ui-content",

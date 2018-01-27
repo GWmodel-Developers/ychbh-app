@@ -6,19 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<title>黄柏河流域综合执法信息管理系统</title>
 		<link rel="stylesheet" href="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
-		<!--<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.css">
-		<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.theme.css">-->
-		<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
-		<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
-		<script src="../jquery.mobile-1.4.5/jquery.ui.datepicker.js"></script>
-		<script src="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.js"></script>
-		<script type="text/javascript" src="../vuejs/vue.min.js"></script>
-		<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
+		<link rel="stylesheet" href="../nativeDroid2/vendor/waves/waves.min.css" />
+		<link rel="stylesheet" href="../nativeDroid2/vendor/wow/animate.css"/>
 		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.css" />
 		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.color.green.css" />
-		<link rel="stylesheet" href="../nativeDroid2/vendor/waves/waves.min.css" />
-		<link rel="stylesheet" type="text/css" href="../nativeDroid2/vendor/wow/animate.css"/>
-		<script src="../nativeDroid2/js/nativedroid2.js"></script>
 		<style type="text/css">
 			span.listview-aside {
 				font-size: 14px;
@@ -139,7 +130,7 @@
 					<template v-for="(ind, i) in detail.wInsRecordZs">
 						<div class="nd2-card">
 							<div class="card-title">
-								<h3 class="card-primary-title">相关指数检测{{ i + 1 }}</div>
+								<h3 class="card-primary-title">相关指数检测{{ i + 1 }}</h3>
 							</div>
 							<div class="card-supporting-text has-title">
 								<div class="row between-xs">
@@ -214,7 +205,7 @@
 						</div>
 						<div v-for="(ind, index) in form.wInsRecordZs" class="nd2-card">
 							<div class="card-title">
-								<h3 class="card-primary-title"> 相关检测指数{{ index + 1 }} </div>
+								<h3 class="card-primary-title"> 相关检测指数{{ index + 1 }} </h3>
 							</div>
 							<div class="card-supporting-text has-action has-title">
 								<div class="ui-field-contain">
@@ -250,10 +241,15 @@
 			</div>
 		</div>
 	</body>
+	<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
+	<script src="../nativeDroid2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
 	<script src="../nativeDroid2/vendor/waves/waves.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../nativeDroid2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../nativeDroid2/js/nativedroid2.js"></script>
 	<script type="text/javascript" src="../nativeDroid2/nd2settings.js" ></script>
+	<script type="text/javascript" src="../vuejs/vue.min.js"></script>
+	<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
 	<script type="text/javascript" src="model/Indicator.js" ></script>
 	<script type="text/javascript" src="model/OtherBg.js" ></script>
 	<script type="text/javascript">
