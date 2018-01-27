@@ -35,6 +35,21 @@
 	</head>
 
 	<body>
+		<div data-role="page">
+			<div data-role="header" data-position="fixed" data-tap-toggle="false">
+				<a href="#" onclick="back()" class="ui-btn">
+					<i class="zmdi zmdi-arrow-back"></i>
+				</a>
+				<h1>权限错误</h1>
+			</div>
+			<div class="ui-content" data-role="main">
+				<h5 class="nd2-headline align-center">
+					您没有此权限
+				</h5>
+				<a href="#" class="ui-btn ui-btn-raised clr-primary" onclick="back()">返回上一个页面</a>
+				<a href="#" class="ui-btn clr-primary" onclick="relogin()">更改用户</a>
+			</div>
+		</div>
     </body>
     <script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
     <script src="../nativeDroid2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
@@ -43,8 +58,13 @@
     <script src="../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../nativeDroid2/js/nativedroid2.js"></script>
     <script type="text/javascript" src="../nativeDroid2/nd2settings.js" ></script>
-    <script type="text/javascript" src="../vuejs/vue.min.js"></script>
-    <script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
-    <script type="text/javascript" src="model/Indicator.js" ></script>
-    <script type="text/javascript" src="model/OtherBg.js" ></script>
+	<script>
+		function back() {
+			window.history.back();
+		}
+
+		function relogin() {
+			window.location = "index.html"
+		}
+	</script>
 </html>
