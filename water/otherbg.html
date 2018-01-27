@@ -431,13 +431,11 @@
 				// 获取检测单位
 			},
 			beforeCreate: function() {
-//				alert(window.location.href.split("#").pop())
 				if (window.location.href.split("#").pop() === "page_detail") {
-//					alert("redirect")
 					window.location = "otherbg.html"
 				}
 			}
-});
+		});
 
 		function back() {
 			window.location = "../company/main.html#page_inspect";
