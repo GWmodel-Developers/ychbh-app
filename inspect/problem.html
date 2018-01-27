@@ -25,7 +25,8 @@
 				<form v-on:submit.prevent> <input name="search" id="search" type="search" onchange="content.searchText = this.value"> </form>
 				<ul id="content" data-role="listview" data-inset="true">
 					<li v-for="item in items">
-						<a href="#" class="ui-btn ui-icon-eye ui-btn-icon-right" v-on:click="detail(item.pro_id)">{{ item.pro_zone }}
+						<a href="#" class="ui-btn ui-icon-eye ui-btn-icon-right" v-on:click="detail(item.pro_id)">
+							<h2>{{ item.pro_zone }}</h2>
 							<p class="listview-aside" style="margin: 0px;">{{ item.pro_id }}</p>
 						</a>
 					</li>

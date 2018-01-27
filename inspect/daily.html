@@ -24,7 +24,8 @@
 			<div id="main" data-role="main" class="ui-content">
 				<ul id="content" data-role="listview" data-inset="true">
 					<li v-for="item in items">
-						<a href="#" class="ui-btn ui-icon-eye ui-btn-icon-right" v-on:click="detail('{{item.ins_id}}')">{{ item.factory_name }}
+						<a href="#" class="ui-btn ui-icon-eye ui-btn-icon-right" v-on:click="detail('{{item.ins_id}}')">
+							<h2>{{ item.factory_name }}</h2>
 							<p class="listview-aside" style="margin: 0px;">{{ item.ins_id }}</p>
 						</a>
 					</li>
