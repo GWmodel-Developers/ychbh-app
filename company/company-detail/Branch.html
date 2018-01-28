@@ -58,8 +58,8 @@
 				<div data-role="main" class="ui-content">
 					<ul data-role="listview" data-inset="true">
 						<li v-for="(item, index) in items">
-							<a href="#page_detail" v-on:click="selected_id = item.approvalID" class="ui-btn ui-icon-eye ui-btn-icon-right">
-								<h2>{{ item.approvalName }}</h2>
+							<a href="#page_detail" v-on:click="selected_id = item.branchID" class="ui-btn ui-icon-eye ui-btn-icon-right">
+								<h2>{{ item.branchName }}</h2>
 							</a>
 						</li>
 					</ul>
@@ -201,7 +201,7 @@
 
 		function back() {
 			localStorage.removeItem("companyBranchID");
-			window.location = "../projectbasic.html#page_detail";
+			window.location = "../companybasic.html#page_detail";
 		}
 	</script>
 

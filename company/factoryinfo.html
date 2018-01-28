@@ -41,7 +41,7 @@
 					<a href="#" onclick="back()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
-					<h1>项目概况</h1>
+					<h1>养殖/化工/石材厂信息</h1>
 					<a href="#page_new" v-on:click.capture="createForm()" class="ui-btn">
 						<i class="zmdi zmdi-plus"></i>
 					</a>
@@ -50,7 +50,7 @@
 					<ul data-role="listview" data-inset="true">
 						<li v-for="(item, index) in items">
 							<a href="#page_detail" v-on:click="selected_id = item.projectID" class="ui-btn ui-icon-eye ui-btn-icon-right">
-								<h2>{{ item.mineName }}</h2>
+								<h2>{{ item.projectName }}</h2>
 							</a>
 						</li>
 					</ul>
@@ -73,7 +73,7 @@
 					<a href="#" v-on:click="showMain()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
-					<h1>检测报告</h1>
+					<h1>项目基本信息</h1>
 				</div>
 				<div id="detail-listview" data-role="main" class="ui-content">
 					<ul data-role="listview" data-inset="true">
@@ -113,43 +113,43 @@
 						<li data-role="list-divider">养殖规模</li>
 						<li>
 							<b>设计产量</b>
-							<span class="listview-aside">{{ detail.projectDesign }}</span>
+							<span class="listview-aside">{{ basic.projectDesign }}</span>
 						</li>
 						<li>
 							<b>实际产量</b>
-							<span class="listview-aside">{{ detail.projectFact }}</span>
+							<span class="listview-aside">{{ basic.projectFact }}</span>
 						</li>
 						<li>
 							<b>主要污染物</b>
-							<span class="listview-aside">{{ detail.projectMainPollute }}</span>
+							<span class="listview-aside">{{ basic.projectMainPollute }}</span>
 						</li>
 						<li>
 							<b>年排放量</b>
-							<span class="listview-aside">{{ detail.projectOutNumber }}</span>
+							<span class="listview-aside">{{ basic.projectOutNumber }}</span>
                         </li>
                         <li data-role="list-divider">养殖状态/废水废物处理方式</li>
 						<li>
 							<b>生产现状</b>
-							<span class="listview-aside">{{ detail.projectStatus }}</span>
+							<span class="listview-aside">{{ basic.projectStatus }}</span>
 						</li>
 						<li>
 							<b>是否直排</b>
-							<span class="listview-aside">{{ detail.projectDerectOut }}</span>
+							<span class="listview-aside">{{ basic.projectDerectOut }}</span>
 						</li>
 						<li>
 							<b>是否雨污分流</b>
-							<span class="listview-aside">{{ detail.projectDistinguish }}</span>
+							<span class="listview-aside">{{ basic.projectDistinguish }}</span>
 						</li>
 						<li>
 							<b>污水废料排放去向</b>
-							<span class="listview-aside">{{ detail.projectNext }}</span>
+							<span class="listview-aside">{{ basic.projectNext }}</span>
 						</li>
 						<li data-role="list-divider">其他</li>
 						<li><a href="#" v-on:click="gotoDetail('approval')"><b>行政审批情况</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('deposit')"><b>项目设施情况</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('application')"><b>项目设施情况</b></a></li>
 						<li><a href="#" v-on:click="gotoDetail('outlet')"><b>排污设施情况</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('person')"><b>通讯录</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('tailmine')"><b>项目照片</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('address')"><b>通讯录</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('photo')"><b>项目照片</b></a></li>
 					</ul>
 				</div>
 			</div>
@@ -158,7 +158,7 @@
 					<a href="#" v-on:click="showMain()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
-					<h1>新建检测报告</h1>
+					<h1>新建项目信息</h1>
 				</div>
 				<div data-role="main" class="ui-content">
 					<div class="nd2-card">
@@ -272,8 +272,7 @@
 	<script src="../nativeDroid2/js/nativedroid2.js"></script>
 	<script type="text/javascript" src="../nativeDroid2/nd2settings.js" ></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/ProjectBasic.js" ></script>
-	<script type="text/javascript" src="model/ProjectInfo.js" ></script>
+	<script type="text/javascript" src="model/FactoryBasic.js" ></script>
 	<script type="text/javascript">
 		var mainpageVM = new Vue({
 			el: "#root",

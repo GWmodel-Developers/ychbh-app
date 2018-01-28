@@ -35,7 +35,7 @@ Branch.prototype.domMap = [
     },{
         key: "branchName",
         name: "分公司名称",
-        type: "text",
+        type: "textarea",
         hidden: false
     },{
         key: "branchProject",
