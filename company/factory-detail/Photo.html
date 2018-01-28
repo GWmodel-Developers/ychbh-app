@@ -90,8 +90,8 @@
 			el: "#root",
 			data: {
                 items: [],
-                project_id: getURLParameter("index"),
-				selected_id: 0,
+                project_id: localStorage.getItem("factoryID"),
+				selected_id: localStorage.getItem("factory"),
 				form: new Photo(),
 				detail: new Photo()
 			},
@@ -174,7 +174,7 @@
 		});
 
 		function back() {
-			window.location = "../factoryinfo.html?projectID=" + mainpageVM.project_id +"#page_detail";
+			window.location = "../factoryinfo.html#page_detail";
 		}
 	</script>
 

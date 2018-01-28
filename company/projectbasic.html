@@ -6,19 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<title>黄柏河流域综合执法信息管理系统</title>
 		<link rel="stylesheet" href="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
-		<!--<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.css">
-		<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.theme.css">-->
-		<script src="/jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
-		<script src="/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
-		<script src="/jquery.mobile-1.4.5/jquery.ui.datepicker.js"></script>
-		<script src="/jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.js"></script>
-		<script type="text/javascript" src="/vuejs/vue.min.js"></script>
-		<script type="text/javascript" src="/datejs/date-zh-CN.js"></script>
-		<link rel="stylesheet" href="/nativeDroid2/css/nativedroid2.css" />
-		<link rel="stylesheet" href="/nativeDroid2/css/nativedroid2.color.green.css" />
 		<link rel="stylesheet" href="/nativeDroid2/vendor/waves/waves.min.css" />
 		<link rel="stylesheet" type="text/css" href="/nativeDroid2/vendor/wow/animate.css"/>
-		<script src="/nativeDroid2/js/nativedroid2.js"></script>
+		<link rel="stylesheet" href="/nativeDroid2/css/nativedroid2.css" />
+		<link rel="stylesheet" href="/nativeDroid2/css/nativedroid2.color.green.css" />
 		<style type="text/css">
 			span.listview-aside {
 				font-size: 14px;
@@ -82,7 +73,7 @@
 					<a href="#" v-on:click="showMain()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
-					<h1>检测报告</h1>
+					<h1>项目详细信息</h1>
 				</div>
 				<div id="detail-listview" data-role="main" class="ui-content">
 					<ul data-role="listview" data-inset="true">
@@ -203,7 +194,7 @@
 					<a href="#" v-on:click="showMain()" class="ui-btn">
 						<i class="zmdi zmdi-arrow-back"></i>
 					</a>
-					<h1>新建检测报告</h1>
+					<h1>新建项目信息</h1>
 				</div>
 				<div data-role="main" class="ui-content">
 					<div class="nd2-card">
@@ -330,10 +321,15 @@
 			</div>
 		</div>
 	</body>
+	<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
+	<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+	<script type="text/javascript" src="../vuejs/vue.min.js"></script>
+	<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
 	<script src="../nativeDroid2/vendor/waves/waves.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../nativeDroid2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" src="/nativeDroid2/nd2settings.js" ></script>
+	<script src="../nativeDroid2/js/nativedroid2.js"></script>
+	<script type="text/javascript" src="../nativeDroid2/nd2settings.js" ></script>
 	<!-- Vue Model -->
 	<script type="text/javascript" src="model/ProjectBasic.js" ></script>
 	<script type="text/javascript" src="model/ProjectInfo.js" ></script>
@@ -477,7 +473,7 @@
 					mainpageVM.getItems(mainpageVM)
 				},
 				gotoDetail: function (page, index) {
-					window.location = ["project-detail/", page, ".html?index=", index].join("");
+					window.location = ["project-detail/", page, ".html"].join("");
 				},
 				showMain: function () {
 					localStorage.removeItem("projectID")
@@ -503,12 +499,13 @@
 			},
 			created: function() {
 				var obj = this;
-				if (this.selected_id && this.selected_id !== "") {
-					this.queryItem(this.selected_id, this)
-				} else if (this.company_id && this.company_id !== "") {
+				if (this.company_id) {
 					this.getCompanyItems(this.company_id, this)
 				} else {
 					this.getItems(obj);
+				}
+				if (this.selected_id) {
+					this.queryItem(this.selected_id, this)
 				}
 			}
 		});
@@ -553,6 +550,7 @@
 		})
 
 		function back() {
+			localStorage.removeItem("projectID");
 			if (mainpageVM.company_id) {
 				window.location = "../company/companybasic.html#page_inspect"
 			} else {
