@@ -165,7 +165,7 @@
 						<div class="card-title">
 							<h3 class="card-primary-title">项目基本信息</h3>
 						</div>
-						<div class="card-supporting-text has-action">
+						<div class="card-supporting-text has-title">
 							<form>
 								<div class="ui-field-contain">
 									<label for="projectName">项目名称</label>
@@ -177,27 +177,27 @@
 								</div>
 								<div class="ui-field-contain">
 									<label for="projectLocationx">项目类别</label>
-									<input type="text" name="projectLocationx" id="projectLocationx" v-model="basic_form.projectLocationx"/>
+									<input type="text" name="projectLocationx" id="projectLocationx" v-model="basic_form.projectType"/>
 								</div>
 								<div class="ui-field-contain">
-									<label for="projectLocationy">经度(万)</label>
-									<input type="text" name="projectLocationy" id="projectLocationy" v-model="basic_form.projectLocationy"/>
+									<label for="projectLocationy">经度</label>
+									<input type="number" name="projectLocationy" id="projectLocationy" v-model="basic_form.projectLocationy"/>
 								</div>
 								<div class="ui-field-contain">
 									<label for="projectType">纬度</label>
-									<input type="number" name="projectType" id="projectType" v-model="basic_form.projectType"/>
+									<input type="number" name="projectType" id="projectType" v-model="basic_form.projectLocationx"/>
 								</div>
 								<div class="ui-field-contain">
 									<label for="projectRiver">所处河段</label>
-									<input type="number" name="projectRiver" id="projectRiver" v-model="basic_form.projectRiver"/>
+									<input type="text" name="projectRiver" id="projectRiver" v-model="basic_form.projectRiver"/>
 								</div>
 								<div class="ui-field-contain">
 									<label for="projectTime">开办时间</label>
-									<input type="number" name="projectTime" id="projectTime" v-model="basic_form.projectTime"/>
+									<input type="date" name="projectTime" id="projectTime" v-model="basic_form.projectTime"/>
 								</div>
 								<div class="ui-field-contain">
 									<label for="projectLegalPerson">法人代表姓名</label>
-									<input type="number" name="projectLegalPerson" id="projectLegalPerson" v-model="basic_form.projectLegalPerson"/>
+									<input type="text" name="projectLegalPerson" id="projectLegalPerson" v-model="basic_form.projectLegalPerson"/>
 								</div>
 							</form>
 						</div>
@@ -247,7 +247,7 @@
 								</div>
 								<div class="ui-field-contain">
 									<label for="projectNext">污水废料排放去向</label>
-									<input type="number" name="projectNext" id="projectNext" v-model="basic_form.projectNext"/>
+									<input type="text" name="projectNext" id="projectNext" v-model="basic_form.projectNext"/>
 								</div>
 							</form>
 						</div>
@@ -365,6 +365,7 @@
 				},
 				showMain: function () {
 					localStorage.removeItem("factoryID");
+					mainpageVM.refresh();
 					window.location = "#";
 				}
 			},

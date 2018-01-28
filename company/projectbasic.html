@@ -401,7 +401,11 @@
 					mainpageVM.getItems();
 				},
 				refresh: function() {
-					mainpageVM.getItems(mainpageVM);
+					if (mainpageVM.company_id) {
+						mainpageVM.getCompanyItems(mainpageVM.company_id, mainpageVM);
+					} else {
+						mainpageVM.getItems(mainpageVM);
+					}
 				},
 				submit: function() {
 					$.ajax({
@@ -476,8 +480,9 @@
 					window.location = ["project-detail/", page, ".html"].join("");
 				},
 				showMain: function () {
-					localStorage.removeItem("projectID")
-					window.location = "#"
+					localStorage.removeItem("projectID");
+					mainpageVM.refresh(mainpageVM);
+					window.location = "#";
 				}
 			},
 			watch: {

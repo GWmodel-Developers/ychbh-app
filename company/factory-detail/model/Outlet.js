@@ -16,11 +16,12 @@ function Outlet(params) {
 }
 
 Outlet.prototype.toForm = function (project_id) {
-    var data = "&projectID=" + project_id;
+    var data = "&ProjectID=" + project_id;
     for (var key in this) {
         if (this.hasOwnProperty(key) && key !== "projectID") {
             var element = this[key];
-            data += ("&" + key.toLowerCase() + "=" + element);
+            var saveKey = key.substr(0, 1).toUpperCase() + key.substr(1);
+            data += ("&" + saveKey + "=" + element);
         }
     }
     return data;
@@ -31,12 +32,12 @@ Outlet.prototype.domMap = [
         key: "projectID",
         name: "项目ID",
         type: "text",
-        hidden: false
+        hidden: true
     },{
         key: "outletID",
         name: "排污设施ID",
         type: "text",
-        hidden: false
+        hidden: true
     },{
         key: "outletName",
         name: "排污设施名称",
@@ -50,7 +51,7 @@ Outlet.prototype.domMap = [
     },{
         key: "outletArea",
         name: "排污设施面积",
-        type: "numer",
+        type: "number",
         hidden: false
     },{
         key: "outletRemarks",

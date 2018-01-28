@@ -15,12 +15,21 @@ function Branch(params) {
     }
 }
 
-Branch.prototype.toForm = function (project_id) {
-    var data = "";
+Branch.prototype.toForm = function (company_id) {
+    var data = "&companyID=" + company_id;
     for (var key in this) {
-        if (this.hasOwnProperty(key) && key !== "projectID") {
+        if (this.hasOwnProperty(key)) {
             var element = this[key];
-            data += ("&" + key.toLowerCase() + "=" + element);
+            switch (key) {
+                case "companyID":
+                    break;
+                case "branchTEL":
+                    data += ("&branchTEL=" + element)
+                    break;
+                default:
+                    data += ("&" + key.toLowerCase() + "=" + element);
+                    break;
+            }
         }
     }
     return data;

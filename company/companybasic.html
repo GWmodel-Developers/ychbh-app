@@ -238,8 +238,9 @@
 					window.location = ["company-detail/", page, ".html"].join("");
 				},
 				showMain: function () {
-					localStorage.removeItem("companyID")
-					window.location = "#"
+					localStorage.removeItem("companyID");
+					mainpageVM.refresh();
+					window.location = "#";
 				}
 			},
 			watch: {

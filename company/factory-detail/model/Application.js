@@ -15,11 +15,12 @@ function Application(params) {
 }
 
 Application.prototype.toForm = function (project_id) {
-    var data = "&projectID=" + project_id;
+    var data = "&ProjectID=" + project_id;
     for (var key in this) {
         if (this.hasOwnProperty(key) && key !== "projectID") {
             var element = this[key];
-            data += ("&" + key.toLowerCase() + "=" + element);
+            var saveKey = key.substr(0, 1).toUpperCase() + key.substr(1);
+            data += ("&" + saveKey + "=" + element);
         }
     }
     return data;
@@ -44,7 +45,7 @@ Application.prototype.domMap = [
     },{
         key: "applicationNumber",
         name: "设施数量",
-        type: "numer",
+        type: "number",
         hidden: false
     },{
         key: "applicationArea",

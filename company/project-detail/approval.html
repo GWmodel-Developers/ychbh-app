@@ -63,6 +63,7 @@
 							</a>
 						</li>
 					</ul>
+					<h6 class="align-right">共{{ items.length }}条记录</h6>
 				</div>
 			</div>
 			<div data-role="page" id="page_detail">
@@ -168,6 +169,8 @@
 					mainpageVM.form = new Approval();
 				},
 				showMain: function () {
+					localStorage.removeItem("projectApprovalID");
+					mainpageVM.refresh();
 					window.location = "#";
 				},
 				queryItem: function (newId, obj) {
@@ -182,6 +185,9 @@
 							obj.detail = new Approval(data.rows);
 						}
 					});
+				},
+				refresh: function () {
+					mainpageVM.getItems(mainpageVM);
 				}
 			},
 			watch: {

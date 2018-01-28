@@ -63,6 +63,7 @@
 							</a>
 						</li>
 					</ul>
+					<h6 class="align-right">共{{ items.length }}条记录</h6>
 				</div>
 			</div>
 			<div data-role="page" id="page_detail">
@@ -168,7 +169,9 @@
 					mainpageVM.form = new Outlet();
 				},
 				showMain: function () {
-					window.location = "outlet.html?index=" + mainpageVM.project_id;
+					localStorage.removeItem("factoryOutletID");
+					mainpageVM.refresh();
+					window.location = "#";
 				},
 				queryItem: function (newId, obj) {
 					$.ajax({
@@ -182,6 +185,9 @@
 							mainpageVM.detail = new Outlet(data.rows);
 						}
 					});
+				},
+				refresh: function () {
+					mainpageVM.getItems(mainpageVM);
 				}
 			},
 			watch: {

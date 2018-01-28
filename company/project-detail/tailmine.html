@@ -63,6 +63,7 @@
 							</a>
 						</li>
 					</ul>
+					<h6 class="align-right">共{{ items.length }}条记录</h6>
 				</div>
 			</div>
 			<div data-role="page" id="page_detail">
@@ -185,7 +186,12 @@
 					mainpageVM.form = new TailMine();
 				},
 				showMain: function () {
+					localStorage.removeItem("projectApprovalID");
+					mainpageVM.refresh();
 					window.location = "#";
+				},
+				refresh: function () {
+					mainpageVM.getItems(mainpageVM);
 				}
 			},
 			watch: {

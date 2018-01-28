@@ -58,11 +58,12 @@
 				<div data-role="main" class="ui-content">
 					<ul data-role="listview" data-inset="true">
 						<li v-for="(item, index) in items">
-							<a href="#page_detail" v-on:click="selected_id = item.addressID" class="ui-btn ui-icon-eye ui-btn-icon-right">
-								<h2>{{ item.addressName }}</h2>
+							<a href="#page_detail" v-on:click="selected_id = item.personID" class="ui-btn ui-icon-eye ui-btn-icon-right">
+								<h2>{{ item.personName }}</h2>
 							</a>
 						</li>
 					</ul>
+					<h6 class="align-right">共{{ items.length }}条记录</h6>
 				</div>
 			</div>
 			<div data-role="page" id="page_detail">
@@ -168,7 +169,9 @@
 					mainpageVM.form = new Address();
 				},
 				showMain: function () {
-					window.location = "address.html?index=" + mainpageVM.project_id;
+					localStorage.removeItem("factoryAddressID");
+					mainpageVM.refresh();
+					window.location = "#";
 				},
 				queryItem: function (newId, obj) {
 					$.ajax({
@@ -182,6 +185,9 @@
 							mainpageVM.detail = new Address(data.rows);
 						}
 					});
+				},
+				refresh: function () {
+					mainpageVM.getItems(mainpageVM);
 				}
 			},
 			watch: {

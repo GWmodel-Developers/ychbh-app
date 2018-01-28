@@ -15,9 +15,9 @@ function CompanyBasic(params) {
 }
 
 CompanyBasic.prototype.toForm = function (project_id) {
-    var data = "&projectID=" + project_id;
+    var data = "";
     for (var key in this) {
-        if (this.hasOwnProperty(key) && key !== "projectID") {
+        if (this.hasOwnProperty(key)) {
             var element = this[key];
             data += ("&" + key.toLowerCase() + "=" + element);
         }

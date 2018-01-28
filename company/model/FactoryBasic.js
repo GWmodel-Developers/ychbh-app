@@ -29,9 +29,10 @@ function FactoryBasic(params) {
 FactoryBasic.prototype.toForm = function (project_id) {
     var data = "";
     for (var key in this) {
-        if (this.hasOwnProperty(key) && key !== "projectID") {
+        if (this.hasOwnProperty(key)) {
             var element = this[key];
-            data += ("&" + key.toLowerCase() + "=" + element);
+            var saveKey = key.substr(0, 1).toUpperCase() + key.substr(1);
+            data += ("&" + saveKey + "=" + element);
         }
     }
     return data;
