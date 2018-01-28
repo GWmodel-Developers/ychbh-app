@@ -37,7 +37,7 @@
 					<button class="ui-btn ui-corner-all ui-btn-inline" v-bind:class="{ 'ui-state-disabled' : !previousPageEnable }" v-on:click="previousPage()"><i class="zmdi zmdi-chevron-left"></i></button>
 					<button class="ui-btn ui-corner-all ui-btn-inline" v-on:click="refresh()"><i class="zmdi zmdi-refresh"></i></button>
 					<button class="ui-btn ui-corner-all ui-icon-arrow-r ui-btn-inline" v-bind:class="{ 'ui-state-disabled' : !nextPageEnable }" v-on:click="nextPage()"><i class="zmdi zmdi-chevron-right"></i></button>
-					<span>第{{pageIndex + (totalPages === 0) ? 0 : 1}}页，共{{ totalPages }}页，{{ total }}条记录。</span>
+					<span>第{{pageIndex + ((totalPages === 0) ? 0 : 1)}}页，共{{ totalPages }}页，{{ total }}条记录。</span>
 				</div>
 			</div>
 		</div>

@@ -77,7 +77,7 @@
 				</div>
 				<div id="detail-listview" data-role="main" class="ui-content">
 					<ul data-role="listview" data-inset="true">
-						<li data-role="list-divider">基本信息</li>
+						<li data-role="list-divider"><h3>基本信息</h3></li>
 						<li>
 							<b>矿井名称</b>
 							<span class="listview-aside">{{ basic.mineName }}</span>
@@ -134,7 +134,7 @@
 							<b>备注</b>
 							<p class="listview-aside">{{ basic.remarks }}</p>
 						</li>
-						<li data-role="list-divider">项目详细信息</li>
+						<li data-role="list-divider"><h3>项目详细信息</h3></li>
 						<li>
 							<b>项目负责人</b>
 							<span class="listview-aside">{{ detail.projectCharger }}</span>
@@ -175,7 +175,7 @@
 							<b>项目现状</b>
 							<span class="listview-aside">{{ detail.projectStatus }}</span>
 						</li>
-						<li data-role="list-divider">其他</li>
+						<li data-role="list-divider"><h3>其他</h3></li>
 						<li><a href="#" v-on:click="gotoDetail('approval', detail.projectID)"><b>行政审批情况</b></a></li>
 						<li><a href="#" v-on:click="gotoDetail('mine', detail.projectID)"><b>矿硐</b></a></li>
 						<li><a href="#" v-on:click="gotoDetail('site', detail.projectID)"><b>渣场</b></a></li>
