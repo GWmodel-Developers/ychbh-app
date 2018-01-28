@@ -1,10 +1,9 @@
-function Branch(params) {
-    this.branchName = "";
-	this.branchProject = "";
-	this.branchTEL = "";
-	this.branchID = "";
-	this.branchCharger = "";
-	this.companyID = "";
+function Address(params) {
+    this.projectID = "";
+	this.personID = "";
+	this.personName = "";
+	this.personJob = "";
+	this.personTEL = "";
     if (params) {
         for (var key in params) {
             if (params.hasOwnProperty(key)) {
@@ -15,8 +14,8 @@ function Branch(params) {
     }
 }
 
-Branch.prototype.toForm = function (project_id) {
-    var data = "";
+Address.prototype.toForm = function (project_id) {
+    var data = "&projectID=" + project_id;
     for (var key in this) {
         if (this.hasOwnProperty(key) && key !== "projectID") {
             var element = this[key];
@@ -26,31 +25,31 @@ Branch.prototype.toForm = function (project_id) {
     return data;
 }
 
-Branch.prototype.domMap = [
+Address.prototype.domMap = [
     {
-        key: "branchID",
-        name: "分公司ID",
-        type: "text",
-        hidden: true
-    },{
-        key: "branchName",
-        name: "分公司名称",
+        key: "projectID",
+        name: "项目ID",
         type: "text",
         hidden: false
     },{
-        key: "branchProject",
-        name: "负责项目",
-        type: "textarea",
-        hidden: false
-    },{
-        key: "branchCharger",
-        name: "负责人",
+        key: "personID",
+        name: "联系人ID",
         type: "text",
         hidden: false
     },{
-        key: "branchTEL",
-        name: "联系方式",
+        key: "personName",
+        name: "姓名",
         type: "text",
+        hidden: false
+    },{
+        key: "personJob",
+        name: "职务",
+        type: "text",
+        hidden: false
+    },{
+        key: "personTEL",
+        name: "电话",
+        type: "tel",
         hidden: false
     }
 ]
