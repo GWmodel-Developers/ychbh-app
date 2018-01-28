@@ -122,8 +122,8 @@
 			el: "#root",
 			data: {
                 items: [],
-                project_id: getURLParameter("index"),
-				selected_id: 0,
+                project_id: localStorage.getItem("projectID"),
+				selected_id: localStorage.getItem("projectRegionID"),
 				form: new Region(),
 				detail: new Region()
 			},
@@ -171,15 +171,10 @@
 				createForm: function() {
 					mainpageVM.form = new Region();
 				},
-				minusInticator: function(index) {
-					mainpageVM.form.wInsRecordZs.splice(index, 1);
-				},
 				showMain: function () {
-					window.location = "Region.html?index=" + mainpageVM.project_id;
-				}
-			},
-			watch: {
-				selected_id: function (newId, oldId) {
+					window.location = "#";
+				},
+				queryItem: function (newId, obj) {
 					$.ajax({
 						type: "post",
 						url: "http://39.106.145.68:8080/huangbaihe/Clifebasic/edit",
@@ -188,37 +183,29 @@
 							index: newId
 						},
 						success: function (data) {
-							mainpageVM.detail = new Region(data.rows);
+							obj.detail = new Region(data.rows);
 						}
 					});
 				}
 			},
-			computed: {
-				previousPageEnable: function() {
-					return this.page > 0
-				},
-				nextPageEnable: function() {
-					return this.page < (this.totalPages - 1)
-				},
-				totalPages: function() {
-					return Math.ceil(this.total / 10)
+			watch: {
+				selected_id: function (newId, oldId) {
+					localStorage.setItem("projectRegionID", newId);
+					mainpageVM.queryItem(newId, mainpageVM);
 				}
 			},
 			created: function() {
 				var obj = this;
 				this.getItems(obj);
-				// 获取检查地址
-				// 获取检测单位
-			},
-			beforeCreate: function() {
-				if (window.location.href.split("#").pop() === "page_detail") {
-					window.location = "#"
+				if (this.selected_id) {
+					this.queryItem(this.selected_id, this);
 				}
 			}
 		});
 
 		function back() {
-			window.location = "../projectbasic.html?projectID=" + mainpageVM.project_id +"#page_detail";
+			localStorage.removeItem("projectRegionID");
+			window.location = "../projectbasic.html#page_detail"
 		}
 	</script>
 

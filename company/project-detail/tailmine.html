@@ -122,8 +122,8 @@
 			el: "#root",
 			data: {
                 items: [],
-                project_id: getURLParameter("index"),
-				selected_id: 0,
+                project_id: localStorage.getItem("projectID"),
+				selected_id: localStorage.getItem("projectTailMineID"),
 				form: new TailMine(),
 				detail: new TailMine()
 			},
@@ -146,6 +146,19 @@
 								message : "查询失败", // Required
 							});
                         }
+					});
+				},
+				queryItem: function (newId, obj) {
+					$.ajax({
+						type: "post",
+						url: "http://39.106.145.68:8080/huangbaihe/Ctailmine/edit",
+						dataType: "json",
+						data: {
+							index: newId
+						},
+						success: function (data) {
+							obj.detail = new TailMine(data.rows);
+						}
 					});
 				},
 				submit: function() {
@@ -171,54 +184,28 @@
 				createForm: function() {
 					mainpageVM.form = new TailMine();
 				},
-				minusInticator: function(index) {
-					mainpageVM.form.wInsRecordZs.splice(index, 1);
-				},
 				showMain: function () {
-					window.location = "tailMine.html?index=" + mainpageVM.project_id;
+					window.location = "#";
 				}
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					$.ajax({
-						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/Ctailmine/edit",
-						dataType: "json",
-						data: {
-							index: newId
-						},
-						success: function (data) {
-							mainpageVM.detail = new TailMine(data.rows);
-						}
-					});
-				}
-			},
-			computed: {
-				previousPageEnable: function() {
-					return this.page > 0
-				},
-				nextPageEnable: function() {
-					return this.page < (this.totalPages - 1)
-				},
-				totalPages: function() {
-					return Math.ceil(this.total / 10)
+					localStorage.setItem("projectTailMineID", newId)
+					mainpageVM.queryItem(newId, mainpageVM)
 				}
 			},
 			created: function() {
 				var obj = this;
 				this.getItems(obj);
-				// 获取检查地址
-				// 获取检测单位
-			},
-			beforeCreate: function() {
-				if (window.location.href.split("#").pop() === "page_detail") {
-					window.location = "#"
+				if (this.selected_id) {
+					this.queryItem(this.selected_id, this)
 				}
 			}
 		});
 
 		function back() {
-			window.location = "../projectbasic.html?projectID=" + mainpageVM.project_id +"#page_detail";
+			window.location = "../projectbasic.html#page_detail"
+			localStorage.removeItem("projectTailMineID")
 		}
 	</script>
 
