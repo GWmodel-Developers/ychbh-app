@@ -106,6 +106,8 @@
 			}
 
 			function submit() {
+				content.form.time = Date.parse(content.form.time).toString("yyyy年MM月dd日")
+				content.form.pdate = Date.parse(content.form.pdate).toString("yyyy年MM月dd日")
 				$.ajax({
 					type: "post",
 					url: "http://39.106.145.68:8080/huangbaihe/InsNotice/save",
