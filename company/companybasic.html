@@ -278,7 +278,7 @@
 					source: function (request, response) {
 						$.ajax({
 							method: "POST",
-							url: "http://39.106.145.68:8080/huangbaihe/Cprobasic/query",
+							url: "http://39.106.145.68:8080/huangbaihe/Ccompany/query",
 							dataType: "JSON",
 							data: {
 								companyname: request.term
@@ -306,7 +306,7 @@
 
 		function back() {
 			localStorage.removeItem("companyID");
-			window.location = "../company/main.html#page_inspect";
+			window.location = "../index.html";
 		}
 	</script>
 

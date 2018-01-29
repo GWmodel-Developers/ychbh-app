@@ -5,11 +5,17 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<title>黄柏河流域综合执法信息管理系统</title>
-		<link rel="stylesheet" href="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
-		<link rel="stylesheet" href="../nativeDroid2/vendor/waves/waves.min.css" />
-		<link rel="stylesheet" href="../nativeDroid2/vendor/wow/animate.css"/>
-		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.css" />
-		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.color.green.css" />
+		<link rel="stylesheet" href="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+		<link rel="stylesheet" href="./nativeDroid2/vendor/waves/waves.min.css" />
+		<link rel="stylesheet" href="./nativeDroid2/vendor/wow/animate.css"/>
+		<link rel="stylesheet" href="./nativeDroid2/css/nativedroid2.css" />
+		<link rel="stylesheet" href="./nativeDroid2/css/nativedroid2.color.green.css" />
+		<script src="./jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
+		<script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+		<script src="./nativeDroid2/vendor/waves/waves.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./nativeDroid2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./nativeDroid2/js/nativedroid2.js"></script>
 		<style type="text/css">
 			span.listview-aside {
 				font-size: 14px;
@@ -43,33 +49,37 @@
 				<h1>黄柏河执法系统</h1>
 			</div>
 			<div class="ui-content" data-role="main">
-                <ul data-role="listview">
-                    <li data-role="list-divider">项目信息</li>
-                    <li>
-                        <div class="row between-xs">
-                            <div class="col-xs-4 align-center">
-                                <a href="#" class="ui-btn clr-primary">案件管理</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+				<ul data-role="listview">
+					<li data-role="list-divider">项目信息</li>
+					<li><a href="#" onclick="gotoPage('company/projectbasic.html')">项目概况</a></li>
+					<li><a href="#" onclick="gotoPage('company/companybasic.html')">企业概况</a></li>
+					<li><a href="#" onclick="gotoPage('company/factoryinfo.html')">养殖/化工/石材厂信息</a></li>
+					<li data-role="list-divider">案件巡查</li>
+					<li><a href="#" onclick="gotoPage('inspect/daily.html')">日常巡查</a></li>
+					<li><a href="#" onclick="gotoPage('inspect/current.html')">现场监察</a></li>
+					<li><a href="#" onclick="gotoPage('inspect/renotice.html')">现场检查结果通知</a></li>
+					<li><a href="#" onclick="gotoPage('inspect/notice.html')">监察通知</a></li>
+					<li><a href="#" onclick="gotoPage('inspect/problem.html')">发现问题</a></li>
+					<li><a href="#" onclick="gotoPage('inspect/dealproblem.html')">处理问题</a></li>
+					<li data-role="list-divider">水质监测</li>
+					<li><a href="#" onclick="gotoPage('water/otherw.html')">河流水质监测</a></li>
+					<li><a href="#" onclick="gotoPage('water/pool.html')">水库水质监测</a></li>
+					<li><a href="#" onclick="gotoPage('water/otherbg.html')">检测报告</a></li>
+				</ul>
 			</div>
 		</div>
+		<script>
+			function back() {
+				window.location = "login.html";
+			}
+	
+			$(function () {
+				localStorage.clear();
+			})
+	
+			function gotoPage(page) {
+				window.location = page;
+			}
+		</script>
     </body>
-    <script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
-    <script src="../nativeDroid2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
-    <script src="../nativeDroid2/vendor/waves/waves.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../nativeDroid2/js/nativedroid2.js"></script>
-    <script type="text/javascript" src="../nativeDroid2/nd2settings.js" ></script>
-	<script>
-		function back() {
-			window.history.back();
-		}
-
-		function relogin() {
-			window.location = "index.html"
-		}
-	</script>
 </html>
