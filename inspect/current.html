@@ -25,6 +25,9 @@
 				<a href="#" onclick="add()" class="ui-btn"><i class="zmdi zmdi-plus"></i></a>
 			</div>
 			<div data-role="main" class="ui-content" id="main">
+				<form v-on:submit.prevent>
+					<input name="search" id="search" type="search" onchange="content.searchText = this.value" placeholder="搜索..." data-clear-btn="true">
+				</form>
 				<ul id="content" data-role="listview" data-inset="true">
 					<li v-for="item in items">
 						<a href="#" class="ui-btn ui-icon-eye ui-btn-icon-right" v-on:click="detail(item.ins_id)">
@@ -102,18 +105,6 @@
 		});
 		$(document).ready(function() {
 			showLoader();
-			new $.nd2Search({
-				placeholder: "搜索", // Placeholder in the search field
-				defaultIcon: "globe-alt", // optional: icon | null
-				source: function (request, response) {
-					
-				}, // autocomplete : option-source
-				fn: function(result) { // this function will be executed when a valid result item is selected
-					console.log('--- Your custom handling ---');
-					console.log('you picked: ');
-					console.log(result);
-				}
-			});
 		});
 
 		function back() {

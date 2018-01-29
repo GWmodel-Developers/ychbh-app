@@ -22,7 +22,9 @@
 				<a href="#" onclick="add()" class="ui-btn"><i class="zmdi zmdi-plus"></i></a>
 			</div>
 			<div id="main" data-role="main" class="ui-content">
-				<form v-on:submit.prevent> <input name="search" id="search" type="search" onchange="content.searchText = this.value"> </form>
+				<form v-on:submit.prevent>
+					<input name="search" id="search" type="search" onchange="content.searchText = this.value" placeholder="搜索..." data-clear-btn="true">
+				</form>
 				<ul id="content" data-role="listview" data-inset="true">
 					<li v-for="item in items">
 						<a href="#" class="ui-btn ui-icon-eye ui-btn-icon-right" v-on:click="detail(item.ins_noid)">
