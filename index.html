@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="./nativeDroid2/css/nativedroid2.css" />
 		<link rel="stylesheet" href="./nativeDroid2/css/nativedroid2.color.green.css" />
 		<link rel="stylesheet" href="./swiper/css/swiper.min.css">
+		<link rel="stylesheet" href="./img/iconfont/iconfont.css">
 		<script src="./jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
 		<script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
 		<script src="./nativeDroid2/vendor/waves/waves.min.js" type="text/javascript" charset="utf-8"></script>
@@ -38,6 +39,10 @@
 			.item-title {
 				font-weight: bold;
 			}
+
+			i.iconfont {
+				width: 50%;
+			}
 		</style>
 	</head>
 
@@ -49,59 +54,83 @@
 				</a>
 				<h1>黄柏河执法系统</h1>
 			</div>
-			<div class="swiper-container" style="width: 100%;height: 240px;">
+			<div class="swiper-container" style="width: 100%;height: 160px;">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide"><img style="width: 100%;height: 240px;" src="img/slack1.jpg" alt=""></div>
-					<div class="swiper-slide"><img style="width: 100%;height: 240px;" src="img/slack2.jpg" alt=""></div>
+					<div class="swiper-slide"><img style="width: 100%;" src="img/slack1.jpg" alt=""></div>
+					<div class="swiper-slide"><img style="width: 100%;" src="img/slack2.jpg" alt=""></div>
 				</div>
 			</div>
 			<div class="ui-content" data-role="main">
 				<div class="row between-xs">
 					<div class="col-xs-12">
-						<h5 class="nd2-title" style="margin: 10px auto;">项目信息</h5>
+						<h5 class="nd2-title" style="margin: 20px auto;"><strong>项目信息</strong></h5>
 					</div>
 					<div class="col-xs-4 align-center" onclick="gotoPage('company/projectbasic.html')">
+						<i class="iconfont icon-project"></i>
 						<p>项目概况</p>
 					</div>
 					<div class="col-xs-4 align-center" onclick="gotoPage('company/companybasic.html')">
+						<i class="iconfont icon-qiye"></i>
 						<p>企业概况</p>
 					</div>
 					<div class="col-xs-4 align-center" onclick="gotoPage('company/factoryinfo.html')">
+						<i class="iconfont "></i>
 						<p>养殖 化工<br>石材厂信息</p>
 					</div>
 					<div class="col-xs-12">
-						<h5 class="nd2-title" style="margin: 10px auto;">案件巡查</h5>
+						<h5 class="nd2-title" style="margin: 20px auto;"><strong>案件巡查</strong></h5>
 					</div>
 					<div class="col-xs-4 align-center" onclick="gotoPage('inspect/daily.html')">
+						<i class="iconfont "></i>
 						<p>日常巡查</p>
 					</div>
 					<div class="col-xs-4 align-center" onclick="gotoPage('inspect/current.html')">
+						<i class="iconfont "></i>
 						<p>现场监察</p>
 					</div>
 					<div class="col-xs-4 align-center" onclick="gotoPage('inspect/renotice.html')">
+						<i class="iconfont "></i>
 						<p>现场检查结果通知</p>
 					</div>
 					<div class="col-xs-4 align-center" onclick="gotoPage('inspect/notice.html')">
+						<i class="iconfont "></i>
 						<p>监察通知</p>
 					</div>
 					<div class="col-xs-4 align-center" onclick="gotoPage('inspect/problem.html')">
+						<i class="iconfont "></i>
 						<p>发现问题</p>
 					</div>
 					<div class="col-xs-4 align-center" onclick="gotoPage('inspect/dealproblem.html')">
+						<i class="iconfont "></i>
 						<p>处理问题</p>
 					</div>
 					<div class="col-xs-12">
-						<h5 class="nd2-title" style="margin: 10px auto;">水质监测</h5>
+						<h5 class="nd2-title" style="margin: 20px auto;"><strong>水质监测</strong></h5>
 					</div>
 					<div class="col-xs-4 align-center" onclick="gotoPage('water/otherw.html')">
+						<i class="iconfont "></i>
 						<p>河流水质监测</p>
 					</div>
 					<div class="col-xs-4 align-center" onclick="gotoPage('water/pool.html')">
+						<i class="iconfont "></i>
 						<p>水库水质监测</p>
 					</div>
 					<div class="col-xs-4 align-center" onclick="gotoPage('water/otherbg.html')">
+						<i class="iconfont "></i>
 						<p>检测报告</p>
 					</div>
+					<div class="col-xs-12">
+						<h5 class="nd2-title" style="margin: 20px auto;"><strong>法律管理</strong></h5>
+					</div>
+					<div class="col-xs-4 align-center" onclick="gotoPage('#')">
+						<i class="iconfont "></i>
+						<p>案由管理</p>
+					</div>
+					<div class="col-xs-4 align-center" onclick="gotoPage('#')">
+						<i class="iconfont "></i>
+						<p>法律法规</p>
+					</div>
+					<div class="col-xs-4"></div>
 				</div>
 			</div>
 		</div>
