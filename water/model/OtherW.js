@@ -1,7 +1,7 @@
 function OtherW(param) {
-	this.tx_id = "";
+	this.tx_id = "scjxx-" + new Date().toString("yyyyMMddHHmmss");
 	this.wperson = "";
-	this.date = "";
+	this.date = Date.today().toString("yyyy-MM-dd");
 	this.yearm = "";
 	this.year = "";
 	this.month = "";
@@ -28,19 +28,19 @@ OtherW.prototype.toForm = function() {
             var element = this[key];
             switch (key) {
                 case "riverZshus":
-                    data += this.riverZshus.map(function (item) {
-                        return item.toForm();
-                    }).join("");
+                    for (var i = 0; i < this.riverZshus.length; i++) {
+                        data += (this.riverZshus[i].toForm(i + 1))
+                    }
                     break;
                 case "yearm":
-                    data += ("&" + "yearm" + "=" + this.year + "-" + this.month);
+                    data += ("&" + "yearm" + "=" + this.year + "年" + this.month + "月");
                     break;
                 case "year":
                     break;
                 case "month":
                     break;
                 case "date":
-                    data += ("&" + key + "=" + Date.parse(this[key]).toString("yyyy年MM月dd日"));
+                    data += ("&" + key + "=" + Date.parse(this.date).toString("yyyy年MM月dd日"));
                     break;
                 default:
                     data += ("&" + key + "=" + element);

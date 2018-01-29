@@ -3,9 +3,9 @@
  * @param {Object} param 水库检测报告JSON对象
  */
 function PoolRep(param) {
-    this.tx_id = "";
+    this.tx_id = "scjxx-" + new Date().toString("yyyyMMddHHmmss");
     this.wperson = "";
-    this.date = "";
+    this.date = Date.today().toString("yyyy-MM-dd");
     this.yearm = "";
     this.year = "";
     this.month = "";
@@ -35,12 +35,12 @@ PoolRep.prototype.toForm = function () {
             var element = this[key];
             switch (key) {
                 case "poolZshus":
-                    data += this.poolZshus.map(function (item) {
-                        return item.toForm();
+                    data += this.poolZshus.map(function (item, index) {
+                        return item.toForm(index + 1);
                     }).join("");
                     break;
                 case "yearm":
-                    data += ("&" + "yearm" + "=" + this.year + "-" + this.month);
+                    data += ("&" + "yearm" + "=" + this.year + "年" + this.month + "月");
                     break;
                 case "year":
                     break;
@@ -57,3 +57,9 @@ PoolRep.prototype.toForm = function () {
     }
     return data;
 }
+
+PoolRep.prototype.xunList = [
+    "上旬",
+    "中旬",
+    "下旬"
+]

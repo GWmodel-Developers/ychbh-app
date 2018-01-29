@@ -42,6 +42,7 @@ Pool.prototype.toForm = function (index) {
             }
         }
     }
+    return data;
 }
 
 Pool.prototype.poolList = (function() {

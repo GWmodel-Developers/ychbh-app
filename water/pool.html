@@ -6,14 +6,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<title>黄柏水库域综合执法信息管理系统</title>
 		<link rel="stylesheet" href="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
-		<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.css">
-		<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.theme.css">
+		<link rel="stylesheet" href="../nativeDroid2/vendor/waves/waves.min.css" />
+		<link rel="stylesheet" href="../nativeDroid2/vendor/wow/animate.css"/>
+		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.css" />
+		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.color.green.css" />
 		<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
+		<script src="../nativeDroid2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
-		<script src="../jquery.mobile-1.4.5/jquery.ui.datepicker.js"></script>
-		<script src="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.js"></script>
-		<script type="text/javascript" src="../vuejs/vue.min.js"></script>
-		<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
+		<script src="../nativeDroid2/vendor/waves/waves.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../nativeDroid2/js/nativedroid2.js"></script>
+		<script type="text/javascript" src="../nativeDroid2/nd2settings.js" ></script>
 		<style type="text/css">
 			span.listview-aside {
 				font-size: 14px;
@@ -59,9 +62,13 @@
 		<div id="root">
 			<div data-role="page" id="page_main">
 				<div data-role="header" data-position="fixed" data-tap-toggle="false">
-					<a href="#" onclick="back()" class="ui-btn ui-icon-back ui-btn-icon-left">返回</a>
+					<a href="#" onclick="back()" class="ui-btn">
+						<i class="zmdi zmdi-arrow-back"></i>
+					</a>
 					<h1>水库水质报告</h1>
-					<a href="#page_new" v-on:click.capture="createForm()" class="ui-btn ui-icon-plus ui-btn-icon-left">新增</a>
+					<a href="#page_new" v-on:click.capture="createForm()" class="ui-btn">
+						<i class="zmdi zmdi-plus"></i>
+					</a>
 				</div>
 				<div data-role="main" class="ui-content">
 					<!-- BEGIN: 水库水质报告筛选按钮 -->
@@ -106,26 +113,34 @@
 					<!-- END -->
 					<ul data-role="listview" data-inset="true">
 						<li v-for="(item, index) in items">
-							<a href="#page_detail" v-on:click="selected = index" class="ui-btn ui-icon-eye ui-btn-icon-right">{{ item.com_name }}
-								<p class="listview-aside" style="margin: 0px;">{{ item.re_noid }}</p>
+							<a href="#page_detail" v-on:click="selected_id = item.tx_id" class="ui-btn ui-icon-eye ui-btn-icon-right">{{ item.yearm }}，{{ item.xun }}
+								<p class="listview-aside" style="margin: 0px;">{{ item.tx_id }}</p>
 							</a>
 						</li>
 					</ul>
-					<div v-show="showPagination" data-role="controlgroup" data-type="horizontal" data-mini="true" style="text-align: center;marin: 0 auto;">
-						<p>第{{page + (totalPages === 0) ? 0 : 1}}页，共{{ totalPages }}页，{{ total }}条记录。</p>
-						<a herf="#" v-bind:class="{ 'ui-state-disabled' : !previousPageEnable }" class="ui-btn ui-corner-all ui-icon-arrow-l ui-btn-icon-left" v-on:click="previousPage()">前一页</a>
-						<a herf="#" class="ui-btn ui-corner-all ui-icon-refresh ui-btn-icon-left" v-on:click="refresh()">刷新</a>
-						<a herf="#" v-bind:class="{ 'ui-state-disabled' : !nextPageEnable }" class="ui-btn ui-corner-all ui-icon-arrow-r ui-btn-icon-right" v-on:click="nextPage()">后一页</a>
+					<div v-show="showPagination">
+						<button class="ui-btn ui-corner-all ui-btn-inline" v-bind:class="{ 'ui-state-disabled' : !previousPageEnable }" v-on:click="previousPage()">
+							<i class="zmdi zmdi-chevron-left"></i>
+						</button>
+						<button class="ui-btn ui-corner-all ui-btn-inline" v-on:click="refresh()">
+							<i class="zmdi zmdi-refresh"></i>
+						</button>
+						<button class="ui-btn ui-corner-all ui-icon-arrow-r ui-btn-inline" v-bind:class="{ 'ui-state-disabled' : !nextPageEnable }" v-on:click="nextPage()">
+							<i class="zmdi zmdi-chevron-right"></i>
+						</button>
+						<span>第{{page + ((totalPages === 0) ? 0 : 1)}}页，共{{ totalPages }}页，{{ total }}条记录。</span>
 					</div>
 				</div>
 			</div>
 			<div data-role="page" id="page_detail">
 				<div data-role="header" data-position="fixed" data-tap-toggle="false">
-					<a href="#page_main" class="ui-btn ui-icon-back ui-btn-icon-left">返回</a>
+					<a href="#page_main" v-on:click.capture="if (showPagination) refresh()" class="ui-btn">
+						<i class="zmdi zmdi-arrow-back"></i>
+					</a>
 					<h1>水库水质报告</h1>
 				</div>
 				<div data-role="main" class="ui-content">
-					<h4>填写编号：{{ detail.tx_id }}</h4>
+					<h4>编号：{{ detail.tx_id }}</h4>
 					<ul data-role="listview" data-inset="true">
 						<li><b>填写人</b><span class="listview-aside">{{ detail.wperson }}</span></li>
 						<li><b>填写时间</b><span class="listview-aside">{{ detail.date }}</span></li>
@@ -133,29 +148,35 @@
 						<li><b>旬</b><span class="listview-aside">{{ detail.xun }}</span></li>
 					</ul>
 					<template v-for="(pool, i) in detail.poolZshus">
-						<div data-role="collapsible" data-inset="true">
-							<h4>水库{{ i + 1 }}</h4>
-							<ul data-role="listview">
-								<li><b>水库名称</b><span class="listview-aside">{{ pool.sk }}</span></li>
-								<li><b>检测点位置</b><span class="listview-aside">{{ pool.point }}</span></li>
-								<li data-role="list-divider">水质类别</li>
-								<li><b>总氮不参评</b><span class="listview-aside">{{ pool.sn }}</span></li>
-								<li><b>超标项目</b><span class="listview-aside">{{ pool.cb }}</span></li>
-								<li data-role="list-divider">营养化评价</li>
-								<li><b>评分值</b><span class="listview-aside">{{ pool.pf }}</span></li>
-								<li><b>营养状况</b><span class="listview-aside">{{ pool.yy }}</span></li>
-								<li data-role="list-divider">藻类状况</li>
-								<li><b>常见种或优势种</b><span class="listview-aside">{{ pool.ysz }}</span></li>
-								<li><b>藻细胞密度(10^4个/L)</b><span class="listview-aside">{{ pool.zxbmd }}</span></li>
-								<li><b>水华风险评估</b><span class="listview-aside">{{ pool.shfx }}</span></li>
-							</ul>
+						<div class="nd2-card">
+							<div class="card-title has-supporting-text">
+								<h3 class="card-primary-title">水库{{ i + 1 }}</h3>
+							</div>
+							<div class="card-supporting-text">
+								<ul class="ui-listview" data-role="listview">
+									<li class="ui-li-static ui-body-inherit"><b>水库名称</b><span class="listview-aside">{{ pool.sk }}</span></li>
+									<li class="ui-li-static ui-body-inherit"><b>检测点位置</b><span class="listview-aside">{{ pool.point }}</span></li>
+									<li class="ui-li-divider ui-bar-inherit" data-role="list-divider"><h3>水质类别</h3></li>
+									<li class="ui-li-static ui-body-inherit"><b>总氮不参评</b><span class="listview-aside">{{ pool.sn }}</span></li>
+									<li class="ui-li-static ui-body-inherit"><b>超标项目</b><span class="listview-aside">{{ pool.cb }}</span></li>
+									<li class="ui-li-divider ui-bar-inherit" data-role="list-divider"><h3>营养化评价</h3></li>
+									<li class="ui-li-static ui-body-inherit"><b>评分值</b><span class="listview-aside">{{ pool.pf }}</span></li>
+									<li class="ui-li-static ui-body-inherit"><b>营养状况</b><span class="listview-aside">{{ pool.yy }}</span></li>
+									<li class="ui-li-divider ui-bar-inherit" data-role="list-divider"><h3>藻类状况</h3></li>
+									<li class="ui-li-static ui-body-inherit"><b>常见种或优势种</b><span class="listview-aside">{{ pool.ysz }}</span></li>
+									<li class="ui-li-static ui-body-inherit"><b>藻细胞密度(10^4个/L)</b><span class="listview-aside">{{ pool.zxbmd }}</span></li>
+									<li class="ui-li-static ui-body-inherit"><b>水华风险评估</b><span class="listview-aside">{{ pool.shfx }}</span></li>
+								</ul>
+							</div>
 						</div>
 					</template>
 				</div>
 			</div>
 			<div data-role="page" id="page_new">
 				<div data-role="header" data-position="fixed" data-tap-toggle="false">
-					<a href="#page_main" class="ui-btn ui-icon-back ui-btn-icon-left">返回</a>
+					<a href="#page_main" v-on:click.capture="if (showPagination) refresh()" class="ui-btn">
+						<i class="zmdi zmdi-arrow-back"></i>
+					</a>
 					<h1>新建水库水质报告</h1>
 				</div>
 				<div data-role="main" class="ui-content">
@@ -163,99 +184,110 @@
 					<form id="newitem">
 						<div class="ui-field-contain">
 							<label for="wperson">填写人</label>
-							<input type="text" name="wperson" id="wperson" value="wperson" />
+							<input type="text" name="wperson" id="wperson" v-model="form.wperson"/>
 						</div>
 						<div class="ui-field-contain">
 							<label for="date">填写时间</label>
-							<input type="date" name="date" id="date" value="date" />
+							<input type="date" name="date" id="date" v-model="form.date"/>
 						</div>
-						<div class="ui-grid-a">
-							<div class="ui-block-a">
+						<div class="row between-xs">
+							<div class="col-xs-6">
 								<div class="ui-field-contain">
 									<label for="year">年</label>
-									<input type="number" name="year" id="year" value="year" />
+									<input type="number" name="year" id="year" v-model="form.year"/>
 								</div>
 							</div>
-							<div class="ui-block-b">
+							<div class="col-xs-6">
 								<div class="ui-field-contain">
 									<label for="month">月</label>
-									<input type="number" name="month" id="month" value="month" />
+									<input type="number" name="month" id="month" v-model="form.month"/>
 								</div>
 							</div>
 						</div>
 						<div class="ui-field-contain">
 							<label for="xun">旬</label>
-							<select type="text" name="xun" id="xun" value="xun">
+							<select type="text" name="xun" id="xun" v-model="form.xun">
+								<option value="" disabled>请选择</option>
 								<option v-for="xun in form.xunList" v-bind:value="xun">{{ xun }}</option>
 							</select>
 						</div>
-						<div v-for="(pool, index) in form.poolZshus" data-role="collapsible">
-							<h1>水库{{ index + 1}}</h1>
-							<div class="ui-field-contain">
-								<label for="">水库名称</label>
-								<select name="" id="" value="" v-model="pool.sk">
-									<option value="" disabled>请选择</option>
-									<option v-for="poolname in pool.poolList" v-bind:value="poolname">{{ poolname }}</option>
-								</select>
+						<div v-for="(pool, index) in form.poolZshus" class="nd2-card">
+							<div class="card-title has-supporting-text">
+								<h3 class="card-primary-title">水库{{ index + 1}}</h3>
 							</div>
-							<div class="ui-field-contain">
-								<label for="'point_' + index">监测点位置</label>
-								<input type="text" name="point" v-bind:id="'point_' + index" v-model="pool.point"/>
+							<div class="card-supporting-text has-action">
+								<div class="ui-field-contain">
+									<label for="">水库名称</label>
+									<select name="" id="" value="" v-model="pool.sk">
+										<option value="" disabled>请选择</option>
+										<option v-for="poolname in pool.poolList" v-bind:value="poolname">{{ poolname }}</option>
+									</select>
+								</div>
+								<div class="ui-field-contain">
+									<label for="'point_' + index">监测点位置</label>
+									<input type="text" name="point" v-bind:id="'point_' + index" v-model="pool.point"/>
+								</div>
+								<ul data-role="listview" data-inset="true">
+									<li data-role="list-divider">水质类别</li>
+									<li class="ui-field-contain">
+										<label for="'sn_' + index">总氮不参评</label>
+										<input type="text" name="sn" v-bind:id="'sn_' + index" v-model="pool.sn"/>
+									</li>
+									<li class="ui-field-contain">
+										<label for="'cb_' + index">超标项目</label>
+										<input type="text" name="cb" v-bind:id="'cb_' + index" v-model="pool.cb"/>
+									</li>
+								</ul>
+								<ul data-role="listview" data-inset="true">
+									<li data-role="list-divider">营养化评价</li>
+									<li class="ui-field-contain">
+										<label for="'pf_' + index">评分值</label>
+										<input type="text" name="pf" v-bind:id="'pf_' + index" v-model="pool.pf"/>
+									</li>
+									<li class="ui-field-contain">
+										<label for="'yy_' + index">营养状况</label>
+										<input type="text" name="yy" v-bind:id="'yy_' + index" v-model="pool.yy"/>
+									</li>
+								</ul>
+								<ul data-role="listview" data-inset="true">
+									<li data-role="list-divider">藻类状况</li>
+									<li class="ui-field-contain">
+										<label for="'ysz_' + index">常见种或优势种</label>
+										<input type="text" name="ysz" v-bind:id="'ysz_' + index" v-model="pool.ysz"/>
+									</li>
+									<li class="ui-field-contain">
+										<label for="'zxbmd_' + index">藻细胞密度(10^4个/L)</label>
+										<input type="text" name="zxbmd" v-bind:id="'zxbmd_' + index" v-model="pool.zxbmd"/>
+									</li>
+									<li class="ui-field-contain">
+										<label for="'shfx_' + index">水华风险评估</label>
+										<input type="text" name="shfx" v-bind:id="'shfx_' + index" v-model="pool.shfx"/>
+									</li>
+								</ul>
 							</div>
-							<ul data-role="listview" data-inset="true">
-								<li data-role="list-divider">水质类别</li>
-								<li class="ui-field-contain">
-									<label for="'sn_' + index">总氮不参评</label>
-									<input type="text" name="sn" v-bind:id="'sn_' + index" v-model="pool.sn"/>
-								</li>
-								<li class="ui-field-contain">
-									<label for="'cb_' + index">超标项目</label>
-									<input type="text" name="cb" v-bind:id="'cb_' + index" v-model="pool.cb"/>
-								</li>
-							</ul>
-							<ul data-role="listview" data-inset="true">
-								<li data-role="list-divider">营养化评价</li>
-								<li class="ui-field-contain">
-									<label for="'pf_' + index">评分值</label>
-									<input type="text" name="pf" v-bind:id="'pf_' + index" v-model="pool.pf"/>
-								</li>
-								<li class="ui-field-contain">
-									<label for="'yy_' + index">营养状况</label>
-									<input type="text" name="yy" v-bind:id="'yy_' + index" v-model="pool.yy"/>
-								</li>
-							</ul>
-							<ul data-role="listview" data-inset="true">
-								<li data-role="list-divider">藻类状况</li>
-								<li class="ui-field-contain">
-									<label for="'ysz_' + index">常见种或优势种</label>
-									<input type="text" name="ysz" v-bind:id="'ysz_' + index" v-model="pool.ysz"/>
-								</li>
-								<li class="ui-field-contain">
-									<label for="'zxbmd_' + index">藻细胞密度(10^4个/L)</label>
-									<input type="text" name="zxbmd" v-bind:id="'zxbmd_' + index" v-model="pool.zxbmd"/>
-								</li>
-								<li class="ui-field-contain">
-									<label for="'shfx_' + index">水华风险评估</label>
-									<input type="text" name="shfx" v-bind:id="'shfx_' + index" v-model="pool.shfx"/>
-								</li>
-							</ul>
-							<div data-role="controlgroup" data-mini="true" data-type="horizontal" style="text-align: center; margin: 0 auto;">
-								<a href="#" class="ui-btn ui-icon-minus ui-btn-icon-left" v-on:click="minusInticator(index)">删除</a>
+							<div class="card-action">
+								<div class="row between-xs">
+									<div class="col-xs-12 align-right">
+										<a href="#" class="ui-btn clr-primary ui-btn-inline" v-on:click="minusInticator(index)">删除</a>
+									</div>
+								</div>
 							</div>
 						</div>
+						<p>{{ form.toForm() }}</p>
 					</form>
-					<div v-show="showPagination" data-role="controlgroup" data-mini="true" data-type="horizontal" style="text-align: center; margin: 0 auto;">
-						<a href="#" class="ui-btn ui-icon-check ui-btn-icon-left" v-on:click="submit()">提交</a>
-						<a href="#" class="ui-btn ui-icon-plus ui-btn-icon-left" v-on:click="addPool()">添加水库</a>
-						<a href="#" class="ui-btn ui-icon-delete ui-btn-icon-left" v-on:click="clean()">清空</a>
+					<div class="row between-xs">
+						<div class="col-xs-12 align-center">
+							<button href="#" class="ui-btn ui-btn-icon-left ui-btn-inline clr-primary" v-on:click="addPool()">添加水库</button>
+							<button href="#" class="ui-btn ui-btn-icon-left ui-btn-inline" v-on:click="clean()">清空</button>
+							<button href="#" class="ui-btn ui-btn-icon-left ui-btn-inline ui-btn-raised clr-primary" v-on:click="submit()">提交</button>
+						</div>
 					</div>
-					<div class="ui-content" id="submit-message" data-role="popup">
-			        	<p>{{ submit_status }}</p>
-			        </div>
 				</div>
 			</div>
 		</div>
 	</body>
+	<script type="text/javascript" src="../vuejs/vue.min.js"></script>
+	<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
 	<script type="text/javascript" src="model/Pool.js" ></script>
 	<script type="text/javascript" src="model/PoolRep.js" ></script>
 	<script type="text/javascript">
@@ -276,7 +308,7 @@
 				getItems: function(obj) {
 					$.ajax({
 						type: "get",
-						url: "http://39.106.145.68:8080/huangbaihe/WInsR/querybypage",
+						url: "http://39.106.145.68:8080/huangbaihe/Pool/querybypage",
 						dataType: "JSON",
 						data: {
 							page: obj.page + 1,
@@ -300,11 +332,9 @@
 				},
 				refresh: function() {
 					mainpageVM.getItems(mainpageVM);
-					mainpageVM.queryAddress(mainpageVM);
-					mainpageVM.queryHcom(mainpageVM);
 				},
 				addPool: function() {
-					this.form.poolZshus.push(new Indicator());
+					mainpageVM.form.poolZshus.push(new Pool());
 					setTimeout(function() {
 						$("form").trigger("create")
 					}, 10)
@@ -312,21 +342,18 @@
 				submit: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/pool/save",
+						url: "http://39.106.145.68:8080/huangbaihe/Pool/save",
 						data: mainpageVM.form.toForm().substr(1),
 						success: function() {
 							mainpageVM.submit_status = "提交成功";
-							$("#submit-message").popup("open");
-							setTimeout(function() {
-								$("#submit-message").popup("close");
-							}, 1000)
+							new $.nd2Toast({
+								message : "提交成功", // Required
+							});
 						},
 						error: function() {
-							mainpageVM.submit_status = "提交失败";
-							$("#submit-message").popup("open");
-							setTimeout(function() {
-								$("#submit-message").popup("close");
-							}, 1000)
+							new $.nd2Toast({
+								message : "提交失败", // Required
+							});
 						}
 					});
 				},
@@ -334,7 +361,7 @@
 					mainpageVM.form.clean();
 				},
 				createForm: function() {
-					mainpageVM.form = new OtherBg();
+					mainpageVM.form = new PoolRep();
 				},
 				minusInticator: function(index) {
 					mainpageVM.form.poolZshus.splice(index, 1);
@@ -342,22 +369,20 @@
 				searchItems: function(searchText) {
 					$.ajax({
 						type:"GET",
-						url:"http://39.106.145.68:8080/huangbaihe/pool/query",
+						url:"http://39.106.145.68:8080/huangbaihe/Pool/query",
 						dataType: "json",
 						data: {
-							address: searchText.address,
-							startDate: searchText.startdate,
-							endDate: searchText.enddate
+							yearm: mainpageVM.searchText.year + "年" + mainpageVM.searchText.month + "月",
+							xun: mainpageVM.searchText.xun
 						},
 						success: function(data) {
 							mainpageVM.items = data.rows;
 							mainpageVM.showPagination = false;
 						},
 						error: function() {
-							$("#submit-message").popup("open");
-							setTimeout(function() {
-								$("#submit-message").popup("close");
-							}, 1000)
+							new $.nd2Toast({
+								message : "查询失败", // Required
+							});
 						}
 					}).done(function() {
 						$("#popupFilter").popup("close");
@@ -372,13 +397,13 @@
 				selected_id: function (newId, oldId) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/pool/querybyid",
+						url: "http://39.106.145.68:8080/huangbaihe/Pool/querybyid",
 						dataType: "json",
 						data: {
 							tx_id: newId
 						},
 						success: function (data) {
-							mainpageVM.detail = new OtherBg(data);
+							mainpageVM.detail = new PoolRep(data);
 						}
 					});
 				}
