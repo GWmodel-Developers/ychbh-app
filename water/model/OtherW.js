@@ -30,7 +30,7 @@ OtherW.prototype.toForm = function() {
                 case "riverZshus":
                     data += this.riverZshus.map(function (item) {
                         return item.toForm();
-                    })
+                    }).join("");
                     break;
                 case "yearm":
                     data += ("&" + "yearm" + "=" + this.year + "-" + this.month);
@@ -38,6 +38,9 @@ OtherW.prototype.toForm = function() {
                 case "year":
                     break;
                 case "month":
+                    break;
+                case "date":
+                    data += ("&" + key + "=" + Date.parse(this[key]).toString("yyyy年MM月dd日"));
                     break;
                 default:
                     data += ("&" + key + "=" + element);

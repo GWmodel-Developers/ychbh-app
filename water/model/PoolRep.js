@@ -37,7 +37,7 @@ PoolRep.prototype.toForm = function () {
                 case "poolZshus":
                     data += this.poolZshus.map(function (item) {
                         return item.toForm();
-                    })
+                    }).join("");
                     break;
                 case "yearm":
                     data += ("&" + "yearm" + "=" + this.year + "-" + this.month);
@@ -45,6 +45,9 @@ PoolRep.prototype.toForm = function () {
                 case "year":
                     break;
                 case "month":
+                    break;
+                case "date":
+                    data += ("&" + key + "=" + Date.parse(element).toString("yyyy年MM月dd日"));
                     break;
                 default:
                     data += ("&" + key + "=" + element);

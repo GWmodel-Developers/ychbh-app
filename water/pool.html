@@ -64,7 +64,46 @@
 					<a href="#page_new" v-on:click.capture="createForm()" class="ui-btn ui-icon-plus ui-btn-icon-left">新增</a>
 				</div>
 				<div data-role="main" class="ui-content">
-					<form v-on:submit.prevent> <input name="search" id="search" type="search" onchange="mainpageVM.searchText = this.value"> </form>
+					<!-- BEGIN: 水库水质报告筛选按钮 -->
+					<div class="row between-xs">
+						<div class="col-xs-12">
+							<a class="ui-btn ui-btn-raised ui-btn-inline" href="#popupFilter" data-rel="popup" data-position-to="window" data-transition="slideup">
+								<i class="zmdi zmdi-filter-list"></i> 筛选
+							</a>						
+							<a v-show="!showPagination" class="ui-btn ui-btn-inline" href="#" v-on:click="clearSearch()">清除筛选</a>
+							<span v-show="!showPagination" class="align-right">查询到{{ total }}条记录</span>							
+						</div>
+					</div>
+					<div class="ui-corner-all" id="popupFilter" data-role="popup" style="padding: 10px 20px;min-width: 240px;">
+						<form v-on:submit.prevent>
+							<div class="ui-field-contain">
+								<label for="startdate">年</label>
+								<input type="number" name="startdate" id="startdate" value="" v-model="searchText.year"/>
+							</div>
+							<div class="ui-field-contain">
+								<label for="enddate">月</label>
+								<input type="number" name="enddate" id="enddate" value="" v-model="searchText.month"/>
+							</div>
+							<div class="ui-field-contain">
+								<label for="enddate">旬</label>
+								<select name="address" v-model="searchText.address" id="enddate">
+									<option value="" disabled>请选择</option>
+									<option value="上旬">上旬</option>
+									<option value="中旬">中旬</option>
+									<option value="下旬">下旬</option>
+								</select>
+							</div>
+						</form>
+						<div class="row between-xs">
+							<div class="col-xs-6">
+								<a href="#" class="ui-btn clr-primary" v-on:click="searchItems(searchText)">搜索</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" class="ui-btn" onclick="$('#popupFilter').popup('close')" data-role="button">取消</a>																
+							</div>
+						</div>
+					</div>
+					<!-- END -->
 					<ul data-role="listview" data-inset="true">
 						<li v-for="(item, index) in items">
 							<a href="#page_detail" v-on:click="selected = index" class="ui-btn ui-icon-eye ui-btn-icon-right">{{ item.com_name }}
@@ -271,25 +310,25 @@
 					}, 10)
 				},
 				submit: function() {
-					// $.ajax({
-					// 	type: "POST",
-					// 	url: "http://39.106.145.68:8080/huangbaihe/WInsR/save",
-					// 	data: mainpageVM.form.toForm().substr(1),
-					// 	success: function() {
-					// 		mainpageVM.submit_status = "提交成功";
-					// 		$("#submit-message").popup("open");
-					// 		setTimeout(function() {
-					// 			$("#submit-message").popup("close");
-					// 		}, 1000)
-					// 	},
-					// 	error: function() {
-					// 		mainpageVM.submit_status = "提交失败";
-					// 		$("#submit-message").popup("open");
-					// 		setTimeout(function() {
-					// 			$("#submit-message").popup("close");
-					// 		}, 1000)
-					// 	}
-					// });
+					$.ajax({
+						type: "POST",
+						url: "http://39.106.145.68:8080/huangbaihe/pool/save",
+						data: mainpageVM.form.toForm().substr(1),
+						success: function() {
+							mainpageVM.submit_status = "提交成功";
+							$("#submit-message").popup("open");
+							setTimeout(function() {
+								$("#submit-message").popup("close");
+							}, 1000)
+						},
+						error: function() {
+							mainpageVM.submit_status = "提交失败";
+							$("#submit-message").popup("open");
+							setTimeout(function() {
+								$("#submit-message").popup("close");
+							}, 1000)
+						}
+					});
 				},
 				clean: function() {
 					mainpageVM.form.clean();
@@ -301,28 +340,28 @@
 					mainpageVM.form.poolZshus.splice(index, 1);
 				},
 				searchItems: function(searchText) {
-					// $.ajax({
-					// 	type:"GET",
-					// 	url:"http://39.106.145.68:8080/huangbaihe/WInsR/query",
-					// 	dataType: "json",
-					// 	data: {
-					// 		address: searchText.address,
-					// 		startDate: searchText.startdate,
-					// 		endDate: searchText.enddate
-					// 	},
-					// 	success: function(data) {
-					// 		mainpageVM.items = data.rows;
-					// 		mainpageVM.showPagination = false;
-					// 	},
-					// 	error: function() {
-					// 		$("#submit-message").popup("open");
-					// 		setTimeout(function() {
-					// 			$("#submit-message").popup("close");
-					// 		}, 1000)
-					// 	}
-					// }).done(function() {
-					// 	$("#popupFilter").popup("close");
-					// });
+					$.ajax({
+						type:"GET",
+						url:"http://39.106.145.68:8080/huangbaihe/pool/query",
+						dataType: "json",
+						data: {
+							address: searchText.address,
+							startDate: searchText.startdate,
+							endDate: searchText.enddate
+						},
+						success: function(data) {
+							mainpageVM.items = data.rows;
+							mainpageVM.showPagination = false;
+						},
+						error: function() {
+							$("#submit-message").popup("open");
+							setTimeout(function() {
+								$("#submit-message").popup("close");
+							}, 1000)
+						}
+					}).done(function() {
+						$("#popupFilter").popup("close");
+					});
 				},
 				clearSearch: function() {
 					mainpageVM.showPagination = true;
@@ -330,20 +369,10 @@
 				}
 			},
 			watch: {
-				// searchText: function (newSearch, oldSearch) {
-				// 	this.page = 0;
-				// 	if (newSearch !== "") {
-				// 		this.showPagination = false;
-				// 		this.searchItems(newSearch);
-				// 	} else {
-				// 		this.showPagination = true;
-				// 		this.getItems()
-				// 	}
-				// },
 				selected_id: function (newId, oldId) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/WInsR/querybyid",
+						url: "http://39.106.145.68:8080/huangbaihe/pool/querybyid",
 						dataType: "json",
 						data: {
 							tx_id: newId

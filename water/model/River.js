@@ -27,6 +27,24 @@ function River(param) {
 	}
 }
 
+River.prototype.toForm = function (index) {
+	var data = "&xh=" + index;
+	for (var key in this) {
+		if (this.hasOwnProperty(key) && (typeof this[key] !== "function")) {
+			var element = this[key];
+			switch (key) {
+				case "id":
+				case "xh":
+					break;
+				default:
+					data += ("&" + key + "=" + element);
+					break;
+			}
+		}
+	}
+	return data;
+}
+
 /**
  * 河流名称列表
  */

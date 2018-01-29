@@ -31,6 +31,8 @@ Pool.prototype.toForm = function (index) {
         if (this.hasOwnProperty(key) && (typeof this[key] !== "function")) {
             var element = this[key];
             switch (key) {
+                case "id":
+                    break;
                 case "xh":
                     data += ("&" + "xh" + "=" + index);
                     break;

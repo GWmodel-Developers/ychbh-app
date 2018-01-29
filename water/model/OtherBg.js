@@ -75,7 +75,9 @@ OtherBg.prototype.toForm = function() {
 					}
 					break;
 				case "date":
-					data += ("&date=" + Date.parse(this.date).toString("yyyy年MM月dd日"))
+				case "enddate":
+				case "startdate":
+					data += ("&" + key + "=" + Date.parse(this[key]).toString("yyyy年MM月dd日"));
 					break;
 				case "hcom_other":
 					break;
