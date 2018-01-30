@@ -51,7 +51,7 @@
 					success: function (data) {
 						if (!('info' in data)) {
 							var str = JSON.stringify(data);
-							setCookie("au", str);
+							localStorage.setItem("au", str);
 							window.location.href = ("./index.html");
 						}
 						else {

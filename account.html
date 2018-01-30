@@ -53,8 +53,8 @@
 				<div class="nd2-card">
                     <div class="card-title has-anatar">
                         <img src="./img/user.png" class="card-avatar">
-                        <h3 class="card-primary-title">{{ user.username }}</h3>
-                        <h5 class="card-subtitle">ID: {{ user.id }}</h5>
+                        <h3 class="card-primary-title">{{ user.userName }}</h3>
+                        <h5 class="card-subtitle">{{ user.job }}</h5>
                     </div>
                     <div class="card-supporting-text has-action">
                         <ul class="ui-listview" data-role="listview">
@@ -76,22 +76,20 @@
             el: "#page",
             data: {
                 task_list: [],
-                user: {
-                    id: "e6de4782-8d79-43df-bf28-aee400b3d230",
-                    username: "张三"
-                }
+                user: {}
             },
-            method: {
+            methods: {
                 queryTasks: function (obj) {
                     $.getJSON("http://39.106.145.68:8080/huangbaihe/login/getusermission", {
-                        id: obj.user.id
+                        id: obj.user.UID
                     }, function (data) {
                         obj.task_list = data
                     })
                 }
             },
             created: function () {
-                
+                this.user = JSON.parse(localStorage.getItem("au"));
+                this.queryTasks(this);
             }
         })
 

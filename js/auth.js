@@ -7,8 +7,7 @@ function getCookie(name) {
 }
 
 function auth(page, option) {
-    var au = getCookie('au');
-    var user = JSON.parse(au);
+    var user = JSON.parse(localStorage.getItem("au"));
     var privilege_key = (option) ? ["a", page, option].join("_") : ["a", page].join("_");
     if (user[privilege_key] === 0) {
         window.location = "/AuthError.html";
