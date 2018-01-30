@@ -56,6 +56,10 @@
 			    border-bottom-width: 0;
 			}
 		</style>
+		<script src="../js/auth.js"></script>
+		<script>
+			auth("daily", "add", "index.html");
+		</script>
 	</head>
 
 	<body>
@@ -361,7 +365,9 @@
 					mainpageVM.form.clean();
 				},
 				createForm: function() {
-					mainpageVM.form = new PoolRep();
+					if (auth("daily", "add")) {
+						mainpageVM.form = new PoolRep();
+					}
 				},
 				minusInticator: function(index) {
 					mainpageVM.form.poolZshus.splice(index, 1);

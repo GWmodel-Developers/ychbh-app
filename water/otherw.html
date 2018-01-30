@@ -39,6 +39,10 @@
 				font-weight: bold;
 			}
 		</style>
+		<script src="../js/auth.js"></script>
+		<script>
+			auth("daily", "add", "index.html");
+		</script>
 	</head>
 
 	<body>
@@ -340,7 +344,9 @@
 					mainpageVM.form = new OtherW();
 				},
 				createForm: function() {
-					mainpageVM.form = new OtherW();
+					if (auth("daily", "add")) {
+						mainpageVM.form = new OtherW();
+					}
 				},
 				minusInticator: function(index) {
 					mainpageVM.form.riverZshus.splice(index, 1);

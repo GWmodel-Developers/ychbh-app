@@ -112,6 +112,7 @@
 	<script src="../../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../../nativeDroid2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="../../nativeDroid2/nd2settings.js" ></script>
+	<script src="../js/auth.js"></script>
 	<!-- Vue Model -->
 	<script type="text/javascript" src="model/Application.js" ></script>
 	<script type="text/javascript">
@@ -166,7 +167,9 @@
 					mainpageVM.form.clean();
 				},
 				createForm: function() {
-					mainpageVM.form = new Application();
+					if (auth("inf", "manage")) {
+						mainpageVM.form = new Application();
+					}
 				},
 				showMain: function () {
 					localStorage.removeItem("factoryApplicationID");

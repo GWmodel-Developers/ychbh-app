@@ -59,8 +59,12 @@
     <script src="./nativeDroid2/js/nativedroid2.js"></script>
     <script type="text/javascript" src="./nativeDroid2/nd2settings.js" ></script>
 	<script>
+		function getURLParameter(name) {  
+			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;  
+		}
+
 		function back() {
-			window.history.back();
+			window.location = getURLParameter("redirect");
 		}
 
 		function relogin() {

@@ -20,6 +20,10 @@
 				font-weight: bold;
 			}
 		</style>
+		<script src="../js/auth.js"></script>
+		<script>
+			auth("daily", "add", window.location.pathname.replace("add", "").substr(1));
+		</script>
 	</head>
 
 	<body>
@@ -608,6 +612,7 @@
 		<script src="../nativeDroid2/js/nativedroid2.js"></script>
 		<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
 		<script type="text/javascript" src="../vuejs/vue.min.js"></script>
+		
 		<script type="text/javascript">
 			var content = new Vue({
 				el: "div.ui-content",

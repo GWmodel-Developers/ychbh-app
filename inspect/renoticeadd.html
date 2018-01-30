@@ -24,6 +24,10 @@
 				border-bottom-width: 0px;
 			}
 		</style>
+		<script src="../js/auth.js"></script>
+		<script>
+			auth("daily", "add", window.location.pathname.replace("add", "").substr(1));
+		</script>
 	</head>
 
 	<body>
@@ -86,6 +90,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<script type="text/javascript">
 			var content = new Vue({
 				el: "#main",

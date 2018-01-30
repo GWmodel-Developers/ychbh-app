@@ -39,6 +39,10 @@
 				font-weight: bold;
 			}
 		</style>
+		<script src="../js/auth.js"></script>
+		<script>
+			auth("daily", "add", "index.html");
+		</script>
 	</head>
 
 	<body>
@@ -325,7 +329,9 @@
 					mainpageVM.form.clean();
 				},
 				createForm: function() {
-					mainpageVM.form = new OtherBg();
+					if (auth("daily", "add")) {
+						mainpageVM.form = new OtherBg();
+					}
 				},
 				minusInticator: function(index) {
 					mainpageVM.form.wInsRecordZs.splice(index, 1);
