@@ -43,6 +43,10 @@
 				width: 42%;
 			}
 		</style>
+		<script src="../js/auth.js"></script>
+		<script>
+			auth("daily", null, "index.html");
+		</script>
 	</head>
 
 	<body>
@@ -149,6 +153,7 @@
 		<script>
 			function back() {
 				window.localStorage.clear();
+				window.sessionStorage.clear();
 				window.location = "login.html";
 			}
 
