@@ -1,142 +1,126 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title></title>
-    <link rel="stylesheet" href="plugin/css/common.css"/>
-    <link rel="stylesheet" href="plugin/css/login.css"/>
-</head>
-<body>
-    <div id="login"></div>
-    <div class="login_bg">
-        <div id="logo" style="width: 100%">
-            <img src="plugin/logo.png"  style="width: 70%" alt=""/>
-        </div>
-        <form >
-            <div class="userName">
-                <lable>用户名：</lable>
-                <input type="text" id="name" name="name" placeholder="请输入用户名" pattern="[0-9A-Za-z]{1,16}" required/>
-            </div>
-            <div class="passWord">
-                <lable>密&nbsp;&nbsp;&nbsp;码：</lable>
-                <input type="password" id="password" name="password" placeholder="请输入密码" pattern="[0-9A-Za-z]{1,25}" required/>
-            </div>
 
-            <button class="login_btn" onclick="LoginClick()" >登&nbsp;&nbsp;录</button>
-        </form>
- 
-        </div>
-    </div>
-</body>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="plugin/css/common.css" />
+		<link rel="stylesheet" href="plugin/css/login.css" /> </head>
 
-<script src="./jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
-<script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
-
-<script>
+	<body>
+		<div id="login"></div>
+		<div class="login_bg">
+			<div id="logo" style="width: 100%">
+				<img src="plugin/logo.png" style="width: 70%" alt="" /> </div>
+			<form>
+				<div class="userName">
+					<lable>用户名：</lable>
+					<input type="text" id="name" name="name" placeholder="请输入用户名" pattern="[0-9A-Za-z]{1,16}" required/> </div>
+				<div class="passWord">
+					<lable>密&nbsp;&nbsp;&nbsp;码：</lable>
+					<input type="password" id="password" name="password" placeholder="请输入密码" pattern="[0-9A-Za-z]{1,25}"
+					 required/> </div>
+				<button class="login_btn" onclick="LoginClick()">登&nbsp;&nbsp;录</button>
+			</form>
+		</div>
+		</div>
+	</body>
+	<script src="./jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
+	<script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+	<script>
 
 
-	$('form').on('submit', function (event) {
-	    event.preventDefault();
-	});
-	
-	function LoginClick(){
-		userName=document.getElementById("name").value;
-		password=document.getElementById("password").value;
-		if(userName==""||password==""){
-			alert("用户名或密码不能为空！");
+		$('form').on('submit', function (event) {
+			event.preventDefault();
+		});
+
+		function LoginClick() {
+			userName = document.getElementById("name").value;
+			password = document.getElementById("password").value;
+			if (userName == "" || password == "") {
+				alert("用户名或密码不能为空！");
+			}
+			else {
+				$.ajax({
+					url: "http://39.106.145.68:8080/huangbaihe/login/logincheck",
+					async: false,
+					type: 'POST',
+					dataType: "json",
+					data: "userName=" + userName + "&password=" + password,
+					success: function (data) {
+						if (!('info' in data)) {
+							var str = JSON.stringify(data);
+							setCookie("au", str);
+							window.location.href = ("./index.html");
+						}
+						else {
+							alert("用户名或密码错误");
+						}
+					},
+					error: function () {
+						debugger;
+						alert("error");
+					},
+				});
+
+			}
 		}
-		else{
-			$.ajax({
-				url:"http://39.106.145.68:8080/huangbaihe/login/logincheck",
-				async:false,
-				type:'POST', 
-				dataType:"json",
-				data:"userName=" + userName + "&password=" + password,
-				success:function(data){
-					
-					if(! ('info' in data)){
-						
-						
-						
-						var str = JSON.stringify(data);
-						
-						setCookie("au", str);
-						window.location.href = ("./company/main.html?#id=page_main"); 
 
-						
+
+
+		function setCookie(name, value) {
+			var Days = 1;
+			var exp = new Date();
+			exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+			document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + "; path=/";
+		}
+
+		//读取cookies 
+		function getCookie(name) {
+			var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+			if (arr = document.cookie.match(reg))
+
+				return unescape(arr[2]);
+			else
+				return null;
+		}
+
+		//删除cookies 
+		function delCookie(name) {
+			var exp = new Date();
+			exp.setTime(exp.getTime() - 1);
+			var cval = getCookie(name);
+			if (cval != null)
+				document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+		}
+
+		function clearCookie() {
+			$.ajax({
+				url: "<%=path%>/login/delCookie?name='au'",
+				async: false,
+				type: 'GET',
+				dataType: "txt",
+				success: function (data) {
+
+					if (!('info' in data)) {
+						//window.location.href = ("register.jsp");
+						console.log("删除cookie成功")
+
 					}
-					else{
-						alert("用户名或密码错误");
+					else {
+						alert("删除cookie失败");
 					}
 				},
-				error:function(){
+				error: function () {
 					debugger;
 					alert("error");
 				},
 			});
 
 		}
-	}
-	
 
+	</script>
 
-	function setCookie(name,value) 
-	{ 
-	    var Days = 1; 
-	    var exp = new Date(); 
-	    exp.setTime(exp.getTime() + Days*24*60*60*1000); 
-	    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString()+"; path=/"; 
-	} 
-
-	//读取cookies 
-	function getCookie(name) 
-	{ 
-	    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-	 
-	    if(arr=document.cookie.match(reg))
-	 
-	        return unescape(arr[2]); 
-	    else 
-	        return null; 
-	} 
-
-	//删除cookies 
-	function delCookie(name) 
-	{ 
-	    var exp = new Date(); 
-	    exp.setTime(exp.getTime() - 1); 
-	    var cval=getCookie(name); 
-	    if(cval!=null) 
-	        document.cookie= name + "="+cval+";expires="+exp.toGMTString(); 
-	} 
-	
-	function clearCookie(){ 
-		$.ajax({
-			url:"<%=path%>/login/delCookie?name='au'",
-			async:false,
-			type:'GET', 
-			dataType:"txt",
-			success:function(data){
-				
-				if(! ('info' in data)){				
-					//window.location.href = ("register.jsp");
-					console.log("删除cookie成功")
-					
-				}
-				else{
-					alert("删除cookie失败");
-				}
-			},
-			error:function(){
-				debugger;
-				alert("error");
-			},
-		});
-
-	}
-
-</script>
-
-	
 </html>
