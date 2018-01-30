@@ -94,6 +94,11 @@
 				success: function(json) {
 					content.items = json.rows;
 					content.total = json.total;
+				},
+				error: function() {
+					new $.nd2Toast({
+						message: "获取案由失败" // Required
+					});
 				}
 			});
 		}

@@ -102,23 +102,23 @@
 
 			function save() {
 				if($("#iclass").val() == "") {
-					alert('请输入行业类别');
+					new $.nd2Toast({ message: "请输入行业类别" });
 					return;
 				}
 				if($("#cclass").val() == "") {
-					alert('请输入案由类别');
+					new $.nd2Toast({ message: "请输入案由类别" });
 					return;
 				}
 				if($("#cname").val() == "") {
-					alert('请输入案由名称');
+					new $.nd2Toast({ message: "请输入案由名称" });
 					return;
 				}
 				if($("#bitem").val() == "") {
-					alert('请输入违反条款');
+					new $.nd2Toast({ message: "请输入违反条款" });
 					return;
 				}
 				if($("#pbasis").val() == "") {
-					alert('请输入处罚依据');
+					new $.nd2Toast({ message: "请输入处罚依据" });
 					return;
 				}
 				// 添加案由基本信息
@@ -136,10 +136,16 @@
 					dataType: 'json',
 					success: function(json) {
 						if(!json.status) {
-							alert('添加案由信息失败，请检查必填项');
+							new $.nd2Toast({ message: "添加案由信息失败，请检查必填项" });
 						} else {
-							alert('添加成功');
+							new $.nd2Toast({ message: "添加成功" });
+							back();
 						}
+					},
+					error: function() {
+						new $.nd2Toast({
+							message: "添加失败" // Required
+						});
 					}
 				});
 			}

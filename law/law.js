@@ -30,6 +30,11 @@ function getlawtype() {
 				content += temp;
 			});
 			$("#lawtype").html(content);
+		},
+		error: function() {
+			new $.nd2Toast({
+				message: "获取法律类型失败" // Required
+			});
 		}
 	});
 }
@@ -55,6 +60,11 @@ function getlawname() {
 				content += temp;
 			});
 			$("#lawname").html(content).trigger("create");
+		},
+		error: function() {
+			new $.nd2Toast({
+				message: "获取法律名称失败" // Required
+			});
 		}
 	});
 }
@@ -78,6 +88,11 @@ function loadlawtree(law_name) {
 			} else {
 				$("#lawtreecontent").html(convert(json)).trigger('create');
 			}
+		},
+		error: function() {
+			new $.nd2Toast({
+				message: "获取法律内容失败" // Required
+			});
 		}
 	});
 }
@@ -91,10 +106,10 @@ function searchkeypress() {
 //关键词查询法律条文
 function doSearch() {
 	if($("#lawname option:selected").index() == 0) {
-		alert('请选择法律！');
+		new $.nd2Toast({ message: "请选择法律！" });
 		return;
 	} else if($("#search").val() == "") {
-		alert('请输入关键词！');
+		new $.nd2Toast({ message: "请输入关键词！" });
 		return;
 	} else {
 		keyword = $("#search").val();
@@ -114,6 +129,11 @@ function doSearch() {
 			} else {
 				$("#lawtreecontent").html(convert(json)).trigger('create');
 			}
+		},
+		error: function() {
+			new $.nd2Toast({
+				message: "查询失败" // Required
+			});
 		}
 	});
 }

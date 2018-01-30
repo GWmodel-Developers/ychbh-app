@@ -12,6 +12,11 @@ function getlawtype() {
 				content += temp;
 			});
 			$("#lawtype").html(content);
+		},
+		error: function() {
+			new $.nd2Toast({
+				message: "获取法律类型失败" // Required
+			});
 		}
 	});
 }
@@ -37,6 +42,11 @@ function getlawname() {
 				content += temp;
 			});
 			$("#lawname").html(content);
+		},
+		error: function() {
+			new $.nd2Toast({
+				message: "获取法律名称失败" // Required
+			});
 		}
 	});
 }
@@ -62,6 +72,11 @@ function getlawparagraph() {
 				content += temp;
 			});
 			$("#paragraph").html(content);
+		},
+		error: function() {
+			new $.nd2Toast({
+				message: "获取法律条款失败" // Required
+			});
 		}
 	});
 }
@@ -93,6 +108,11 @@ function getlawitem() {
 				content += temp;
 			});
 			$("#item").html(content);
+		},
+		error: function() {
+			new $.nd2Toast({
+				message: "获取法律条款失败" // Required
+			});
 		}
 	});
 }
