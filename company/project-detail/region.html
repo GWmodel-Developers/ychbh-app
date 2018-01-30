@@ -123,8 +123,8 @@
 			el: "#root",
 			data: {
                 items: [],
-                project_id: localStorage.getItem("projectID"),
-				selected_id: localStorage.getItem("projectRegionID"),
+                project_id: sessionStorage.getItem("projectID"),
+				selected_id: sessionStorage.getItem("projectRegionID"),
 				form: new Region(),
 				detail: new Region()
 			},
@@ -173,7 +173,7 @@
 					mainpageVM.form = new Region();
 				},
 				showMain: function () {
-					localStorage.removeItem("projectApprovalID");
+					sessionStorage.removeItem("projectApprovalID");
 					mainpageVM.refresh();
 					window.location = "#";
 				},
@@ -196,7 +196,7 @@
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					localStorage.setItem("projectRegionID", newId);
+					sessionStorage.setItem("projectRegionID", newId);
 					mainpageVM.queryItem(newId, mainpageVM);
 				}
 			},
@@ -210,7 +210,7 @@
 		});
 
 		function back() {
-			localStorage.removeItem("projectRegionID");
+			sessionStorage.removeItem("projectRegionID");
 			window.location = "../projectbasic.html#page_detail"
 		}
 	</script>

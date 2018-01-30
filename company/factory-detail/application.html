@@ -119,8 +119,8 @@
 			el: "#root",
 			data: {
                 items: [],
-                project_id: localStorage.getItem("factoryID"),
-				selected_id: localStorage.getItem("factoryApplicationID"),
+                project_id: sessionStorage.getItem("factoryID"),
+				selected_id: sessionStorage.getItem("factoryApplicationID"),
 				form: new Application(),
 				detail: new Application()
 			},
@@ -169,7 +169,7 @@
 					mainpageVM.form = new Application();
 				},
 				showMain: function () {
-					localStorage.removeItem("factoryApplicationID");
+					sessionStorage.removeItem("factoryApplicationID");
 					mainpageVM.refresh();
 					window.location = "#";
 				},
@@ -192,7 +192,7 @@
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					localStorage.setItem("factoryApplicationID", newId);
+					sessionStorage.setItem("factoryApplicationID", newId);
 					mainpageVM.queryItem(newId, mainpageVM);
 				}
 			},
@@ -206,7 +206,7 @@
 		});
 
 		function back() {
-			localStorage.removeItem("factoryApplicationID");
+			sessionStorage.removeItem("factoryApplicationID");
 			window.location = "../factoryinfo.html#page_detail";
 		}
 	</script>

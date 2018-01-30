@@ -123,8 +123,8 @@
 			el: "#root",
 			data: {
                 items: [],
-                project_id: localStorage.getItem("projectID"),
-				selected_id: localStorage.getItem("projectMasureID"),
+                project_id: sessionStorage.getItem("projectID"),
+				selected_id: sessionStorage.getItem("projectMasureID"),
 				form: new Masure(),
 				detail: new Masure()
 			},
@@ -173,7 +173,7 @@
 					mainpageVM.form = new Masure();
 				},
 				showMain: function () {
-					localStorage.removeItem("projectApprovalID");
+					sessionStorage.removeItem("projectApprovalID");
 					mainpageVM.refresh();
 					window.location = "#";
 				},
@@ -196,7 +196,7 @@
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					localStorage.setItem("projectMasureID", newId);
+					sessionStorage.setItem("projectMasureID", newId);
 					mainpageVM.queryItem(newId, mainpageVM);
 				}
 			},
@@ -210,7 +210,7 @@
 		});
 
 		function back() {
-			localStorage.removeItem("projectMasureID");
+			sessionStorage.removeItem("projectMasureID");
 			window.location = "../projectbasic.html#page_detail"
 		}
 	</script>

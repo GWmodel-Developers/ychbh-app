@@ -123,8 +123,8 @@
 			el: "#root",
 			data: {
                 items: [],
-                project_id: localStorage.getItem("projectID"),
-				selected_id: localStorage.getItem("projectPersonID"),
+                project_id: sessionStorage.getItem("projectID"),
+				selected_id: sessionStorage.getItem("projectPersonID"),
 				form: new Person(),
 				detail: new Person()
 			},
@@ -173,7 +173,7 @@
 					mainpageVM.form = new Person();
 				},
 				showMain: function () {
-					localStorage.removeItem("projectApprovalID");
+					sessionStorage.removeItem("projectApprovalID");
 					mainpageVM.refresh();
 					window.location = "#";
 				},
@@ -196,7 +196,7 @@
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					localStorage.getItem("projectPersonID");
+					sessionStorage.getItem("projectPersonID");
 					mainpageVM.queryItem(newId, mainpageVM);
 				}
 			},
@@ -210,7 +210,7 @@
 		});
 
 		function back() {
-			localStorage.removeItem("projectPersonID")
+			sessionStorage.removeItem("projectPersonID")
 			window.location = "../projectbasic.html#page_detail"
 		}
 	</script>

@@ -119,8 +119,8 @@
 			el: "#root",
 			data: {
                 items: [],
-                project_id: localStorage.getItem("companyID"),
-				selected_id: localStorage.getItem("companyBranchID"),
+                project_id: sessionStorage.getItem("companyID"),
+				selected_id: sessionStorage.getItem("companyBranchID"),
 				form: new Branch(),
 				detail: new Branch()
 			},
@@ -169,7 +169,7 @@
 					mainpageVM.form = new Branch();
 				},
 				showMain: function () {
-					localStorage.removeItem("companyBranchID");
+					sessionStorage.removeItem("companyBranchID");
 					mainpageVM.refresh();
 					window.location = "#";
 				},
@@ -192,7 +192,7 @@
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					localStorage.setItem("companyBranchID", newId);
+					sessionStorage.setItem("companyBranchID", newId);
 					mainpageVM.queryItem(newId, mainpageVM);
 				}
 			},
@@ -206,7 +206,7 @@
 		});
 
 		function back() {
-			localStorage.removeItem("companyBranchID");
+			sessionStorage.removeItem("companyBranchID");
 			window.location = "../companybasic.html#page_detail";
 		}
 	</script>

@@ -123,8 +123,8 @@
 			el: "#root",
 			data: {
                 items: [],
-                project_id: localStorage.getItem("projectID"),
-				selected_id: localStorage.getItem("projectTailMineID"),
+                project_id: sessionStorage.getItem("projectID"),
+				selected_id: sessionStorage.getItem("projectTailMineID"),
 				form: new TailMine(),
 				detail: new TailMine()
 			},
@@ -186,7 +186,7 @@
 					mainpageVM.form = new TailMine();
 				},
 				showMain: function () {
-					localStorage.removeItem("projectApprovalID");
+					sessionStorage.removeItem("projectApprovalID");
 					mainpageVM.refresh();
 					window.location = "#";
 				},
@@ -196,7 +196,7 @@
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					localStorage.setItem("projectTailMineID", newId)
+					sessionStorage.setItem("projectTailMineID", newId)
 					mainpageVM.queryItem(newId, mainpageVM)
 				}
 			},
@@ -211,7 +211,7 @@
 
 		function back() {
 			window.location = "../projectbasic.html#page_detail"
-			localStorage.removeItem("projectTailMineID")
+			sessionStorage.removeItem("projectTailMineID")
 		}
 	</script>
 

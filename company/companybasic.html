@@ -152,7 +152,7 @@
 			el: "#root",
 			data: {
 				items: [],
-				selected_id: localStorage.getItem("companyID"),
+				selected_id: sessionStorage.getItem("companyID"),
 				total: 0,
 				page: 0,
 				basic_form: new CompanyBasic(),
@@ -238,14 +238,14 @@
 					window.location = ["company-detail/", page, ".html"].join("");
 				},
 				showMain: function () {
-					localStorage.removeItem("companyID");
+					sessionStorage.removeItem("companyID");
 					mainpageVM.refresh();
 					window.location = "#";
 				}
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					localStorage.setItem("companyID", newId);
+					sessionStorage.setItem("companyID", newId);
 					mainpageVM.queryItem(newId, mainpageVM);
 				}
 			},
@@ -305,7 +305,7 @@
 		})
 
 		function back() {
-			localStorage.removeItem("companyID");
+			sessionStorage.removeItem("companyID");
 			window.location = "../index.html";
 		}
 	</script>

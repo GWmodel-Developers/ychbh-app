@@ -119,8 +119,8 @@
 			el: "#root",
 			data: {
                 items: [],
-                project_id: localStorage.getItem("factoryID"),
-				selected_id: localStorage.getItem("factoryAddressID"),
+                project_id: sessionStorage.getItem("factoryID"),
+				selected_id: sessionStorage.getItem("factoryAddressID"),
 				form: new Address(),
 				detail: new Address()
 			},
@@ -169,7 +169,7 @@
 					mainpageVM.form = new Address();
 				},
 				showMain: function () {
-					localStorage.removeItem("factoryAddressID");
+					sessionStorage.removeItem("factoryAddressID");
 					mainpageVM.refresh();
 					window.location = "#";
 				},
@@ -192,7 +192,7 @@
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					localStorage.setItem("factoryAddressID", newId);
+					sessionStorage.setItem("factoryAddressID", newId);
 					mainpageVM.queryItem(newId, mainpageVM);
 				}
 			},
@@ -206,7 +206,7 @@
 		});
 
 		function back() {
-			localStorage.removeItem("factoryAddressID");
+			sessionStorage.removeItem("factoryAddressID");
 			window.location = "../factoryinfo.html#page_detail";
 		}
 	</script>
