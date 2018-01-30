@@ -58,7 +58,10 @@
                     </div>
                     <div class="card-supporting-text has-action">
                         <ul class="ui-listview" data-role="listview">
-                            <li data-role="list-divider"><h3>待办事项</h3></li>
+                            <li data-role="list-divider">
+								<b>待办事项</b>
+								<span class="listview-aside">共{{ task_list.length }}条</span>
+							</li>
                             <li v-for="task in task_list">
                                 <h3>{{ task.case_name }}</h3>
                                 <span class="listview-aside">{{ task.case_type }}</span>
