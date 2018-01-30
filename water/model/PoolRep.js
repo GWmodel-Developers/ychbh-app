@@ -7,8 +7,8 @@ function PoolRep(param) {
     this.wperson = "";
     this.date = Date.today().toString("yyyy-MM-dd");
     this.yearm = "";
-    this.year = "";
-    this.month = "";
+    this.year = Date.today().toString("yyyy");
+    this.month = Date.today().toString("M");
     this.xun = "";
     this.poolZshus = [];
     if (param) {

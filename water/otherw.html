@@ -173,13 +173,17 @@
 							<div class="col-xs-6">
 								<div class="ui-field-contain">
 									<label for="year">年</label>
-									<input type="number" name="year" id="year" v-model="form.year" />
+									<select name="year" id="year" v-model="form.year">
+										<option v-for="i in 100" value="1970 + i">{{ 1970 + i }}</option>
+									</select>
 								</div>
 							</div>
 							<div class="col-xs-6">
 								<div class="ui-field-contain">
 									<label for="month">月</label>
-									<input type="number" name="month" id="month" v-model="form.month" />
+									<select name="month" id="month" v-model="form.month">
+										<option v-for="i in 12" value="i">{{ i }}</option>
+									</select>
 								</div>
 							</div>
 						</div>
