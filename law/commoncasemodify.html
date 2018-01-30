@@ -59,7 +59,8 @@
 						<input name="pbasis" id="pbasis"></input>
 					</div>
 					<div style="text-align: center;">
-						<a href="#popupAddBItem" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-btn-icon-left ui-icon-plus ui-btn-raised clr-primary" data-transition="pop">添加案由条款和处罚依据</a>
+						<a href="#popupAddBItem" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all 
+							ui-shadow ui-btn-inline ui-btn-b ui-btn-icon-left ui-icon-plus ui-btn-raised clr-primary" data-transition="pop">添加案由条款和处罚依据</a>
 						<div data-role="popup" data-theme="a" id="popupAddBItem" class="ui-corner-all" style="width: 300px;">
 							<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a 
 								ui-icon-delete ui-btn-icon-notext ui-btn-right ui-btn-raised clr-primary"></a>
@@ -98,7 +99,8 @@
 		<script src="lawinfoadd.js"></script>
 		<script>
 			function back() {
-				window.location = "commoncase.html";
+				//window.location = "commoncase.html";
+				window.history.back(-1);
 			}
 
 			function getURLParameter(name) {
@@ -137,23 +139,33 @@
 
 			function save() {
 				if($("#iclass").val() == "") {
-					new $.nd2Toast({ message: "请输入行业类别" });
+					new $.nd2Toast({
+						message: "请输入行业类别"
+					});
 					return;
 				}
 				if($("#cclass").val() == "") {
-					new $.nd2Toast({ message: "请输入案由类别" });
+					new $.nd2Toast({
+						message: "请输入案由类别"
+					});
 					return;
 				}
 				if($("#cname").val() == "") {
-					new $.nd2Toast({ message: "请输入案由名称" });
+					new $.nd2Toast({
+						message: "请输入案由名称"
+					});
 					return;
 				}
 				if($("#bitem").val() == "") {
-					new $.nd2Toast({ message: "请输入违反条款" });
+					new $.nd2Toast({
+						message: "请输入违反条款"
+					});
 					return;
 				}
 				if($("#pbasis").val() == "") {
-					new $.nd2Toast({ message: "请输入处罚依据" });
+					new $.nd2Toast({
+						message: "请输入处罚依据"
+					});
 					return;
 				}
 				// 添加案由基本信息
@@ -172,9 +184,13 @@
 					dataType: 'json',
 					success: function(json) {
 						if(!json.status) {
-							new $.nd2Toast({ message: "修改失败" });
+							new $.nd2Toast({
+								message: "修改失败"
+							});
 						} else {
-							new $.nd2Toast({ message: "修改成功" });
+							new $.nd2Toast({
+								message: "修改成功"
+							});
 						}
 					},
 					error: function() {

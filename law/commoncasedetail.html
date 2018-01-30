@@ -35,38 +35,47 @@
 						<h1 class='nd-title'>确定删除本条案由？</h1>
 					</div>
 					<div data-role="content" style="text-align: center;">
-						<a data-role="button" data-inline="true" onclick="deletecase()"
-							class="ui-btn ui-btn-inline ui-btn-raised clr-primary" style="margin-right: 5px;">确认</a>
-						<a href="#" data-rel="back" data-role="button" data-inline="true" 
-							class="ui-btn ui-btn-inline ui-btn-raised ui-btn-primary">取消</a>
+						<a data-role="button" data-inline="true" onclick="deletecase()" class="ui-btn ui-btn-inline ui-btn-raised clr-primary" style="margin-right: 5px;">确认</a>
+						<a href="#" data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-inline ui-btn-raised ui-btn-primary">取消</a>
 					</div>
 				</div>
 			</div>
 			<div id="main" data-role="main" class="ui-content">
 				<div>
 					<label for="iclass"><strong>行业类别</strong></label>
-					<textarea readonly id="iclass" style="margin-top: 20px;font-size: 16px;padding: 5px;min-height: 0px; border: solid 1px #cccccc;"></textarea>
+					<textarea readonly id="iclass" style="margin-top: 20px;font-size: 16px;
+						padding: 5px;min-height: 0px; border: solid 1px #cccccc;"></textarea>
 					<!--<input type="text" name="iclass" id="iclass" readonly></input>-->
 				</div>
 				<div>
 					<label for="cclass"><strong>案由类别</strong></label>
-					<textarea readonly id="cclass" style="margin-top: 20px;font-size: 16px;padding: 5px; border: solid 1px #cccccc;"></textarea>
+					<textarea readonly id="cclass" style="margin-top: 20px;font-size: 16px;
+						padding: 5px; border: solid 1px #cccccc;"></textarea>
 					<!--<input type="text" name="cclass" id="cclass" readonly></input>-->
 				</div>
 				<div>
 					<label for="cname"><strong>案由名称</strong></label>
-					<textarea readonly id="cname" style="margin-top: 20px;font-size: 16px;padding: 5px; border: solid 1px #cccccc;"></textarea>
+					<textarea readonly id="cname" style="margin-top: 20px;font-size: 16px;
+						padding: 5px; border: solid 1px #cccccc;"></textarea>
 					<!--<input type="text" name="cname" id="cname" readonly></input>-->
 				</div>
 				<div>
 					<label for="bitem"><strong>违反条款</strong></label>
-					<textarea readonly id="bitem" style="margin-top: 20px;font-size: 16px;padding: 5px; border: solid 1px #cccccc;"></textarea>
+					<textarea readonly id="bitem" style="margin-top: 20px;font-size: 16px;
+						padding: 5px; border: solid 1px #cccccc;"></textarea>
 					<!--<input type="text" name="bitem" id="bitem" readonly></input>-->
 				</div>
 				<div>
 					<label for="pbasis"><strong>处罚依据</strong></label>
-					<textarea readonly id="pbasis" style="margin-top: 20px;font-size: 16px;padding: 5px; border: solid 1px #cccccc;"></textarea>
+					<textarea readonly id="pbasis" style="margin-top: 20px;font-size: 16px;
+						padding: 5px; border: solid 1px #cccccc;"></textarea>
 					<!--<input type="text" name="pbasis" id="pbasis" readonly></input>-->
+				</div>
+				<div style="text-align: center;">
+					<a class="ui-btn ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-edit 
+						ui-btn-raised clr-primary" onclick="modify();">
+						修改案由
+					</a>
 				</div>
 			</div>
 		</div>
@@ -108,6 +117,11 @@
 
 		function back() {
 			window.location = "commoncase.html";
+		}
+
+		function modify() {
+			var case_name = getURLParameter("case_name");
+			window.location = "commoncasemodify.html?case_name=" + case_name;
 		}
 
 		function deletecase() {
