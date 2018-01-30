@@ -16,8 +16,8 @@
 		<script src="./nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="./nativeDroid2/js/nativedroid2.js"></script>
 		<script>
-			if (localStorage.getItem("au")) {
-				window.location = "index.html"
+			if (localStorage.getItem("autologin") && localStorage.getItem("autologin").toString() === "true") {
+				window.location = "index.html";
 			}
 		</script>
 		<style>
@@ -75,13 +75,6 @@
 		</div>
 	</body>
 	<script>
-		$(function () {
-			if (localStorage.getItem("autologin") === "true") {
-				window.location = "index.html";
-			}
-		})
-
-
 		$('form').on('submit', function (event) {
 			event.preventDefault();
 		});

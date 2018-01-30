@@ -7,10 +7,10 @@ function getCookie(name) {
 }
 
 function auth(page, option, redirect) {
-    // if (localStorage.getItem("au")) {
-    //     window.location = "/login.html";
-    //     return false;
-    // }
+    if (!localStorage.getItem("au")) {
+        window.location = "/login.html";
+        return false;
+    }
     switch (page) {
         case "index":
             return true;
