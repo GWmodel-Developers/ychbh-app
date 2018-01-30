@@ -61,6 +61,13 @@
 							<lable>密码：</lable>
 							<input type="password" id="password" name="password" placeholder="请输入密码" pattern="[0-9A-Za-z]{1,25}" required/>
 						</div>
+						<div class="ui-field-contain">
+							<label for="autologin">自动登陆</label>
+							<select name="autologin" id="autologin" data-role="flipswitch">
+								<option value="false"></option>
+								<option value="true"></option>
+							</select>
+						</div>
 						<button class="ui-btn ui-btn-raised clr-primary" onclick="LoginClick()">登录</button>
 					</form>
 				</div>
@@ -68,6 +75,11 @@
 		</div>
 	</body>
 	<script>
+		$(function () {
+			if (localStorage.getItem("autologin") === "true") {
+				window.location = "index.html";
+			}
+		})
 
 
 		$('form').on('submit', function (event) {
@@ -77,6 +89,8 @@
 		function LoginClick() {
 			userName = document.getElementById("name").value;
 			password = document.getElementById("password").value;
+			autologin = document.getElementById("autologin").value;
+			localStorage.setItem("autologin", autologin);
 			if (userName == "" || password == "") {
 				alert("用户名或密码不能为空！");
 			}
