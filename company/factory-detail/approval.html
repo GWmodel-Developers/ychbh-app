@@ -119,8 +119,8 @@
 			el: "#root",
 			data: {
                 items: [],
-                project_id: sessionStorage.getItem("factoryID"),
-				selected_id: sessionStorage.getItem("factoryApprovalID"),
+                project_id: localStorage.getItem("factoryID"),
+				selected_id: localStorage.getItem("factoryApprovalID"),
 				form: new Approval(),
 				detail: new Approval()
 			},
@@ -169,7 +169,7 @@
 					mainpageVM.form = new Approval();
 				},
 				showMain: function () {
-					sessionStorage.removeItem("factoryApprovalID");
+					localStorage.removeItem("factoryApprovalID");
 					mainpageVM.refresh();
 					window.location = "#";
 				},
@@ -192,7 +192,7 @@
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					sessionStorage.setItem("factoryApprovalID", newId);
+					localStorage.setItem("factoryApprovalID", newId);
 					mainpageVM.queryItems(newId, mainpageVM);
 				}
 			},
@@ -206,7 +206,7 @@
 		});
 
 		function back() {
-			sessionStorage.removeItem("factoryApprovalID");
+			localStorage.removeItem("factoryApprovalID");
 			window.location = "../factoryinfo.html#page_detail";
 		}
 	</script>

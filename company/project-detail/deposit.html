@@ -119,8 +119,8 @@
 			el: "#root",
 			data: {
                 items: [],
-                project_id: sessionStorage.getItem("projectID"),
-				selected_id: sessionStorage.getItem("projectDepositID"),
+                project_id: localStorage.getItem("projectID"),
+				selected_id: localStorage.getItem("projectDepositID"),
 				form: new Deposit(),
 				detail: new Deposit()
 			},
@@ -182,7 +182,7 @@
 					mainpageVM.form = new Deposit();
 				},
 				showMain: function () {
-					sessionStorage.removeItem("projectApprovalID");
+					localStorage.removeItem("projectApprovalID");
 					mainpageVM.refresh();
 					window.location = "#";
 				},
@@ -192,7 +192,7 @@
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					sessionStorage.setItem("projectDepositID", newId)
+					localStorage.setItem("projectDepositID", newId)
 					mainpageVM.queryItem(newId, mainpageVM);
 				}
 			},
@@ -206,7 +206,7 @@
 		});
 
 		function back() {
-			sessionStorage.removeItem("projectDepositID");
+			localStorage.removeItem("projectDepositID");
 			window.location = "../projectbasic.html#page_detail"
 		}
 	</script>

@@ -119,8 +119,8 @@
 			el: "#root",
 			data: {
                 items: [],
-                project_id: sessionStorage.getItem("factoryID"),
-				selected_id: sessionStorage.getItem("factoryOutletID"),
+                project_id: localStorage.getItem("factoryID"),
+				selected_id: localStorage.getItem("factoryOutletID"),
 				form: new Outlet(),
 				detail: new Outlet()
 			},
@@ -169,7 +169,7 @@
 					mainpageVM.form = new Outlet();
 				},
 				showMain: function () {
-					sessionStorage.removeItem("factoryOutletID");
+					localStorage.removeItem("factoryOutletID");
 					mainpageVM.refresh();
 					window.location = "#";
 				},
@@ -192,7 +192,7 @@
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					sessionStorage.setItem("companyBranchID", newId);
+					localStorage.setItem("companyBranchID", newId);
 					mainpageVM.queryItem(newId, mainpageVM);
 				}
 			},
@@ -206,7 +206,7 @@
 		});
 
 		function back() {
-			sessionStorage.removeItem("factoryApprovalID");
+			localStorage.removeItem("factoryApprovalID");
 			window.location = "../factoryinfo.html#page_detail";
 		}
 	</script>
