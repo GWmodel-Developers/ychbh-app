@@ -38,6 +38,7 @@
 			}
 			.ui-field-contain {
 				border-bottom-width: 0px;
+				padding: 0.1em;
 			}
 			.nd2-card {
 				background: white;
@@ -54,11 +55,11 @@
 				<div class="card-supporting-text">
 					<form>
 						<div class="ui-field-contain">
-							<lable>用户名：</lable>
+							<lable>用户名</lable>
 							<input type="text" id="name" name="name" placeholder="请输入用户名" pattern="[0-9A-Za-z]{1,16}" required/>
 						</div>
 						<div class="ui-field-contain">
-							<lable>密码：</lable>
+							<lable>密码</lable>
 							<input type="password" id="password" name="password" placeholder="请输入密码" pattern="[0-9A-Za-z]{1,25}" required/>
 						</div>
 						<div class="ui-field-contain">
@@ -68,7 +69,7 @@
 								<option value="true"></option>
 							</select>
 						</div>
-						<button class="ui-btn ui-btn-raised clr-primary" onclick="LoginClick()">登录</button>
+						<button class="ui-btn ui-btn-raised clr-primary" style="margin-top: 0.8em;" onclick="LoginClick()">登录</button>
 					</form>
 				</div>
 			</div>
