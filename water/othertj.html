@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="tendency-chart" style="height: 320px;width: 100%;"></div>
+                        <div id="tendency-chart" style="height: 300px;width: 100%;"></div>
                         <div id="yes-chart" style="height: 140px;width: 100%;"></div>
                     </div>
                     <div data-role="nd2tab" data-tab="average">
@@ -147,6 +147,9 @@
                     option: {
                         title: { text: "", subtext: "", left: "center" },
                         tooltip : { trigger: 'axis' },
+                        grid: {
+                            bottom: 20
+                        },
                         xAxis: { type: 'category', boundaryGap: false, data: [] },
                         yAxis: { type: 'value' },
                         series: [{
