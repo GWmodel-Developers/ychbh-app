@@ -73,7 +73,8 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+				</div>
+				<a href="#" onclick="logout()" class="ui-btn ui-btn-raised clr-primary">退出登录</a>
 			</div>
 		</div>
     </body>
@@ -99,6 +100,12 @@
                 this.queryTasks(this);
             }
         })
+
+		function logout() {
+			window.localStorage.clear();
+			window.sessionStorage.clear();
+			window.location = "login.html";
+		}
 
 		function back() {
 			window.location = "index.html";
