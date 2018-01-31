@@ -7,17 +7,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<title>黄柏河流域综合执法信息管理系统</title>
 		<link rel="stylesheet" href="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
-		<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.css">
-		<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.theme.css">
-		<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
-		<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
-		<script src="../jquery.mobile-1.4.5/jquery.ui.datepicker.js"></script>
-		<script src="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.js"></script>
-		<script type="text/javascript" src="../vuejs/vue.min.js"></script>
-		<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
+		<link rel="stylesheet" href="../nativeDroid2/vendor/waves/waves.min.css">
+		<link rel="stylesheet" href="../nativeDroid2/vendor/wow/animate.css">
 		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.css" />
 		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.color.green.css" />
-		<script src="../nativeDroid2/js/nativedroid2.js"></script>
 		<style type="text/css">
 			.ui-field-contain {
 				border-bottom-width: 0px;
@@ -25,13 +18,6 @@
 			
 			.item-title {
 				font-weight: bold;
-			}
-			
-			input.file-hidden {
-				visibility: hidden;
-				position: absolute;
-				top: 0;
-				left: -5000px;
 			}
 		</style>
 		<script src="../js/auth.js"></script>
@@ -41,125 +27,76 @@
 	</head>
 
 	<body>
-		<div data-role="page">
+		<div id="main" data-role="page">
 			<div data-role="header" data-position="fixed" data-tap-toggle="false">
-				<a href="#" onclick="back()" class="ui-btn"><i class="zmdi zmdi-arrow-back"></i></a>
 				<h1>新建巡查</h1>
 			</div>
-			<div id="content" data-role="main" class="ui-content">
-				<form id="contentForm" enctype="multipart/form-data">
-					<div class="ui-field-contain">
-						<label for="fname">巡查日期</label>
-						<input type="date" name="date" id="date">
-					</div>
-					<div class="ui-field-contain">
-						<label for="time">巡查人员</label>
-						<input type="text" name="time" id="time">
-					</div>
-					<div class="ui-field-contain">
-						<label for="region">巡查区域</label>
-						<input type="text" name="region" id="region">
-					</div>
-					<div data-role="collapsible">
-						<h1>巡查情况</h1>
-						<template v-for="i in 2">
-							<ul data-role="listview" data-inset="true">
-								<li data-role="list-divider">巡查情况{{ i }}</li>
-								<li class="ui-field-contain">
-									<label for="">时间</label>
-									<input type="time" name="" id="" value="" />
-								</li>
-								<li class="ui-field-contain">
-									<label for="">地点</label>
-									<input type="text" name="" id="" value="" />
-								</li>
-								<li class="ui-field-contain">
-									<label for="">内容</label>
-									<textarea type="time" name="" id="" value=""></textarea>
-								</li>
-								<li class="ui-field-contain">
-									<!--<label for="">图片</label>
-            				<input type="file" accept="image/x-png" name="" id="" value="" />-->
-									<div data-role="controlgroup" data-mini="ture" data-type="horizontal" style="text-align: center;">
-										<a href="#" data-icon="check" class="ui-btn ui-icon-video ui-btn-icon-left" v-on:click="$('#video_inspect_' + i).click()">视频</a>
-										<a href="#" data-icon="check" class="ui-btn ui-icon-camera ui-btn-icon-left" v-on:click="$('#camera_inspect_' + i).click()">图片</a>
-										<a href="#" data-icon="check" class="ui-btn ui-icon-audio ui-btn-icon-left" v-on:click="$('#audio_inspect_' + i).click()">录音</a>
-										<input type="file" class="file-hidden" accept="video/x-mpeg2" v-bind:id="'video_inspect_' + i" />
-										<input type="file" class="file-hidden" accept="image/x-png" v-bind:id="'camera_inspect_' + i" />
-										<input type="file" class="file-hidden" accept="audio/x-mpeg" v-bind:id="'audio_inspect_' + i" />
-									</div>
-								</li>
-								<li>
-									<a href="#" data-icon="check" class="ui-btn ui-icon-minus ui-btn-icon-left">删除</a>
-								</li>
-							</ul>
-						</template>
-						<!--<div data-role="controlgroup" data-mini="ture" data-type="horizontal" style="text-align: center;">-->
-						<a href="#" data-icon="check" class="ui-btn ui-icon-plus ui-btn-icon-left ui-corner-all">添加</a>
-						<!--</div>-->
-					</div>
-					<div data-role="collapsible">
-						<h1>工作情况</h1>
-						<template v-for="i in 2">
-							<ul data-role="listview" data-inset="true">
-								<li data-role="list-divider">工作情况{{ i }}</li>
-								<li class="ui-field-contain">
-									<label for="">内容</label>
-									<textarea type="time" name="" id="" value=""></textarea>
-								</li>
-								<li class="ui-field-contain">
-									<!--<label for="">附件</label>-->
-									<!--<input type="file" accept="image/x-png" name="" id="" value="" />-->
-									<div data-role="controlgroup" data-mini="ture" data-type="horizontal" style="text-align: center;">
-										<a href="#" data-icon="check" class="ui-btn ui-icon-video ui-btn-icon-left" v-on:click="$('#video_work_' + i).click()">视频</a>
-										<a href="#" data-icon="check" class="ui-btn ui-icon-camera ui-btn-icon-left" v-on:click="$('#camera_work_' + i).click()">图片</a>
-										<a href="#" data-icon="check" class="ui-btn ui-icon-audio ui-btn-icon-left" v-on:click="$('#audio_work_' + i).click()">录音</a>
-										<input type="file" class="file-hidden" accept="video/x-mpeg2" v-bind:id="'video_work_' + i" />
-										<input type="file" class="file-hidden" accept="image/x-png" v-bind:id="'camera_work_' + i" />
-										<input type="file" class="file-hidden" accept="audio//x-mpeg" v-bind:id="'audio_work_' + i" />
-									</div>
-								</li>
-								<li>
-									<a href="#" data-icon="check" class="ui-btn ui-icon-minus ui-btn-icon-left">删除</a>
-								</li>
-							</ul>
-						</template>
-						<!--<div data-role="controlgroup" data-mini="ture" data-type="horizontal" style="text-align: center;">-->
-						<a href="#" data-icon="check" class="ui-btn ui-icon-plus ui-btn-icon-left ui-corner-all">添加</a>
-						<!--</div>-->
-					</div>
-				</form>
+			<div class="ui-field-contain">
+				<label for="fname">巡查日期</label>
+				<input type="date" name="date" id="date">
 			</div>
+			<div class="ui-field-contain">
+				<input type="text" name="time" id="time">
+			</div>
+			<div class="ui-field-contain">
+				<label for="region">巡查区域</label>
+				<input type="text" name="region" id="region">
+			</div>
+			<div class="ui-field-contain">
+				<label for="position">巡查点</label>
+				<input type="text" name="position" id="position">
+			</div>
+			<div class="ui-field-contain">
+				<label for="detail">巡查情况</label>
+				<textarea name="detail" id="detail"></textarea>
+			</div>
+			<div class="ui-field-contain">
+				<label for="issus">发现问题</label>
+				<textarea name="issus" id="issus"></textarea>
+			</div>
+			<div class="ui-field-contain">
+				<label for="advice">整改建议</label>
+				<textarea name="advice" id="advice"></textarea>
+			</div>
+			<div class="ui-field-contain">
+				<label for="policeman">巡查人员</label>
+				<input type="text" name="policeman" id="policeman">
+			</div>
+			<div class="ui-field-contain">
+				<label for="deadline">处理期限</label>
+				<input type="text" name="deadline" id="deadline">
+			</div>
+			<div class="ui-field-contain">
+				<label for="recoder">记录人</label>
+				<input type="text" name="recoder" id="recoder">
+			</div>
+			</form>
 		</div>
-		<script src="model/Daily.js"></script>
+		</div>
+		<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
+		<script src="../nativeDroid2/jquery-ui.min.js"></script>
+		<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+		<script src="../nativeDroid2/vendor/waves/waves.min.js"></script>
+		<script src="../nativeDroid2/vendor/wow/wow.min.js"></script>
+		<script src="../nativeDroid2/js/nativedroid2.js"></script>
+		<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
+		<script type="text/javascript" src="../vuejs/vue.min.js"></script>
+		
 		<script type="text/javascript">
-			var content = new Vue({
-				el: "#content",
+			var vm = new Vue({
+				el: "#main",
 				data: {
-					form: new Daily()
+					dins_id: "rcjc-" + new Date().toString("yyyyMMddHHmmss"),
+					dins_date: new Date().toString("yyyy-MM-dd"),
+					dins_zone: "",
+					dins_time: "",
+					dins_person: "",
+					dins_point: "",
+					dins_content: "",
+					dins_other: "",
+					dins_record: ""
 				}
 			})
-
-			function submit() {
-				$.ajax({
-					type: "post",
-					url: "",
-					cache: false,
-					data: new FormData($('#contentForm')[0]),
-					processData: false,
-					contentType: false,
-					success: function() {
-						new $.nd2Toast({
-							message : "提交成功", // Required
-						});
-					},
-					error: function() {
-						new $.nd2Toast({
-							message : "提交失败", // Required
-						});
-					}
-				});
-			}
 
 			function back() {
 				window.location = "daily.html";
@@ -168,7 +105,6 @@
 			function gotomain(name) {
 				window.location = "../company/main.html" + name;
 			}
-		</script>
-	</body>
+		</script> </body>
 
 </html>
