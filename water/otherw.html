@@ -375,6 +375,7 @@
 						},
 						success: function(data) {
 							mainpageVM.items = data.rows;
+							mainpageVM.total = data.total;
 							mainpageVM.showPagination = false;
 						},
 						error: function() {

@@ -1,88 +1,103 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>黄柏河流域综合执法信息管理系统</title>
-<link rel="stylesheet" href="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
-<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
-<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
-<style type="text/css">
-span.listview-aside {
-	font-size: 14px;
-	position: relative;
-	float: right;
-	margin: 0px auto;
-	vertical-align: middle;
-}
-ul li p.listview-aside {
-	font-size: 14px;
-	word-wrap: break-word;
-	white-space: normal;
-}
-</style>
-</head>
-<body>
-	<div data-role="page">
-		<div data-role="header" data-position="fixed" data-tap-toggle="false">
-			<a href="#" onclick="back()"
-				class="ui-btn ui-icon-back ui-btn-icon-left">返回</a>
-			<h1>巡查记录</h1>
-		</div>
-		<div data-role="main" class="ui-content">
-			<ul id="content" data-role="listview" data-inset="true">
-				<li>
-					<b>被监察单位</b>
-					<span class="listview-aside">宜昌东圣九女矿业有限公司</span>
-				</li>
-				<li>
-					<b>预监察时间</b>
-					<span class="listview-aside">2018-1-21</span>
-				</li>
-				<li>
-					<b>巡查人员</b>
-					<span class="listview-aside">张三</span>
-				</li>
-				<li>
-					<b>巡查方式</b>
-					<span class="listview-aside">抽样、查看</span>
-				</li>
-				<li>
-					<b>监察内容</b>
-					<p style="font-size: 14px;"> 矿渣、排污口</p>
-				</li>
-				<li>
-					<b>其他资料</b>
-					<p style="font-size: 14px;">矿井口、排污口分布图</p>
-				</li>
-				<li>
-					<b>联系人员</b>
-					<span class="listview-aside">李四</span>
-				</li>
-				<li>
-					<b>联系电话</b>
-					<span class="listview-aside">12000</span>
-				</li>
-				<li>
-					<b>签发日期</b>
-					<span class="listview-aside">2018-1-21</span>
-				</li>
-			</ul>
-		</div>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>黄柏河流域综合执法信息管理系统</title>
+		<link rel="stylesheet" href="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+		<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.css">
+		<link rel="stylesheet" href="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.theme.css">
+		<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
+		<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+		<script src="../jquery.mobile-1.4.5/jquery.ui.datepicker.js"></script>
+		<script src="../jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.js"></script>
+		<script type="text/javascript" src="../vuejs/vue.min.js"></script>
+		<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
+		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.css" />
+		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.color.green.css" />
+		<script src="../nativeDroid2/js/nativedroid2.js"></script>
+		<style type="text/css">
+			span.listview-aside {
+				font-size: 14px;
+				position: relative;
+				float: right;
+				margin: 0px auto;
+				vertical-align: middle;
+			}
+
+			ul li p.listview-aside {
+				font-size: 14px;
+				word-wrap: break-word;
+				white-space: normal;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="content" data-role="page">
+			<div data-role="header" data-position="fixed" data-tap-toggle="false">
+				<a href="#" onclick="back()" class="ui-btn">
+					<i class="zmdi zmdi-arrow-back"></i>
+				</a>
+				<h1>巡查记录</h1>
+			</div>
+			<div data-role="main" class="ui-content">
+				<h4>编号：{{ item.dins_id }}</h3>
+					<ul data-role="listview" data-inset="true">
+						<li>
+							<b>巡查日期</b>
+							<span class="listview-aside">{{ item.dins_date }}</span>
+						</li>
+						<li>
+							<b>巡查人员</b>
+							<span class="listview-aside">{{ item.dins_person }}</span>
+						</li>
+						<li>
+							<b>巡查区域</b>
+							<span class="listview-aside">{{ item.dins_zone }}</span>
+						</li>
+						<li>
+							<b>巡查时间</b>
+							<span class="listview-aside">{{ item.dins_time }}</span>
+						</li>
+						<li>
+							<b>巡查地点</b>
+							<span class="listview-aside"> {{ item.dins_point }}</p>
+						</li>
+						<li>
+							<b>巡查情况</b>
+							<p class="listview-aside">{{ item.dins_content }}</p>
+						</li>
+						<li>
+							<b>其他内容</b>
+							<p class="listview-aside">{{ item.dins_other }}</p>
+						</li>
+						<li>
+							<b>记录人员</b>
+							<span class="listview-aside">{{ item.dins_record }}</span>
+						</li>
+					</ul>
+			</div>
 	</body>
-	
 	<script>
+		function getURLParameter(name) {
+			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
+		}
+
 		var content = new Vue({
 			el: "#content",
 			data: {
-				items: []
+				item: {}
+			},
+			created: function () {
+				$.getJSON("http://39.106.145.68:8080/huangbaihe/DInspec/querybyid", {
+					id: getURLParameter("index")
+				}, function (data) {
+					content.item = data
+				})
 			}
 		})
-		var pageIndex = 1;
-		$(document).ready(function() {
-
-		});
 
 		function back() {
 			window.location = "daily.html";

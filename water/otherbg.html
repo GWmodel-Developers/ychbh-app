@@ -67,7 +67,7 @@
 							<span v-show="!showPagination" class="align-right">查询到{{ total }}条记录</span>							
 						</div>
 					</div>
-					<div class="ui-corner-all" id="popupFilter" data-role="popup" style="padding: 10px 20px;min-width: 240px;">
+					<div class="ui-corner-all" id="popupFilter" data-role="popup" style="padding: 10px 20px;min-width: 240px;" data-dismissible="false">
 						<form v-on:submit.prevent>
 							<div class="ui-field-contain">
 								<label for="enddate">检测类型</label>
@@ -94,10 +94,10 @@
 						</form>
 						<div class="row between-xs">
 							<div class="col-xs-6">
-								<a href="#" class="ui-btn clr-primary" v-on:click="searchItems(searchText)">搜索</a>
+								<a href="#" class="ui-btn clr-primary" data-rel="back" v-on:click="searchItems(searchText)">搜索</a>
 							</div>
 							<div class="col-xs-6">
-								<a href="#" class="ui-btn" onclick="$('#popupFilter').popup('close')" data-role="button">取消</a>																
+								<a href="#" class="ui-btn" data-rel="back" onclick="$('#popupFilter').popup('close')" data-role="button">取消</a>																
 							</div>
 						</div>
 					</div>
