@@ -142,13 +142,13 @@
 						<li><b>检测频次</b><span class="listview-aside">{{ detail.hz }}</span></li>
 						<li><b>编制人</b><span class="listview-aside">{{ detail.wperson }}</span></li>
 						<li><b>审核人</b><span class="listview-aside">{{ detail.cperson }}</span></li>
+						<template v-for="(ind, i) in detail.wInsRecordZs">
+							<li class="ui-li-divider ui-bar-inherit" data-role="list-divider"><h3>相关指数检测{{ i + 1 }}</h3></li>
+							<li class="ui-li-static ui-body-inherit"><b>指标（单位）</b><span class="listview-aside">{{ ind.zs }}</span></li>
+							<li class="ui-li-static ui-body-inherit"><b>值</b><span class="listview-aside">{{ ind.value }}</span></li>
+							<li class="ui-li-static ui-body-inherit"><b>标准</b><span class="listview-aside">{{ ind.stand }}</span></li>
+						</template>
 					</ul>
-					<template v-for="(ind, i) in detail.wInsRecordZs">
-						<li class="ui-li-divider ui-bar-inherit" data-role="list-divider"><h3>相关指数检测{{ i + 1 }}</h3></li>
-						<li class="ui-li-static ui-body-inherit"><b>指标（单位）</b><span class="listview-aside">{{ river.zs }}</span></li>
-						<li class="ui-li-static ui-body-inherit"><b>值</b><span class="listview-aside">{{ river.value }}</span></li>
-						<li class="ui-li-static ui-body-inherit"><b>标准</b><span class="listview-aside">{{ river.stand }}</span></li>
-					</template>
 				</div>
 			</div>
 			<div data-role="page" id="page_new">
