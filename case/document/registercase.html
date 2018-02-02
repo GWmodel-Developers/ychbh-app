@@ -52,7 +52,7 @@
 			<div id="detail-listview" data-role="main" class="ui-content">
                 <form action="#">
                     <ul data-role="listview" data-inset="true">
-                        <li v-for="(dommap, index) in detail.domMap" v-if="!dommap.hidden && !dommap.hidden.listview">
+                        <li v-for="(dommap, index) in detail.domMap" v-if="dommap.show(au)">
                             <b>{{ dommap.name }}</b>
                             <span v-if="dommap.type === 'span' " class="listview-aside">{{ dommap.get(detail) }}</span>
                             <p v-else-if="dommap.type === 'p' " class="listview-aside">{{ dommap.get(detail) }}</p>
@@ -63,7 +63,21 @@
                             <input v-else v-bind:type="dommap.type" v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
                         </li>
                     </ul>
-                </form>
+				</form>
+				<div class="row between-xs">
+					<a v-if="showSubmit" href="#" class="ui-btn ui-btn-raised ui-btn-inline" @click="submit()">
+						<i class="md zmdi zmdi-mail-sends"></i>提交
+					</a>
+					<a v-if="showEdit" href="#" class="ui-btn ui-btn-raised ui-btn-inline" @click="edit()">
+						<i class="md zmdi zmdi-edit"></i>修改
+					</a>
+					<a v-if="showExam" href="#" class="ui-btn ui-btn-raised ui-btn-inline" @click="exam()">
+						<i class="md zmdi zmdi-check"></i>审核
+					</a>
+					<a v-if="showApproval" href="#" class="ui-btn ui-btn-raised ui-btn-inline" @click="approval()">
+						<i class="md zmdi zmdi-"></i>审批
+					</a>
+				</div>
 			</div>
 		</div>
 	</body>
@@ -77,7 +91,8 @@
 			el: "#root",
 			data: {
 				selected_id: localStorage.getItem("caseID"),
-				detail: new RegisterCase()
+				detail: new RegisterCase(),
+				au: JSON.parse(localStorage.getItem("au"))
 			},
 			methods: {
 				queryItem: function(caseID, obj) {
@@ -92,7 +107,20 @@
 							obj.detail = new RegisterCase(data.result);
 						}
 					});
+				},
+				submit: function () {
+					
+				},
+				update: function () {
+					
+				},
+				exam: function () {
+					
+				},
+				approve: function () {
+					
 				}
+
 			},
 			created: function() {
 				var obj = this;
@@ -100,6 +128,20 @@
 					back();
 				}
 				// this.queryItem(this.selected_id, this)
+			},
+			computed: {
+				showSubmit: function () {
+					return true;
+				},
+				showUpdate: function () {
+					return true;
+				},
+				showExam: function () {
+					return true;
+				},
+				showApprove: function () {
+					return true;
+				}
 			}
 		});
 

@@ -41,7 +41,9 @@ RegisterCase.prototype.domMap = [
         key: "brief",
         name: "测试span",
         type: "span",
-        hidden: false,
+        show: function (au) {
+            return false;
+        },
         get: function (detail) {
             return "span内容";
         }
@@ -49,7 +51,9 @@ RegisterCase.prototype.domMap = [
         key: "informantSex",
         name: "测试p",
         type: "p",
-        hidden: false,
+        show: function (au) {
+            return false;
+        },
         get: function (detail) {
             return "p内容";
         }
@@ -57,7 +61,9 @@ RegisterCase.prototype.domMap = [
         key: "leader",
         name: "测试p",
         type: "p",
-        hidden: false,
+        show: function (au) {
+            return false;
+        },
         get: function (detail) {
             return "p内容";
         }
@@ -65,12 +71,16 @@ RegisterCase.prototype.domMap = [
         key: "occurPlace",
         name: "测试textarea",
         type: "textarea",
-        hidden: false
+        show: function (au) {
+            return false;
+        }
     },{
         key: "examDate",
         name: "测试p",
         type: "select",
-        hidden: false,
+        show: function (au) {
+            return false;
+        },
         options: [
             { value: "1", text: "第一选项"},
             { value: "2", text: "第二选项"},
@@ -81,6 +91,8 @@ RegisterCase.prototype.domMap = [
         key: "informantAge",
         name: "测试p",
         type: "date",
-        hidden: false
+        show: function (au) {
+            return false;
+        }
     }
 ]

@@ -100,7 +100,9 @@ CaseView.prototype.domMap = [
         name: "违法类型",
         key: "illegalID",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return CaseView.prototype.illegalTypes[params.illegalID];
         }
@@ -109,7 +111,9 @@ CaseView.prototype.domMap = [
         name: "案件来源",
         key: "sourceID",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return CaseView.prototype.sources[params.sourceID]; 
         }
@@ -118,7 +122,9 @@ CaseView.prototype.domMap = [
         name: "报告时间",
         key: "reportTime",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.reportTime;
         }
@@ -127,7 +133,9 @@ CaseView.prototype.domMap = [
         name: "案件名称",
         key: "caseDescription",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.caseDescription;
         }
@@ -136,7 +144,9 @@ CaseView.prototype.domMap = [
         name: "主要内容",
         key: "content",
         type: "textarea",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.content;
         }
@@ -145,7 +155,9 @@ CaseView.prototype.domMap = [
         name: "区域",
         key: "placID",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return CaseView.prototype.places[params.placID];
         }
@@ -154,7 +166,9 @@ CaseView.prototype.domMap = [
         name: "报告人姓名",
         key: "informantName",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.informantName;
         }
@@ -163,7 +177,9 @@ CaseView.prototype.domMap = [
         name: "报告人证件类型",
         key: "informantCardType",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return CaseView.prototype.cardTypes[params.informantCardType];
         }
@@ -172,7 +188,9 @@ CaseView.prototype.domMap = [
         name: "报告人证件号",
         key: "informantId",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.informantId;
         }
@@ -181,7 +199,9 @@ CaseView.prototype.domMap = [
         name: "报告人性别",
         key: "iSex",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.iSex;
         }
@@ -190,7 +210,9 @@ CaseView.prototype.domMap = [
         name: "报告人年龄",
         key: "iAge",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.iAge;
         }
@@ -199,7 +221,9 @@ CaseView.prototype.domMap = [
         name: "报告人地址、单位",
         key: "informantPersonAddress",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.informantPersonAddress;
         }
@@ -208,7 +232,9 @@ CaseView.prototype.domMap = [
         name: "报告人联系方式",
         key: "informantPhoneNumber",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.informantPhoneNumber;
         }
@@ -217,7 +243,9 @@ CaseView.prototype.domMap = [
         name: "记录人",
         key: "recorder",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.recorder;
         }
@@ -226,7 +254,9 @@ CaseView.prototype.domMap = [
         name: "记录时间",
         key: "recordDate",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.recordDate;
         }
@@ -235,7 +265,9 @@ CaseView.prototype.domMap = [
         name: "综合执法支队",
         key: "group",
         type: "text",
-        hidden: true,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.group;
         }
@@ -244,7 +276,9 @@ CaseView.prototype.domMap = [
         name: "综合执法支队负责人",
         key: "examResponsible",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.examResponsible;
         }
@@ -253,7 +287,9 @@ CaseView.prototype.domMap = [
         name: "处理意见(负责人填写)",
         key: "examSuggestion",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.examSuggestion;
         }
@@ -262,7 +298,9 @@ CaseView.prototype.domMap = [
         name: "经办人",
         key: "excutor",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.excutor;
         }
@@ -271,7 +309,9 @@ CaseView.prototype.domMap = [
         name: "处理时间",
         key: "examDate",
         type: "text",
-        hidden: false,
+        show: function (au) {
+            return true;
+        },
         get: function (params) {
             return params.examDate;
         },

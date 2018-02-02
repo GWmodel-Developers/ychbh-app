@@ -52,7 +52,7 @@
 			<div id="detail-listview" data-role="main" class="ui-content">
 				<form action="#">
                     <ul data-role="listview" data-inset="true">
-                        <li v-for="(dommap, index) in detail.domMap" v-if="!dommap.hidden && !dommap.hidden.listview">
+                        <li v-for="(dommap, index) in detail.domMap" v-if="dommap.show(au)">
                             <b>{{ dommap.name }}</b>
                             <span v-if="dommap.type === 'span' " class="listview-aside">{{ dommap.get(detail) }}</span>
                             <p v-else-if="dommap.type === 'p' " class="listview-aside">{{ dommap.get(detail) }}</p>
