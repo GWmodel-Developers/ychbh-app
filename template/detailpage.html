@@ -47,10 +47,10 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>案源登记表</h1>
+				<h1>立案登记表</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
-				<form action="#">
+                <form action="#">
                     <ul data-role="listview" data-inset="true">
                         <li v-for="(dommap, index) in detail.domMap" v-if="!dommap.hidden && !dommap.hidden.listview">
                             <b>{{ dommap.name }}</b>
@@ -71,13 +71,13 @@
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<script src="../../js/auth.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/CaseView.js" ></script>
+	<script type="text/javascript" src="model/RegisterCase.js" ></script>
 	<script type="text/javascript">
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
 				selected_id: localStorage.getItem("caseID"),
-				detail: new CaseView()
+				detail: new RegisterCase()
 			},
 			methods: {
 				queryItem: function(caseID, obj) {
@@ -89,7 +89,7 @@
 							caseID: caseID
 						}),
 						success: function (data) {
-							obj.detail = new CaseView(data.result);
+							obj.detail = new RegisterCase(data.result);
 						}
 					});
 				}
@@ -99,7 +99,7 @@
 				if (!this.selected_id) {
 					back();
 				}
-				this.queryItem(this.selected_id, this)
+				// this.queryItem(this.selected_id, this)
 			}
 		});
 

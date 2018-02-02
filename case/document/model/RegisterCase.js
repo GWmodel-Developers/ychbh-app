@@ -38,9 +38,49 @@ function RegisterCase(params) {
 
 RegisterCase.prototype.domMap = [
     {
-        key: "",
-        name: "",
-        type: "",
+        key: "brief",
+        name: "测试span",
+        type: "span",
+        hidden: false,
+        get: function (detail) {
+            return "span内容";
+        }
+    },{
+        key: "informantSex",
+        name: "测试p",
+        type: "p",
+        hidden: false,
+        get: function (detail) {
+            return "p内容";
+        }
+    },{
+        key: "leader",
+        name: "测试p",
+        type: "p",
+        hidden: false,
+        get: function (detail) {
+            return "p内容";
+        }
+    },{
+        key: "occurPlace",
+        name: "测试textarea",
+        type: "textarea",
+        hidden: false
+    },{
+        key: "examDate",
+        name: "测试p",
+        type: "select",
+        hidden: false,
+        options: [
+            { value: "1", text: "第一选项"},
+            { value: "2", text: "第二选项"},
+            { value: "3", text: "第三选项"},
+            { value: "4", text: "第四选项"}
+        ]
+    },{
+        key: "informantAge",
+        name: "测试p",
+        type: "date",
         hidden: false
     }
 ]
