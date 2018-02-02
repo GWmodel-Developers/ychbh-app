@@ -42,7 +42,7 @@ RegisterCase.prototype.domMap = [
         name: "测试span",
         type: "span",
         show: function (au) {
-            return false;
+            return true;
         },
         get: function (detail) {
             return "span内容";
@@ -52,7 +52,7 @@ RegisterCase.prototype.domMap = [
         name: "测试p",
         type: "p",
         show: function (au) {
-            return false;
+            return true;
         },
         get: function (detail) {
             return "p内容";
@@ -62,7 +62,7 @@ RegisterCase.prototype.domMap = [
         name: "测试p",
         type: "p",
         show: function (au) {
-            return false;
+            return true;
         },
         get: function (detail) {
             return "p内容";
@@ -72,14 +72,14 @@ RegisterCase.prototype.domMap = [
         name: "测试textarea",
         type: "textarea",
         show: function (au) {
-            return false;
+            return true;
         }
     },{
         key: "examDate",
         name: "测试p",
         type: "select",
         show: function (au) {
-            return false;
+            return true;
         },
         options: [
             { value: "1", text: "第一选项"},
@@ -92,7 +92,7 @@ RegisterCase.prototype.domMap = [
         name: "测试p",
         type: "date",
         show: function (au) {
-            return false;
+            return true;
         }
     }
 ]

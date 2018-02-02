@@ -65,16 +65,16 @@
                     </ul>
 				</form>
 				<div class="row between-xs">
-					<a v-if="showSubmit" href="#" class="ui-btn ui-btn-raised ui-btn-inline" @click="submit()">
+					<a v-if="showSubmit" href="#" class="ui-btn ui-btn-raised ui-btn-inline clr-btn-green" @click="submit()">
 						<i class="md zmdi zmdi-mail-sends"></i>提交
 					</a>
-					<a v-if="showEdit" href="#" class="ui-btn ui-btn-raised ui-btn-inline" @click="edit()">
+					<a v-if="showEdit" href="#" class="ui-btn ui-btn-raised ui-btn-inline clr-btn-tear" @click="edit()">
 						<i class="md zmdi zmdi-edit"></i>修改
 					</a>
-					<a v-if="showExam" href="#" class="ui-btn ui-btn-raised ui-btn-inline" @click="exam()">
+					<a v-if="showExam" href="#" class="ui-btn ui-btn-raised ui-btn-inline clr-btn-purple" @click="exam()">
 						<i class="md zmdi zmdi-check"></i>审核
 					</a>
-					<a v-if="showApproval" href="#" class="ui-btn ui-btn-raised ui-btn-inline" @click="approval()">
+					<a v-if="showApproval" href="#" class="ui-btn ui-btn-raised ui-btn-inline clr-btn-indigo" @click="approval()">
 						<i class="md zmdi zmdi-"></i>审批
 					</a>
 				</div>
@@ -146,7 +146,7 @@
 		});
 
 		function back() {
-			window.location = "../caseindex.html#page_document";
+			window.location = "caseindex.html#page_document";
 		}
 	</script>
 
