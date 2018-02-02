@@ -1,67 +1,58 @@
 function CaseIndex(params) {
-    this.caseID = null;
-    this.illegalID = null;
-    this.unsettleType = null;
-    this.sourceID = null;
-    this.informantId = null;
-    this.informant = null;
-    this.placeID = null;
-    this.reportTime = null;
-    this.caseDescription = null;
-    this.objectType = null;
-    this.objectID = null;
-    this.caseState = null;
-    this.objUninformant = null;
-    this.formRegisterCase = null;
-    this.formWithdrawCase = null;
-    this.noteExam = null;
-    this.noteInspect = null;
-    this.notePlead = null;
-    this.noteSurvey = null;
-    this.noticeDetainEvidence = null;
-    this.noticeKeepEvidence = null;
-    this.noticeNoPunish = null;
-    this.noticeStop = null;
-    this.voucherDetainEvidence = null;
-    this.voucherKeepEvidence = null;
-    this.letterCaseTransfer = null;
-    this.occurTime = null;
-    this.occurPlace = null;
-    this.content = null;
-    this.objectName = null;
-    this.recorder = null;
-    this.examResponsible = null;
-    this.excutor = null;
-    this.examDate = null;
-    this.examSuggestion = null;
-    this.group = null;
-    this.formRegistrationState = null;
-    this.formPunishExamState = null;
-    this.formRegisterCaseSate = null;
-    this.formWithdrawCaseState = null;
-    this.formUnRegisterCaseSate = null;
-    this.noteExamState = null;
-    this.noteInspectState = null;
-    this.notePleadState = null;
-    this.noteSurveyState = null;
-    this.noticeDetainEvidenceState = null;
-    this.noticeKeepEvidenceState = null;
-    this.noticeNoPunishState = null;
-    this.noticeStopState = null;
-    this.voucherDetainEvidenceState = null;
-    this.voucherKeepEvidenceState = null;
-    this.letterCaseTransferState = null;
-    this.formTransferCaseState = null;
-    this.formKeepEvidenceState = null;
-    this.formNotPunishmentDecisionExamSate = null;
-    this.formPunishmentDecisionExamSate = null;
-    this.reportEndCasePunishmentState = null;
-    this.formDetainEvidenceState = null;
-    this.decisionPunishmentInSpotState = null;
-    this.discussionImportantCaseState = null;
-    this.noteHearingPunishmentState = null;
-    this.noticeHearingPunishmentState = null;
-    this.opinionHearingPunishmentState = null;
+    this.formDetainEvidenceSate = null;
+	this.reportEndCasePunishmentState = null;
+	this.examDate = null;
+	this.formUnRegisterCaseSate = null;
+	this.uAddress = null;
+	this.placID = null;
+	this.occurTime = null;
+	this.uSex = null;
+	this.uInformantId = null;
+	this.examResponsible = null;
+	this.iSex = null;
+	this.notePleadState = null;
+	this.noteExamState = null;
+	this.reportDate = null;
+	this.formPunishmentState = null;
+	this.excutor = null;
+	this.noteInspectState = null;
+	this.group = null;
+	this.reportEndInvestigateSate = null;
+	this.formTransferCaseState = null;
+	this.formNotPunishmentDecisionExamSate = null;
+	this.noticePunishmentPretellState = null;
+	this.informantID = null;
+	this.formPunishmentDecisionExamSate = null;
+	this.caseID = null;
+	this.noticeStopState = null;
+	this.informantPersonAddress = null;
+	this.occurPlace = null;
+	this.uPhone = null;
+	this.discussionCaseState = null;
+	this.infotmantAddress = null;
+	this.decisionPunishmentInSpotState = null;
+	this.uInformantName = null;
+	this.content = null;
+	this.examSuggestion = null;
+	this.informantName = null;
+	this.caseDescription = null;
+	this.recordDate = null;
+	this.formRegisterCaseSate = null;
+	this.uCardType = null;
+	this.sourceID = null;
+	this.recorder = null;
+	this.iAge = null;
+	this.formKeepEvidenceSate = null;
+	this.informantCardType = null;
+	this.formPunishExamState = null;
+	this.formRegistrationState = null;
+	this.illegalID = null;
+	this.objectName = null;
+	this.documentId = null;
+	this.informantPhoneNumber = null;
+	this.noteSurveyState = null;
+	this.uAge = null;
+	this.formWithdrawCaseState = null;
     for (var key in params) {
         if (params.hasOwnProperty(key)) {
             var element = params[key];
@@ -138,12 +129,12 @@ CaseIndex.prototype.domMap = [
         }
     },
     {
-        key: "placeId",
+        key: "placID",
         type: "text",
         name: "区域",
         hidden: false,
         get: function (params) {
-           return CaseIndex.prototype.places[params.placeId]; 
+           return CaseIndex.prototype.places[params.placID]; 
         }
     },
     {
@@ -192,66 +183,66 @@ CaseIndex.prototype.domMap = [
         }
     },
     {
-        key: "",
+        key: "uCardType",
         type: "text",
         name: "被举报人证件类型",
         hidden: false,
         get: function (params) {
-           return params.caseID; 
+           return params.uCardType; 
         }
     },
     {
-        key: "",
+        key: "uInformantId",
         type: "text",
         name: "被举报人证件号",
         hidden: false,
         get: function (params) {
-           return params.caseID; 
+           return params.uInformantId; 
         }
     },
     {
-        key: "",
+        key: "uAddress",
         type: "text",
         name: "被举报人地址",
         hidden: false,
         get: function (params) {
-           return params.caseID; 
+           return params.uAddress; 
         }
     },
     {
-        key: "",
+        key: "uPhone",
         type: "text",
         name: "被举报人电话号码",
         hidden: false,
         get: function (params) {
-           return params.caseID; 
+           return params.uPhone; 
         }
     },
     {
-        key: "",
+        key: "formRegisterCaseSate",
         type: "text",
         name: "立案处理情况",
         hidden: false,
         get: function (params) {
-           return params.caseID; 
+           return params.formRegisterCaseSate; 
         }
     },
     {
-        key: "",
+        key: "formWithdrawCaseState",
         type: "text",
         name: "撤案处理情况",
         hidden: false,
         get: function (params) {
-           return params.caseID; 
+           return params.formWithdrawCaseState; 
         }
     },
     {
-        key: "",
+        key: "formPunishExamState",
         type: "text",
         name: "行政处罚处理情况",
         hidden: false,
         get: function (params) {
-           return params.caseID; 
+           return params.formPunishExamState; 
         }
     },
 ];

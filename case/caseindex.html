@@ -133,31 +133,31 @@
 					<ul data-role="listview" data-inset="true">
 						<li><a href="#page_detail"><b>案件详情</b></a></li>
 						<li data-role="list-divider"><h3>案源管理文书</h3></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>案源登记表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>不予立案呈批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>立案呈批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>撤案呈批表</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('caseview')"><b>案源登记表</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>不予立案呈批表</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>立案呈批表</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>撤案呈批表</b></a></li>
 						<li data-role="list-divider"><h3>移送立案文书</h3></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>先行登记保存物品呈批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>扣押物品呈批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>案件移送呈批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>案件移送函</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>先行登记保存物品呈批表</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>扣押物品呈批表</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>案件移送呈批表</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>案件移送函</b></a></li>
 						<li data-role="list-divider"><h3>调查取证文书</h3></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>勘验笔录</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>检查笔录</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>询问笔录</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>陈述申辩笔录</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>勘验笔录</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>检查笔录</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>询问笔录</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>陈述申辩笔录</b></a></li>
 						<li data-role="list-divider"><h3>行政命令文书</h3></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>责令停止涉嫌违法行为告知书</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>责令停止涉嫌违法行为告知书</b></a></li>
 						<li data-role="list-divider"><h3>行政处罚文书</h3></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>行政处罚事先告知书</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>当场行政处罚决定书</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>行政处罚听证笔录</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>行政处罚听证意见书</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>重大案件集体讨论记录</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>行政处罚决定审批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>不予行政触发决定审批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('projectbasic')"><b>行政处罚结案报告</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>行政处罚事先告知书</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>当场行政处罚决定书</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>行政处罚听证笔录</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>行政处罚听证意见书</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>重大案件集体讨论记录</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>行政处罚决定审批表</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>不予行政触发决定审批表</b></a></li>
+						<li><a href="#" v-on:click="gotoDetail('#')"><b>行政处罚结案报告</b></a></li>
 					</ul>
 				</div>
 			</div>
@@ -172,7 +172,7 @@
 					<ul data-role="listview" data-inset="true">
 						<li v-for="(dommap, index) in detail.domMap" v-if="!dommap.hidden && !dommap.hidden.listview">
 							<b>{{ dommap.name }}</b>
-							<p v-if="dommap.type === 'textarea'" class="listview-aside">{{ detail[dommap.key] }}</p>
+							<p v-if="dommap.type === 'textarea'" class="listview-aside">{{ dommap.get(detail) }}</p>
 							<span v-else class="listview-aside">{{ dommap.get(detail) }}</span>
 						</li>
 					</ul>
@@ -244,14 +244,14 @@
 						mainpageVM.form = new CaseIndex();
 					}
 				},
-				queryItem: function(projectID, obj) {
+				queryItem: function(caseID, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/showCaseList/qurbyid",
+						url: "http://39.106.145.68:8080/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "json",
-						data: {
-							index: projectID
-						},
+						data: JSON.stringify({
+							caseID: caseID
+						}),
 						success: function (data) {
 							obj.detail = new CaseIndex(data.result);
 						}
@@ -282,7 +282,7 @@
 					mainpageVM.getItems(mainpageVM)
 				},
 				gotoDetail: function (page, index) {
-					window.location = ["company-detail/", page, ".html"].join("");
+					window.location = ["document/", page, ".html"].join("");
 				},
 				showMain: function () {
 					localStorage.removeItem("caseID");
