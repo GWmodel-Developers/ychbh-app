@@ -76,26 +76,28 @@
 				<img src="plugin/logo.png" style="width: 50%" alt="" />
 				<h5 class="nd2-title clr-green" style="margin-top: 24px;font-weight: bold;opacity: 0.89;">黄柏河流域综合执法信息管理系统</h5>
 			</div>
-			<div class="nd2-card login-info">
-				<div class="card-supporting-text">
-					<form>
-						<div class="ui-field-contain">
-							<lable>用户名</lable>
-							<input type="text" id="name" name="name" placeholder="请输入用户名" pattern="[0-9A-Za-z]{1,16}" required/>
-						</div>
-						<div class="ui-field-contain">
-							<lable>密码</lable>
-							<input type="password" id="password" name="password" placeholder="请输入密码" pattern="[0-9A-Za-z]{1,25}" required/>
-						</div>
-						<div class="ui-field-contain">
-							<label for="autologin">自动登陆</label>
-							<select name="autologin" id="autologin" data-role="flipswitch">
-								<option value="false"></option>
-								<option value="true"></option>
-							</select>
-						</div>
-						<button class="ui-btn ui-btn-raised clr-primary" style="margin-top: 0.8em;" onclick="LoginClick()">登录</button>
-					</form>
+			<div class="login-info">
+				<div class="nd2-card">
+					<div class="card-supporting-text">
+						<form>
+							<div class="ui-field-contain">
+								<lable>用户名</lable>
+								<input type="text" id="name" name="name" placeholder="请输入用户名" pattern="[0-9A-Za-z]{1,16}" required/>
+							</div>
+							<div class="ui-field-contain">
+								<lable>密码</lable>
+								<input type="password" id="password" name="password" placeholder="请输入密码" pattern="[0-9A-Za-z]{1,25}" required/>
+							</div>
+							<div class="ui-field-contain">
+								<label for="autologin">自动登陆</label>
+								<select name="autologin" id="autologin" data-role="flipswitch">
+									<option value="false"></option>
+									<option value="true"></option>
+								</select>
+							</div>
+							<button class="ui-btn ui-btn-raised clr-primary" style="margin-top: 0.8em;" onclick="LoginClick()">登录</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
