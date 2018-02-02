@@ -38,6 +38,14 @@
 			.item-title {
 				font-weight: bold;
 			}
+
+			#action-bar {
+				display: flex;
+				display: -webkit-flex;
+				-webkit-justify-content: center;
+				justify-content: center;
+				margin: 0px -16px;
+			}
 		</style>
 	</head>
 
@@ -64,18 +72,18 @@
                         </li>
                     </ul>
 				</form>
-				<div class="row between-xs">
-					<a v-if="showSubmit" href="#" class="ui-btn ui-btn-raised ui-btn-inline clr-btn-green" @click="submit()">
-						<i class="md zmdi zmdi-mail-sends"></i>提交
-					</a>
-					<a v-if="showEdit" href="#" class="ui-btn ui-btn-raised ui-btn-inline clr-btn-tear" @click="edit()">
+				<div class="row between-xs" id="action-bar">
+					<a v-if="showUpdate" href="#" class="ui-btn clr-btn-teal ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="update()">
 						<i class="md zmdi zmdi-edit"></i>修改
 					</a>
-					<a v-if="showExam" href="#" class="ui-btn ui-btn-raised ui-btn-inline clr-btn-purple" @click="exam()">
-						<i class="md zmdi zmdi-check"></i>审核
+					<a v-if="showSubmit" href="#" class="ui-btn clr-btn-light-green ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="submit()">
+						<i class="md zmdi zmdi-mail-send"></i>提交
 					</a>
-					<a v-if="showApproval" href="#" class="ui-btn ui-btn-raised ui-btn-inline clr-btn-indigo" @click="approval()">
-						<i class="md zmdi zmdi-"></i>审批
+					<a v-if="showExam" href="#" class="ui-btn clr-btn-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="exam()">
+						<i class="md zmdi zmdi-eye"></i>审核
+					</a>
+					<a v-if="showApproval" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="approval()">
+						<i class="md zmdi zmdi-check"></i>审批
 					</a>
 				</div>
 			</div>
@@ -117,17 +125,10 @@
 				exam: function () {
 					
 				},
-				approve: function () {
+				approval: function () {
 					
 				}
 
-			},
-			created: function() {
-				var obj = this;
-				if (!this.selected_id) {
-					back();
-				}
-				// this.queryItem(this.selected_id, this)
 			},
 			computed: {
 				showSubmit: function () {
@@ -137,16 +138,23 @@
 					return true;
 				},
 				showExam: function () {
-					return true;
+					return false;
 				},
-				showApprove: function () {
+				showApproval: function () {
 					return true;
 				}
+			},
+			created: function() {
+				var obj = this;
+				if (!this.selected_id) {
+					back();
+				}
+				// this.queryItem(this.selected_id, this)
 			}
 		});
 
 		function back() {
-			window.location = "caseindex.html#page_document";
+			window.location = "../caseindex.html#page_document";
 		}
 	</script>
 

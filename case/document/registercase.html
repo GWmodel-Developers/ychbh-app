@@ -130,13 +130,6 @@
 				}
 
 			},
-			created: function() {
-				var obj = this;
-				if (!this.selected_id) {
-					back();
-				}
-				// this.queryItem(this.selected_id, this)
-			},
 			computed: {
 				showSubmit: function () {
 					return true;
@@ -150,6 +143,13 @@
 				showApproval: function () {
 					return true;
 				}
+			},
+			created: function() {
+				var obj = this;
+				if (!this.selected_id) {
+					back();
+				}
+				// this.queryItem(this.selected_id, this)
 			}
 		});
 

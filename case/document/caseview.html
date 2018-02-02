@@ -50,7 +50,7 @@
 				<h1>案源登记表</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
-				<form action="#">
+                <form action="#">
                     <ul data-role="listview" data-inset="true">
                         <li v-for="(dommap, index) in detail.domMap" v-if="dommap.show(au)">
                             <b>{{ dommap.name }}</b>
@@ -63,7 +63,21 @@
                             <input v-else v-bind:type="dommap.type" v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
                         </li>
                     </ul>
-                </form>
+				</form>
+				<div class="row between-xs" id="action-bar">
+					<a v-if="showUpdate" href="#" class="ui-btn clr-btn-teal ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="update()">
+						<i class="md zmdi zmdi-edit"></i>修改
+					</a>
+					<a v-if="showSubmit" href="#" class="ui-btn clr-btn-light-green ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="submit()">
+						<i class="md zmdi zmdi-mail-send"></i>提交
+					</a>
+					<a v-if="showExam" href="#" class="ui-btn clr-btn-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="exam()">
+						<i class="md zmdi zmdi-eye"></i>审核
+					</a>
+					<a v-if="showApproval" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="approval()">
+						<i class="md zmdi zmdi-check"></i>审批
+					</a>
+				</div>
 			</div>
 		</div>
 	</body>
@@ -92,6 +106,32 @@
 							obj.detail = new CaseView(data.result);
 						}
 					});
+				},
+				submit: function () {
+					
+				},
+				update: function () {
+					
+				},
+				exam: function () {
+					
+				},
+				approval: function () {
+					
+				}
+			},
+			computed: {
+				showSubmit: function () {
+					return true;
+				},
+				showUpdate: function () {
+					return true;
+				},
+				showExam: function () {
+					return false;
+				},
+				showApproval: function () {
+					return true;
 				}
 			},
 			created: function() {
