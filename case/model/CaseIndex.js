@@ -1,58 +1,73 @@
 function CaseIndex(params) {
-    this.formDetainEvidenceSate = null;
-	this.reportEndCasePunishmentState = null;
-	this.examDate = null;
-	this.formUnRegisterCaseSate = null;
-	this.uAddress = null;
-	this.placID = null;
-	this.occurTime = null;
-	this.uSex = null;
-	this.uInformantId = null;
-	this.examResponsible = null;
-	this.iSex = null;
-	this.notePleadState = null;
-	this.noteExamState = null;
-	this.reportDate = null;
-	this.formPunishmentState = null;
-	this.excutor = null;
-	this.noteInspectState = null;
-	this.group = null;
-	this.reportEndInvestigateSate = null;
-	this.formTransferCaseState = null;
-	this.formNotPunishmentDecisionExamSate = null;
-	this.noticePunishmentPretellState = null;
-	this.informantID = null;
-	this.formPunishmentDecisionExamSate = null;
-	this.caseID = null;
-	this.noticeStopState = null;
-	this.informantPersonAddress = null;
-	this.occurPlace = null;
-	this.uPhone = null;
-	this.discussionCaseState = null;
-	this.infotmantAddress = null;
-	this.decisionPunishmentInSpotState = null;
-	this.uInformantName = null;
-	this.content = null;
-	this.examSuggestion = null;
-	this.informantName = null;
-	this.caseDescription = null;
-	this.recordDate = null;
-	this.formRegisterCaseSate = null;
-	this.uCardType = null;
-	this.sourceID = null;
-	this.recorder = null;
-	this.iAge = null;
-	this.formKeepEvidenceSate = null;
-	this.informantCardType = null;
-	this.formPunishExamState = null;
-	this.formRegistrationState = null;
-	this.illegalID = null;
-	this.objectName = null;
-	this.documentId = null;
-	this.informantPhoneNumber = null;
-	this.noteSurveyState = null;
-	this.uAge = null;
-	this.formWithdrawCaseState = null;
+    this.caseID = null;
+    this.documentId = null;
+    this.illegalID = null;
+    this.unsettleType = null;
+    this.sourceID = null;
+    this.informantId = null;
+    this.informant = null;
+    this.placeID = null;
+    this.reportTime = null;
+    this.caseDescription = null;
+    this.objectType = null;
+    this.objectID = null;
+    this.caseState = null;
+    this.objUninformant = null;
+    this.formRegisterCase = null;
+    this.formWithdrawCase = null;
+    this.noteExam = null;
+    this.noteInspect = null;
+    this.notePlead = null;
+    this.noteSurvey = null;
+    this.noticeDetainEvidence = null;
+    this.noticeKeepEvidence = null;
+    this.noticeNoPunish = null;
+    this.noticeStop = null;
+    this.voucherDetainEvidence = null;
+    this.voucherKeepEvidence = null;
+    this.letterCaseTransfer = null;
+    this.occurTime = null;
+    this.occurPlace = null;
+    this.content = null;
+    this.objectName = null;
+    this.recorder = null;
+    this.recordDate = null;
+    this.examResponsible = null;
+    this.excutor = null;
+    this.examDate = null;
+    this.examSuggestion = null;
+    this.group = null;
+    this.formRegistrationState = null;
+    this.formPunishExamState = null;
+    this.formRegisterCaseSate = null;
+    this.formWithdrawCaseState = null;
+    this.formUnRegisterCaseSate = null;
+    this.noteExamState = null;
+    this.noteInspectState = null;
+    this.notePleadState = null;
+    this.noteSurveyState = null;
+    this.noticeDetainEvidenceState = null;
+    this.noticeKeepEvidenceState = null;
+    this.noticeNoPunishState = null;
+    this.noticeStopState = null;
+    this.voucherDetainEvidenceState = null;
+    this.voucherKeepEvidenceState = null;
+    this.letterCaseTransferState = null;
+    this.formPunishmentDecisionExamSate = null;
+    this.formNotPunishmentDecisionExamSate = null;
+    this.formPunishmentState = null;
+    this.discussionCaseState = null;
+    this.formKeepEvidenceState = null;
+    this.formTransferCaseState = null;
+    this.decisionPunishmentInSpotState = null;
+    this.discussionImportantCaseState = null;
+    this.noteHearingPunishmentState = null;
+    this.noticePunishmentPretellState = null;
+    this.reportEndInvestigateSate = null;
+    this.noticeHearingPunishmentState = null;
+    this.formDetainEvidenceState = null;
+    this.reportEndCasePunishmentState = null;
+    this.opinionHearingPunishmentState = null;
     for (var key in params) {
         if (params.hasOwnProperty(key)) {
             var element = params[key];
@@ -81,6 +96,13 @@ CaseIndex.prototype.places = {
     "3": "第三区",
     "4": "第四区"    
 };
+
+CaseIndex.prototype.stateText = {
+    "0": "未填写",
+    "1": "待审核",
+    "2": "待审批",
+    "3": "已办结"
+}
 
 CaseIndex.prototype.domMap = [
     {

@@ -38,61 +38,256 @@ function RegisterCase(params) {
 
 RegisterCase.prototype.domMap = [
     {
-        key: "brief",
-        name: "测试span",
+        name: "案由",
+        key: "",
         type: "span",
         show: function (au) {
             return true;
         },
-        get: function (detail) {
-            return "span内容";
+        get: function (params) {
+            return params[this.key];
         }
-    },{
-        key: "informantSex",
-        name: "测试p",
-        type: "p",
+    },
+    {
+        name: "案件来源",
+        key: "",
+        type: "span",
         show: function (au) {
             return true;
         },
-        get: function (detail) {
-            return "p内容";
+        get: function (params) {
+            return params[this.key];
         }
-    },{
-        key: "leader",
-        name: "测试p",
-        type: "p",
+    },
+    {
+        name: "接案时间",
+        key: "",
+        type: "span",
         show: function (au) {
             return true;
         },
-        get: function (detail) {
-            return "p内容";
+        get: function (params) {
+            return params[this.key];
         }
-    },{
-        key: "occurPlace",
-        name: "测试textarea",
-        type: "textarea",
-        show: function (au) {
-            return true;
-        }
-    },{
-        key: "examDate",
-        name: "测试p",
-        type: "select",
+    },
+    {
+        name: "发案时间",
+        key: "",
+        type: "span",
         show: function (au) {
             return true;
         },
-        options: [
-            { value: "1", text: "第一选项"},
-            { value: "2", text: "第二选项"},
-            { value: "3", text: "第三选项"},
-            { value: "4", text: "第四选项"}
-        ]
-    },{
-        key: "informantAge",
-        name: "测试p",
-        type: "date",
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "发案地点",
+        key: "",
+        type: "span",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "当事人（单位）",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "法定代表人（负责人）",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "性别",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "年龄",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "身份证件号",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "地址、单位",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "联系方式",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "案情摘要",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "办理意见",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "经办人1",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "经办人2",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "办理日期",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "综合执法支队负责人",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "审核意见",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "审核日期",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "审批意见",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "主管领导",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "审批日期",
+        key: "",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];            
         }
     }
 ]

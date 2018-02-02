@@ -102,7 +102,14 @@
 						<li v-for="(item, index) in items">
 							<a href="#page_document" v-on:click="selected_id = item.caseID" class="ui-btn ui-icon-eye ui-btn-icon-right">
 								<h2>
-									<span class="nd2-label nd2-label-left nd2-label-primary">在办</span>{{ item.caseDescription }}
+									<span class="nd2-label nd2-label-left" v-bind:class="{
+										'nd2-label-light-blue': item.caseState == 0,
+										'nd2-label-orange': item.caseState == 1,
+										'nd2-label-deep-orange': item.caseState == 2,
+										'nd2-label-green': item.caseState == 3
+									}">{{ CaseIndex.prototype.stateText[item.caseState] }}</span>
+									<!-- <span class="nd2-label nd2-label-left nd2-label-light-blue">已办结</span> -->
+									{{ item.caseDescription }}
 								</h2>
 								<p class="listview-aside">{{ item.reportTime }}</p>
 							</a>
