@@ -55,7 +55,7 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>询问笔录详情</h1>
+				<h1>勘察笔录详情</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
                 <form action="#" @submit.prevent="">
@@ -93,7 +93,7 @@
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<script src="../../js/auth.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/InquireRecordDetail.js" ></script>
+	<script type="text/javascript" src="model/SurveyRecordDetail.js" ></script>
     <script type="text/javascript">
 		function getURLParameter(name) {
 			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
@@ -102,27 +102,22 @@
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
-				noteId: getURLParameter('noteId'),
-				detail: new InquireRecordDetail(),
+				caseId: getURLParameter('caseId'),
+				detail: new SurveyRecordDetail(),
 				au: JSON.parse(localStorage.getItem("au"))
 			},
 			methods: {
-				queryDoc: function(noteId, obj) {
+				queryDoc: function(caseId, obj) {
 					$.ajax({
 						type: "post",
 						url: "http://39.106.145.68:8080/huangbaihe/noteExamination/getDoc",
                         dataType: "json",
                         contentType: "application/json;charset=UTF-8",
 						data: JSON.stringify({
-							noteId: noteId
+							caseId: caseId
 						}),
 						success: function (data) {
-							obj.detail = new InquireRecordDetail(data);
-						},
-						error: function () {
-							new $.nd2Toast({
-								message: "获取询问笔录详情失败"
-							});
+							obj.detail = new SurveyRecordDetail(data);
 						}
 					});
 				},
@@ -156,16 +151,15 @@
 			},
 			created: function() {
                 var obj = this;
-				if (!this.noteId) {
+				if (!this.caseId) {
 					// back();
-				}
-				// alert(this.noteId);
-				this.queryDoc(this.noteId, this);
+                }
+				this.queryDoc(this.caseId, this)
 			}
 		});
 
 		function back() {
-			window.location = "inquirerecordlist.html";
+			window.location = "surveyrecordlist.html";
 		}
 	</script>
 

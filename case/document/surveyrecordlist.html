@@ -24,15 +24,15 @@
 		<div data-role="page">
 			<div data-role="header" data-position="fixed" data-tap-toggle="false">
 				<a href="#" onclick="back()" class="ui-btn"><i class="zmdi zmdi-arrow-back"></i></a>
-				<h1>询问笔录</h1>
+				<h1>勘验笔录</h1> 
 				<a href="#" onclick="add()" class="ui-btn"><i class="zmdi zmdi-plus"></i></a>
 			</div>
 			<div data-role="main" class="ui-content" id="main">
 				<input data-type="search" id="filterControlgroup-input" placeholder="搜索..." data-clear-btn>
 				<ul id="content" data-role="listview" data-inset="true" class="ui-li-has-alt ui-first-child" data-filter="true" data-input="#filterControlgroup-input">
 					<li v-for="item in items" :key="item.noteId" class="ui-li-has-alt ui-first-child">
-						<a class="ui-icon-edit ui-btn ui-icon-carat-r ui-icon-eye ui-icon-right" v-on:click="detail(item.noteId)">
-                            <h2>询问对象：{{item.objectName}}</h2>
+						<a class="ui-icon-edit ui-btn ui-icon-carat-r ui-icon-eye ui-icon-right" v-on:click="detail(caseId)">
+                            <h2>勘察内容：{{item.content}}</h2>
                             <p>案由：{{item.brief}}</p>
 						</a>
 					</li>
@@ -51,32 +51,32 @@
 			el: "#main",
 			data: {
 				items: [],
-				// caseId: getURLParameter('caseId')
+                // caseId: getURLParameter('caseId')
                 // 测试 CS-Tao
-				caseId: '3b49522f-8ad7-4179-abf0-0a115e535c45'
+				caseId: '37f8709f-13f1-4540-9e79-ee3df4eaf12f'
 			},
 			methods: {
 				showList: function(caseId) {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/noteExamination/getDocList",
+						url: "http://39.106.145.68:8080/huangbaihe/noteSurvey/getDocList",
 						dataType: 'json',
-						data: {"caseID": caseId},
+						data: {caseID: caseId},
 						success: function(json) {
 							content.items = json.rows;
 						},
 						error: function() {
 							new $.nd2Toast({
-								message: "获取询问笔录列表失败"
+								message: "获取勘验笔录列表失败"
 							});
 						}
 					});
 				},
 				detail: function(index) {
-					window.location = "inquirerecorddetail.html?noteId=" + index;
+					window.location = "surveyrecorddetail.html?caseId=" + index;
 				},
 				add: function() {
-					window.location = "inquirerecordadd.html";
+					window.location = "surveyrecordadd.html";
 				}
 			}
 		});
