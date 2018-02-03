@@ -76,21 +76,21 @@ function CaseIndex(params) {
     }
 }
 
-CaseIndex.prototype.sources = {
+CaseIndex.prototype.sourceTypesText = {
     "1": "群众举报",
     "2": "巡查发现",
     "3": "媒体发现",
     "4": "部门转办"
 };
 
-CaseIndex.prototype.illegalTypes = {
+CaseIndex.prototype.illegalTypesText = {
     "1": "水利",
     "2": "环保",
     "3": "渔业",
     "4": "海事"
 };
 
-CaseIndex.prototype.places = {
+CaseIndex.prototype.placesText = {
     "1": "第一区",
     "2": "第二区",
     "3": "第三区",
@@ -130,6 +130,13 @@ CaseIndex.prototype.docMap = [
             key: "formRegistrationState",
             name: "案源登记表",
             link: "registration",
+            state: function (params) {
+                return params[this.key]
+            }
+        },{
+            key: "formUnRegistrationState",
+            name: "不予立案呈批表",
+            link: "unregistercase",
             state: function (params) {
                 return params[this.key]
             }

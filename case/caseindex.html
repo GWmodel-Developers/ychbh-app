@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="../nativeDroid2/vendor/wow/animate.css"/>
 		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.css" />
 		<link rel="stylesheet" href="../nativeDroid2/css/nativedroid2.color.green.css" />
+		<link rel="stylesheet" href="../../css/style.css">
 		<script src="../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
 		<script src="../nativeDroid2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
@@ -17,28 +18,6 @@
 		<script src="../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../nativeDroid2/js/nativedroid2.js"></script>
 		<script type="text/javascript" src="../nativeDroid2/nd2settings.js" ></script>
-		<style type="text/css">
-			span.listview-aside {
-				font-size: 14px;
-				position: relative;
-				float: right;
-				margin: 0px auto;
-			}
-			
-			ul li p.listview-aside {
-				font-size: 14px;
-				word-wrap: break-word;
-				white-space: normal;
-			}
-			
-			.ui-field-contain {
-				border-bottom-width: 0px;
-			}
-			
-			.item-title {
-				font-weight: bold;
-			}
-		</style>
 	</head>
 
 	<body>
@@ -55,7 +34,7 @@
 						<div class="col-xs-12">
 							<a class="ui-btn clr-primary ui-btn-inline ui-btn-icon-left" href="#popupFilter" data-rel="popup" data-position-to="window" data-transition="slideup">
 								<i class="md zmdi zmdi-search"></i> 搜索
-							</a>						
+							</a>
 							<a v-show="!showPagination" class="ui-btn ui-btn-inline" href="#" v-on:click="clearSearch()">清除筛选</a>
 							<span v-show="!showPagination" class="align-right">查询到{{ total }}条记录</span>							
 						</div>
@@ -70,21 +49,21 @@
 									<label for="sourceId">线索来源</label>
 									<select name="sourceId" v-model="searchText.sourceId" id="sourceId">
 										<option value="">请选择</option>
-										<option v-for="(source, key) in CaseIndex.prototype.sources" v-bind:value="key">{{ source }}</option>
+										<option v-for="(source, key) in CaseIndex.prototype.sourceTypesText" v-bind:value="key">{{ source }}</option>
 									</select>
 								</div>
 								<div class="ui-field-contain">
 									<label for="iLlegalId">违法类型</label>
 									<select name="iLlegalId" v-model="searchText.iLlegalId" id="iLlegalId">
 										<option value="">请选择</option>
-										<option v-for="(type, key) in CaseIndex.prototype.illegalTypes" v-bind:value="key">{{ type }}</option>
+										<option v-for="(type, key) in CaseIndex.prototype.illegalTypesText" v-bind:value="key">{{ type }}</option>
 									</select>
 								</div>
 								<div class="ui-field-contain">
 									<label for="placeId">区域代码</label>
 									<select name="placeId" v-model="searchText.placeId" id="placeId">
 										<option value="">请选择</option>
-										<option v-for="(place, key) in CaseIndex.prototype.places" v-bind:value="key">{{ place }}</option>
+										<option v-for="(place, key) in CaseIndex.prototype.placesText" v-bind:value="key">{{ place }}</option>
 									</select>
 								</div>
 							</form>
@@ -137,13 +116,16 @@
 				</div>
 				<div id="document-listview" data-role="main" class="ui-content">
 					<ul data-role="listview" data-inset="true">
+						<li>
+							<a href="#" v-on:click="gotoDetail('casedetail')">案件详情</a>
+						</li>
 						<template v-for="group in detail.docMap">
 							<li data-role="list-divider">
 								<h3>{{ group.name }}</h3>
 							</li>
 							<li v-for="doc in group.docs">
 								<a href="#" v-on:click="gotoDetail(doc.link)">
-									<span class="nd2-label nd2-label-left" v-bind:class="{
+									<span class="nd2-label nd2-label-left" v-if="doc.state(detail)" v-bind:class="{
 										'nd2-label-purple': doc.state(detail) == 0,
 										'nd2-label-amber': doc.state(detail) == 1,
 										'nd2-label-orange': doc.state(detail) == 2,
@@ -226,15 +208,15 @@
 				queryItem: function(caseID, obj) {
 					$.ajax({
 						type:"POST",
-						url:"http://39.106.145.68:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						url:"http://127.0.0.1:8080/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "json",
-						data: JSON.stringify({
+						data: ({
 							caseID: caseID
 						}),
 						success: function(data) {
 							obj.detail = new CaseIndex(data);
 						},
-						error: function() {
+						error: function(req, status, err) {
 							new $.nd2Toast({
 								message : "查询失败", // Required
 							});

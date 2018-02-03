@@ -67,21 +67,21 @@ CaseDetail.prototype.sourceTypesText = {
     "4": "部门转办"
 };
 
-CaseDetail.prototype.illegalTypesText = {
+CaseDetail.prototype.illegalTypesTextText = {
     "1": "水利",
     "2": "环保",
     "3": "渔业",
     "4": "海事"
 };
 
-CaseDetail.prototype.placesText = {
+CaseDetail.prototype.placesTextText = {
     "1": "第一区",
     "2": "第二区",
     "3": "第三区",
     "4": "第四区"    
 };
 
-CaseDetail.prototype.cardTypesText = {
+CaseDetail.prototype.cardTypesTextText = {
     "1": "身份证",
     "2": "军官证",
     "3": "学生证",
@@ -104,7 +104,7 @@ CaseDetail.prototype.domMap = [
             return true;
         },
         get: function (params) {
-            return CaseDetail.prototype.illegalTypesText[params[this.key]];
+            return CaseDetail.prototype.illegalTypesTextText[params[this.key]];
         }
     },
     {
@@ -148,7 +148,7 @@ CaseDetail.prototype.domMap = [
             return true;
         },
         get: function (params) {
-            return CaseDetail.prototype.placesText[params[this.key]];
+            return CaseDetail.prototype.placesTextText[params[this.key]];
         }
     },
     {

@@ -67,28 +67,28 @@ function Registration(params) {
     }
 }
 
-Registration.prototype.sources = {
+Registration.prototype.sourceTypesText = {
     "1": "群众举报",
     "2": "巡查发现",
     "3": "媒体发现",
     "4": "部门转办"
 };
 
-Registration.prototype.illegalTypes = {
+Registration.prototype.illegalTypesText = {
     "1": "水利",
     "2": "环保",
     "3": "渔业",
     "4": "海事"
 };
 
-Registration.prototype.places = {
+Registration.prototype.placesText = {
     "1": "第一区",
     "2": "第二区",
     "3": "第三区",
     "4": "第四区"    
 };
 
-Registration.prototype.cardTypes = {
+Registration.prototype.cardTypesText = {
     "1": "身份证",
     "1": "军官证",
     "1": "学生证",
@@ -99,29 +99,29 @@ Registration.prototype.domMap = [
     {
         name: "违法类型",
         key: "illegalID",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
         get: function (params) {
-            return Registration.prototype.illegalTypes[params.illegalID];
+            return Registration.prototype.illegalTypesText[params.illegalID];
         }
     },
     {
         name: "案件来源",
         key: "sourceID",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
         get: function (params) {
-            return Registration.prototype.sources[params.sourceID]; 
+            return Registration.prototype.sourceTypesText[params.sourceID]; 
         }
     },
     {
         name: "报告时间",
         key: "reportTime",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -132,7 +132,7 @@ Registration.prototype.domMap = [
     {
         name: "案件名称",
         key: "caseDescription",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -143,7 +143,7 @@ Registration.prototype.domMap = [
     {
         name: "主要内容",
         key: "content",
-        type: "textarea",
+        type: "spanarea",
         show: function (au) {
             return true;
         },
@@ -154,18 +154,18 @@ Registration.prototype.domMap = [
     {
         name: "区域",
         key: "placID",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
         get: function (params) {
-            return Registration.prototype.places[params.placID];
+            return Registration.prototype.placesText[params.placID];
         }
     },
     {
         name: "报告人姓名",
         key: "informantName",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -176,18 +176,18 @@ Registration.prototype.domMap = [
     {
         name: "报告人证件类型",
         key: "informantCardType",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
         get: function (params) {
-            return Registration.prototype.cardTypes[params.informantCardType];
+            return Registration.prototype.cardTypesText[params.informantCardType];
         }
     },
     {
         name: "报告人证件号",
         key: "informantId",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -198,7 +198,7 @@ Registration.prototype.domMap = [
     {
         name: "报告人性别",
         key: "iSex",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -209,7 +209,7 @@ Registration.prototype.domMap = [
     {
         name: "报告人年龄",
         key: "iAge",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -220,7 +220,7 @@ Registration.prototype.domMap = [
     {
         name: "报告人地址、单位",
         key: "informantPersonAddress",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -231,7 +231,7 @@ Registration.prototype.domMap = [
     {
         name: "报告人联系方式",
         key: "informantPhoneNumber",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -242,7 +242,7 @@ Registration.prototype.domMap = [
     {
         name: "记录人",
         key: "recorder",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -253,7 +253,7 @@ Registration.prototype.domMap = [
     {
         name: "记录时间",
         key: "recordDate",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -264,7 +264,7 @@ Registration.prototype.domMap = [
     {
         name: "综合执法支队",
         key: "group",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -275,7 +275,7 @@ Registration.prototype.domMap = [
     {
         name: "综合执法支队负责人",
         key: "examResponsible",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -286,7 +286,7 @@ Registration.prototype.domMap = [
     {
         name: "处理意见(负责人填写)",
         key: "examSuggestion",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -297,7 +297,7 @@ Registration.prototype.domMap = [
     {
         name: "经办人",
         key: "excutor",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -308,13 +308,13 @@ Registration.prototype.domMap = [
     {
         name: "处理时间",
         key: "examDate",
-        type: "text",
+        type: "span",
         show: function (au) {
             return true;
         },
         get: function (params) {
             return params.examDate;
-        },
+        }
     }
 ]
 
