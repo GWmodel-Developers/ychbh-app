@@ -207,9 +207,9 @@
 				},
 				queryItem: function(caseID, obj) {
 					$.ajax({
-						type:"POST",
+						method: "POST",
 						url:"http://127.0.0.1:8080/huangbaihe/getInfoCaseController/getCaseInfo",
-						dataType: "json",
+						dataType: "JSON",
 						data: ({
 							caseID: caseID
 						}),
