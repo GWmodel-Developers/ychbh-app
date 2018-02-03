@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>黄柏河流域综合执法信息管理系统</title>
+		<link rel="stylesheet" href="../../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+		<script src="../../jquery.mobile-1.4.5/jquery-2.1.4.min.js"></script>
+		<script src="../../jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+		<script type="text/javascript" src="../../vuejs/vue.min.js"></script>
+		<link rel="stylesheet" href="../../nativeDroid2/css/nativedroid2.css" />
+		<link rel="stylesheet" href="../../nativeDroid2/css/nativedroid2.color.green.css" />
+		<link rel="stylesheet" type="text/css" href="../../nativeDroid2/vendor/waves/waves.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../nativeDroid2/vendor/wow/animate.css" />
+		<script src="../../nativeDroid2/js/nativedroid2.js"></script>
+		<script src="../../js/auth.js"></script>
+		<script>
+			auth("lawsystem", "edit", null);
+		</script>
+	</head>
+
+	<body>
+		<div data-role="page">
+			<div data-role="header" data-position="fixed" data-tap-toggle="false">
+				<a href="#" onclick="back()" class="ui-btn"><i class="zmdi zmdi-arrow-back"></i></a>
+				<h1>勘验笔录</h1> 
+				<a href="#" onclick="add()" class="ui-btn"><i class="zmdi zmdi-plus"></i></a>
+			</div>
+			<div data-role="main" class="ui-content" id="main">
+				<input data-type="search" id="filterControlgroup-input" placeholder="搜索..." data-clear-btn>
+				<ul id="content" data-role="listview" data-inset="true" class="ui-li-has-alt ui-first-child" data-filter="true" data-input="#filterControlgroup-input">
+					<li v-for="item in items" :key="item.noteId" class="ui-li-has-alt ui-first-child">
+						<a class="ui-icon-edit ui-btn ui-icon-carat-r ui-icon-eye ui-icon-right" v-on:click="detail(caseId)">
+                            <h2>勘察内容：{{item.content}}</h2>
+                            <p>案由：{{item.brief}}</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script src="../../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../nativeDroid2/vendor/waves/waves.min.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		function getURLParameter(name) {
+			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
+		}
+		
+		var content = new Vue({
+			el: "#main",
+			data: {
+				items: [],
+                // caseId: getURLParameter('caseId')
+                // 测试 CS-Tao
+				caseId: '37f8709f-13f1-4540-9e79-ee3df4eaf12f'
+			},
+			methods: {
+				showList: function(caseId) {
+					$.ajax({
+						type: "POST",
+						url: "http://39.106.145.68:8080/huangbaihe/noteSurvey/getDocList",
+						dataType: 'json',
+						data: {caseID: caseId},
+						success: function(json) {
+							content.items = json.rows;
+						},
+						error: function() {
+							new $.nd2Toast({
+								message: "获取勘验笔录列表失败"
+							});
+						}
+					});
+				},
+				detail: function(index) {
+					window.location = "surveyrecorddetail.html?caseId=" + index;
+				},
+				add: function() {
+					window.location = "surveyrecordadd.html";
+				}
+			}
+		});
+
+		$(document).ready(function() {
+            // 测试 CS-Tao
+            //var data = JSON.parse('{"rows":[{"noteId":5,"brief":"cs","objectName":"cs","objectAge":30,"objectSex":"男","objectId":"cs","objectAddress":"cs","objectDepartment":"cs","objectPhone":"cs","startExam":"2018-2-3 13:52:56","endExam":"2018-2-3 13:52:59","examPlace":"cs","interrogator":"cs","recorder":"cs","excutor1":"cs","excutor2":"cs","excutor1Id":"cs","excutor2Id":"cs","question":"cs","answer":"cs","appendix":"cs","caseID":"3b49522f-8ad7-4179-abf0-0a115e535c45"}]}');
+            //content.items = data.rows;
+            content.showList(content.caseId);
+		});
+
+		function back() {
+			window.location = "../caseindex.html#page_document";
+		}
+	</script>
+
+</html>
