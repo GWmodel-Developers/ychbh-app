@@ -1,0 +1,184 @@
+/**
+ * 案件调查终结报告
+ * @param {Object} params 初始化参数
+ */
+function CaseInvestigateReport(params) {
+    this.brief = null;
+    this.informantSex = null;
+    this.leader = null;
+    this.occurPlace = null;
+    this.examDate = null;
+    this.informantAge = null;
+    this.excutor1 = null;
+    this.occurTime = null;
+    this.informantPhone = null;
+    this.suggestion = null;
+    this.informantID = null;
+    this.reExamSuggestion = null;
+    this.content = null;
+    this.reponsible = null;
+    this.examSuggestion = null;
+    this.informantAdress = null;
+    this.reportDate = null;
+    this.informantName = null;
+    this.responsible = null;
+    this.reExamDate = null;
+    this.excuteDate = null;
+    this.objectName = null;
+    this.excutor2 = null;
+    if (params) {
+        for (var key in params) {
+            if (params.hasOwnProperty(key)) {
+                var element = params[key];
+                this[key] = element
+            }
+        }
+    }
+}
+
+CaseInvestigateReport.prototype.domMap = [
+    {
+        key: "brief",
+        name: "案由",
+        type: "text",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "object_name",
+        name: "当事人",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "object_id",
+        name: "注册号/统一社会信用代码",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "object_address",
+        name: "住所",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "object_post_code",
+        name: "邮编",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "responsible_name",
+        name: "法定代表人",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "responsible_id",
+        name: "身份证号",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "excute_responsible",
+        name: "负责人",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "position",
+        name: "职务",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "phone",
+        name: "联系电话",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "event",
+        name: "违法事实",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "evidence",
+        name: "以上事实主要有以下证据证明",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "case_quality",
+        name: "案件性质",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "justification",
+        name: "裁量理由",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "punish_accord_suggestion",
+        name: "处罚依据及建议",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "excutor",
+        name: "案件承办人",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "examResponsible",
+        name: "承办部门负责人",
+        type: "textarea",
+        show: function (au) {
+            return true;
+        }
+    },
+    {
+        key: "endDate",
+        name: "办理日期",
+        type: "date",
+        show: function (au) {
+            return true;
+        }
+    }
+]
