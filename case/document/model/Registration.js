@@ -2,7 +2,7 @@
  * 案源登记表
  * @param {Object} params 初始化参数
  */
-function CaseView(params) {
+function Registration(params) {
     this.formDetainEvidenceSate = null;
     this.reportEndCasePunishmentState = null;
     this.examDate = null;
@@ -67,35 +67,35 @@ function CaseView(params) {
     }
 }
 
-CaseView.prototype.sources = {
+Registration.prototype.sources = {
     "1": "群众举报",
     "2": "巡查发现",
     "3": "媒体发现",
     "4": "部门转办"
 };
 
-CaseView.prototype.illegalTypes = {
+Registration.prototype.illegalTypes = {
     "1": "水利",
     "2": "环保",
     "3": "渔业",
     "4": "海事"
 };
 
-CaseView.prototype.places = {
+Registration.prototype.places = {
     "1": "第一区",
     "2": "第二区",
     "3": "第三区",
     "4": "第四区"    
 };
 
-CaseView.prototype.cardTypes = {
+Registration.prototype.cardTypes = {
     "1": "身份证",
     "1": "军官证",
     "1": "学生证",
     "1": "港澳台同胞证"
 }
 
-CaseView.prototype.domMap = [
+Registration.prototype.domMap = [
     {
         name: "违法类型",
         key: "illegalID",
@@ -104,7 +104,7 @@ CaseView.prototype.domMap = [
             return true;
         },
         get: function (params) {
-            return CaseView.prototype.illegalTypes[params.illegalID];
+            return Registration.prototype.illegalTypes[params.illegalID];
         }
     },
     {
@@ -115,7 +115,7 @@ CaseView.prototype.domMap = [
             return true;
         },
         get: function (params) {
-            return CaseView.prototype.sources[params.sourceID]; 
+            return Registration.prototype.sources[params.sourceID]; 
         }
     },
     {
@@ -159,7 +159,7 @@ CaseView.prototype.domMap = [
             return true;
         },
         get: function (params) {
-            return CaseView.prototype.places[params.placID];
+            return Registration.prototype.places[params.placID];
         }
     },
     {
@@ -181,7 +181,7 @@ CaseView.prototype.domMap = [
             return true;
         },
         get: function (params) {
-            return CaseView.prototype.cardTypes[params.informantCardType];
+            return Registration.prototype.cardTypes[params.informantCardType];
         }
     },
     {

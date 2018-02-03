@@ -103,10 +103,10 @@
 							<a href="#page_document" v-on:click="selected_id = item.caseID" class="ui-btn ui-icon-eye ui-btn-icon-right">
 								<h2>
 									<span class="nd2-label nd2-label-left" v-bind:class="{
-										'nd2-label-orange': item.caseState == 0,
-										'nd2-label-deep-orange': item.caseState == 1,
-										'nd2-label-green': item.caseState == 2
-									}">{{ CaseIndex.prototype.stateText[item.caseState] }}</span>
+										'nd2-label-deep-orange': item.getCaseState() == 0,
+										'nd2-label-orange': item.getCaseState() == 1,
+										'nd2-label-green': item.getCaseState() == 2
+									}">{{ CaseIndex.prototype.stateText[item.getCaseState()] }}</span>
 									<!-- <span class="nd2-label nd2-label-left nd2-label-light-blue">已办结</span> -->
 									{{ item.caseDescription }}
 								</h2>
@@ -137,33 +137,22 @@
 				</div>
 				<div id="document-listview" data-role="main" class="ui-content">
 					<ul data-role="listview" data-inset="true">
-						<li><a href="#" v-on:click="gotoDetail('casedetail')"><b>案件详情</b></a></li>
-						<li data-role="list-divider"><h3>案源管理文书</h3></li>
-						<li><a href="#" v-on:click="gotoDetail('caseview')"><b>案源登记表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>不予立案呈批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('registercase')"><b>立案呈批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>撤案呈批表</b></a></li>
-						<li data-role="list-divider"><h3>移送立案文书</h3></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>先行登记保存物品呈批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>扣押物品呈批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>案件移送呈批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>案件移送函</b></a></li>
-						<li data-role="list-divider"><h3>调查取证文书</h3></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>勘验笔录</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>检查笔录</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>询问笔录</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>陈述申辩笔录</b></a></li>
-						<li data-role="list-divider"><h3>行政命令文书</h3></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>责令停止涉嫌违法行为告知书</b></a></li>
-						<li data-role="list-divider"><h3>行政处罚文书</h3></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>行政处罚事先告知书</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>当场行政处罚决定书</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>行政处罚听证笔录</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>行政处罚听证意见书</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>重大案件集体讨论记录</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>行政处罚决定审批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>不予行政触发决定审批表</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('#')"><b>行政处罚结案报告</b></a></li>
+						<template v-for="group in detail.docMap">
+							<li data-role="list-divider">
+								<h3>{{ group.name }}</h3>
+							</li>
+							<li v-for="doc in group.docs">
+								<a href="#" v-on:click="gotoDetail(doc.link)">
+									<span class="nd2-label nd2-label-left" v-bind:class="{
+										'nd2-label-purple': doc.state(detail) == 0,
+										'nd2-label-amber': doc.state(detail) == 1,
+										'nd2-label-orange': doc.state(detail) == 2,
+										'nd2-label-green': doc.state(detail) == 3
+									}">{{ CaseIndex.prototype.docStateText[doc.state(detail)] }}</span>
+									{{ doc.name }}
+								</a>
+							</li>
+						</template>
 					</ul>
 				</div>
 			</div>
@@ -173,6 +162,7 @@
 	<script type="text/javascript" src="../datejs/date-zh-CN.js"></script>
 	<script src="../js/auth.js"></script>
 	<!-- Vue Model -->
+	<!-- <script type="text/javascript" src="document/model/CaseIndex.js" ></script> -->
 	<script type="text/javascript" src="model/CaseIndex.js" ></script>
 	<script type="text/javascript">
 		var mainpageVM = new Vue({
@@ -235,14 +225,19 @@
 				},
 				queryItem: function(caseID, obj) {
 					$.ajax({
-						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						type:"POST",
+						url:"http://39.106.145.68:8080/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "json",
 						data: JSON.stringify({
 							caseID: caseID
 						}),
-						success: function (data) {
-							obj.detail = new CaseIndex(data.result);
+						success: function(data) {
+							obj.detail = new CaseIndex(data);
+						},
+						error: function() {
+							new $.nd2Toast({
+								message : "查询失败", // Required
+							});
 						}
 					});
 				},

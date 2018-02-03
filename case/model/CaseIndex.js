@@ -98,10 +98,9 @@ CaseIndex.prototype.places = {
 };
 
 CaseIndex.prototype.stateText = {
-    "0": "未填写",
-    "1": "待审核",
-    "2": "待审批",
-    "3": "已办结"
+    "0": "未立案",
+    "1": "案件在办",
+    "2": "已办结"
 }
 
 CaseIndex.prototype.getCaseState = function () {
@@ -117,167 +116,33 @@ CaseIndex.prototype.getCaseState = function () {
     }
 }
 
-CaseIndex.prototype.domMap = [
+CaseIndex.prototype.docStateText = {
+    "0": "未填写",
+    "1": "审核中",
+    "2": "审批中",
+    "3": "已填写"
+}
+
+CaseIndex.prototype.docMap = [
     {
-        key: "caseID",
-        type: "text",
-        name: "案件编号",
-        hidden: false,
-        get: function (params) {
-            return params.caseID;
-        }
-    },
-    {
-        key: "illegalID",
-        type: "text",
-        name: "违法类型",
-        hidden: false,
-        get: function (params) {
-            return CaseIndex.prototype.illegalTypes[params.illegalID];
-        }
-    },
-    {
-        key: "sourceID",
-        type: "text",
-        name: "来源类型",
-        hidden: false,
-        get: function (params) {
-            return CaseIndex.prototype.sources[params.sourceID];
-        }
-    },
-    {
-        key: "reportTime",
-        type: "text",
-        name: "举报时间",
-        hidden: false,
-        get: function (params) {
-            return params.reportTime;
-        }
-    },
-    {
-        key: "caseDescription",
-        type: "text",
-        name: "案件描述",
-        hidden: false,
-        get: function (params) {
-            return params.caseDescription;
-        }
-    },
-    {
-        key: "placID",
-        type: "text",
-        name: "区域",
-        hidden: false,
-        get: function (params) {
-            return CaseIndex.prototype.places[params.placID];
-        }
-    },
-    {
-        key: "informantName",
-        type: "text",
-        name: "举报人姓名",
-        hidden: false,
-        get: function (params) {
-            return params.informantName;
-        }
-    },
-    {
-        key: "informantId",
-        type: "text",
-        name: "举报人证件号",
-        hidden: false,
-        get: function (params) {
-            return params.informantId;
-        }
-    },
-    {
-        key: "informantPersonAddress",
-        type: "textarea",
-        name: "举报人地址、单位",
-        hidden: false,
-        get: function (params) {
-            return params.informantPersonAddress;
-        }
-    },
-    {
-        key: "informantPhoneNumber",
-        type: "text",
-        name: "举报人电话",
-        hidden: false,
-        get: function (params) {
-            return params.informantPhoneNumber;
-        }
-    },
-    {
-        key: "uInformantName",
-        type: "text",
-        name: "被举报人姓名",
-        hidden: false,
-        get: function (params) {
-            return params.uInformantName;
-        }
-    },
-    {
-        key: "uCardType",
-        type: "text",
-        name: "被举报人证件类型",
-        hidden: false,
-        get: function (params) {
-            return params.uCardType;
-        }
-    },
-    {
-        key: "uInformantId",
-        type: "text",
-        name: "被举报人证件号",
-        hidden: false,
-        get: function (params) {
-            return params.uInformantId;
-        }
-    },
-    {
-        key: "uAddress",
-        type: "text",
-        name: "被举报人地址",
-        hidden: false,
-        get: function (params) {
-            return params.uAddress;
-        }
-    },
-    {
-        key: "uPhone",
-        type: "text",
-        name: "被举报人电话号码",
-        hidden: false,
-        get: function (params) {
-            return params.uPhone;
-        }
-    },
-    {
-        key: "formRegisterCaseSate",
-        type: "text",
-        name: "立案处理情况",
-        hidden: false,
-        get: function (params) {
-            return params.formRegisterCaseSate;
-        }
-    },
-    {
-        key: "formWithdrawCaseState",
-        type: "text",
-        name: "撤案处理情况",
-        hidden: false,
-        get: function (params) {
-            return params.formWithdrawCaseState;
-        }
-    },
-    {
-        key: "formPunishExamState",
-        type: "text",
-        name: "行政处罚处理情况",
-        hidden: false,
-        get: function (params) {
-            return params.formPunishExamState;
-        }
-    },
+        name: "案源管理文书",
+        docs: [{
+            key: "formRegistrationState",
+            name: "案源登记表",
+            link: "registration",
+            state: function (params) {
+                return params[this.key]
+            }
+        }]
+    },{
+        name: "移送立案文书",
+        docs: [{
+            key: "formUnRegisterCaseSate",
+            name: "立案呈批表",
+            link: "registercase",
+            state: function (params) {
+                return params[this.key]
+            }
+        }]
+    }
 ];
