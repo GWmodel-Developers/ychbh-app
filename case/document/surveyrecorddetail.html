@@ -102,22 +102,27 @@
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
-				caseId: getURLParameter('caseId'),
+				noteId: getURLParameter('noteId'),
 				detail: new SurveyRecordDetail(),
 				au: JSON.parse(localStorage.getItem("au"))
 			},
 			methods: {
-				queryDoc: function(caseId, obj) {
+				queryDoc: function(noteId, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/noteExamination/getDoc",
+						url: "http://39.106.145.68:8080/huangbaihe/noteSurvey/getOneForm",
                         dataType: "json",
                         contentType: "application/json;charset=UTF-8",
 						data: JSON.stringify({
-							caseId: caseId
+							noteId: noteId
 						}),
 						success: function (data) {
 							obj.detail = new SurveyRecordDetail(data);
+						},
+						error: function (){
+							new $.nd2Toast({
+								message: "获取勘验记录详情失败"
+							})
 						}
 					});
 				},
@@ -151,10 +156,11 @@
 			},
 			created: function() {
                 var obj = this;
-				if (!this.caseId) {
+				if (!this.noteId) {
 					// back();
-                }
-				this.queryDoc(this.caseId, this)
+				}
+				alert(this.noteId)
+				this.queryDoc(this.noteId, this)
 			}
 		});
 

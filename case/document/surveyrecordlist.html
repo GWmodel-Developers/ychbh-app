@@ -21,17 +21,17 @@
 	</head>
 
 	<body>
-		<div data-role="page">
+		<div data-role="page" id="main">
 			<div data-role="header" data-position="fixed" data-tap-toggle="false">
 				<a href="#" onclick="back()" class="ui-btn"><i class="zmdi zmdi-arrow-back"></i></a>
 				<h1>勘验笔录</h1> 
-				<a href="#" onclick="add()" class="ui-btn"><i class="zmdi zmdi-plus"></i></a>
+				<a href="#" @click="add()" class="ui-btn"><i class="zmdi zmdi-plus"></i></a>
 			</div>
-			<div data-role="main" class="ui-content" id="main">
+			<div data-role="main" class="ui-content">
 				<input data-type="search" id="filterControlgroup-input" placeholder="搜索..." data-clear-btn>
 				<ul id="content" data-role="listview" data-inset="true" class="ui-li-has-alt ui-first-child" data-filter="true" data-input="#filterControlgroup-input">
-					<li v-for="item in items" :key="item.noteId" class="ui-li-has-alt ui-first-child">
-						<a class="ui-icon-edit ui-btn ui-icon-carat-r ui-icon-eye ui-icon-right" v-on:click="detail(caseId)">
+					<li v-for="item in items" :key="item.noteId">
+						<a class="ui-btn ui-icon-eye ui-btn-icon-right" v-on:click="detail(item.noteId)">
                             <h2>勘察内容：{{item.content}}</h2>
                             <p>案由：{{item.brief}}</p>
 						</a>
@@ -73,7 +73,7 @@
 					});
 				},
 				detail: function(index) {
-					window.location = "surveyrecorddetail.html?caseId=" + index;
+					window.location = "surveyrecorddetail.html?noteId=" + index;
 				},
 				add: function() {
 					window.location = "surveyrecordadd.html";
