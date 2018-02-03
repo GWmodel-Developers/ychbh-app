@@ -94,7 +94,7 @@ CaseIndex.prototype.places = {
     "1": "第一区",
     "2": "第二区",
     "3": "第三区",
-    "4": "第四区"    
+    "4": "第四区"
 };
 
 CaseIndex.prototype.stateText = {
@@ -102,6 +102,19 @@ CaseIndex.prototype.stateText = {
     "1": "待审核",
     "2": "待审批",
     "3": "已办结"
+}
+
+CaseIndex.prototype.getCaseState = function () {
+    var caseState = parseInt(this.caseState);
+    if (caseState == 0) {
+        return 0;
+    }
+    if ((caseState > 49999 && caseState < 79999 && caseState != 59999 && caseState != 69999 && caseState != 99999 && caseState != 99998) || (caseState < 5 && caseState > 0)) {
+        return 1;
+    }
+    if (caseState == 59999 || caseState == 69999 || caseState == 79999 || caseState == 99999 || caseState == 99998) {
+        return 2;
+    }
 }
 
 CaseIndex.prototype.domMap = [
@@ -129,16 +142,16 @@ CaseIndex.prototype.domMap = [
         name: "来源类型",
         hidden: false,
         get: function (params) {
-           return CaseIndex.prototype.sources[params.sourceID]; 
+            return CaseIndex.prototype.sources[params.sourceID];
         }
     },
     {
-        key: "reportDate",
+        key: "reportTime",
         type: "text",
         name: "举报时间",
         hidden: false,
         get: function (params) {
-           return params.reportDate; 
+            return params.reportTime;
         }
     },
     {
@@ -147,7 +160,7 @@ CaseIndex.prototype.domMap = [
         name: "案件描述",
         hidden: false,
         get: function (params) {
-           return params.caseDescription; 
+            return params.caseDescription;
         }
     },
     {
@@ -156,7 +169,7 @@ CaseIndex.prototype.domMap = [
         name: "区域",
         hidden: false,
         get: function (params) {
-           return CaseIndex.prototype.places[params.placID]; 
+            return CaseIndex.prototype.places[params.placID];
         }
     },
     {
@@ -165,7 +178,7 @@ CaseIndex.prototype.domMap = [
         name: "举报人姓名",
         hidden: false,
         get: function (params) {
-           return params.informantName; 
+            return params.informantName;
         }
     },
     {
@@ -174,7 +187,7 @@ CaseIndex.prototype.domMap = [
         name: "举报人证件号",
         hidden: false,
         get: function (params) {
-           return params.informantId; 
+            return params.informantId;
         }
     },
     {
@@ -183,7 +196,7 @@ CaseIndex.prototype.domMap = [
         name: "举报人地址、单位",
         hidden: false,
         get: function (params) {
-           return params.informantPersonAddress; 
+            return params.informantPersonAddress;
         }
     },
     {
@@ -192,7 +205,7 @@ CaseIndex.prototype.domMap = [
         name: "举报人电话",
         hidden: false,
         get: function (params) {
-           return params.informantPhoneNumber; 
+            return params.informantPhoneNumber;
         }
     },
     {
@@ -201,7 +214,7 @@ CaseIndex.prototype.domMap = [
         name: "被举报人姓名",
         hidden: false,
         get: function (params) {
-           return params.uInformantName; 
+            return params.uInformantName;
         }
     },
     {
@@ -210,7 +223,7 @@ CaseIndex.prototype.domMap = [
         name: "被举报人证件类型",
         hidden: false,
         get: function (params) {
-           return params.uCardType; 
+            return params.uCardType;
         }
     },
     {
@@ -219,7 +232,7 @@ CaseIndex.prototype.domMap = [
         name: "被举报人证件号",
         hidden: false,
         get: function (params) {
-           return params.uInformantId; 
+            return params.uInformantId;
         }
     },
     {
@@ -228,7 +241,7 @@ CaseIndex.prototype.domMap = [
         name: "被举报人地址",
         hidden: false,
         get: function (params) {
-           return params.uAddress; 
+            return params.uAddress;
         }
     },
     {
@@ -237,7 +250,7 @@ CaseIndex.prototype.domMap = [
         name: "被举报人电话号码",
         hidden: false,
         get: function (params) {
-           return params.uPhone; 
+            return params.uPhone;
         }
     },
     {
@@ -246,7 +259,7 @@ CaseIndex.prototype.domMap = [
         name: "立案处理情况",
         hidden: false,
         get: function (params) {
-           return params.formRegisterCaseSate; 
+            return params.formRegisterCaseSate;
         }
     },
     {
@@ -255,7 +268,7 @@ CaseIndex.prototype.domMap = [
         name: "撤案处理情况",
         hidden: false,
         get: function (params) {
-           return params.formWithdrawCaseState; 
+            return params.formWithdrawCaseState;
         }
     },
     {
@@ -264,7 +277,7 @@ CaseIndex.prototype.domMap = [
         name: "行政处罚处理情况",
         hidden: false,
         get: function (params) {
-           return params.formPunishExamState; 
+            return params.formPunishExamState;
         }
     },
 ];
