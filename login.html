@@ -129,12 +129,16 @@
 							window.location.href = ("./index.html");
 						}
 						else {
-							alert("用户名或密码错误");
+							new $.nd2Toast({
+								message : "用户名密码错误"
+							});
 						}
 					},
 					error: function () {
 						debugger;
-						alert("error");
+						new $.nd2Toast({
+							message : "登录失败"
+						});
 					},
 				});
 
