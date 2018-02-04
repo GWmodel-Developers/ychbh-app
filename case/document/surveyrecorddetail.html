@@ -110,12 +110,12 @@
 				queryDoc: function(noteId, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/noteSurvey/getOneForm",
+						url: "http://localhost:8080/huangbaihe/noteSurvey/getOneForm",
                         dataType: "json",
-                        contentType: "application/json;charset=UTF-8",
-						data: JSON.stringify({
+                        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+						data: {
 							noteId: noteId
-						}),
+						},
 						success: function (data) {
 							obj.detail = new SurveyRecordDetail(data);
 						},
@@ -159,7 +159,7 @@
 				if (!this.noteId) {
 					// back();
 				}
-				alert(this.noteId)
+				// alert(this.noteId)
 				this.queryDoc(this.noteId, this)
 			}
 		});
