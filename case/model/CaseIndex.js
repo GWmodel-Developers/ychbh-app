@@ -134,7 +134,7 @@ CaseIndex.prototype.docMap = [
                 return params[this.key]
             }
         },{
-            key: "formUnRegistrationState",
+            key: "formUnRegisterCaseSate",
             name: "不予立案呈批表",
             link: "unregistercase",
             state: function (params) {
@@ -147,6 +147,13 @@ CaseIndex.prototype.docMap = [
             key: "formUnRegisterCaseSate",
             name: "立案呈批表",
             link: "registercase",
+            state: function (params) {
+                return params[this.key]
+            }
+        },{
+            key: "formTransferCaseState",
+            name: "案件移送呈批表",
+            link: "transfercase",
             state: function (params) {
                 return params[this.key]
             }
