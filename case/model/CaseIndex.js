@@ -158,5 +158,22 @@ CaseIndex.prototype.docMap = [
                 return params[this.key]
             }
         }]
+    },{
+        name: "行政处罚文书",
+        docs: [{
+            key: "formPunishmentState",
+            name: "行政处罚呈批表",
+            link: "punishment",
+            state: function (params) {
+                return params[this.key]
+            }
+        },{
+            key: "noticePunishmentPretellState",
+            name: "行政处罚事先通知表",
+            link: "punishment",
+            state: function (params) {
+                return params[this.key]
+            }
+        }]
     }
 ];
