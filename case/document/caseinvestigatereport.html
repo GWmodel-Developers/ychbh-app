@@ -95,24 +95,32 @@
 	<!-- Vue Model -->
 	<script type="text/javascript" src="model/CaseInvestigateReport.js" ></script>
 	<script type="text/javascript">
+		function getURLParameter(name) {
+			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
+        }
+        
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
-				selected_id: localStorage.getItem("caseID"),
+				// caseId: getURLParameter("caseID"),
+				// 测试 CS-Tao
+				caseId: '3b49522f-8ad7-4179-abf0-0a115e535c45',
 				detail: new CaseInvestigateReport(),
 				au: JSON.parse(localStorage.getItem("au"))
 			},
 			methods: {
-				queryItem: function(caseID, obj) {
+				queryItem: function(caseId) {
+					var obj = this;
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						url: "http://localhost:8080/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "json",
-						data: JSON.stringify({
-							caseID: caseID
-						}),
+						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+						data: {
+							caseID: caseId
+						},
 						success: function (data) {
-							obj.detail = new CaseInvestigateReport(data.result);
+							obj.detail = new CaseInvestigateReport(data);
 						}
 					});
 				},
@@ -145,16 +153,15 @@
 				}
 			},
 			created: function() {
-				var obj = this;
-				if (!this.selected_id) {
+				if (!this.caseId) {
 					back();
 				}
-				// this.queryItem(this.selected_id, this)
+				this.queryItem(this.caseId)
 			}
 		});
 
 		function back() {
-			// window.location = "../caseindex.html#page_document";
+			window.location = "../caseindex.html#page_document";
 		}
 	</script>
 

@@ -3,7 +3,7 @@
  * @param {Object} params 初始化参数
  */
 function CaseInvestigateReport(params) {
-    this.brief = null;
+    this.caseDescription = null;
     this.informantSex = null;
     this.leader = null;
     this.occurPlace = null;
@@ -31,6 +31,8 @@ function CaseInvestigateReport(params) {
             if (params.hasOwnProperty(key)) {
                 var element = params[key];
                 this[key] = element
+                // if(key === "caseDescription")
+                // alert(element);
             }
         }
     }
@@ -38,11 +40,14 @@ function CaseInvestigateReport(params) {
 
 CaseInvestigateReport.prototype.domMap = [
     {
-        key: "brief",
+        key: "caseDescription",
         name: "案由",
-        type: "text",
+        type: "p",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -51,6 +56,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -59,6 +67,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -67,6 +78,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -75,6 +89,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -83,6 +100,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -91,6 +111,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -99,6 +122,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -107,6 +133,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -115,6 +144,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -123,6 +155,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -131,6 +166,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -139,6 +177,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -147,6 +188,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -155,6 +199,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -163,6 +210,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -171,6 +221,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "textarea",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
@@ -179,6 +232,9 @@ CaseInvestigateReport.prototype.domMap = [
         type: "date",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     }
 ]
