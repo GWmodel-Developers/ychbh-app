@@ -26,7 +26,7 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>立案登记表</h1>
+				<h1>不予立案呈批表</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
                 <form action="#">
@@ -37,7 +37,7 @@
                             <p v-else-if="dommap.type === 'p' " class="listview-aside">{{ dommap.get(detail) }}</p>
                             <textarea v-else-if="dommap.type === 'textarea' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]"></textarea>
                             <select v-else-if="dommap.type === 'select' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
-                                <option v-for="(opt, i) in dommap.options" v-bind:value="opt.value">{{ opt.text }}</option>
+                                <option v-for="(opt, i) in options[dommap.key]" v-bind:value="opt.value">{{ opt.text }}</option>
                             </select>
                             <input v-else v-bind:type="dommap.type" v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
                         </li>
@@ -71,19 +71,36 @@
 			data: {
 				selected_id: localStorage.getItem("caseID"),
 				detail: new UnRegisterCase(),
-				au: JSON.parse(localStorage.getItem("au"))
+				au: JSON.parse(localStorage.getItem("au")),
+				options: {
+					leader: []
+				}
 			},
 			methods: {
 				queryItem: function(caseID, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						url: "http://127.0.0.1:8080/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "json",
-						data: JSON.stringify({
+						data: ({
 							caseID: caseID
 						}),
-						success: function (data) {
-							obj.detail = new UnRegisterCase(data.result);
+						success: function (caseinfo) {
+							if (!caseinfo.formUnRegisterCaseSate) {
+								$.ajax({
+									type: "post",
+									url: "http://127.0.0.1:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+									dataType: "json",
+									data: ({
+										caseID: caseID
+									}),
+									success: function (unregistercase) {
+										obj.detail = new UnRegisterCase(caseinfo, unregistercase);
+									}
+								});
+							} else {
+								obj.detail = new UnRegisterCase(caseinfo);
+							}
 						}
 					});
 				},
@@ -99,18 +116,21 @@
 				approval: function () {
 					
 				},
-				queryLeaders: function () {
+				queryLeaders: function (context) {
 					$.ajax({
-						method: "POST",
+						method: "GET",
 						url: "http://39.106.145.68:8080/huangbaihe/login/getAllUser",
 						dataType: "JSON",
 						success: function (data) {
 							var leaders = data.filter(function (value, index) {
 								return value.role && value.role === "局内负责人";
 							});
-							UnRegisterCase.prototype.domMap.find(function (item) {
-								return item.key === "leader";
-							}).options = leaders;
+							context.options.leader = leaders.map(function (item) {
+								return {
+									value: item.uid,
+									text: item.realname
+								}
+							})
 						},
 						error: function () {
 							new $.nd2Toast({
@@ -139,8 +159,8 @@
 				if (!this.selected_id) {
 					// back();
 				}
-				this.queryLeaders();
-				// this.queryItem(this.selected_id, this)
+				this.queryLeaders(this);
+				this.queryItem(this.selected_id, this)
 			}
 		});
 

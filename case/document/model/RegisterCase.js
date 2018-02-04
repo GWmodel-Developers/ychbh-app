@@ -1,8 +1,8 @@
 /**
  * 立案呈批表
- * @param {Object} params 初始化参数
+ * @param {Object} caseinfo 初始化参数
  */
-function RegisterCase(params) {
+function RegisterCase(caseinfo, registercase) {
     this.brief = null;
     this.informantSex = null;
     this.leader = null;
@@ -26,49 +26,71 @@ function RegisterCase(params) {
     this.excuteDate = null;
     this.objectName = null;
     this.excutor2 = null;
-    if (params) {
-        for (var key in params) {
-            if (params.hasOwnProperty(key)) {
-                var element = params[key];
-                this[key] = element
+    if (caseinfo) {
+        for (var key in this) {
+            if (caseinfo.hasOwnProperty(key)) {
+                this[key] = caseinfo[key];
+            }
+        }
+    }
+    if (registercase) {
+        for (var key in this) {
+            if (registercase.hasOwnProperty(key)) {
+                this[key] = registercase[key];
             }
         }
     }
 }
 
-RegisterCase.prototype.sourceTypesText = {
+Registration.prototype.sourceTypesText = {
     "1": "群众举报",
     "2": "巡查发现",
     "3": "媒体发现",
-    "4": "部门转办"
+    "4": "部门转办",
+    "群众举报": "群众举报",
+    "巡查发现": "巡查发现",
+    "媒体发现": "媒体发现",
+    "部门转办": "部门转办"
 };
 
-RegisterCase.prototype.illegalTypesText = {
+Registration.prototype.illegalTypesText = {
     "1": "水利",
     "2": "环保",
     "3": "渔业",
-    "4": "海事"
+    "4": "海事",
+    "水利": "水利",
+    "环保": "环保",
+    "渔业": "渔业",
+    "海事": "海事"
 };
 
-RegisterCase.prototype.placesText = {
+Registration.prototype.placesText = {
     "1": "第一区",
     "2": "第二区",
     "3": "第三区",
-    "4": "第四区"    
+    "4": "第四区",
+    "第一区": "第一区",
+    "第二区": "第二区",
+    "第三区": "第三区",
+    "第四区": "第四区",
 };
 
-RegisterCase.prototype.cardTypesText = {
+Registration.prototype.cardTypesText = {
     "1": "身份证",
-    "1": "军官证",
-    "1": "学生证",
-    "1": "港澳台同胞证"
+    "2": "军官证",
+    "3": "学生证",
+    "4": "港澳台同胞证",
+    "身份证": "身份证",
+    "军官证": "军官证",
+    "学生证": "学生证",
+    "港澳台同胞证": "港澳台同胞证"
 }
 
 RegisterCase.prototype.domMap = [
     {
         name: "案由",
         key: "brief",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -244,7 +266,7 @@ RegisterCase.prototype.domMap = [
     {
         name: "办理日期",
         key: "excuteDate",
-        type: "date",
+        type: "span",
         show: function (au) {
             return true;
         },

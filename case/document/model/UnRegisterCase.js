@@ -2,78 +2,94 @@
  * 不予立案呈批表
  * @param {Object} params 初始化参数
  */
-function UnRegisterCase(params) {
-    this.caseID = null;
-    this.sourceID = null;
-    this.informantID = null;
-    this.informantName = null;
-    this.informantAdress = null;
-    this.informantAge = null;
-    this.informantSex = null;
-    this.content = null;
-    this.suggestion = null;
-    this.reportDate = null;
-    this.reponsible = null;
-    this.responsible = null;
-    this.excutor1 = null;
-    this.excutor2 = null;
-    this.excuteDate = null;
-    this.userName = null;
-    this.userId = null;
-    this.caseId = null;
-    this.caseName = null;
-    this.caseType = null;
-    this.documentName = null;
-    if (params) {
-        for (var key in params) {
-            if (params.hasOwnProperty(key)) {
-                var element = params[key];
-                this[key] = element
+function UnRegisterCase(caseinfo, unregistercase) {
+    this.caseID = null; 
+    this.sourceID = null; 
+    this.informantID = null; 
+    this.informantName = null; 
+    this.informantAdress = null; 
+    this.informantAge = null; 
+    this.informantSex = null; 
+    this.content = null; 
+    this.suggestion = null; 
+    this.reportDate = null; 
+    this.reponsible = null; // ExamResponsible
+    this.responsible = null; // Responsible
+    this.excutor1 = null; 
+    this.excutor2 = null; 
+    this.excuteDate = null; 
+    this.userName = null; 
+    this.userId = null; 
+    this.caseId = null; 
+    this.caseName = null; 
+    this.caseType = null; 
+    this.documentName = null; 
+    if (caseinfo) {
+        for (var key in this) {
+            if (caseinfo.hasOwnProperty(key)) {
+                this[key] = caseinfo[key];
+            }
+        }
+    }
+    if (unregistercase) {
+        for (var key in this) {
+            if (this.hasOwnProperty(key)) {
+                this[key] = unregistercase[key];
+                
             }
         }
     }
 }
 
-UnRegisterCase.prototype.sourceTypesText = {
+Registration.prototype.sourceTypesText = {
     "1": "群众举报",
     "2": "巡查发现",
     "3": "媒体发现",
-    "4": "部门转办"
+    "4": "部门转办",
+    "群众举报": "群众举报",
+    "巡查发现": "巡查发现",
+    "媒体发现": "媒体发现",
+    "部门转办": "部门转办"
 };
 
-UnRegisterCase.prototype.illegalTypesTextText = {
+Registration.prototype.illegalTypesText = {
     "1": "水利",
     "2": "环保",
     "3": "渔业",
-    "4": "海事"
+    "4": "海事",
+    "水利": "水利",
+    "环保": "环保",
+    "渔业": "渔业",
+    "海事": "海事"
 };
 
-UnRegisterCase.prototype.placesTextText = {
+Registration.prototype.placesText = {
     "1": "第一区",
     "2": "第二区",
     "3": "第三区",
-    "4": "第四区"    
+    "4": "第四区",
+    "第一区": "第一区",
+    "第二区": "第二区",
+    "第三区": "第三区",
+    "第四区": "第四区",
 };
 
-UnRegisterCase.prototype.cardTypesTextText = {
+Registration.prototype.cardTypesText = {
     "1": "身份证",
     "2": "军官证",
     "3": "学生证",
-    "4": "港澳台同胞证"
-}
-
-UnRegisterCase.prototype.caseStateText = {
-    "0": "未申请",
-    "1": "已提交",
-    "2": "已审核",
-    "3": "已审批"
+    "4": "港澳台同胞证",
+    "身份证": "身份证",
+    "军官证": "军官证",
+    "学生证": "学生证",
+    "港澳台同胞证": "港澳台同胞证"
 }
 
 UnRegisterCase.prototype.domMap = [
     {
         key: "caseID",
         name: "案件编号",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -161,7 +177,7 @@ UnRegisterCase.prototype.domMap = [
             return params[this.key];
         }
     },{
-        key: "",
+        key: "suggestion",
         name: "当事人行为",
         type: "span",
         show: function (au) {
@@ -201,7 +217,7 @@ UnRegisterCase.prototype.domMap = [
             return params[this.key];
         }
     },{
-        key: "",
+        key: "excuteDate",
         name: "办理日期",
         type: "span",
         show: function (au) {
@@ -211,7 +227,7 @@ UnRegisterCase.prototype.domMap = [
             return params[this.key];
         }
     },{
-        key: "",
+        key: "examSuggestion",
         name: "审核意见",
         type: "span",
         show: function (au) {
@@ -231,7 +247,7 @@ UnRegisterCase.prototype.domMap = [
             return params[this.key];
         }
     },{
-        key: "",
+        key: "examDate",
         name: "审核日期",
         type: "span",
         show: function (au) {
@@ -241,7 +257,7 @@ UnRegisterCase.prototype.domMap = [
             return params[this.key];
         }
     },{
-        key: "",
+        key: "reExamSuggestion",
         name: "审批意见",
         type: "span",
         show: function (au) {
@@ -251,9 +267,35 @@ UnRegisterCase.prototype.domMap = [
             return params[this.key];
         }
     },{
-        key: "",
+        key: "leader",
         name: "主管领导",
-        type: "span",
+        type: "select",
+        options: (function () {
+            new Promise (function (resolve, reject) {
+                $.ajax({
+                    method: "GET",
+                    url: "http://39.106.145.68:8080/huangbaihe/login/getAllUser",
+                    dataType: "JSON",
+                    success: function (data) {
+                        var leaders = data.filter(function (value, index) {
+                            return value.role && value.role === "局内负责人";
+                        });
+                        var index = RegisterCase.prototype.domMap.findIndex(function (item) {
+                            return item.key === "leader";
+                        });
+                        resolve(RegisterCase.prototype.domMap[index].options = leaders.map(function (item) {
+                            return {
+                                value: item.uid,
+                                text: item.realname
+                            }
+                        }))
+                    },
+                    error: function () {
+                        reject("失败");
+                    }
+                });
+            })
+        })(),
         show: function (au) {
             return true;
         },
@@ -261,7 +303,7 @@ UnRegisterCase.prototype.domMap = [
             return params[this.key];
         }
     },{
-        key: "",
+        key: "reExamDate",
         name: "审批日期",
         type: "span",
         show: function (au) {

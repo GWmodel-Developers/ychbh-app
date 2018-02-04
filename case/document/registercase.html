@@ -37,7 +37,7 @@
                             <p v-else-if="dommap.type === 'p' " class="listview-aside">{{ dommap.get(detail) }}</p>
                             <textarea v-else-if="dommap.type === 'textarea' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]"></textarea>
                             <select v-else-if="dommap.type === 'select' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
-                                <option v-for="(opt, i) in dommap.options" v-bind:value="opt.value">{{ opt.text }}</option>
+                                <option v-for="(opt, i) in options[dommap.key]" v-bind:value="opt.value">{{ opt.text }}</option>
                             </select>
                             <input v-else v-bind:type="dommap.type" v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
                         </li>
@@ -71,19 +71,36 @@
 			data: {
 				selected_id: localStorage.getItem("caseID"),
 				detail: new RegisterCase(),
-				au: JSON.parse(localStorage.getItem("au"))
+				au: JSON.parse(localStorage.getItem("au")),
+				options: {
+					leader: []
+				}
 			},
 			methods: {
 				queryItem: function(caseID, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						url: "http://127.0.0.1:8080/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "json",
-						data: JSON.stringify({
+						data: ({
 							caseID: caseID
 						}),
-						success: function (data) {
-							obj.detail = new RegisterCase(data.result);
+						success: function (caseinfo) {
+							if (caseinfo.formRegisterCaseSate != 0) {
+								$.ajax({
+									method: "POST",
+									url: "http://127.0.0.1:8080/huangbaihe/formRegisterCase/getOneForm",
+									dataType: "JSON",
+									data: ({
+										caseID: caseID
+									}),
+									success: function (registercase) {
+										obj.detail = new RegisterCase(caseinfo, registercase);
+									}
+								})
+							} else {
+								obj.detail = new RegisterCase(caseinfo);
+							}
 						}
 					});
 				},
@@ -99,18 +116,21 @@
 				approval: function () {
 					
 				},
-				queryLeaders: function () {
+				queryLeaders: function (context) {
 					$.ajax({
-						method: "POST",
+						method: "GET",
 						url: "http://39.106.145.68:8080/huangbaihe/login/getAllUser",
 						dataType: "JSON",
 						success: function (data) {
 							var leaders = data.filter(function (value, index) {
 								return value.role && value.role === "局内负责人";
 							});
-							RegisterCase.prototype.domMap.find(function (item) {
-								return item.key === "leader";
-							}).options = leaders;
+							context.options.leader = leaders.map(function (item) {
+								return {
+									value: item.uid,
+									text: item.realname
+								}
+							})
 						},
 						error: function () {
 							new $.nd2Toast({
@@ -139,10 +159,37 @@
 				if (!this.selected_id) {
 					// back();
 				}
-				this.queryLeaders();
-				// this.queryItem(this.selected_id, this)
+				this.queryLeaders(this);
+				this.queryItem(this.selected_id, this)
 			}
 		});
+
+		function queryLeaders () {
+			$.ajax({
+				method: "GET",
+				url: "http://39.106.145.68:8080/huangbaihe/login/getAllUser",
+				dataType: "JSON",
+				success: function (data) {
+					var leaders = data.filter(function (value, index) {
+						return value.role && value.role === "局内负责人";
+					});
+					var index = RegisterCase.prototype.domMap.findIndex(function (item) {
+						return item.key === "leader";
+					});
+					RegisterCase.prototype.domMap[index].options = leaders.map(function (item) {
+						return {
+							value: item.uid,
+							text: item.realname
+						}
+					})
+				},
+				error: function () {
+					new $.nd2Toast({
+						message : "查询主管领导失败", // Required
+					});
+				}
+			})
+		}
 
 		function back() {
 			window.location = "../caseindex.html#page_document";

@@ -77,13 +77,13 @@
 				queryItem: function(caseID, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						url: "http://127.0.0.1:8080/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "json",
-						data: JSON.stringify({
+						data: ({
 							caseID: caseID
 						}),
 						success: function (data) {
-							obj.detail = new Registration(data.result);
+							obj.detail = new Registration(data);
 						}
 					});
 				},

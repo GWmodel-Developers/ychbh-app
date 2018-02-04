@@ -71,28 +71,44 @@ Registration.prototype.sourceTypesText = {
     "1": "群众举报",
     "2": "巡查发现",
     "3": "媒体发现",
-    "4": "部门转办"
+    "4": "部门转办",
+    "群众举报": "群众举报",
+    "巡查发现": "巡查发现",
+    "媒体发现": "媒体发现",
+    "部门转办": "部门转办"
 };
 
 Registration.prototype.illegalTypesText = {
     "1": "水利",
     "2": "环保",
     "3": "渔业",
-    "4": "海事"
+    "4": "海事",
+    "水利": "水利",
+    "环保": "环保",
+    "渔业": "渔业",
+    "海事": "海事"
 };
 
 Registration.prototype.placesText = {
     "1": "第一区",
     "2": "第二区",
     "3": "第三区",
-    "4": "第四区"    
+    "4": "第四区",
+    "第一区": "第一区",
+    "第二区": "第二区",
+    "第三区": "第三区",
+    "第四区": "第四区",
 };
 
 Registration.prototype.cardTypesText = {
     "1": "身份证",
-    "1": "军官证",
-    "1": "学生证",
-    "1": "港澳台同胞证"
+    "2": "军官证",
+    "3": "学生证",
+    "4": "港澳台同胞证",
+    "身份证": "身份证",
+    "军官证": "军官证",
+    "学生证": "学生证",
+    "港澳台同胞证": "港澳台同胞证"
 }
 
 Registration.prototype.domMap = [
@@ -120,13 +136,13 @@ Registration.prototype.domMap = [
     },
     {
         name: "报告时间",
-        key: "reportTime",
+        key: "reportDate",
         type: "span",
         show: function (au) {
             return true;
         },
         get: function (params) {
-            return params.reportTime;
+            return params[this.key];
         }
     },
     {
@@ -143,7 +159,7 @@ Registration.prototype.domMap = [
     {
         name: "主要内容",
         key: "content",
-        type: "spanarea",
+        type: "p",
         show: function (au) {
             return true;
         },

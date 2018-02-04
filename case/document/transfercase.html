@@ -18,7 +18,7 @@
 		<script src="../../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../nativeDroid2/js/nativedroid2.js"></script>
 		<script type="text/javascript" src="../../nativeDroid2/nd2settings.js" ></script>
-	</head>
+		</head>
 
 	<body>
 		<div data-role="page" id="root">
@@ -26,7 +26,7 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>案件详情</h1>
+				<h1>案件移送呈批表</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
                 <form action="#">
@@ -37,7 +37,7 @@
                             <p v-else-if="dommap.type === 'p' " class="listview-aside">{{ dommap.get(detail) }}</p>
                             <textarea v-else-if="dommap.type === 'textarea' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]"></textarea>
                             <select v-else-if="dommap.type === 'select' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
-                                <option v-for="(opt, i) in dommap.options" v-bind:value="opt.value">{{ opt.text }}</option>
+                                <option v-for="(opt, i) in options[dommap.key]" v-bind:value="opt.value">{{ opt.text }}</option>
                             </select>
                             <input v-else v-bind:type="dommap.type" v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
                         </li>
@@ -48,7 +48,7 @@
 						<i class="md zmdi zmdi-edit"></i>修改
 					</a>
 					<a v-if="showSubmit" href="#" class="ui-btn clr-btn-light-green ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="submit()">
-						<i class="md zmdi zmdi-mail-send"></i>处理
+						<i class="md zmdi zmdi-mail-send"></i>提交
 					</a>
 					<a v-if="showExam" href="#" class="ui-btn clr-btn-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="exam()">
 						<i class="md zmdi zmdi-eye"></i>审核
@@ -64,26 +64,43 @@
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<script src="../../js/auth.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/CaseDetail.js" ></script>
+	<script type="text/javascript" src="model/TransferCase.js" ></script>
 	<script type="text/javascript">
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
 				selected_id: localStorage.getItem("caseID"),
-				detail: new CaseDetail(),
-				au: JSON.parse(localStorage.getItem("au"))
+				detail: new TransferCase(),
+				au: JSON.parse(localStorage.getItem("au")),
+				options: {
+					leader: []
+				}
 			},
 			methods: {
 				queryItem: function(caseID, obj) {
 					$.ajax({
-						method: "post",
+						type: "post",
 						url: "http://127.0.0.1:8080/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "json",
 						data: ({
 							caseID: caseID
 						}),
-						success: function (data) {
-							obj.detail = new CaseDetail(data);
+						success: function (caseinfo) {
+							if (caseinfo.formTransferCaseState != 0) {
+								$.ajax({
+									type: "post",
+									url: "http://127.0.0.1:8080/huangbaihe/formTransferCase/getOneForm",
+									dataType: "json",
+									data: ({
+										caseID: caseID
+									}),
+									success: function (transfercase) {
+										obj.detail = new TransferCase(caseinfo, transfercase);
+									}
+								});
+							} else {
+								obj.detail = new TransferCase(caseinfo);
+							}
 						}
 					});
 				},
@@ -98,8 +115,30 @@
 				},
 				approval: function () {
 					
+				},
+				queryLeaders: function (context) {
+					$.ajax({
+						method: "GET",
+						url: "http://39.106.145.68:8080/huangbaihe/login/getAllUser",
+						dataType: "JSON",
+						success: function (data) {
+							var leaders = data.filter(function (value, index) {
+								return value.role && value.role === "局内负责人";
+							});
+							context.options.leader = leaders.map(function (item) {
+								return {
+									value: item.uid,
+									text: item.realname
+								}
+							})
+						},
+						error: function () {
+							new $.nd2Toast({
+								message : "查询主管领导失败", // Required
+							});
+						}
+					})
 				}
-
 			},
 			computed: {
 				showSubmit: function () {
@@ -109,20 +148,19 @@
 					return false;
 				},
 				showExam: function () {
-					return false;
+					return this.au.a_case_exam == 1;
 				},
 				showApproval: function () {
-					return false;
+					return this.au.a_case_reexam == 1;
 				}
 			},
 			created: function() {
 				var obj = this;
-				this.queryItem(this.selected_id, this)
-			},
-			beforeCreate: function () {
-				if (!localStorage.getItem("caseID")) {
-					back();
+				if (!this.selected_id) {
+					// back();
 				}
+				this.queryLeaders(this);
+				this.queryItem(this.selected_id, this)
 			}
 		});
 
