@@ -25,7 +25,6 @@
 			<div data-role="header" data-position="fixed" data-tap-toggle="false">
 				<a href="#" onclick="back()" class="ui-btn"><i class="zmdi zmdi-arrow-back"></i></a>
 				<h1>询问笔录</h1>
-				<a href="#" @click="add()" class="ui-btn"><i class="zmdi zmdi-plus"></i></a>
 			</div>
 			<div data-role="main" class="ui-content">
 				<input data-type="search" id="filterControlgroup-input" placeholder="搜索..." data-clear-btn>
@@ -74,17 +73,12 @@
 				},
 				detail: function(index) {
 					window.location = "inquirerecorddetail.html?noteId=" + index;
-				},
-				add: function() {
-					window.location = "inquirerecordadd.html";
 				}
 			}
 		});
 
 		$(document).ready(function() {
             // 测试 CS-Tao
-            //var data = JSON.parse('{"rows":[{"noteId":5,"brief":"cs","objectName":"cs","objectAge":30,"objectSex":"男","objectId":"cs","objectAddress":"cs","objectDepartment":"cs","objectPhone":"cs","startExam":"2018-2-3 13:52:56","endExam":"2018-2-3 13:52:59","examPlace":"cs","interrogator":"cs","recorder":"cs","excutor1":"cs","excutor2":"cs","excutor1Id":"cs","excutor2Id":"cs","question":"cs","answer":"cs","appendix":"cs","caseID":"3b49522f-8ad7-4179-abf0-0a115e535c45"}]}');
-            //content.items = data.rows;
             content.showList(content.caseId);
 		});
 

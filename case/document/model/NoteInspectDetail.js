@@ -1,23 +1,40 @@
 /**
- * 添加勘验笔录
+ * 检查笔录详情
  * @param {Object} params 初始化参数
  */
-function SurveyRecordAdd(params) {
-    this.brief = null;
-    if(params){
-        for(var key in params){
-            if(params.hasOwnProperty(key)){
+function NoteInspectDetail(params) {
+    this.caseID = null;
+    this.objectName = null;
+    this.startInspect = null;
+    this.endInspect = null;
+    this.inchare = null;
+    this.inchareAge = null;
+    this.inchareSex = null;
+    this.inchareID = null;
+    this.incharePhone = null;
+    this.placeName = null;
+    this.weather = null;
+    this.excutor = null;
+    this.recorder = null;
+    this.excutorID = null;
+    this.recorderID = null;
+    this.caseContent = null;
+    this.inspectRecord = null;
+    this.appendix = null;
+    if (params) {
+        for (var key in params) {
+            if (params.hasOwnProperty(key)) {
                 var element = params[key];
-                this[key] = element;
+                this[key] = element
             }
         }
     }
 }
 
-SurveyRecordAdd.prototype.domMap = [
+NoteInspectDetail.prototype.domMap = [
     {
-        key: "brief",
-        name: "案由",
+        key: "objectName",
+        name: "被检查人",
         type: "p",
         show: function (au) {
             return true;
@@ -27,24 +44,8 @@ SurveyRecordAdd.prototype.domMap = [
         }
     },
     {
-        key: "startSurvey",
-        name: "勘验开始时间",
-        type: "date",
-        show: function (au) {
-            return true;
-        }
-    },
-    {
-        key: "endSurvey",
-        name: "勘验结束时间",
-        type: "date",
-        show: function (au) {
-            return true;
-        }
-    },
-    {
-        key: "place",
-        name: "勘验地点",
+        key: "startInspect",
+        name: "开始时间",
         type: "p",
         show: function (au) {
             return true;
@@ -54,8 +55,8 @@ SurveyRecordAdd.prototype.domMap = [
         }
     },
     {
-        key: "instrument",
-        name: "勘验仪器",
+        key: "endInspect",
+        name: "结束时间",
         type: "p",
         show: function (au) {
             return true;
@@ -65,8 +66,8 @@ SurveyRecordAdd.prototype.domMap = [
         }
     },
     {
-        key: "content",
-        name: "勘验内容",
+        key: "inchare",
+        name: "法定代表",
         type: "p",
         show: function (au) {
             return true;
@@ -76,18 +77,7 @@ SurveyRecordAdd.prototype.domMap = [
         }
     },
     {
-        key: "responsible",
-        name: "勘验负责人",
-        type: "p",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        key: "responsibleAge",
+        key: "inchareAge",
         name: "年龄",
         type: "p",
         show: function (au) {
@@ -98,7 +88,7 @@ SurveyRecordAdd.prototype.domMap = [
         }
     },
     {
-        key: "responsibleSex",
+        key: "inchareSex",
         name: "性别",
         type: "p",
         show: function (au) {
@@ -109,8 +99,52 @@ SurveyRecordAdd.prototype.domMap = [
         }
     },
     {
+        key: "inchareID",
+        name: "身份证号",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        key: "incharePhone",
+        name: "联系电话",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        key: "placeName",
+        name: "检查现场",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        key: "weather",
+        name: "天气情况",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
         key: "excutor",
-        name: "勘验人员",
+        name: "检查人",
         type: "p",
         show: function (au) {
             return true;
@@ -120,8 +154,8 @@ SurveyRecordAdd.prototype.domMap = [
         }
     },
     {
-        key: "responsiblePosition",
-        name: "职务",
+        key: "recorder",
+        name: "记录人",
         type: "p",
         show: function (au) {
             return true;
@@ -131,8 +165,8 @@ SurveyRecordAdd.prototype.domMap = [
         }
     },
     {
-        key: "witness",
-        name: "当事人或见证人",
+        key: "excutorID",
+        name: "检查人证件号",
         type: "p",
         show: function (au) {
             return true;
@@ -142,8 +176,8 @@ SurveyRecordAdd.prototype.domMap = [
         }
     },
     {
-        key: "environment",
-        name: "现场环境",
+        key: "recorderID",
+        name: "记录人证件号",
         type: "p",
         show: function (au) {
             return true;
@@ -153,8 +187,19 @@ SurveyRecordAdd.prototype.domMap = [
         }
     },
     {
-        key: "sceneCondition",
-        name: "现场实况",
+        key: "caseContent",
+        name: "有关问题",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        key: "inspectRecord",
+        name: "检查记录",
         type: "p",
         show: function (au) {
             return true;
@@ -165,7 +210,7 @@ SurveyRecordAdd.prototype.domMap = [
     },
     {
         key: "appendix",
-        name: "副页",
+        name: "附页",
         type: "p",
         show: function (au) {
             return true;

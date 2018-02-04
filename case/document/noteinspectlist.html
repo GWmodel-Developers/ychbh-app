@@ -24,15 +24,15 @@
 		<div data-role="page" id="main">
 			<div data-role="header" data-position="fixed" data-tap-toggle="false">
 				<a href="#" onclick="back()" class="ui-btn"><i class="zmdi zmdi-arrow-back"></i></a>
-				<h1>勘验笔录</h1>
+				<h1>检查笔录</h1> 
 			</div>
 			<div data-role="main" class="ui-content">
 				<input data-type="search" id="filterControlgroup-input" placeholder="搜索..." data-clear-btn>
 				<ul id="content" data-role="listview" data-inset="true" class="ui-li-has-alt ui-first-child" data-filter="true" data-input="#filterControlgroup-input">
 					<li v-for="item in items" :key="item.noteId">
 						<a class="ui-btn ui-icon-eye ui-btn-icon-right" v-on:click="detail(item.noteId)">
-                            <h2>勘察内容：{{item.content}}</h2>
-                            <p>案由：{{item.brief}}</p>
+                            <h2>被检查人：{{item.objectName}}</h2>
+                            <p>案由：{{item.caseContent}}</p>
 						</a>
 					</li>
 				</ul>
@@ -52,13 +52,13 @@
 				items: [],
                 // caseId: getURLParameter('caseId')
                 // 测试 CS-Tao
-				caseId: '37f8709f-13f1-4540-9e79-ee3df4eaf12f'
+				caseId: '3b49522f-8ad7-4179-abf0-0a115e535c45'
 			},
 			methods: {
 				showList: function(caseId) {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/noteSurvey/getDocList",
+						url: "http://39.106.145.68:8080/huangbaihe/noteInspect/getDocList",
 						dataType: 'json',
 						data: {caseID: caseId},
 						success: function(json) {
@@ -66,19 +66,18 @@
 						},
 						error: function() {
 							new $.nd2Toast({
-								message: "获取勘验笔录列表失败"
+								message: "获取检查笔录列表失败"
 							});
 						}
 					});
 				},
 				detail: function(index) {
-					window.location = "surveyrecorddetail.html?noteId=" + index;
+					window.location = "noteinspectdetail.html?noteId=" + index;
 				}
 			}
 		});
 
 		$(document).ready(function() {
-            // 测试 CS-Tao
             content.showList(content.caseId);
 		});
 
