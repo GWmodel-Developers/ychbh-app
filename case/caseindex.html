@@ -124,9 +124,9 @@
 								<h3>{{ group.name }}</h3>
 							</li>
 							<li v-for="doc in group.docs">
-								<a href="#" v-on:click="gotoDetail(doc.link)">
+								<a href="#" v-on:click="gotoDetail(doc.link, doc.state(detail), doc.name)">
 									<span class="nd2-label nd2-label-left" v-if="doc.state(detail)" v-bind:class="{
-										'nd2-label-purple': doc.state(detail) == 0,
+										'nd2-label-grey': doc.state(detail) == 0,
 										'nd2-label-amber': doc.state(detail) == 1,
 										'nd2-label-orange': doc.state(detail) == 2,
 										'nd2-label-green': doc.state(detail) == 3
@@ -247,8 +247,14 @@
 					mainpageVM.showPagination = true;
 					mainpageVM.getItems(mainpageVM)
 				},
-				gotoDetail: function (page, index) {
-					window.location = ["document/", page, ".html"].join("");
+				gotoDetail: function (page, state, docname) {
+					if (state == 0) {
+						new $.nd2Toast({
+							message: "未填写" + docname
+						});
+					} else {
+						window.location = ["document/", page, ".html"].join("");
+					}
 				},
 				showMain: function () {
 					localStorage.removeItem("caseID");
