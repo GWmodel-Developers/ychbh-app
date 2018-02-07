@@ -102,7 +102,7 @@
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
-				noteId: getURLParameter('noteId'),
+				caseId: getURLParameter('caseID'),
 				detail: new InquireRecordDetail(),
 				au: JSON.parse(localStorage.getItem("au"))
 			},
@@ -110,18 +110,18 @@
 				queryDoc: function(noteId, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://localhost:8080/huangbaihe/noteExamination/getDoc",
+						url: "http://localhost:8080/huangbaihe/discussionCase/getDocument",
                         dataType: "json",
                         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 						data: {
-							"noteId": noteId
+							"caseID": noteId
 						},
 						success: function (data) {
 							obj.detail = new InquireRecordDetail(data);
 						},
 						error: function () {
 							new $.nd2Toast({
-								message: "获取询问笔录详情失败"
+								message: "获取案件集体讨论记录失败"
 							});
 						}
 					});

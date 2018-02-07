@@ -102,9 +102,7 @@
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
-				// caseId: getURLParameter('caseId'),
-                // CS-Tao
-                caseId: '4fff8d53-95d2-4630-83d8-40d3f282a4a3',
+				caseId: getURLParameter('caseID'),
 				detail: new PunishmentHearingOpion(),
 				au: JSON.parse(localStorage.getItem("au"))
 			},

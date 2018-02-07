@@ -102,9 +102,7 @@
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
-                // caseId: getURLParameter('caseId'),
-                // 测试 CS-Tao
-                caseId: '3b49522f-8ad7-4179-abf0-0a115e535c45',
+                caseId: getURLParameter('caseID'),
 				detail: new KeepEvidence(),
 				au: JSON.parse(localStorage.getItem("au"))
 			},

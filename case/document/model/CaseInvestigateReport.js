@@ -38,7 +38,7 @@ function CaseInvestigateReport(params) {
 
 CaseInvestigateReport.prototype.domMap = [
     {
-        key: "caseDescription",
+        key: "brief",
         name: "案由",
         type: "p",
         show: function (au) {
