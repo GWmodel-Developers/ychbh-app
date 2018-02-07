@@ -80,7 +80,7 @@
 				queryItem: function(caseID, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://127.0.0.1:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "json",
 						data: ({
 							caseID: caseID
@@ -89,7 +89,7 @@
 							if (caseinfo.formPunishmentState != 0) {
 								$.ajax({
 									type: "post",
-									url: "http://127.0.0.1:8080/huangbaihe/formRegisterCase/getOneForm",
+									url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
 									dataType: "json",
 									data: ({
 										caseID: caseID
@@ -97,7 +97,7 @@
 									success: function (registercase) {
 										$.ajax({
 											type: "post",
-											url: "http://127.0.0.1:8080/huangbaihe/noticeHearingPunishment/getDoc",
+											url: "http://huyg.site:8080/huangbaihe/noticeHearingPunishment/getDoc",
 											dataType: "json",
 											data: ({
 												caseID: caseID

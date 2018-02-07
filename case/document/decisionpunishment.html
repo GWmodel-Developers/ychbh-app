@@ -189,7 +189,7 @@
 					var caseinfo = await new Promise(function (resolve, reject) {
 						$.ajax({
 							type: "post",
-							url: "http://127.0.0.1:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+							url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
 							dataType: "json",
 							data: ({
 								caseID: caseID
@@ -205,7 +205,7 @@
 						registercase = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://127.0.0.1:8080/huangbaihe/formRegisterCase/getOneForm",
+								url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
 								dataType: "json",
 								data: ({
 									caseID: caseID
@@ -222,7 +222,7 @@
 						invastigate = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://127.0.0.1:8080/huangbaihe/reportEndInvastigate/getDoc",
+								url: "http://huyg.site:8080/huangbaihe/reportEndInvastigate/getDoc",
 								dataType: "json",
 								data: ({
 									caseID: caseID
@@ -249,7 +249,7 @@
 						punishment = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://127.0.0.1:8080/huangbaihe/noticePunishmentPretell/getDoc",
+								url: "http://huyg.site:8080/huangbaihe/noticePunishmentPretell/getDoc",
 								dataType: "json",
 								data: ({
 									caseID: caseID
@@ -266,7 +266,7 @@
 						ghearing = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://127.0.0.1:8080/huangbaihe/noticeGHearingPunishment/getDoc",
+								url: "http://huyg.site:8080/huangbaihe/noticeGHearingPunishment/getDoc",
 								dataType: "json",
 								data: ({
 									caseID: caseID
@@ -283,7 +283,7 @@
 						decision = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://127.0.0.1:8080/huangbaihe/decisionPunishment/getDoc",
+								url: "http://huyg.site:8080/huangbaihe/decisionPunishment/getDoc",
 								dataType: "json",
 								data: ({
 									caseID: caseID
