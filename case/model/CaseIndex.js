@@ -149,28 +149,56 @@ CaseIndex.prototype.docMap = [
         docs: [{
             key: "formUnRegisterCaseSate",
             name: "扣押物品呈批表",
-            link: "registercase",
+            link: "#",
             state: function (params) {
                 return params[this.key]
             }
         },{
             key: "formUnRegisterCaseSate",
             name: "先行登记保存物品呈批表",
-            link: "registercase",
+            link: "keepevidence",
             state: function (params) {
                 return params[this.key]
             }
         }]
     },{
-        name: "调重取证文书",
+        name: "调查取证文书",
         docs: [{
-            key: "formUnRegisterCaseSate",
-            name: "立案呈批表",
-            link: "registercase",
+            key: "noteSurveyState",
+            name: "勘验笔录",
+            link: "surveyrecordlist",
             state: function (params) {
                 return params[this.key]
             }
-        }]
+        },{
+            key: "noteInspectState",
+            name: "检查笔录",
+            link: "noteinspectlist",
+            state: function (params) {
+                return params[this.key]
+            }
+        },{
+            key: "noteExamState",
+            name: "询问笔录",
+            link: "noteinspectlist",
+            state: function (params) {
+                return params[this.key]
+            }
+        },{
+            key: "reportEndInvestigateSate",
+            name: "案件调查终结报告",
+            link: "caseinvestigatereport",
+            state: function (params) {
+                return params[this.key]
+            }
+        },{
+            key: "discussionCaseState",
+            name: "案件集体讨论记录",
+            link: "casediscussion",
+            state: function (params) {
+                return params[this.key]
+            }
+        },]
     },{
         name: "行政命令文书",
         docs: []
@@ -221,21 +249,21 @@ CaseIndex.prototype.docMap = [
         },{
             key: "notePleadState",
             name: "陈述申辩笔录",
-            link: "punishment",
+            link: "statedefendnote",
             state: function (params) {
                 return params[this.key]
             }
         },{
             key: "noteHearingPunishmentState",
             name: "行政处罚听证笔录",
-            link: "punishment",
+            link: "punishmenthearingnote",
             state: function (params) {
                 return params[this.key]
             }
         },{
             key: "opinionHearingPunishmentState",
             name: "行政处罚听证意见书",
-            link: "punishment",
+            link: "punishmenthearingopion",
             state: function (params) {
                 return params[this.key]
             }
@@ -263,7 +291,7 @@ CaseIndex.prototype.docMap = [
         },{
             key: "reportEndCasePunishmentState",
             name: "行政处罚结案报告",
-            link: "punishment",
+            link: "endcasereport",
             state: function (params) {
                 return params[this.key]
             }
