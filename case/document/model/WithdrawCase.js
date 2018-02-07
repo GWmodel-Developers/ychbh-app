@@ -2,12 +2,29 @@
  * 撤案呈批表
  * @param {Object} params 初始化参数
  */
-function WithdrawCase(caseinfo, withdrawcase) {
-
+function WithdrawCase(caseinfo, registercase, commoncase, withdrawcase) {
+    this.case_id = null;
+    this.case_name = null;
+    this.investigate_summary = null;
+    this.withdraw_reason = null;
+    this.excutor = null;
+    this.excuteDate = null;
+    this.examResponsible = null;
+    this.examSuggestion = null;
+    this.examDate = null;
+    this.leader = null;
+    this.reExamSuggestion = null;
+    this.reExamDate = null;
     if (caseinfo) {
+        this.case_name = caseinfo.caseDescription;
+    }
+    if (caseinfo) {
+        this.brief = caseinfo.brief;
+    }
+    if (withdrawcase) {
         for (var key in this) {
-            if (caseinfo.hasOwnProperty(key)) {
-                this[key] = caseinfo[key];
+            if (withdrawcase.hasOwnProperty(key)) {
+                this[key] = withdrawcase[key];
             }
         }
     }
