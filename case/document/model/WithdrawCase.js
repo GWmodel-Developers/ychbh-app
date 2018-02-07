@@ -61,6 +61,22 @@ WithdrawCase.prototype.toReExamForm = function () {
     }
 }
 
+WithdrawCase.prototype.toExamForm = function () {
+    return {
+        caseID: this.case_id,
+        examSuggestion: this.examSuggestion,
+        examResponsible: this.examResponsible,
+        examDate: this.examDate,
+        leader: this.leader,
+        userId: this.leader,
+        userName: this.userName,
+        caseId: this.case_id,
+        caseName: this.case_name,
+        caseType: this.caseType,
+        documentName: this.documentName
+    }
+}
+
 WithdrawCase.prototype.domMap = [
     {
         name: "案由",

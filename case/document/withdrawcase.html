@@ -47,7 +47,6 @@
                         </li>
                     </ul>
 				</form>
-				<p>{{ detail.toReExamForm() }}</p>
 				<div class="action-bar">
 					<a v-if="showUpdate" href="#" class="ui-btn clr-btn-teal ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="update()">
 						<i class="md zmdi zmdi-edit"></i>修改
@@ -148,7 +147,28 @@
 					
 				},
 				exam: function () {
-					
+					$.ajax({
+						method: "post",
+						url: "http://huyg.site:8080/huangbaihe/formWithdrawCase/exam",
+						dataType: "JSONP",
+						data: mainpageVM.detail.toExamForm(),
+						success: function (data) {
+							if (data) {
+								new $.nd2Toast({
+									message: "操作成功"
+								})
+							} else {
+								new $.nd2Toast({
+									message: "操作失败"
+								})
+							}
+						},
+						error: function () {
+							new $.nd2Toast({
+								message: "操作失败"
+							})
+						}
+					});
 				},
 				reExam: function () {
 					$.ajax({
