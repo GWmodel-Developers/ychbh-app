@@ -17,6 +17,10 @@
 		<script src="../../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../nativeDroid2/js/nativedroid2.js"></script>
 		<script type="text/javascript" src="../../nativeDroid2/nd2settings.js" ></script>
+		<script src="../../js/auth.js"></script>
+		<script>
+			auth("case", "read", null);
+		</script>
 		<style type="text/css">
 			span.listview-aside {
 				font-size: 14px;
@@ -91,18 +95,13 @@
 	</body>
 	<script type="text/javascript" src="../../vuejs/vue.min.js"></script>
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
-	<script src="../../js/auth.js"></script>
 	<!-- Vue Model -->
 	<script type="text/javascript" src="model/PunishmentHearingOpion.js" ></script>
     <script type="text/javascript">
-		function getURLParameter(name) {
-			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
-        }
-        
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
-				caseId: getURLParameter('caseID'),
+				caseId: localStorage.getItem("caseID"),
 				detail: new PunishmentHearingOpion(),
 				au: JSON.parse(localStorage.getItem("au"))
 			},
