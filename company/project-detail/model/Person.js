@@ -68,7 +68,7 @@ Person.prototype.domMap = [
     },{
         key: "personAddress",
         name: "办公地址",
-        type: "text",
+        type: "p",
         hidden: false
     }
 ]

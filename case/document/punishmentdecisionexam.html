@@ -7,7 +7,7 @@
 		<title>黄柏河流域综合执法信息管理系统</title>
 		<link rel="stylesheet" href="../../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
 		<link rel="stylesheet" href="../../nativeDroid2/vendor/waves/waves.min.css" />
-		<link rel="stylesheet" href="../../nativeDroid2/vendor/wow/animate.css"/>
+		<link rel="stylesheet" href="../../nativeDroid2/vendor/wow/animate.css" />
 		<link rel="stylesheet" href="../../nativeDroid2/css/nativedroid2.css" />
 		<link rel="stylesheet" href="../../nativeDroid2/css/nativedroid2.color.green.css" />
 		<link rel="stylesheet" href="../../css/style.css">
@@ -17,8 +17,25 @@
 		<script src="../../nativeDroid2/vendor/waves/waves.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../nativeDroid2/js/nativedroid2.js"></script>
-		<script type="text/javascript" src="../../nativeDroid2/nd2settings.js" ></script>
-		</head>
+		<script type="text/javascript" src="../../nativeDroid2/nd2settings.js"></script>
+		<style>
+			.ui-checkbox {
+				margin: 0px 0px;
+			}
+
+			label.ui-checkbox-off, label.ui-checkbox-on {
+				padding-top: 0px;
+				padding-bottom: 0px;
+				font-size: 16px;
+			}
+
+			.card-supporting-text>ul>li>p.listview-aside {
+				font-size: 14px;
+				word-wrap: break-word;
+				white-space: normal;
+			}
+		</style>
+	</head>
 
 	<body>
 		<div data-role="page" id="root">
@@ -26,11 +43,11 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>案件移送呈批表</h1>
+				<h1>行政处罚决定审批表</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
-                <form action="#">
-                    <ul data-role="listview" data-inset="true">
+				<form action="#">
+					<ul data-role="listview" data-inset="true">
                         <li v-for="(dommap, index) in detail.domMap" v-if="dommap.show(au)">
                             <b>{{ dommap.name }}</b>
                             <span v-if="dommap.type === 'span' " class="listview-aside">{{ dommap.get(detail) }}</span>
@@ -45,17 +62,16 @@
 				</form>
 				<div class="action-bar">
 					<a v-if="showUpdate" href="#" class="ui-btn clr-btn-teal ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="update()">
-						<i class="md zmdi zmdi-edit"></i>修改
-					</a>
-					<a v-if="showSubmit" href="#" class="ui-btn clr-btn-light-green ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="submit()">
-						<i class="md zmdi zmdi-mail-send"></i>提交
-					</a>
-					<a v-if="showExam" href="#" class="ui-btn clr-btn-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="exam()">
-						<i class="md zmdi zmdi-eye"></i>审核
-					</a>
-					<a v-if="showApproval" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="approval()">
-						<i class="md zmdi zmdi-check"></i>审批
-					</a>
+						<i class="md zmdi zmdi-edit"></i>修改 </a>
+					<a v-if="showSubmit" href="#" class="ui-btn clr-btn-light-green ui-btn-icon-left ui-btn-raised ui-btn-inline"
+					 @click="submit()">
+						<i class="md zmdi zmdi-mail-send"></i>提交 </a>
+					<a v-if="showExam" href="#" class="ui-btn clr-btn-orange ui-btn-icon-left ui-btn-raised ui-btn-inline"
+					 @click="exam()">
+						<i class="md zmdi zmdi-eye"></i>审核 </a>
+					<a v-if="showApproval" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline"
+					 @click="approval()">
+						<i class="md zmdi zmdi-check"></i>审批 </a>
 				</div>
 			</div>
 		</div>
@@ -64,13 +80,13 @@
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<script src="../../js/auth.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/TransferCase.js" ></script>
+	<script type="text/javascript" src="model/PunishmentDecisionExam.js"></script>
 	<script type="text/javascript">
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
 				selected_id: localStorage.getItem("caseID"),
-				detail: new TransferCase(),
+				detail: new PunishmentDecisionExam(),
 				au: JSON.parse(localStorage.getItem("au")),
 				options: {
 					leader: []
@@ -86,35 +102,55 @@
 							caseID: caseID
 						}),
 						success: function (caseinfo) {
-							if (caseinfo.formTransferCaseState != 0) {
+							if (caseinfo.formPunishmentState != 0) {
 								$.ajax({
 									type: "post",
-									url: "http://huyg.site:8080/huangbaihe/formTransferCase/getOneForm",
+									url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
 									dataType: "json",
 									data: ({
 										caseID: caseID
 									}),
-									success: function (transfercase) {
-										obj.detail = new TransferCase(caseinfo, transfercase);
+									success: function (registercase) {
+										$.ajax({
+											type: "post",
+											url: "http://huyg.site:8080/huangbaihe/noticePunishmentPretell/getDoc",
+											dataType: "json",
+											data: ({
+												caseID: caseID
+											}),
+											success: function (doc) {
+												$.ajax({
+													type: "post",
+													url: "http://huyg.site:8080/huangbaihe/FormPunishmentDecisionExam/getOneForm",
+													dataType: "json",
+													data: ({
+														caseID: caseID
+													}),
+													success: function (decision) {
+														obj.detail = new PunishmentDecisionExam(caseinfo, registercase, doc, decision);
+													}
+												});
+											}
+										});
 									}
 								});
 							} else {
-								obj.detail = new TransferCase(caseinfo);
+								obj.detail = new PunishmentDecisionExam(caseinfo);
 							}
 						}
 					});
 				},
 				submit: function () {
-					
+
 				},
 				update: function () {
-					
+
 				},
 				exam: function () {
-					
+
 				},
 				approval: function () {
-					
+
 				},
 				queryLeaders: function (context) {
 					$.ajax({

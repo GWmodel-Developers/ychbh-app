@@ -21,4 +21,5 @@ ul li p.listview-aside {
 
 .action-bar {
     text-align: center;
+    margin: 0 -16px;
 }

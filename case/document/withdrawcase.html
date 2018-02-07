@@ -26,7 +26,7 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>案件移送呈批表</h1>
+				<h1>撤案呈批表</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
                 <form action="#">
@@ -64,13 +64,13 @@
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<script src="../../js/auth.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/TransferCase.js" ></script>
+	<script type="text/javascript" src="model/WithDrawCase.js" ></script>
 	<script type="text/javascript">
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
 				selected_id: localStorage.getItem("caseID"),
-				detail: new TransferCase(),
+				detail: new WithDrawCase(),
 				au: JSON.parse(localStorage.getItem("au")),
 				options: {
 					leader: []
@@ -95,11 +95,11 @@
 										caseID: caseID
 									}),
 									success: function (transfercase) {
-										obj.detail = new TransferCase(caseinfo, transfercase);
+										obj.detail = new WithDrawCase(caseinfo, transfercase);
 									}
 								});
 							} else {
-								obj.detail = new TransferCase(caseinfo);
+								obj.detail = new WithDrawCase(caseinfo);
 							}
 						}
 					});

@@ -202,13 +202,13 @@ Registration.prototype.domMap = [
     },
     {
         name: "报告人证件号",
-        key: "informantId",
+        key: "informantID",
         type: "span",
         show: function (au) {
             return true;
         },
         get: function (params) {
-            return params.informantId;
+            return params.informantID;
         }
     },
     {
@@ -236,7 +236,7 @@ Registration.prototype.domMap = [
     {
         name: "报告人地址、单位",
         key: "informantPersonAddress",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -302,7 +302,7 @@ Registration.prototype.domMap = [
     {
         name: "处理意见(负责人填写)",
         key: "examSuggestion",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
