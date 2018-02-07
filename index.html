@@ -67,15 +67,19 @@
 						<h3 class="card-primary-title">{{ user.userName }}</h3>
 						<h5 class="card-subtitle">{{ user.job }}</h5>
 					</div>
-					<div class="card-supporting-text has-action">
+					<div class="card-supporting-text">
 						<ul class="ui-listview" data-role="listview">
 							<li data-role="list-divider">
 								<b>待办事项</b>
 								<span class="listview-aside">共{{ task_list.length }}条</span>
 							</li>
-							<li v-for="task in task_list">
-								<h3>{{ task.case_name }}</h3>
-								<span class="listview-aside">{{ task.case_type }}</span>
+							<li class="ui-li-static ui-body-inherit" v-for="task in task_list">
+								<h3> <span class="nd2-label nd2-label-left" v-if="task.state != null" v-bind:class="{
+									'nd2-label-grey': getCaseState(task.state) == 0,
+									'nd2-label-amber': getCaseState(task.state) == 1,
+									'nd2-label-orange': getCaseState(task.state) == 2,
+									'nd2-label-green': getCaseState(task.state) == 3
+								}">{{ caseStateType[getCaseState(task.state)] }}</span> {{ task.case_name }}</h3>
 								<p class="listview-aside">{{ task.document_name }}</p>
 							</li>
 						</ul>
@@ -186,7 +190,13 @@
 				el: "#page",
 				data: {
 					task_list: [],
-					user: {}
+					user: {},
+					caseStateType: {
+						"0": "未填写",
+						"1": "审核中",
+						"2": "审批中",
+						"3": "已填写"
+					}
 				},
 				methods: {
 					queryTasks: function (obj) {
@@ -195,6 +205,18 @@
 						}, function (data) {
 							obj.task_list = data
 						})
+					},
+					getCaseState: function (caseStateText) {
+						var caseState = parseInt(caseStateText);
+						if (caseState == 0) {
+							return 0;
+						}
+						if ((caseState > 49999 && caseState < 79999 && caseState != 59999 && caseState != 69999 && caseState != 99999 && caseState != 99998) || (caseState < 5 && caseState > 0)) {
+							return 1;
+						}
+						if (caseState == 59999 || caseState == 69999 || caseState == 79999 || caseState == 99999 || caseState == 99998) {
+							return 2;
+						}
 					}
 				},
 				created: function () {
