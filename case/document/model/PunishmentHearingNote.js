@@ -1,31 +1,30 @@
 /**
- * 案件调查终结报告
+ * 行政处罚听证笔录
  * @param {Object} params 初始化参数
  */
-function CaseInvestigateReport(params) {
-    this.caseDescription = null;
-    this.informantSex = null;
-    this.leader = null;
-    this.occurPlace = null;
-    this.examDate = null;
-    this.informantAge = null;
-    this.excutor1 = null;
-    this.occurTime = null;
-    this.informantPhone = null;
-    this.suggestion = null;
-    this.informantID = null;
-    this.reExamSuggestion = null;
-    this.content = null;
-    this.reponsible = null;
-    this.examSuggestion = null;
-    this.informantAdress = null;
-    this.reportDate = null;
-    this.informantName = null;
-    this.responsible = null;
-    this.reExamDate = null;
-    this.excuteDate = null;
+function PunishmentHearingNote(params) {
+    this.brief = null;
     this.objectName = null;
-    this.excutor2 = null;
+    this.responsible = null;
+    this.objectSex = null;
+    this.objectAge = null;
+    this.objectPhone = null;
+    this.objectDepart = null;
+    this.objectAddress = null;
+    this.agent = null;
+    this.agentSex = null;
+    this.agentAge = null;
+    this.agentPosition = null;
+    this.agentPhone = null;
+    this.agentDepart = null;
+    this.agentAddress = null;
+    this.excutor = null;
+    this.host = null;
+    this.courtClerk = null;
+    this.startHearing = null;
+    this.endHearing = null;
+    this.hearingMethod = null;
+    this.record = null;
     if (params) {
         for (var key in params) {
             if (params.hasOwnProperty(key)) {
@@ -36,7 +35,7 @@ function CaseInvestigateReport(params) {
     }
 }
 
-CaseInvestigateReport.prototype.domMap = [
+PunishmentHearingNote.prototype.domMap = [
     {
         key: "brief",
         name: "案由",
@@ -49,9 +48,9 @@ CaseInvestigateReport.prototype.domMap = [
         }
     },
     {
-        key: "object_name",
-        name: "当事人",
-        type: "textarea",
+        key: "objectName",
+        name: "当事人（单位）",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -60,9 +59,9 @@ CaseInvestigateReport.prototype.domMap = [
         }
     },
     {
-        key: "object_id",
-        name: "注册号/统一社会信用代码",
-        type: "textarea",
+        key: "responsible",
+        name: "法定代表人（负责人）",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -71,9 +70,9 @@ CaseInvestigateReport.prototype.domMap = [
         }
     },
     {
-        key: "object_address",
-        name: "住所",
-        type: "textarea",
+        key: "objectSex",
+        name: "性别",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -82,9 +81,9 @@ CaseInvestigateReport.prototype.domMap = [
         }
     },
     {
-        key: "object_post_code",
-        name: "邮编",
-        type: "textarea",
+        key: "objectAge",
+        name: "年龄",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -93,9 +92,9 @@ CaseInvestigateReport.prototype.domMap = [
         }
     },
     {
-        key: "responsible_name",
-        name: "法定代表人",
-        type: "textarea",
+        key: "objectPhone",
+        name: "联系方式	",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -104,9 +103,9 @@ CaseInvestigateReport.prototype.domMap = [
         }
     },
     {
-        key: "responsible_id",
-        name: "身份证号",
-        type: "textarea",
+        key: "objectDepart",
+        name: "工作单位",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -115,9 +114,9 @@ CaseInvestigateReport.prototype.domMap = [
         }
     },
     {
-        key: "excute_responsible",
-        name: "负责人",
-        type: "textarea",
+        key: "objectAddress",
+        name: "地址",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -126,9 +125,42 @@ CaseInvestigateReport.prototype.domMap = [
         }
     },
     {
-        key: "position",
+        key: "agent",
+        name: "委托代理人",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        key: "agentSex",
+        name: "性别",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        key: "agentAge",
+        name: "年龄",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        key: "agentPosition",
         name: "职务",
-        type: "textarea",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -137,9 +169,9 @@ CaseInvestigateReport.prototype.domMap = [
         }
     },
     {
-        key: "phone",
-        name: "联系电话",
-        type: "textarea",
+        key: "agentPhone",
+        name: "联系方式",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -148,9 +180,9 @@ CaseInvestigateReport.prototype.domMap = [
         }
     },
     {
-        key: "event",
-        name: "违法事实",
-        type: "textarea",
+        key: "agentDepart",
+        name: "工作单位",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -159,42 +191,9 @@ CaseInvestigateReport.prototype.domMap = [
         }
     },
     {
-        key: "evidence",
-        name: "以上事实主要有以下证据证明",
-        type: "textarea",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        key: "case_quality",
-        name: "案件性质",
-        type: "textarea",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        key: "justification",
-        name: "裁量理由",
-        type: "textarea",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        key: "punish_accord_suggestion",
-        name: "处罚依据及建议",
-        type: "textarea",
+        key: "agentAddress",
+        name: "地址",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -204,8 +203,8 @@ CaseInvestigateReport.prototype.domMap = [
     },
     {
         key: "excutor",
-        name: "案件承办人",
-        type: "textarea",
+        name: "案件经办人",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -214,9 +213,9 @@ CaseInvestigateReport.prototype.domMap = [
         }
     },
     {
-        key: "examResponsible",
-        name: "承办部门负责人",
-        type: "textarea",
+        key: "host",
+        name: "听证主持人",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -225,9 +224,53 @@ CaseInvestigateReport.prototype.domMap = [
         }
     },
     {
-        key: "endDate",
-        name: "办理日期",
-        type: "date",
+        key: "courtClerk",
+        name: "书记员",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        key: "startHearing",
+        name: "听证开始时间",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        key: "endHearing",
+        name: "听证结束时间",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        key: "hearingMethod",
+        name: "听证方式",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        key: "record",
+        name: "记录",
+        type: "p",
         show: function (au) {
             return true;
         },

@@ -50,9 +50,7 @@
 			el: "#main",
 			data: {
 				items: [],
-                // caseId: getURLParameter('caseId')
-                // 测试 CS-Tao
-				caseId: '37f8709f-13f1-4540-9e79-ee3df4eaf12f'
+                caseId: getURLParameter('caseID'),
 			},
 			methods: {
 				showList: function(caseId) {
@@ -78,7 +76,6 @@
 		});
 
 		$(document).ready(function() {
-            // 测试 CS-Tao
             content.showList(content.caseId);
 		});
 

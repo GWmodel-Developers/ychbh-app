@@ -102,9 +102,7 @@
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
-				// caseId: getURLParameter("caseID"),
-				// 测试 CS-Tao
-				caseId: '3b49522f-8ad7-4179-abf0-0a115e535c45',
+				caseId: getURLParameter("caseID"),
 				detail: new CaseInvestigateReport(),
 				au: JSON.parse(localStorage.getItem("au"))
 			},
@@ -113,7 +111,7 @@
 					var obj = this;
 					$.ajax({
 						type: "post",
-						url: "http://localhost:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						url: "http://localhost:8080/huangbaihe/reportEndInvastigate/getDoc",
 						dataType: "json",
 						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 						data: {

@@ -55,7 +55,7 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>案件集体讨论记录</h1>
+				<h1>行政处罚结案报告</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
                 <form action="#" @submit.prevent="">
@@ -93,7 +93,7 @@
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<script src="../../js/auth.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/InquireRecordDetail.js" ></script>
+	<script type="text/javascript" src="model/EndCaseReport.js" ></script>
     <script type="text/javascript">
 		function getURLParameter(name) {
 			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
@@ -103,26 +103,26 @@
 			el: "#root",
 			data: {
 				caseId: getURLParameter('caseID'),
-				detail: new InquireRecordDetail(),
+				detail: new EndCaseReport(),
 				au: JSON.parse(localStorage.getItem("au"))
 			},
 			methods: {
-				queryDoc: function(noteId, obj) {
+				queryDoc: function(caseId, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://localhost:8080/huangbaihe/discussionCase/getDocument",
+						url: "http://localhost:8080/huangbaihe/ReportEndCasePunishment/getOneDoc",
                         dataType: "json",
                         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 						data: {
-							"caseID": noteId
+							caseID: caseId
 						},
 						success: function (data) {
-							obj.detail = new InquireRecordDetail(data);
+							obj.detail = new EndCaseReport(data);
 						},
-						error: function () {
+						error: function (){
 							new $.nd2Toast({
-								message: "获取案件集体讨论记录失败"
-							});
+								message: "获取行政处罚结案报告失败"
+							})
 						}
 					});
 				},
@@ -156,16 +156,15 @@
 			},
 			created: function() {
                 var obj = this;
-				if (!this.noteId) {
+				if (!this.caseId) {
 					// back();
 				}
-				// alert(this.noteId);
-				this.queryDoc(this.noteId, this);
+				this.queryDoc(this.caseId, this)
 			}
 		});
 
 		function back() {
-			window.location = "inquirerecordlist.html";
+			window.location = "../caseindex.html#page_document";
 		}
 	</script>
 
