@@ -47,7 +47,7 @@ EndCaseReport.prototype.domMap = [
     {
         key: "source",
         name: "来源类型",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -58,7 +58,7 @@ EndCaseReport.prototype.domMap = [
     {
         key: "objectName",
         name: "被处罚单位",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -69,7 +69,7 @@ EndCaseReport.prototype.domMap = [
     {
         key: "responsible",
         name: "法定代表人（负责人）",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -80,7 +80,7 @@ EndCaseReport.prototype.domMap = [
     {
         key: "registerDate",
         name: "立案日期",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -91,7 +91,7 @@ EndCaseReport.prototype.domMap = [
     {
         key: "punishDate",
         name: "处罚日期",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -102,7 +102,7 @@ EndCaseReport.prototype.domMap = [
     {
         key: "punishDocId",
         name: "处罚文书号",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -113,7 +113,7 @@ EndCaseReport.prototype.domMap = [
     {
         key: "excutor",
         name: "经办人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -168,7 +168,7 @@ EndCaseReport.prototype.domMap = [
     {
         key: "endDate",
         name: "结案日期",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -179,7 +179,13 @@ EndCaseReport.prototype.domMap = [
     {
         key: "examResponsible",
         name: "综合执法支队负责人",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 2) return "span";
+            else if (code < 4) return "select";
+            else return "span";
+        })(),
         show: function (au) {
             return true;
         },
@@ -190,7 +196,13 @@ EndCaseReport.prototype.domMap = [
     {
         key: "examSuggestion",
         name: "审核意见",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 4) return "p";
+            else if (code < 8) return "textarea";
+            else return "p";
+        })(),
         show: function (au) {
             return true;
         },
@@ -200,8 +212,14 @@ EndCaseReport.prototype.domMap = [
     },
     {
         key: "examDate",
-        name: "审核时间",
-        type: "p",
+        name: "审核日期",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 4) return "span";
+            else if (code < 8) return "date";
+            else return "span";
+        })(),
         show: function (au) {
             return true;
         },
@@ -212,9 +230,15 @@ EndCaseReport.prototype.domMap = [
     {
         key: "leader",
         name: "主管领导",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 4) return "span";
+            else if (code < 8) return "select";
+            else return "span";
+        })(),
         show: function (au) {
-            return true;
+            return au.a_case_exam == 1;
         },
         get: function (params) {
             return params[this.key];
@@ -222,10 +246,14 @@ EndCaseReport.prototype.domMap = [
     },
     {
         key: "reExamSuggestion",
-        name: "审批意见",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 8) return "p";
+            else return "textarea";
+        })(),
         show: function (au) {
-            return true;
+            return au.a_case_reexam == 1;
         },
         get: function (params) {
             return params[this.key];
@@ -233,10 +261,15 @@ EndCaseReport.prototype.domMap = [
     },
     {
         key: "reExamDate",
-        name: "审批时间",
-        type: "p",
+        name: "审批日期",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 8) return "p";
+            else return "date";
+        })(),
         show: function (au) {
-            return true;
+            return au.a_case_reexam == 1;
         },
         get: function (params) {
             return params[this.key];

@@ -51,7 +51,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "object_name",
         name: "当事人",
-        type: "textarea",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -62,7 +62,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "object_id",
         name: "注册号/统一社会信用代码",
-        type: "textarea",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -73,7 +73,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "object_address",
         name: "住所",
-        type: "textarea",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -84,7 +84,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "object_post_code",
         name: "邮编",
-        type: "textarea",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -95,7 +95,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "responsible_name",
         name: "法定代表人",
-        type: "textarea",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -106,7 +106,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "responsible_id",
         name: "身份证号",
-        type: "textarea",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -117,7 +117,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "excute_responsible",
         name: "负责人",
-        type: "textarea",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -128,7 +128,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "position",
         name: "职务",
-        type: "textarea",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -139,7 +139,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "phone",
         name: "联系电话",
-        type: "textarea",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -150,7 +150,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "event",
         name: "违法事实",
-        type: "textarea",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -161,7 +161,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "evidence",
         name: "以上事实主要有以下证据证明",
-        type: "textarea",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -172,7 +172,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "case_quality",
         name: "案件性质",
-        type: "textarea",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -183,7 +183,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "justification",
         name: "裁量理由",
-        type: "textarea",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -194,7 +194,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "punish_accord_suggestion",
         name: "处罚依据及建议",
-        type: "textarea",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -205,7 +205,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "excutor",
         name: "案件承办人",
-        type: "textarea",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -216,7 +216,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "examResponsible",
         name: "承办部门负责人",
-        type: "textarea",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -227,7 +227,7 @@ CaseInvestigateReport.prototype.domMap = [
     {
         key: "endDate",
         name: "办理日期",
-        type: "date",
+        type: "span",
         show: function (au) {
             return true;
         },
