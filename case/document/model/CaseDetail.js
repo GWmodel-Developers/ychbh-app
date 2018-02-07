@@ -82,10 +82,10 @@ CaseDetail.prototype.placesTextText = {
 };
 
 CaseDetail.prototype.cardTypesTextText = {
-    "1": "身份证",
-    "2": "军官证",
-    "3": "学生证",
-    "4": "港澳台同胞证"
+    "0": "身份证",
+    "1": "军官证",
+    "2": "学生证",
+    "3": "港澳台同胞证"
 }
 
 CaseDetail.prototype.caseStateText = {
@@ -104,7 +104,7 @@ CaseDetail.prototype.domMap = [
             return true;
         },
         get: function (params) {
-            return CaseDetail.prototype.illegalTypesTextText[params[this.key]];
+            return params[this.key];
         }
     },
     {
@@ -115,7 +115,7 @@ CaseDetail.prototype.domMap = [
             return true;
         },
         get: function (params) {
-            return CaseDetail.prototype.sourceTypesText[params[this.key]];
+            return params[this.key];
         }
     },
     {
@@ -132,7 +132,7 @@ CaseDetail.prototype.domMap = [
     {
         name: "案件描述",
         key: "caseDescription",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -148,7 +148,7 @@ CaseDetail.prototype.domMap = [
             return true;
         },
         get: function (params) {
-            return CaseDetail.prototype.placesTextText[params[this.key]];
+            return params[this.key];
         }
     },
     {
@@ -164,7 +164,7 @@ CaseDetail.prototype.domMap = [
     },
     {
         name: "举报人证件号",
-        key: "informantId",
+        key: "informantID",
         type: "span",
         show: function (au) {
             return true;
@@ -176,7 +176,7 @@ CaseDetail.prototype.domMap = [
     {
         name: "举报人地址、单位",
         key: "informantPersonAddress",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -214,7 +214,7 @@ CaseDetail.prototype.domMap = [
             return true;
         },
         get: function (params) {
-            return params[this.key];
+            return CaseDetail.prototype.cardTypesTextText[params[this.key]];
         }
     },
     {
@@ -231,7 +231,7 @@ CaseDetail.prototype.domMap = [
     {
         name: "被举报人地址",
         key: "uAddress",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },

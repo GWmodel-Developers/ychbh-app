@@ -130,24 +130,24 @@
 						</div>
 						<div class="card-supporting-text has-title">
 							<ul data-role="listview" data-inset="false">
-								<li><b>处罚依据及原文</b><span class="listview-aside">{{ detial.accord_policy }}</span></li>
-								<li><b>自由裁量权</b><span class="listview-aside">{{ detial.justification }}</span></li>
-								<li><b>填写</b><p class="listview-aside">{{ detial.punishment }}</p></li>
+								<li><b>处罚依据及原文</b><span class="listview-aside">{{ detail.accord_policy }}</span></li>
+								<li><b>自由裁量权</b><span class="listview-aside">{{ detail.justification }}</span></li>
+								<li><b>填写</b><p class="listview-aside">{{ detail.punishment }}</p></li>
 							</ul>
 						</div>
 					</div>
 					<ul data-role="listview" data-inset="true">
 						<li>
 							<b>处罚决定书填写日期</b>
-							<span class="listview-aside">{{ detial.publish_date }}</span>
+							<span class="listview-aside">{{ detail.publish_date }}</span>
 						</li>
 						<li>
 							<b>联系人</b>
-							<span class="listview-aside">{{ detial.contact }}</span>
+							<span class="listview-aside">{{ detail.contact }}</span>
 						</li>
 						<li>
 							<b>联系电话</b>
-							<span class="listview-aside">{{ detial.contact_phone }}</span>
+							<span class="listview-aside">{{ detail.contact_phone }}</span>
 						</li>
 					</ul>
 				</form>
@@ -234,9 +234,9 @@
 							$.ajax({
 								type: "post",
 								url: "http://39.106.145.68:8080/huangbaihe/Lcommoncase/querycaseid",
-								data: ({
-									caseID: caseID
-								}),
+								data: {
+									case_name: registercase.brief
+								},
 								success: function (data) { resolve(data) }
 							});
 						})

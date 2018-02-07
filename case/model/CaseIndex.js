@@ -4,7 +4,7 @@ function CaseIndex(params) {
     this.illegalID = null;
     this.unsettleType = null;
     this.sourceID = null;
-    this.informantId = null;
+    this.informantID = null;
     this.informant = null;
     this.placeID = null;
     this.reportTime = null;
@@ -206,14 +206,14 @@ CaseIndex.prototype.docMap = [
             }
         },{
             key: "noticeGHearingPunishmentState",
-            name: "行政处罚听证告知书",
+            name: "行政处罚听证通知书",
             link: "noticehearingpunishment",
             state: function (params) {
                 return params[this.key]
             }
         },{
             key: "noticeHearingPunishmentState",
-            name: "行政处罚听证通知书",
+            name: "行政处罚听证告知书",
             link: "noticeghearingpunishment",
             state: function (params) {
                 return params[this.key]
@@ -247,7 +247,7 @@ CaseIndex.prototype.docMap = [
                 return params[this.key]
             }
         },{
-            key: "formPunishmentDecisionExamState",
+            key: "formPunishmentDecisionExamSate",
             name: "行政处罚决定审批表",
             link: "punishmentdecisionexam",
             state: function (params) {

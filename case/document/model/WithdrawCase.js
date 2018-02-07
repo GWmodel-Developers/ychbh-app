@@ -127,7 +127,7 @@ WithdrawCase.prototype.domMap = [
     {
         name: "地址",
         key: "address",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -215,7 +215,7 @@ WithdrawCase.prototype.domMap = [
     {
         name: "审核意见",
         key: "examSuggestion",
-        type: "span",
+        type: "p",
         show: function (au) {
             return au.a_case_exam == 1;
         },
@@ -237,7 +237,7 @@ WithdrawCase.prototype.domMap = [
     {
         name: "审批意见",
         key: "reExamSuggestion",
-        type: "span",
+        type: "p",
         show: function (au) {
             return au.a_case_reexam == 1;
         },

@@ -139,7 +139,7 @@ UnRegisterCase.prototype.domMap = [
     },{
         key: "informantAdress",
         name: "举报人地址、单位",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -229,7 +229,7 @@ UnRegisterCase.prototype.domMap = [
     },{
         key: "examSuggestion",
         name: "审核意见",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -259,7 +259,7 @@ UnRegisterCase.prototype.domMap = [
     },{
         key: "reExamSuggestion",
         name: "审批意见",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },

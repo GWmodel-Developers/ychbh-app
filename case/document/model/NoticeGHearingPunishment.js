@@ -17,37 +17,30 @@ function NoticeGHearingPunishment(caseinfo, registercase, reportendinvastigate, 
     this.punishment = null;
     this.publish_date = null;
     this.event = null;
-    if (caseinfo) {
-        for (var key in this) {
-            if (caseinfo.hasOwnProperty(key)) {
-                this[key] = caseinfo[key];
-            }
-        }
-    }
+    // if (caseinfo) {
+    //     for (var key in this) {
+    //         if (caseinfo.hasOwnProperty(key)) {
+    //             this[key] = caseinfo[key];
+    //         }
+    //     }
+    // }
     if (registercase) {
-        for (var key in this) {
-            if (this.hasOwnProperty(key)) {
-                this[key] = registercase[key];
-            }
-        }
+        this.brief = registercase.brief;
+        this.object_name = registercase.object_name;
     }
     if (reportendinvastigate) {
-        for (var key in this) {
-            if (this.hasOwnProperty(key)) {
-                this[key] = reportendinvastigate[key];
-            }
-        }
+        this.occur_date = reportendinvastigate.occur_date;
+        this.address = reportendinvastigate.address;
+        this.event = reportendinvastigate.event;
+        this.evidence = reportendinvastigate.evidence;
     }
     if (commoncase) {
-        for (var key in this) {
-            if (this.hasOwnProperty(key)) {
-                this[key] = commoncase[key];
-            }
-        }
+        this.violate_policy = commoncase.violate_policy;
+        this.accord_policy = commoncase.accord_policy;
     }
     if (noticeghearingpunishment) {
         for (var key in this) {
-            if (this.hasOwnProperty(key)) {
+            if (noticeghearingpunishment.hasOwnProperty(key)) {
                 this[key] = noticeghearingpunishment[key];
             }
         }
@@ -156,7 +149,7 @@ NoticeGHearingPunishment.prototype.domMap = [
     },
     {
         name: "证据",
-        key: "accord_policy",
+        key: "evidence",
         type: "span",
         show: function (au) {
             return true;
@@ -178,7 +171,7 @@ NoticeGHearingPunishment.prototype.domMap = [
     },
     {
         name: "处罚依据",
-        key: "",
+        key: "accord_policy",
         type: "span",
         show: function (au) {
             return true;

@@ -74,7 +74,7 @@ DecisionPunishmentInSpot.prototype.domMap = [
     },{
         name: "地址",
         key: "address",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },

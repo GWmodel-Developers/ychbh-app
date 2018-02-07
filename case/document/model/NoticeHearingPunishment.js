@@ -5,7 +5,7 @@
  * @param {Object} commoncase 案由信息
  * @param {Object} noticepunishment 行政处罚事先告知书
  */
-function NoticeHearingPunishment(caseinfo, registercase, noticehearingpunishment) {
+function NoticeHearingPunishment(caseinfo, registercase, notice) {
     this.case_id = null;
     this.object_name = null;
     this.document_id = null;
@@ -33,10 +33,10 @@ function NoticeHearingPunishment(caseinfo, registercase, noticehearingpunishment
             }
         }
     }
-    if (reportendinvastigate) {
+    if (notice) {
         for (var key in this) {
             if (this.hasOwnProperty(key)) {
-                this[key] = reportendinvastigate[key];
+                this[key] = notice[key];
             }
         }
     }
@@ -167,7 +167,7 @@ NoticeHearingPunishment.prototype.domMap = [
     {
         name: "本局地址",
         key: "au_address",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },

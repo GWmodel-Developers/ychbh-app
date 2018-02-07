@@ -2,7 +2,7 @@
  * 行政处罚决定审批表
  * @param {Object} params 初始化参数
  */
-function PunishmentDecisionExam(caseinfo, registercase, punishmentdecisionexam) {
+function PunishmentDecisionExam(caseinfo, registercase, pretell, punishment) {
     this.caseId = null;
     this.brief = null;
     this.objectName = null;
@@ -19,6 +19,13 @@ function PunishmentDecisionExam(caseinfo, registercase, punishmentdecisionexam) 
     this.leader = null;
     this.reExamSuggestion = null;
     this.reExamDate = null;
+    if (caseinfo) {
+        for (var key in this) {
+            if (this.hasOwnProperty(key)) {
+                this[key] = caseinfo[key];
+            }
+        }
+    }
     if (registercase) {
         for (var key in this) {
             if (this.hasOwnProperty(key)) {
@@ -26,17 +33,17 @@ function PunishmentDecisionExam(caseinfo, registercase, punishmentdecisionexam) 
             }
         }
     }
-    if (reportendinvastigate) {
+    if (pretell) {
         for (var key in this) {
             if (this.hasOwnProperty(key)) {
-                this[key] = reportendinvastigate[key];
+                this[key] = pretell[key];
             }
         }
     }
-    if (punishmentdecisionexam) {
+    if (punishment) {
         for (var key in this) {
             if (this.hasOwnProperty(key)) {
-                this[key] = punishmentdecisionexam[key];
+                this[key] = punishment[key];
             }
         }
     }
@@ -96,7 +103,7 @@ PunishmentDecisionExam.prototype.domMap = [
     },{
         name: "当事人陈述申辩意见和理由",
         key: "objectReason",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -106,7 +113,7 @@ PunishmentDecisionExam.prototype.domMap = [
     },{
         name: "承办人处理意见",
         key: "excuteSuggestion",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -148,7 +155,7 @@ PunishmentDecisionExam.prototype.domMap = [
     },{
         key: "examSuggestion",
         name: "审核意见",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
@@ -179,7 +186,7 @@ PunishmentDecisionExam.prototype.domMap = [
     },{
         key: "reExamSuggestion",
         name: "审批意见",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
