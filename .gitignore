@@ -10,6 +10,7 @@
 # Package
 /unpackage
 manifest.json
+.project
 
 # SVN
 .svn
