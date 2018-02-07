@@ -56,17 +56,31 @@
 					<img src="./plugin/logo.png" alt="" style="width: 100%;height: 100%;">
 				</a>
 				<h1>黄柏河执法系统</h1>
-				<a href="#" onclick="account()" class="ui-btn">
-					<i class="zmdi zmdi-account"></i>
+				<a href="#" class="ui-btn" onclick="gotomap()">
+					<i class="zmdi zmdi-map"></i>
 				</a>
 			</div>
-			<div class="swiper-container" style="width: 100%;height: 200px;">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide"><img style="width: 100%;height: 200px;" src="img/slack1.jpg" alt=""></div>
-					<div class="swiper-slide"><img style="width: 100%;height: 200px;" src="img/slack2.jpg" alt=""></div>
+			<div id="page" class="ui-content" data-role="main">
+				<div class="nd2-card">
+					<div class="card-title has-anatar">
+						<img src="./img/user.png" class="card-avatar">
+						<h3 class="card-primary-title">{{ user.userName }}</h3>
+						<h5 class="card-subtitle">{{ user.job }}</h5>
+					</div>
+					<div class="card-supporting-text has-action">
+						<ul class="ui-listview" data-role="listview">
+							<li data-role="list-divider">
+								<b>待办事项</b>
+								<span class="listview-aside">共{{ task_list.length }}条</span>
+							</li>
+							<li v-for="task in task_list">
+								<h3>{{ task.case_name }}</h3>
+								<span class="listview-aside">{{ task.case_type }}</span>
+								<p class="listview-aside">{{ task.document_name }}</p>
+							</li>
+						</ul>
+					</div>
 				</div>
-			</div>
-			<div class="ui-content" data-role="main">
 				<div class="row between-xs">
 					<div class="col-xs-12">
 						<h5 class="nd2-title" style="margin: 20px auto;"><strong>项目信息</strong></h5>
@@ -159,27 +173,57 @@
 					</div>
 					<div class="col-xs-4"></div>
 				</div>
+				<a href="#" onclick="logout()" class="ui-btn ui-btn-raised clr-primary">退出登录</a>
 			</div>
 		</div>
-		<script src="./swiper/js/swiper.min.js"></script>
+		<script type="text/javascript" src="../vuejs/vue.min.js"></script>
 		<script>
+			var vm = new Vue({
+				el: "#page",
+				data: {
+					task_list: [],
+					user: {}
+				},
+				methods: {
+					queryTasks: function (obj) {
+						$.getJSON("http://39.106.145.68:8080/huangbaihe/login/getusermission", {
+							id: obj.user.UID
+						}, function (data) {
+							obj.task_list = data
+						})
+					}
+				},
+				created: function () {
+					this.user = JSON.parse(localStorage.getItem("au"));
+					this.queryTasks(this);
+				}
+			})
+
+			function logout() {
+				window.localStorage.clear();
+				window.sessionStorage.clear();
+				window.location = "login.html";
+			}
+
+			function back() {
+				window.location = "index.html";
+			}
+
+			function relogin() {
+				window.location = "index.html"
+			}
+
 			function account() {
 				window.location = "account.html"
 			}
 	
 			function gotoPage(page) {
 				window.location = page;
-				
 			}
-	
-			$(function () {
-				// localStorage.clear();
-				new Swiper('.swiper-container', {
-					direction: 'horizontal',
-					loop: true,
-					autoplay: true
-				})
-			})
+
+			function gotomap() {
+				window.location = "mapview.html"
+			}
 		</script>
     </body>
 </html>
