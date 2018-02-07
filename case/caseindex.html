@@ -230,8 +230,10 @@
 						dataType: "JSONP",
 						data: mainpageVM.searchText,
 						success: function(data) {
-							mainpageVM.items = data.rows;
-							mainpageVM.total = data.total;
+							mainpageVM.items = data.rows.map(function (item) {
+								return new CaseIndex(item);
+							});
+							mainpageVM.total = data.rows.length;
 							mainpageVM.showPagination = false;
 						},
 						error: function() {

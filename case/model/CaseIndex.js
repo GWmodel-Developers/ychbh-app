@@ -77,24 +77,24 @@ function CaseIndex(params) {
 }
 
 CaseIndex.prototype.sourceTypesText = {
-    "1": "群众举报",
-    "2": "巡查发现",
-    "3": "媒体发现",
-    "4": "部门转办"
+    "群众举报": "群众举报",
+    "巡查发现": "巡查发现",
+    "媒体发现": "媒体发现",
+    "部门转办": "部门转办"
 };
 
 CaseIndex.prototype.illegalTypesText = {
-    "1": "水利",
-    "2": "环保",
-    "3": "渔业",
-    "4": "海事"
+    "水利": "水利",
+    "环保": "环保",
+    "渔业": "渔业",
+    "海事": "海事"
 };
 
 CaseIndex.prototype.placesText = {
-    "1": "第一区",
-    "2": "第二区",
-    "3": "第三区",
-    "4": "第四区"
+    "第一区": "第一区",
+    "第二区": "第二区",
+    "第三区": "第三区",
+    "第四区": "第四区"
 };
 
 CaseIndex.prototype.stateText = {
