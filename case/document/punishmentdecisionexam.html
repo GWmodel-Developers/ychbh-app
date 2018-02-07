@@ -96,8 +96,8 @@
 				queryItem: function(caseID, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://" + window.location.hostname + ":8080/huangbaihe/getInfoCaseController/getCaseInfo",
-						dataType: "json",
+						url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						dataType: "JSONP",
 						data: ({
 							caseID: caseID
 						}),
@@ -105,24 +105,24 @@
 							if (caseinfo.formPunishmentState != 0) {
 								$.ajax({
 									type: "post",
-									url: "http://" + window.location.hostname + ":8080/huangbaihe/formRegisterCase/getOneForm",
-									dataType: "json",
+									url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
+									dataType: "JSONP",
 									data: ({
 										caseID: caseID
 									}),
 									success: function (registercase) {
 										$.ajax({
 											type: "post",
-											url: "http://" + window.location.hostname + ":8080/huangbaihe/noticePunishmentPretell/getDoc",
-											dataType: "json",
+											url: "http://huyg.site:8080/huangbaihe/noticePunishmentPretell/getDoc",
+											dataType: "JSONP",
 											data: ({
 												caseID: caseID
 											}),
 											success: function (doc) {
 												$.ajax({
 													type: "post",
-													url: "http://" + window.location.hostname + ":8080/huangbaihe/FormPunishmentDecisionExam/getOneForm",
-													dataType: "json",
+													url: "http://huyg.site:8080/huangbaihe/FormPunishmentDecisionExam/getOneForm",
+													dataType: "JSONP",
 													data: ({
 														caseID: caseID
 													}),

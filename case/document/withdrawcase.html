@@ -83,8 +83,8 @@
 					caseinfo = await new Promise(function (resolve, reject) {
 						$.ajax({
 							type: "post",
-							url: "http://" + window.location.hostname + ":8080/huangbaihe/getInfoCaseController/getCaseInfo",
-							dataType: "json",
+							url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+							dataType: "JSONP",
 							data: ({
 								caseID: caseID
 							}),
@@ -99,8 +99,8 @@
 						registercase = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://" + window.location.hostname + ":8080/huangbaihe/formRegisterCase/getOneForm",
-								dataType: "json",
+								url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
+								dataType: "JSONP",
 								data: ({
 									caseID: caseID
 								}),
@@ -126,8 +126,8 @@
 						withdrawcase = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://" + window.location.hostname + ":8080/huangbaihe/formWithdrawCase/getOneForm",
-								dataType: "json",
+								url: "http://huyg.site:8080/huangbaihe/formWithdrawCase/getOneForm",
+								dataType: "JSONP",
 								data: ({
 									caseID: caseID
 								}),
