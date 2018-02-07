@@ -150,22 +150,8 @@
 
 				},
 				exam: async function () {
-					// 查询用户
-					var allusers = await new Promise(function (resolve, reject) {
-						$.ajax({
-							method: "GET",
-							url: "http://39.106.145.68:8080/huangbaihe/login/getAllUser",
-							dataType: "JSON",
-							success: function (data) {
-								resolve(data);
-							},
-							error: function () {
-								reject();
-							}
-						})
-					})
-					var reExamResponsible = allusers.find(function (item) {
-						return item.realname == mainpageVM.detail.leader;
+					var reExamResponsible = mainpageVM.options.leader.find(function (item) {
+						return item.value == mainpageVM.detail.leader;
 					})
 					$.ajax({
 						method: "post",
@@ -225,6 +211,8 @@
 							});
 							context.options.leader = leaders.map(function (item) {
 								return {
+									uid: item.uid,
+									realname: item.realname,
 									value: item.realname,
 									text: item.realname
 								}
