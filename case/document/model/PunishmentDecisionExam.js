@@ -67,9 +67,9 @@ PunishmentDecisionExam.prototype.toExamForm = function (caseID, caseType, reExam
 
 PunishmentDecisionExam.prototype.toReExamForm = function () {
     return {
-        caseID: this.caseID,
+        caseID: this.caseId,
         leader: this.leader,
-        reExamDate: this.reExamDate,
+        reExamDate: Date.parse(this.reExamDate).toString("yyyy年MM月dd日"),
         reExamSuggestion: this.reExamSuggestion
     }
 }

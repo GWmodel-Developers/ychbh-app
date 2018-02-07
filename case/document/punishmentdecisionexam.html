@@ -169,7 +169,7 @@
 					})
 					$.ajax({
 						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/addInfoCase/exam",
+						url: "http://huyg.site:8080/huangbaihe/formPunishment/exam",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toExamForm(mainpageVM.selected_id, "待审批", reExamResponsible),
 						success: function (data) {
@@ -193,7 +193,7 @@
 				reExam: function () {
 					$.ajax({
 						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/formWithdrawCase/reExam",
+						url: "http://huyg.site:8080/huangbaihe/formPunishment/reExam",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toReExamForm(),
 						success: function (data) {
