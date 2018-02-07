@@ -229,7 +229,13 @@ UnRegisterCase.prototype.domMap = [
     },{
         key: "examSuggestion",
         name: "审核意见",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 4) return "p";
+            else if (code < 8) return "textarea";
+            else return "p";
+        })(),
         show: function (au) {
             return true;
         },
@@ -239,7 +245,13 @@ UnRegisterCase.prototype.domMap = [
     },{
         key: "reponsible",
         name: "综合执法支队负责人",
-        type: "span",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 2) return "span";
+            else if (code < 4) return "select";
+            else return "span";
+        })(),
         show: function (au) {
             return true;
         },
@@ -249,7 +261,13 @@ UnRegisterCase.prototype.domMap = [
     },{
         key: "examDate",
         name: "审核日期",
-        type: "span",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 4) return "span";
+            else if (code < 8) return "date";
+            else return "span";
+        })(),
         show: function (au) {
             return true;
         },
@@ -259,7 +277,12 @@ UnRegisterCase.prototype.domMap = [
     },{
         key: "reExamSuggestion",
         name: "审批意见",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 8) return "p";
+            else return "textarea";
+        })(),
         show: function (au) {
             return true;
         },
@@ -269,32 +292,12 @@ UnRegisterCase.prototype.domMap = [
     },{
         key: "leader",
         name: "主管领导",
-        type: "select",
-        options: (function () {
-            new Promise (function (resolve, reject) {
-                $.ajax({
-                    method: "GET",
-                    url: "http://39.106.145.68:8080/huangbaihe/login/getAllUser",
-                    dataType: "JSON",
-                    success: function (data) {
-                        var leaders = data.filter(function (value, index) {
-                            return value.role && value.role === "局内负责人";
-                        });
-                        var index = RegisterCase.prototype.domMap.findIndex(function (item) {
-                            return item.key === "leader";
-                        });
-                        resolve(RegisterCase.prototype.domMap[index].options = leaders.map(function (item) {
-                            return {
-                                value: item.uid,
-                                text: item.realname
-                            }
-                        }))
-                    },
-                    error: function () {
-                        reject("失败");
-                    }
-                });
-            })
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 4) return "span";
+            else if (code < 8) return "select";
+            else return "span";
         })(),
         show: function (au) {
             return true;
@@ -305,7 +308,12 @@ UnRegisterCase.prototype.domMap = [
     },{
         key: "reExamDate",
         name: "审批日期",
-        type: "span",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 8) return "p";
+            else return "date";
+        })(),
         show: function (au) {
             return true;
         },

@@ -291,7 +291,13 @@ Registration.prototype.domMap = [
     {
         name: "综合执法支队负责人",
         key: "examResponsible",
-        type: "span",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 2) return "span";
+            else if (code < 4) return "select";
+            else return "span";
+        })(),
         show: function (au) {
             return true;
         },

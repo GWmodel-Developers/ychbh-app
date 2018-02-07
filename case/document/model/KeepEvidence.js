@@ -131,7 +131,13 @@ KeepEvidence.prototype.domMap = [
     {
         key: "examSuggestion",
         name: "审核意见",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 4) return "p";
+            else if (code < 8) return "textarea";
+            else return "p";
+        })(),
         show: function (su) {
             return true;
         },
@@ -153,7 +159,13 @@ KeepEvidence.prototype.domMap = [
     {
         key: "examDate",
         name: "审核日期",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 4) return "span";
+            else if (code < 8) return "date";
+            else return "span";
+        })(),
         show: function (su) {
             return true;
         },
@@ -164,7 +176,12 @@ KeepEvidence.prototype.domMap = [
     {
         key: "reExamSuggestion",
         name: "审批意见",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 8) return "p";
+            else return "textarea";
+        })(),
         show: function (su) {
             return true;
         },
@@ -175,7 +192,13 @@ KeepEvidence.prototype.domMap = [
     {
         key: "leader",
         name: "主管领导",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 4) return "span";
+            else if (code < 8) return "select";
+            else return "span";
+        })(),
         show: function (su) {
             return true;
         },
@@ -186,7 +209,12 @@ KeepEvidence.prototype.domMap = [
     {
         key: "reExamDate",
         name: "审批日期",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 8) return "p";
+            else return "date";
+        })(),
         show: function (su) {
             return true;
         },

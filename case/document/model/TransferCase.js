@@ -253,7 +253,13 @@ TransferCase.prototype.domMap = [
     {
         name: "综合执法支队负责人",
         key: "examResponsible",
-        type: "span",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 2) return "span";
+            else if (code < 4) return "select";
+            else return "span";
+        })(),
         show: function (au) {
             return true;
         },
@@ -264,7 +270,13 @@ TransferCase.prototype.domMap = [
     {
         name: "审核意见",
         key: "examSuggestion",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 4) return "p";
+            else if (code < 8) return "textarea";
+            else return "p";
+        })(),
         show: function (au) {
             return au.a_case_exam == 1;
         },
@@ -275,7 +287,13 @@ TransferCase.prototype.domMap = [
     {
         name: "审核日期",
         key: "examDate",
-        type: "date",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 4) return "span";
+            else if (code < 8) return "date";
+            else return "span";
+        })(),
         show: function (au) {
             return au.a_case_exam == 1;
         },
@@ -286,7 +304,12 @@ TransferCase.prototype.domMap = [
     {
         name: "审批意见",
         key: "reExamSuggestion",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 8) return "p";
+            else return "textarea";
+        })(),
         show: function (au) {
             return au.a_case_reexam == 1;
         },
@@ -297,8 +320,13 @@ TransferCase.prototype.domMap = [
     {
         name: "主管领导",
         key: "leader",
-        type: "select",
-        options: [],
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 4) return "span";
+            else if (code < 8) return "select";
+            else return "span";
+        })(),
         show: function (au) {
             return au.a_case_exam == 1;
         },
@@ -309,7 +337,12 @@ TransferCase.prototype.domMap = [
     {
         name: "审批日期",
         key: "reExamDate",
-        type: "date",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 8) return "p";
+            else return "date";
+        })(),
         show: function (au) {
             return au.a_case_reexam == 1;
         },
