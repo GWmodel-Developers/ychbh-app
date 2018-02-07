@@ -308,12 +308,35 @@ Registration.prototype.domMap = [
     {
         name: "处理意见(负责人填写)",
         key: "examSuggestion",
-        type: "p",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 2) return "p";
+            else if (code < 4) return "textarea";
+            else return "p";
+        })(),
         show: function (au) {
             return true;
         },
         get: function (params) {
             return params.examSuggestion;
+        }
+    },
+    {
+        name: "处理时间",
+        key: "examDate",
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 2) return "span";
+            else if (code < 4) return "date";
+            else return "span";
+        })(),
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params.examDate;
         }
     },
     {
@@ -325,17 +348,6 @@ Registration.prototype.domMap = [
         },
         get: function (params) {
             return params.excutor;
-        }
-    },
-    {
-        name: "处理时间",
-        key: "examDate",
-        type: "span",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params.examDate;
         }
     }
 ]
