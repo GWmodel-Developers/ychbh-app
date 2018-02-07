@@ -133,13 +133,6 @@ CaseIndex.prototype.docMap = [
             state: function (params) {
                 return params[this.key]
             }
-        },{
-            key: "formUnRegisterCaseSate",
-            name: "不予立案呈批表",
-            link: "unregistercase",
-            state: function (params) {
-                return params[this.key]
-            }
         }]
     },{
         name: "移送立案文书",
@@ -150,14 +143,37 @@ CaseIndex.prototype.docMap = [
             state: function (params) {
                 return params[this.key]
             }
+        }]
+    },{
+        name: "扣押物品文书",
+        docs: [{
+            key: "formUnRegisterCaseSate",
+            name: "扣押物品呈批表",
+            link: "registercase",
+            state: function (params) {
+                return params[this.key]
+            }
         },{
-            key: "formTransferCaseState",
-            name: "案件移送呈批表",
-            link: "transfercase",
+            key: "formUnRegisterCaseSate",
+            name: "先行登记保存物品呈批表",
+            link: "registercase",
             state: function (params) {
                 return params[this.key]
             }
         }]
+    },{
+        name: "调重取证文书",
+        docs: [{
+            key: "formUnRegisterCaseSate",
+            name: "立案呈批表",
+            link: "registercase",
+            state: function (params) {
+                return params[this.key]
+            }
+        }]
+    },{
+        name: "行政命令文书",
+        docs: []
     },{
         name: "行政处罚文书",
         docs: [{
