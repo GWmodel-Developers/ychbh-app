@@ -23,3 +23,7 @@ ul li p.listview-aside {
     text-align: center;
     margin: 0 -16px;
 }
+
+.ui-li-static > textarea.ui-input-text {
+    margin-bottom: 0px;
+}

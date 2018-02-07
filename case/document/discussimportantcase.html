@@ -112,6 +112,11 @@
 				},
 				exam: function () {
 					
+				},
+				reExam: function () {
+					
+				},
+				queryLeaders: function (context) {
 					$.ajax({
 						method: "GET",
 						url: "http://39.106.145.68:8080/huangbaihe/login/getAllUser",
@@ -120,11 +125,6 @@
 							var leaders = data.filter(function (value, index) {
 								return value.role && value.role === "局内负责人";
 							});
-				},
-				reExam: function () {
-					
-				},
-				queryLeaders: function (context) {
 							context.options.leader = leaders.map(function (item) {
 								return {
 									value: item.uid,
@@ -148,10 +148,10 @@
 					return false;
 				},
 				showExam: function () {
-					return this.au.a_case_exam == 1 && this.au.a_case_reexam == 0;
+					return false;
 				},
 				showReExam: function () {
-					return this.au.a_case_reexam == 1;
+					return false;
 				}
 			},
 			created: function() {

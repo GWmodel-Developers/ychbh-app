@@ -26,7 +26,7 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>立案登记表</h1>
+				<h1>立案呈批表</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
                 <form action="#">
@@ -114,7 +114,28 @@
 					
 				},
 				reExam: function () {
-					
+					$.ajax({
+						method: "post",
+						url: "http://huyg.site:8080/huangbaihe/formRegisterCase/reExamForm",
+						dataType: "JSONP",
+						data: mainpageVM.detail.toReExamForm(),
+						success: function (data) {
+							if (data) {
+								new $.nd2Toast({
+									message: "操作成功"
+								})
+							} else {
+								new $.nd2Toast({
+									message: "操作失败"
+								})
+							}
+						},
+						error: function () {
+							new $.nd2Toast({
+								message: "操作失败"
+							})
+						}
+					});
 				},
 				queryLeaders: function (context) {
 					$.ajax({
