@@ -2,12 +2,29 @@
  * 撤案呈批表
  * @param {Object} params 初始化参数
  */
-function WithdrawCase(caseinfo, withdrawcase) {
-
+function WithdrawCase(caseinfo, registercase, commoncase, withdrawcase) {
+    this.case_id = null;
+    this.case_name = null;
+    this.investigate_summary = null;
+    this.withdraw_reason = null;
+    this.excutor = null;
+    this.excuteDate = null;
+    this.examResponsible = null;
+    this.examSuggestion = null;
+    this.examDate = null;
+    this.leader = null;
+    this.reExamSuggestion = null;
+    this.reExamDate = null;
     if (caseinfo) {
+        this.case_name = caseinfo.caseDescription;
+    }
+    if (caseinfo) {
+        this.brief = caseinfo.brief;
+    }
+    if (withdrawcase) {
         for (var key in this) {
-            if (caseinfo.hasOwnProperty(key)) {
-                this[key] = caseinfo[key];
+            if (withdrawcase.hasOwnProperty(key)) {
+                this[key] = withdrawcase[key];
             }
         }
     }
@@ -38,7 +55,7 @@ WithdrawCase.prototype.cardTypesText = {
 WithdrawCase.prototype.domMap = [
     {
         name: "案由",
-        key: "caseID",
+        key: "case_name",
         type: "p",
         show: function (au) {
             return true;
@@ -48,8 +65,8 @@ WithdrawCase.prototype.domMap = [
         }
     },
     {
-        name: "案由",
-        key: "brief",
+        name: "案件调查摘要",
+        key: "investigate_summary",
         type: "span",
         show: function (au) {
             return true;
@@ -59,119 +76,9 @@ WithdrawCase.prototype.domMap = [
         }
     },
     {
-        name: "案件来源",
-        key: "sourceId",
-        type: "span",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        name: "接案时间",
-        key: "receiveTime",
-        type: "span",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        name: "发案时间",
-        key: "occurTime",
-        type: "span",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        name: "发案地点",
-        key: "occurPlace",
-        type: "span",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        name: "当事人（单位）",
-        key: "objectName",
-        type: "span",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        name: "法定代表人（负责人）",
-        key: "responsible",
-        type: "span",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        name: "地址",
-        key: "address",
+        name: "撤案理由",
+        key: "withdraw_reason",
         type: "p",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        name: "联系方式",
-        key: "phone",
-        type: "span",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        name: "受移送机关",
-        key: "transferDepart",
-        type: "span",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        name: "主要案情及移送理由",
-        key: "contentAndReason",
-        type: "span",
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        name: "拟移送的证据材料及物品",
-        key: "evidence",
-        type: "span",
         show: function (au) {
             return true;
         },
@@ -191,7 +98,7 @@ WithdrawCase.prototype.domMap = [
         }
     },
     {
-        name: "办理时间",
+        name: "办理日期",
         key: "excuteDate",
         type: "span",
         show: function (au) {
@@ -204,7 +111,7 @@ WithdrawCase.prototype.domMap = [
     {
         name: "综合执法支队负责人",
         key: "examResponsible",
-        type: "span",
+        type: "select",
         show: function (au) {
             return true;
         },
@@ -217,16 +124,28 @@ WithdrawCase.prototype.domMap = [
         key: "examSuggestion",
         type: "p",
         show: function (au) {
-            return au.a_case_exam == 1;
+            return true;
         },
         get: function (params) {
             return params[this.key];
         }
     },
     {
-        name: "审核日期",
+        name: "审核时间",
         key: "examDate",
-        type: "date",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "主管领导",
+        key: "leader",
+        type: "select",
+        options: [],
         show: function (au) {
             return au.a_case_exam == 1;
         },
@@ -240,18 +159,6 @@ WithdrawCase.prototype.domMap = [
         type: "p",
         show: function (au) {
             return au.a_case_reexam == 1;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },
-    {
-        name: "主管领导",
-        key: "leader",
-        type: "select",
-        options: [],
-        show: function (au) {
-            return au.a_case_exam == 1;
         },
         get: function (params) {
             return params[this.key];

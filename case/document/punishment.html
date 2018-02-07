@@ -81,7 +81,7 @@
 					$.ajax({
 						type: "post",
 						url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
-						dataType: "json",
+						dataType: "JSONP",
 						data: ({
 							caseID: caseID
 						}),
@@ -90,7 +90,7 @@
 								$.ajax({
 									type: "post",
 									url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
-									dataType: "json",
+									dataType: "JSONP",
 									data: ({
 										caseID: caseID
 									}),
@@ -106,7 +106,7 @@
 												$.ajax({
 													type: "post",
 													url: "http://huyg.site:8080/huangbaihe/formPunishment/getOneForm",
-													dataType: "json",
+													dataType: "JSONP",
 													data: ({
 														caseID: caseID
 													}),

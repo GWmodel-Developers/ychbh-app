@@ -209,7 +209,7 @@
 					$.ajax({
 						method: "POST",
 						url:"http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
-						dataType: "JSON",
+						dataType: "JSONP",
 						data: ({
 							caseID: caseID
 						}),
@@ -227,7 +227,7 @@
 					$.ajax({
 						type:"POST",
 						url:"http://huyg.site:8080/huangbaihe/showCaseList/query",
-						dataType: "json",
+						dataType: "JSONP",
 						data: mainpageVM.searchText,
 						success: function(data) {
 							mainpageVM.items = data.rows;
