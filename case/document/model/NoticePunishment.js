@@ -41,7 +41,7 @@ function NoticePunishment(caseinfo, registercase, commoncase, noticepunishment) 
     if (noticepunishment) {
         for (var key in this) {
             if (this.hasOwnProperty(key)) {
-                this[key] = punishment[key];
+                this[key] = noticepunishment[key];
             }
         }
     }

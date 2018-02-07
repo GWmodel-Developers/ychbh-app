@@ -74,13 +74,15 @@
 								<span class="listview-aside">共{{ task_list.length }}条</span>
 							</li>
 							<li class="ui-li-static ui-body-inherit" v-for="task in task_list">
-								<h3> <span class="nd2-label nd2-label-left" v-if="task.state != null" v-bind:class="{
-									'nd2-label-grey': getCaseState(task.state) == 0,
-									'nd2-label-amber': getCaseState(task.state) == 1,
-									'nd2-label-orange': getCaseState(task.state) == 2,
-									'nd2-label-green': getCaseState(task.state) == 3
-								}">{{ caseStateType[getCaseState(task.state)] }}</span> {{ task.case_name }}</h3>
-								<p class="listview-aside">{{ task.document_name }}</p>
+								<a href="#" @click="gotoTask(task)" class="ui-btn" style="padding: 0px;">
+									<h3> <span class="nd2-label nd2-label-left" v-if="task.state != null" v-bind:class="{
+										'nd2-label-grey': task.case_type == '未填写',
+										'nd2-label-amber': task.case_type == '待审核',
+										'nd2-label-orange': task.case_type == '待审批',
+										'nd2-label-green': task.case_type == '已填写'
+									}">{{ task.case_type }}</span> {{ task.case_name }}</h3>
+									<p class="listview-aside">{{ task.document_name }}</p>
+								</a>
 							</li>
 						</ul>
 					</div>
@@ -185,6 +187,7 @@
 			</div>
 		</div>
 		<script type="text/javascript" src="../vuejs/vue.min.js"></script>
+		<script src="case/model/CaseIndex.js"></script>
 		<script>
 			var vm = new Vue({
 				el: "#page",
@@ -216,6 +219,24 @@
 						}
 						if (caseState == 59999 || caseState == 69999 || caseState == 79999 || caseState == 99999 || caseState == 99998) {
 							return 2;
+						}
+					},
+					gotoTask: function (task) {
+						if (task) {
+							localStorage.setItem("caseID", task.case_id);
+							var targetHref;
+							for (var i = 0; i < CaseIndex.prototype.docMap.length; i++) {
+								const group = CaseIndex.prototype.docMap[i];
+								for (var j = 0; j < group.docs.length; j++) {
+									const doc = group.docs[j];
+									if (doc.name === task.document_name) {
+										targetHref = doc.link;
+										break;
+									}
+								}
+								if (targetHref) break;
+							}
+							window.location = "case/document/" + targetHref + ".html"
 						}
 					}
 				},
