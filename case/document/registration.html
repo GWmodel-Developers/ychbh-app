@@ -77,8 +77,8 @@
 				queryItem: function(caseID, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://" + window.location.hostname + ":8080/huangbaihe/getInfoCaseController/getCaseInfo",
-						dataType: "json",
+						url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						dataType: "JSONP",
 						data: ({
 							caseID: caseID
 						}),
