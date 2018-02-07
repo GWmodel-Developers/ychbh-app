@@ -73,7 +73,8 @@
 				detail: new WithdrawCase(),
 				au: JSON.parse(localStorage.getItem("au")),
 				options: {
-					leader: []
+					leader: [],
+					examResponsible: []
 				}
 			},
 			methods: {
@@ -130,7 +131,7 @@
 								data: ({
 									caseID: caseID
 								}),
-								success: function (data) { resolve(data.rows) }
+								success: function (data) { resolve(data) }
 							})
 						})
 					}
@@ -158,6 +159,15 @@
 								return value.role && value.role === "局内负责人";
 							});
 							context.options.leader = leaders.map(function (item) {
+								return {
+									value: item.uid,
+									text: item.realname
+								}
+							})
+							var examResponsible = data.filter(function (value, index) {
+								return value.role && value.role === "支队负责人";
+							})
+							context.options.examResponsible = examResponsible.map(function (item) {
 								return {
 									value: item.uid,
 									text: item.realname
