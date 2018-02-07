@@ -189,5 +189,5 @@ SurveyRecordDetail.prototype.domMap = [
         get: function (params) {
             return params[this.key];
         }
-    },
+    }
 ]

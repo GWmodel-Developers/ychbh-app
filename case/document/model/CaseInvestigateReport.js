@@ -31,8 +31,6 @@ function CaseInvestigateReport(params) {
             if (params.hasOwnProperty(key)) {
                 var element = params[key];
                 this[key] = element
-                // if(key === "caseDescription")
-                // alert(element);
             }
         }
     }
