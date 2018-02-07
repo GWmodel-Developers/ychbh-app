@@ -50,7 +50,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "objectName",
         name: "当事人（单位）",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -61,7 +61,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "responsible",
         name: "法定代表人（负责人）",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -72,7 +72,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "objectSex",
         name: "性别",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -83,7 +83,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "objectAge",
         name: "年龄",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -94,7 +94,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "objectPhone",
         name: "联系方式	",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -105,7 +105,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "objectDepart",
         name: "工作单位",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -116,7 +116,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "objectAddress",
         name: "地址",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -127,7 +127,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "agent",
         name: "委托代理人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -138,7 +138,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "agentSex",
         name: "性别",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -149,7 +149,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "agentAge",
         name: "年龄",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -160,7 +160,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "agentPosition",
         name: "职务",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -171,7 +171,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "agentPhone",
         name: "联系方式",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -182,7 +182,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "agentDepart",
         name: "工作单位",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -193,7 +193,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "agentAddress",
         name: "地址",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -204,7 +204,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "excutor",
         name: "案件经办人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -215,7 +215,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "host",
         name: "听证主持人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -226,7 +226,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "courtClerk",
         name: "书记员",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -237,7 +237,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "startHearing",
         name: "听证开始时间",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -248,7 +248,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "endHearing",
         name: "听证结束时间",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -259,7 +259,7 @@ PunishmentHearingNote.prototype.domMap = [
     {
         key: "hearingMethod",
         name: "听证方式",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },

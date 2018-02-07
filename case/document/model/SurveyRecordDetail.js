@@ -45,23 +45,29 @@ SurveyRecordDetail.prototype.domMap = [
     {
         key: "startSurvey",
         name: "勘验开始时间",
-        type: "date",
+        type: "span",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
         key: "endSurvey",
         name: "勘验结束时间",
-        type: "date",
+        type: "span",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
         key: "place",
         name: "勘验地点",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -72,7 +78,7 @@ SurveyRecordDetail.prototype.domMap = [
     {
         key: "instrument",
         name: "勘验仪器",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -83,7 +89,7 @@ SurveyRecordDetail.prototype.domMap = [
     {
         key: "content",
         name: "勘验内容",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -94,7 +100,7 @@ SurveyRecordDetail.prototype.domMap = [
     {
         key: "responsible",
         name: "勘验负责人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -105,7 +111,7 @@ SurveyRecordDetail.prototype.domMap = [
     {
         key: "responsibleAge",
         name: "年龄",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -116,7 +122,7 @@ SurveyRecordDetail.prototype.domMap = [
     {
         key: "responsibleSex",
         name: "性别",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -127,7 +133,7 @@ SurveyRecordDetail.prototype.domMap = [
     {
         key: "excutor",
         name: "勘验人员",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -138,7 +144,7 @@ SurveyRecordDetail.prototype.domMap = [
     {
         key: "responsiblePosition",
         name: "职务",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -149,7 +155,7 @@ SurveyRecordDetail.prototype.domMap = [
     {
         key: "witness",
         name: "当事人或见证人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
