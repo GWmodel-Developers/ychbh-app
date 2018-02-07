@@ -50,16 +50,14 @@
 						<input type="text" name="dins_person" id="dins_person" v-model="form.dins_person">
 					</div>
 					<div class="ui-field-contain">
+						<label for="dins_depart">巡查部门</label>
+						<select name="dins_depart" id="dins_depart" v-model="form.dins_depart">
+							<option v-for="depart in depart_options" v-bind:value="depart">{{ depart }}</option>
+						</select>
+					</div>
+					<div class="ui-field-contain">
 						<label for="dins_zone">巡查区域</label>
 						<input type="text" name="dins_zone" id="dins_zone" v-model="form.dins_zone">
-					</div>
-					<div class="ui-field-contain">
-						<label for="dins_time">巡查时间</label>
-						<input type="time" name="dins_time" id="dins_time" v-model="form.dins_time">
-					</div>
-					<div class="ui-field-contain">
-						<label for="dins_point">巡查地点</label>
-						<input type="text" name="dins_point" id="dins_point" v-model="form.dins_point">
 					</div>
 					<div class="ui-field-contain">
 						<label for="dins_content">巡查情况</label>
@@ -91,13 +89,20 @@
 						dins_id: "rcjc-" + new Date().toString("yyyyMMddHHmmss"),
 						dins_date: new Date().toString("yyyy-MM-dd"),
 						dins_zone: "",
-						dins_time: new Date().toString("HH:mm"),
 						dins_person: "",
-						dins_point: "",
+						dins_depart: "",
 						dins_content: "",
 						dins_other: "",
 						dins_record: ""
-					}
+					},
+					depart_options: [
+						"局与支队领导",
+						"执法一大队",
+						"执法二大队",
+						"执法三大队",
+						"支队办公室",
+						"其他",
+					]
 				},
 				methods: {
 					submit: function () {

@@ -42,7 +42,13 @@
 					<form v-on:submit.prevent>
 						<div class="ui-field-contain">
 							<label for="startdate">日期</label>
-							<input type="date" name="startdate" id="startdate" value="" v-model="searchText"/>
+							<input type="date" name="startdate" id="startdate" value="" v-model="searchText.date"/>
+						</div>
+						<div class="ui-field-contain">
+							<label for="dins_depart">巡查部门</label>
+							<select name="dins_depart" id="dins_depart" v-model="searchText.depart">
+								<option v-for="depart in depart_options" v-bind:value="depart">{{ depart }}</option>
+							</select>
 						</div>
 					</form>
 					<div class="row between-xs">
@@ -50,7 +56,7 @@
 							<a href="#" class="ui-btn clr-primary" data-rel="back" v-on:click="searchItems(searchText)">搜索</a>
 						</div>
 						<div class="col-xs-6">
-							<a href="#" class="ui-btn" data-rel="back" onclick="$('#popupFilter').popup('close')" data-role="button">取消</a>																
+							<a href="#" class="ui-btn" data-rel="back" data-role="button">取消</a>																
 						</div>
 					</div>
 				</div>
@@ -79,8 +85,19 @@
 				items: [],
 				pageIndex: 0,
 				total: 0,
-				searchText: Date.today().toString("yyyy-MM-dd"),
-				showPagination: true
+				searchText: {
+					date: Date.today().toString("yyyy-MM-dd"),
+					depart: "",
+				},
+				showPagination: true,
+				depart_options: [
+					"局与支队领导",
+					"执法一大队",
+					"执法二大队",
+					"执法三大队",
+					"支队办公室",
+					"其他",
+				]
 			},
 			computed: {
 				previousPageEnable: function() {
@@ -94,13 +111,14 @@
 				}
 			},
 			methods: {
-				searchItems: function(date) {
+				searchItems: function(searchText) {
 					$.ajax({
 						type: "POST",
 						url: "http://39.106.145.68:8080/huangbaihe/DInspec/query",
 						dataType: "json",
 						data: {
-							date: Date.parse(date).toString("yyyy年MM月dd日")
+							date: Date.parse(searchText.date).toString("yyyy年MM月dd日"),
+							dins_depart: searchText.depart
 						},
 						success: function(data) {
 							content.items = data.rows;
