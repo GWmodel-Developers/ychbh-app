@@ -49,6 +49,31 @@ function PunishmentDecisionExam(caseinfo, registercase, pretell, punishment) {
     }
 }
 
+PunishmentDecisionExam.prototype.toExamForm = function (caseID, caseType, reExamResponsible) {
+    return {
+        caseID: caseID,
+        caseId: caseID,
+        caseName: this.brief,
+        caseType: caseType,
+        documentName: "行政处罚审批表",
+        examDate: this.examDate,
+        examResponsible: this.examResponsible,
+        examSuggestion: this.examSuggestion,
+        leader: this.leader,
+        userId: reExamResponsible.uid,
+        userName: reExamResponsible.realname
+    }
+}
+
+PunishmentDecisionExam.prototype.toReExamForm = function () {
+    return {
+        caseID: this.caseID,
+        leader: this.leader,
+        reExamDate: this.reExamDate,
+        reExamSuggestion: this.reExamSuggestion
+    }
+}
+
 PunishmentDecisionExam.prototype.domMap = [
     {
         name: "案由/案件名称",

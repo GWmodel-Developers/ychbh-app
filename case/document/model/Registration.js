@@ -111,6 +111,16 @@ Registration.prototype.cardTypesText = {
     "港澳台同胞证": "港澳台同胞证"
 }
 
+Registration.prototype.toExamForm = function () {
+    return {
+        caseID: this.caseID,
+        examDate: this.examDate,
+        examResponsible: this.examResponsible,
+        examSuggestion: this.examSuggestion,
+        excutor: this.excutor
+    }
+}
+
 Registration.prototype.domMap = [
     {
         name: "违法类型",

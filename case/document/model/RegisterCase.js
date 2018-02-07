@@ -42,7 +42,7 @@ function RegisterCase(caseinfo, registercase) {
     }
 }
 
-Registration.prototype.sourceTypesText = {
+RegisterCase.prototype.sourceTypesText = {
     "1": "群众举报",
     "2": "巡查发现",
     "3": "媒体发现",
@@ -53,7 +53,7 @@ Registration.prototype.sourceTypesText = {
     "部门转办": "部门转办"
 };
 
-Registration.prototype.illegalTypesText = {
+RegisterCase.prototype.illegalTypesText = {
     "1": "水利",
     "2": "环保",
     "3": "渔业",
@@ -64,7 +64,7 @@ Registration.prototype.illegalTypesText = {
     "海事": "海事"
 };
 
-Registration.prototype.placesText = {
+RegisterCase.prototype.placesText = {
     "1": "第一区",
     "2": "第二区",
     "3": "第三区",
@@ -75,7 +75,7 @@ Registration.prototype.placesText = {
     "第四区": "第四区",
 };
 
-Registration.prototype.cardTypesText = {
+RegisterCase.prototype.cardTypesText = {
     "1": "身份证",
     "2": "军官证",
     "3": "学生证",
@@ -84,6 +84,31 @@ Registration.prototype.cardTypesText = {
     "军官证": "军官证",
     "学生证": "学生证",
     "港澳台同胞证": "港澳台同胞证"
+}
+
+RegisterCase.prototype.toExamForm = function (caseID, caseType, reExamResponsible) {
+    return {
+        caseID: caseID,
+        caseId: caseID,
+        caseName: this.caseName,
+        caseType: caseType,
+        documentName: "立案呈批表",
+        examDate: this.examDate,
+        examSuggestion: this.examSuggestion,
+        leader: this.leader,
+        reponsible: this.reponsible,
+        userId: reExamResponsible.uid,
+        userName: reExamResponsible.realname
+    }
+}
+
+RegisterCase.prototype.toReExamForm = function () {
+    return {
+        caseID: this.caseID,
+        leader: this.leader,
+        reExamDate: this.reExamDate,
+        reExamSuggestion: this.reExamSuggestion
+    }
 }
 
 RegisterCase.prototype.domMap = [

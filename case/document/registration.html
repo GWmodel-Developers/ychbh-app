@@ -94,7 +94,28 @@
 					
 				},
 				exam: function () {
-					
+					$.ajax({
+						method: "POST",
+						url: "http://huyg.site:8080/huangbaihe/addInfoCase/examForm",
+						dataType: "JSONP",
+						data: mainpageVM.detail.toExamForm(),
+						success: function (data) {
+							if (data) {
+								new $.nd2Toast({
+									message: "操作成功"
+								})
+							} else {
+								new $.nd2Toast({
+									message: "操作失败"
+								})
+							}
+						},
+						error: function () {
+							new $.nd2Toast({
+								message: "操作失败"
+							})
+						}
+					})
 				},
 				reExam: function () {
 					
@@ -111,7 +132,7 @@
 					return this.au.a_case_exam == 1 && this.au.a_case_reexam == 0;
 				},
 				showReExam: function () {
-					return this.au.a_case_reexam == 1;
+					return false;
 				}
 			},
 			created: function() {
