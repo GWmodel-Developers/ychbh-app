@@ -121,6 +121,16 @@ Registration.prototype.toExamForm = function () {
     }
 }
 
+Registration.prototype.toReExamForm = function () {
+    return {
+        caseID: this.caseID,
+        examDate: this.examDate,
+        examResponsible: this.examResponsible,
+        examSuggestion: this.examSuggestion,
+        excutor: this.excutor
+    }
+}
+
 Registration.prototype.domMap = [
     {
         name: "违法类型",

@@ -147,11 +147,14 @@
 					
 				},
 				exam: function () {
+					var reExamResponsible = mainpageVM.options.leader.find(function (item) {
+						return item.value == mainpageVM.detail.leader;
+					})
 					$.ajax({
 						method: "post",
 						url: "http://huyg.site:8080/huangbaihe/formWithdrawCase/exam",
 						dataType: "JSONP",
-						data: mainpageVM.detail.toExamForm(),
+						data: mainpageVM.detail.toExamForm(mainpageVM.selected_id, "待审批", reExamResponsible),
 						success: function (data) {
 							if (data) {
 								new $.nd2Toast({
@@ -205,6 +208,8 @@
 							});
 							context.options.leader = leaders.map(function (item) {
 								return {
+									uid: item.uid,
+									realname: item.realname,
 									value: item.uid,
 									text: item.realname
 								}

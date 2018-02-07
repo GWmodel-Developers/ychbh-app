@@ -61,18 +61,18 @@ WithdrawCase.prototype.toReExamForm = function () {
     }
 }
 
-WithdrawCase.prototype.toExamForm = function () {
+WithdrawCase.prototype.toExamForm = function (caseID, caseType, leader) {
     return {
-        caseID: this.case_id,
+        caseID: caseID,
         examSuggestion: this.examSuggestion,
         examResponsible: this.examResponsible,
         examDate: this.examDate,
         leader: this.leader,
-        userId: this.leader,
-        userName: this.userName,
+        userId: leader.uid,
+        userName: leader.realname,
         caseId: this.case_id,
         caseName: this.case_name,
-        caseType: this.caseType,
+        caseType: caseType,
         documentName: this.documentName
     }
 }
