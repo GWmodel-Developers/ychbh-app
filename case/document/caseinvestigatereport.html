@@ -86,7 +86,7 @@
 					<a v-if="showExam" href="#" class="ui-btn clr-btn-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="exam()">
 						<i class="md zmdi zmdi-eye"></i>审核
 					</a>
-					<a v-if="showApproval" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="approval()">
+					<a v-if="showReExam" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="reExam()">
 						<i class="md zmdi zmdi-check"></i>审批
 					</a>
 				</div>
@@ -130,7 +130,7 @@
 				exam: function () {
 					
 				},
-				approval: function () {
+				reExam: function () {
 					
 				}
 
@@ -145,7 +145,7 @@
 				showExam: function () {
 					return false;
 				},
-				showApproval: function () {
+				showReExam: function () {
 					return true;
 				}
 			},

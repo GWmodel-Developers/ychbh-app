@@ -57,7 +57,7 @@
 					<a v-if="showExam" href="#" class="ui-btn clr-btn-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="exam()">
 						<i class="md zmdi zmdi-eye"></i>审核
 					</a>
-					<a v-if="showApproval" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="approval()">
+					<a v-if="showReExam" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="reExam()">
 						<i class="md zmdi zmdi-check"></i>审批
 					</a>
 				</div>
@@ -115,6 +115,11 @@
 				},
 				exam: function () {
 					
+				},
+				reExam: function () {
+					
+				},
+				queryLeaders: function (context) {
 					$.ajax({
 						method: "GET",
 						url: "http://39.106.145.68:8080/huangbaihe/login/getAllUser",
@@ -123,11 +128,6 @@
 							var leaders = data.filter(function (value, index) {
 								return value.role && value.role === "局内负责人";
 							});
-				},
-				approval: function () {
-					
-				},
-				queryLeaders: function (context) {
 							context.options.leader = leaders.map(function (item) {
 								return {
 									value: item.uid,
@@ -151,10 +151,10 @@
 					return false;
 				},
 				showExam: function () {
-					return this.au.a_case_exam == 1;
+					return false;
 				},
-				showApproval: function () {
-					return this.au.a_case_reexam == 1;
+				showReExam: function () {
+					return false;
 				}
 			},
 			created: function() {

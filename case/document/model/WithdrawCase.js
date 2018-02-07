@@ -52,6 +52,15 @@ WithdrawCase.prototype.cardTypesText = {
     "港澳台同胞证": "港澳台同胞证"
 }
 
+WithdrawCase.prototype.toReExamForm = function () {
+    return {
+        caseId: this.case_id,
+        leader: this.leader,
+        reExamDate: this.reExamDate,
+        reExamSuggestion: this.reExamSuggestion
+    }
+}
+
 WithdrawCase.prototype.domMap = [
     {
         name: "案由",

@@ -214,14 +214,14 @@ CaseIndex.prototype.docMap = [
         },{
             key: "formPunishmentState",
             name: "行政处罚呈批表",
-            link: "punishment",
+            link: "punishmentdecisionexam",
             state: function (params) {
                 return params[this.key]
             }
         },{
             key: "noticePunishmentPretellState",
             name: "行政处罚事先告知书",
-            link: "punishment",
+            link: "noticepunishment",
             state: function (params) {
                 return params[this.key]
             }

@@ -93,8 +93,8 @@ NoticePunishment.prototype.cardTypesText = {
 
 NoticePunishment.prototype.domMap = [
     {
-        name: "案由",
-        key: "brief",
+        name: "宜黄综罚告字",
+        key: "document_id",
         type: "span",
         show: function (au) {
             return true;
@@ -104,7 +104,29 @@ NoticePunishment.prototype.domMap = [
         }
     },
     {
-        name: "主要违法事实",
+        name: "当事人（单位）",
+        key: "object_name",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "发案时间",
+        key: "occur_time",
+        type: "p",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    },
+    {
+        name: "案情",
         key: "event",
         type: "span",
         show: function (au) {
@@ -137,7 +159,7 @@ NoticePunishment.prototype.domMap = [
         }
     },
     {
-        name: "建议给予行政处罚",
+        name: "行政处罚",
         key: "punishment",
         type: "span",
         show: function (au) {
@@ -148,8 +170,8 @@ NoticePunishment.prototype.domMap = [
         }
     },
     {
-        name: "承办人",
-        key: "excutor",
+        name: "陈述和申辩截止时间",
+        key: "limit_date",
         type: "span",
         show: function (au) {
             return true;
@@ -159,8 +181,8 @@ NoticePunishment.prototype.domMap = [
         }
     },
     {
-        name: "办理日期",
-        key: "excuteDate",
+        name: "陈述和申辩地点",
+        key: "plea_place",
         type: "span",
         show: function (au) {
             return true;
@@ -168,99 +190,16 @@ NoticePunishment.prototype.domMap = [
         get: function (params) {
             return params[this.key];
         }
-    },{
-        key: "reponsible",
-        name: "综合执法支队负责人",
-        type: (function () {
-            var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
-            if (code < 2) return "span";
-            else if (code < 4) return "select";
-            else return "span";
-        })(),
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },{
-        key: "examSuggestion",
-        name: "审核意见",
-        type: (function () {
-            var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
-            if (code < 4) return "p";
-            else if (code < 8) return "textarea";
-            else return "p";
-        })(),
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },{
-        key: "examDate",
-        name: "审核日期",
-        type: (function () {
-            var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
-            if (code < 4) return "span";
-            else if (code < 8) return "date";
-            else return "span";
-        })(),
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },{
-        key: "leader",
-        name: "主管领导",
-        type: (function () {
-            var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
-            if (code < 4) return "span";
-            else if (code < 8) return "select";
-            else return "span";
-        })(),
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },{
-        key: "reExamSuggestion",
-        name: "审批意见",
-        type: (function () {
-            var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
-            if (code < 8) return "p";
-            else return "textarea";
-        })(),
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
-    },{
-        key: "reExamDate",
-        name: "审批日期",
-        type: (function () {
-            var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
-            if (code < 8) return "p";
-            else return "date";
-        })(),
-        show: function (au) {
-            return true;
-        },
-        get: function (params) {
-            return params[this.key];
-        }
     },
+    {
+        name: "告知日期",
+        key: "publish_date",
+        type: "span",
+        show: function (au) {
+            return true;
+        },
+        get: function (params) {
+            return params[this.key];
+        }
+    }
 ]

@@ -47,7 +47,7 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>行政处罚决定审批表</h1>
+				<h1>行政处罚呈批表</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
 				<form action="#">
@@ -73,8 +73,8 @@
 					<a v-if="showExam" href="#" class="ui-btn clr-btn-orange ui-btn-icon-left ui-btn-raised ui-btn-inline"
 					 @click="exam()">
 						<i class="md zmdi zmdi-eye"></i>审核 </a>
-					<a v-if="showApproval" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline"
-					 @click="approval()">
+					<a v-if="showReExam" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline"
+					 @click="reExam()">
 						<i class="md zmdi zmdi-check"></i>审批 </a>
 				</div>
 			</div>
@@ -149,11 +149,70 @@
 				update: function () {
 
 				},
-				exam: function () {
-
+				exam: async function () {
+					// 查询用户
+					var allusers = await new Promise(function (resolve, reject) {
+						$.ajax({
+							method: "GET",
+							url: "http://39.106.145.68:8080/huangbaihe/login/getAllUser",
+							dataType: "JSON",
+							success: function (data) {
+								resolve(data);
+							},
+							error: function () {
+								reject();
+							}
+						})
+					})
+					var reExamResponsible = allusers.find(function (item) {
+						return item.realname == mainpageVM.detail.leader;
+					})
+					$.ajax({
+						method: "post",
+						url: "http://huyg.site:8080/huangbaihe/formPunishment/exam",
+						dataType: "JSONP",
+						data: mainpageVM.detail.toExamForm(mainpageVM.selected_id, "待审批", reExamResponsible),
+						success: function (data) {
+							if (data) {
+								new $.nd2Toast({
+									message: "操作成功"
+								})
+							} else {
+								new $.nd2Toast({
+									message: "操作失败"
+								})
+							}
+						},
+						error: function () {
+							new $.nd2Toast({
+								message: "操作失败"
+							})
+						}
+					});
 				},
-				approval: function () {
-
+				reExam: function () {
+					$.ajax({
+						method: "post",
+						url: "http://huyg.site:8080/huangbaihe/formWithdrawCase/reExam",
+						dataType: "JSONP",
+						data: mainpageVM.detail.toReExamForm(),
+						success: function (data) {
+							if (data) {
+								new $.nd2Toast({
+									message: "操作成功"
+								})
+							} else {
+								new $.nd2Toast({
+									message: "操作失败"
+								})
+							}
+						},
+						error: function () {
+							new $.nd2Toast({
+								message: "操作失败"
+							})
+						}
+					});
 				},
 				queryLeaders: function (context) {
 					$.ajax({
@@ -166,7 +225,7 @@
 							});
 							context.options.leader = leaders.map(function (item) {
 								return {
-									value: item.uid,
+									value: item.realname,
 									text: item.realname
 								}
 							})
@@ -187,9 +246,9 @@
 					return false;
 				},
 				showExam: function () {
-					return this.au.a_case_exam == 1;
+					return this.au.a_case_exam == 1 && this.au.a_case_reexam == 0;
 				},
-				showApproval: function () {
+				showReExam: function () {
 					return this.au.a_case_reexam == 1;
 				}
 			},
