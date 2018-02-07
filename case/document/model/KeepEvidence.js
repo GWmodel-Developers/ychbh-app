@@ -32,7 +32,7 @@ KeepEvidence.prototype.domMap = [
     {
         key: "caseID",
         name: "案件编号",
-        type: "p",
+        type: "span",
         show: function (su) {
             return true;
         },
@@ -54,7 +54,7 @@ KeepEvidence.prototype.domMap = [
     {
         key: "objectName",
         name: "对象名称",
-        type: "p",
+        type: "span",
         show: function (su) {
             return true;
         },
@@ -65,7 +65,7 @@ KeepEvidence.prototype.domMap = [
     {
         key: "occurDate",
         name: "发生日期",
-        type: "p",
+        type: "span",
         show: function (su) {
             return true;
         },
@@ -76,7 +76,7 @@ KeepEvidence.prototype.domMap = [
     {
         key: "evidence",
         name: "保存的物品",
-        type: "p",
+        type: "span",
         show: function (su) {
             return true;
         },
@@ -87,7 +87,7 @@ KeepEvidence.prototype.domMap = [
     {
         key: "keepPlace",
         name: "保存地点",
-        type: "p",
+        type: "span",
         show: function (su) {
             return true;
         },
@@ -98,7 +98,7 @@ KeepEvidence.prototype.domMap = [
     {
         key: "excutor1",
         name: "经办人1",
-        type: "p",
+        type: "span",
         show: function (su) {
             return true;
         },
@@ -109,7 +109,7 @@ KeepEvidence.prototype.domMap = [
     {
         key: "excutor2",
         name: "经办人2",
-        type: "p",
+        type: "span",
         show: function (su) {
             return true;
         },
@@ -120,7 +120,7 @@ KeepEvidence.prototype.domMap = [
     {
         key: "publishDate",
         name: "提交日期",
-        type: "p",
+        type: "span",
         show: function (su) {
             return true;
         },
@@ -148,12 +148,18 @@ KeepEvidence.prototype.domMap = [
     {
         key: "reponsible",
         name: "支队执法负责人",
-        type: "p",
-        show: function (su) {
+        type: (function () {
+            var au = JSON.parse(localStorage.getItem("au"));
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            if (code < 2) return "span";
+            else if (code < 4) return "select";
+            else return "span";
+        })(),
+        show: function (au) {
             return true;
         },
         get: function (params) {
-            return params[this.key]
+            return params[this.key];
         }
     },
     {
@@ -221,6 +227,5 @@ KeepEvidence.prototype.domMap = [
         get: function (params) {
             return params[this.key]
         }
-    },
-
+    }
 ]

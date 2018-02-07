@@ -50,23 +50,29 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "startExam",
         name: "询问开始时间",
-        type: "date",
+        type: "span",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
         key: "endExam",
         name: "询问结束时间",
-        type: "date",
+        type: "span",
         show: function (au) {
             return true;
+        },
+        get: function (params) {
+            return params[this.key];
         }
     },
     {
         key: "examPlace",
         name: "询问地点",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -77,7 +83,7 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "objectName",
         name: "询问对象姓名",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -88,7 +94,7 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "objectSex",
         name: "询问对象性别",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -99,7 +105,7 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "objectAge",
         name: "询问对象年龄",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -110,7 +116,7 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "objectId",
         name: "询问对象身份证号",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -121,7 +127,7 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "objectPhone",
         name: "询问对象联系方式",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -132,7 +138,7 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "objectDepartment",
         name: "询问对象工作单位",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -143,7 +149,7 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "objectAddress",
         name: "询问对象联系地址",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -154,7 +160,7 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "interrogator",
         name: "询问人姓名",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -165,7 +171,7 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "excutor1",
         name: "经办人1姓名",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -176,7 +182,7 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "excutor2",
         name: "经办人2姓名",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -187,7 +193,7 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "excutor1Id",
         name: "经办人1证件编号",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -198,7 +204,7 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "excutor2Id",
         name: "经办人2证件编号",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -209,7 +215,7 @@ InquireRecordDetail.prototype.domMap = [
     {
         key: "recorder",
         name: "记录人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },

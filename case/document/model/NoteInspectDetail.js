@@ -35,7 +35,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "objectName",
         name: "被检查人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -46,7 +46,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "startInspect",
         name: "开始时间",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -57,7 +57,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "endInspect",
         name: "结束时间",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -68,7 +68,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "inchare",
         name: "法定代表",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -79,7 +79,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "inchareAge",
         name: "年龄",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -90,7 +90,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "inchareSex",
         name: "性别",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -101,7 +101,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "inchareID",
         name: "身份证号",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -112,7 +112,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "incharePhone",
         name: "联系电话",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -123,7 +123,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "placeName",
         name: "检查现场",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -134,7 +134,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "weather",
         name: "天气情况",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -145,7 +145,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "excutor",
         name: "检查人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -156,7 +156,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "recorder",
         name: "记录人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -167,7 +167,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "excutorID",
         name: "检查人证件号",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -178,7 +178,7 @@ NoteInspectDetail.prototype.domMap = [
     {
         key: "recorderID",
         name: "记录人证件号",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },

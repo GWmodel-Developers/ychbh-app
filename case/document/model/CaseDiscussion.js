@@ -38,7 +38,7 @@ CaseDiscussion.prototype.domMap = [
     {
         key: "discussDate",
         name: "讨论时间",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -49,7 +49,7 @@ CaseDiscussion.prototype.domMap = [
     {
         key: "place",
         name: "地点",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -60,7 +60,7 @@ CaseDiscussion.prototype.domMap = [
     {
         key: "participants",
         name: "参加人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -71,7 +71,7 @@ CaseDiscussion.prototype.domMap = [
     {
         key: "host",
         name: "主持人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -82,7 +82,7 @@ CaseDiscussion.prototype.domMap = [
     {
         key: "reporter",
         name: "汇报人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -93,7 +93,7 @@ CaseDiscussion.prototype.domMap = [
     {
         key: "recorder",
         name: "记录人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -133,5 +133,5 @@ CaseDiscussion.prototype.domMap = [
         get: function (params) {
             return params[this.key];
         }
-    },
+    }
 ]

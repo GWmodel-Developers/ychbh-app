@@ -39,7 +39,7 @@ PunishmentHearingOpion.prototype.domMap = [
     {
         key: "startHearing",
         name: "听证开始时间",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -50,7 +50,7 @@ PunishmentHearingOpion.prototype.domMap = [
     {
         key: "endHearing",
         name: "听证结束时间",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -61,7 +61,7 @@ PunishmentHearingOpion.prototype.domMap = [
     {
         key: "host",
         name: "听证主持人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -72,7 +72,7 @@ PunishmentHearingOpion.prototype.domMap = [
     {
         key: "hearingMethod",
         name: "听证方式",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -83,7 +83,7 @@ PunishmentHearingOpion.prototype.domMap = [
     {
         key: "caseSituation",
         name: "案件基本情况",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -127,7 +127,7 @@ PunishmentHearingOpion.prototype.domMap = [
     {
         key: "hearingHost",
         name: "听证主持人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -138,7 +138,7 @@ PunishmentHearingOpion.prototype.domMap = [
     {
         key: "hostDate",
         name: "日期",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },

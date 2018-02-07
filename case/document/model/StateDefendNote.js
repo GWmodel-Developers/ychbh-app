@@ -37,7 +37,7 @@ StateDefendNote.prototype.domMap = [
     {
         key: "plea",
         name: "陈述、申辩人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -48,7 +48,7 @@ StateDefendNote.prototype.domMap = [
     {
         key: "pleaPhone",
         name: "联系方式",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -59,7 +59,7 @@ StateDefendNote.prototype.domMap = [
     {
         key: "startPlead",
         name: "开始时间",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -70,7 +70,7 @@ StateDefendNote.prototype.domMap = [
     {
         key: "endPlead",
         name: "结束时间",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -81,7 +81,7 @@ StateDefendNote.prototype.domMap = [
     {
         key: "pleadPlace",
         name: "申辩地点",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -92,7 +92,7 @@ StateDefendNote.prototype.domMap = [
     {
         key: "excutor",
         name: "经办人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
@@ -103,7 +103,7 @@ StateDefendNote.prototype.domMap = [
     {
         key: "recorder",
         name: "记录人",
-        type: "p",
+        type: "span",
         show: function (au) {
             return true;
         },
