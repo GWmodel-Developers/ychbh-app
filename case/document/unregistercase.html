@@ -80,7 +80,7 @@
 				queryItem: function(caseID, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						url: "http://" + window.location.hostname + ":8080/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "json",
 						data: ({
 							caseID: caseID
@@ -89,7 +89,7 @@
 							if (!caseinfo.formUnRegisterCaseSate) {
 								$.ajax({
 									type: "post",
-									url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+									url: "http://" + window.location.hostname + ":8080/huangbaihe/getInfoCaseController/getCaseInfo",
 									dataType: "json",
 									data: ({
 										caseID: caseID

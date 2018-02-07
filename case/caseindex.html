@@ -208,7 +208,7 @@
 				queryItem: function(caseID, obj) {
 					$.ajax({
 						method: "POST",
-						url:"http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						url:"http://" + window.location.hostname + ":8080/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "JSON",
 						data: ({
 							caseID: caseID
@@ -226,7 +226,7 @@
 				searchItems: function() {
 					$.ajax({
 						type:"POST",
-						url:"http://huyg.site:8080/huangbaihe/showCaseList/query",
+						url:"http://" + window.location.hostname + ":8080/huangbaihe/showCaseList/query",
 						dataType: "json",
 						data: mainpageVM.searchText,
 						success: function(data) {
