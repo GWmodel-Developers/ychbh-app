@@ -104,7 +104,7 @@ RegisterCase.prototype.toExamForm = function (caseID, caseType, reExamResponsibl
 
 RegisterCase.prototype.toReExamForm = function () {
     return {
-        caseID: this.caseID,
+        caseId: this.caseID,
         leader: this.leader,
         reExamDate: this.reExamDate,
         reExamSuggestion: this.reExamSuggestion

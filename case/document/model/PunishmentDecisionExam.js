@@ -7,46 +7,50 @@ function PunishmentDecisionExam(caseinfo, registercase, pretell, punishment) {
     this.brief = null;
     this.objectName = null;
     this.pretellDocId = null;
-    this.pretellReceiverDate = null;
+    this.pretellReceiverDate = Date.today().toString("yyyy-MM-dd");
     this.pretellSuggestion = null;
     this.objectReason = null;
     this.excuteSuggestion = null;
     this.excutor = null;
-    this.excuteDate = null;
+    this.excuteDate = Date.today().toString("yyyy-MM-dd");
     this.examSuggestion = null;
     this.examResponsible = null;
-    this.examDate = null;
+    this.examDate = Date.today().toString("yyyy-MM-dd");
     this.leader = null;
     this.reExamSuggestion = null;
-    this.reExamDate = null;
+    this.reExamDate = Date.today().toString("yyyy-MM-dd");
     if (caseinfo) {
         for (var key in this) {
-            if (this.hasOwnProperty(key)) {
+            if (caseinfo.hasOwnProperty(key)) {
                 this[key] = caseinfo[key];
             }
         }
     }
     if (registercase) {
         for (var key in this) {
-            if (this.hasOwnProperty(key)) {
+            if (registercase.hasOwnProperty(key)) {
                 this[key] = registercase[key];
             }
         }
     }
     if (pretell) {
         for (var key in this) {
-            if (this.hasOwnProperty(key)) {
+            if (pretell.hasOwnProperty(key)) {
                 this[key] = pretell[key];
             }
         }
     }
     if (punishment) {
         for (var key in this) {
-            if (this.hasOwnProperty(key)) {
+            if (punishment.hasOwnProperty(key)) {
                 this[key] = punishment[key];
             }
         }
     }
+    this.pretellReceiverDate = this.pretellReceiverDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
+    this.excuteDate = this.excuteDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
+    this.examDate = this.examDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
+    this.reExamDate = this.reExamDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
 }
 
 PunishmentDecisionExam.prototype.toExamForm = function (caseID, caseType, reExamResponsible) {
@@ -67,7 +71,7 @@ PunishmentDecisionExam.prototype.toExamForm = function (caseID, caseType, reExam
 
 PunishmentDecisionExam.prototype.toReExamForm = function () {
     return {
-        caseID: this.caseId,
+        caseId: this.caseId,
         leader: this.leader,
         reExamDate: Date.parse(this.reExamDate).toString("yyyy年MM月dd日"),
         reExamSuggestion: this.reExamSuggestion
@@ -113,7 +117,7 @@ PunishmentDecisionExam.prototype.domMap = [
             return true;
         },
         get: function (detail) {
-            return detail[this.key];
+            return Date.parse(detail[this.key]).toString("yyyy年MM月dd日");
         }
     },{
         name: "建议处罚内容",
@@ -164,7 +168,7 @@ PunishmentDecisionExam.prototype.domMap = [
             return true;
         },
         get: function (detail) {
-            return detail[this.key];
+            return Date.parse(detail[this.key]).toString("yyyy年MM月dd日");
         }
     },
     {
@@ -213,7 +217,7 @@ PunishmentDecisionExam.prototype.domMap = [
             return true;
         },
         get: function (params) {
-            return params[this.key];
+            return this.type === "date" ? params[this.key] : Date.parse(params[this.key]).toString("yyyy年MM月dd日");
         }
     },{
         key: "leader",
@@ -259,7 +263,7 @@ PunishmentDecisionExam.prototype.domMap = [
             return true;
         },
         get: function (params) {
-            return params[this.key];
+            return this.type === "date" ? params[this.key] : Date.parse(params[this.key]).toString("yyyy年MM月dd日");
         }
     }
 ]

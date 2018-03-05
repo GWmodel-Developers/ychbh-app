@@ -131,7 +131,7 @@ CaseIndex.prototype.docMap = [
             name: "案源登记表",
             link: "registration",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] === "2" ? "3" : params[this.key]
             }
         }]
     },{
@@ -168,35 +168,35 @@ CaseIndex.prototype.docMap = [
             name: "勘验笔录",
             link: "surveyrecordlist",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },{
             key: "noteInspectState",
             name: "检查笔录",
             link: "noteinspectlist",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },{
             key: "noteExamState",
             name: "询问笔录",
             link: "noteinspectlist",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },{
             key: "reportEndInvestigateSate",
             name: "案件调查终结报告",
             link: "caseinvestigatereport",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },{
             key: "discussionCaseState",
             name: "案件集体讨论记录",
             link: "casediscussion",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },]
     },{
@@ -223,56 +223,56 @@ CaseIndex.prototype.docMap = [
             name: "行政处罚事先告知书",
             link: "noticepunishment",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },{
             key: "decisionPunishmentInSpotState",
             name: "当场行政处罚决定书",
             link: "decisionpunishmentinspot",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },{
             key: "noticeGHearingPunishmentState",
             name: "行政处罚听证通知书",
             link: "noticehearingpunishment",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },{
             key: "noticeHearingPunishmentState",
             name: "行政处罚听证告知书",
             link: "noticeghearingpunishment",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },{
             key: "notePleadState",
             name: "陈述申辩笔录",
             link: "statedefendnote",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },{
             key: "noteHearingPunishmentState",
             name: "行政处罚听证笔录",
             link: "punishmenthearingnote",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },{
             key: "opinionHearingPunishmentState",
             name: "行政处罚听证意见书",
             link: "punishmenthearingopion",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },{
             key: "discussionImportantCaseState",
             name: "重大案件集体讨论记录",
             link: "discussimportantcase",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },{
             key: "formPunishmentDecisionExamSate",
@@ -286,7 +286,7 @@ CaseIndex.prototype.docMap = [
             name: "行政处罚决定书",
             link: "decisionpunishment",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] * 3
             }
         },{
             key: "reportEndCasePunishmentState",

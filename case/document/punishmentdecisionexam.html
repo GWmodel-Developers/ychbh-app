@@ -116,10 +116,9 @@
 									success: function (registercase) {
 										$.ajax({
 											type: "post",
-											url: "http://huyg.site:8080/huangbaihe/noticePunishmentPretell/getDoc",
-											dataType: "JSONP",
+											url: "http://39.106.145.68:8080//huangbaihe/Lcommoncase/querycaseid",
 											data: ({
-												caseID: caseID
+												case_name: registercase.brief
 											}),
 											success: function (doc) {
 												$.ajax({
@@ -177,28 +176,34 @@
 					});
 				},
 				reExam: function () {
-					$.ajax({
-						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/formPunishment/reExam",
-						dataType: "JSONP",
-						data: mainpageVM.detail.toReExamForm(),
-						success: function (data) {
-							if (data) {
-								new $.nd2Toast({
-									message: "操作成功"
-								})
-							} else {
+					try {
+						$.ajax({
+							method: "post",
+							url: "http://huyg.site:8080/huangbaihe/formPunishment/reExam",
+							dataType: "JSONP",
+							data: mainpageVM.detail.toReExamForm(),
+							success: function (data) {
+								if (data) {
+									new $.nd2Toast({
+										message: "操作成功"
+									})
+								} else {
+									new $.nd2Toast({
+										message: "操作失败"
+									})
+								}
+							},
+							error: function () {
 								new $.nd2Toast({
 									message: "操作失败"
 								})
 							}
-						},
-						error: function () {
-							new $.nd2Toast({
-								message: "操作失败"
-							})
-						}
-					});
+						});
+					} catch (error) {
+						new $.nd2Toast({
+							message: "表单填写有误"
+						})
+					}
 				},
 				queryLeaders: function (context) {
 					$.ajax({
