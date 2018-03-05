@@ -1,12 +1,6 @@
 # nodemodules
 /node_modules
 
-# JavaScript Library
-/jquery*
-/vuejs
-/plugin
-/datejs
-
 # Package
 /unpackage
 manifest.json
