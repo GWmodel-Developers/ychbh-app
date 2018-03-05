@@ -167,7 +167,7 @@
 					mainpageVM.form.clean();
 				},
 				createForm: function() {
-					if (auth("inf", "manage")) {
+					if (auth("inf", "manage", null, 2)) {
 						mainpageVM.form = new Branch();
 					}
 				},

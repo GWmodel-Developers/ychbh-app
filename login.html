@@ -15,11 +15,6 @@
 		<script src="./nativeDroid2/vendor/waves/waves.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="./nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="./nativeDroid2/js/nativedroid2.js"></script>
-		<script>
-			if (localStorage.getItem("autologin") && localStorage.getItem("autologin").toString() === "true") {
-				window.location = "index.html";
-			}
-		</script>
 		<style>
 			#login{
 				width: 100%;
@@ -103,6 +98,11 @@
 		</div>
 	</body>
 	<script>
+		if (localStorage.getItem("autologin") && localStorage.getItem("autologin").toString() === "true" && localStorage.getItem("au")) {
+			window.location = "index.html";
+		}
+	</script>
+	<script>
 		$('form').on('submit', function (event) {
 			event.preventDefault();
 		});
@@ -126,6 +126,7 @@
 						if (!('info' in data)) {
 							var str = JSON.stringify(data);
 							localStorage.setItem("au", str);
+							sessionStorage.setItem("logged", true);
 							window.location.href = ("./index.html");
 						}
 						else {

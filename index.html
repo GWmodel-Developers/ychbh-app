@@ -43,10 +43,6 @@
 				width: 42%;
 			}
 		</style>
-		<script src="./js/auth.js"></script>
-		<script>
-			auth("index", null, "index.html");
-		</script>
 	</head>
 
 	<body>
@@ -236,13 +232,20 @@
 								}
 								if (targetHref) break;
 							}
-							window.location = "case/document/" + targetHref + ".html"
+							window.location = "case/document/" + targetHref + ".html" + "?redirect=home"
 						}
 					}
 				},
 				created: function () {
-					this.user = JSON.parse(localStorage.getItem("au"));
 					this.queryTasks(this);
+					this.user = JSON.parse(localStorage.getItem("au"));
+				},
+				beforeCreate: function () {
+					if (!sessionStorage.getItem("logged") || sessionStorage.getItem("logged") != "true") {
+						window.localStorage.clear();
+						window.sessionStorage.clear();
+						window.location = "login.html";
+					}
 				}
 			})
 
