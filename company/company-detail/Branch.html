@@ -129,7 +129,7 @@
 				getItems: function(obj) {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/Cbranch/query",
+						url: "http://61.136.146.172:8080/huangbaihe/Cbranch/query",
 						dataType: "JSON",
 						data: {
 							index: obj.project_id
@@ -149,7 +149,7 @@
 				submit: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/Cbranch/add",
+						url: "http://61.136.146.172:8080/huangbaihe/Cbranch/add",
 						data: mainpageVM.form.toForm(mainpageVM.project_id).substr(1),
 						success: function() {
 							new $.nd2Toast({
@@ -179,7 +179,7 @@
 				queryItem: function (newId, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/Cbranch/edit",
+						url: "http://61.136.146.172:8080/huangbaihe/Cbranch/edit",
 						dataType: "json",
 						data: {
 							index: newId

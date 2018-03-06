@@ -353,7 +353,7 @@
 				getItems: function(obj) {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/Cprobasic/showProbasic",
+						url: "http://61.136.146.172:8080/huangbaihe/Cprobasic/showProbasic",
 						dataType: "JSON",
 						data: {
 							page: obj.page + 1,
@@ -375,7 +375,7 @@
 				getCompanyItems: function(company_id, obj) {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/Cprobasic/showProbasicbycompany",
+						url: "http://61.136.146.172:8080/huangbaihe/Cprobasic/showProbasicbycompany",
 						dataType: "JSON",
 						data: {
 							index:company_id
@@ -411,7 +411,7 @@
 				submit: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/Cprobasic/add",
+						url: "http://61.136.146.172:8080/huangbaihe/Cprobasic/add",
 						data: mainpageVM.basic_form.toForm().substr(1),
 						dataType: "JSON",
 						success: function(data) {
@@ -421,7 +421,7 @@
 							if (data.status > 0) {
 								$.ajax({
 									type: "POST",
-									url: "http://39.106.145.68:8080/huangbaihe/Cproinfo/add",
+									url: "http://61.136.146.172:8080/huangbaihe/Cproinfo/add",
 									data: mainpageVM.detail_form.toForm().substr(1),
 									success: function (data) {
 										new $.nd2Toast({
@@ -454,7 +454,7 @@
 				queryItem: function(projectID, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/Cprobasic/qurbyid",
+						url: "http://61.136.146.172:8080/huangbaihe/Cprobasic/qurbyid",
 						dataType: "json",
 						data: {
 							index: projectID
@@ -465,7 +465,7 @@
 					});
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/Cproinfo/qurbyid",
+						url: "http://61.136.146.172:8080/huangbaihe/Cproinfo/qurbyid",
 						dataType: "json",
 						data: {
 							index: projectID
@@ -531,7 +531,7 @@
 					source: function (request, response) {
 						$.ajax({
 							method: "POST",
-							url: "http://39.106.145.68:8080/huangbaihe/Cprobasic/query",
+							url: "http://61.136.146.172:8080/huangbaihe/Cprobasic/query",
 							dataType: "JSON",
 							data: {
 								companyname: request.term

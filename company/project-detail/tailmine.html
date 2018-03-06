@@ -133,7 +133,7 @@
 				getItems: function(obj) {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/Ctailmine/query",
+						url: "http://61.136.146.172:8080/huangbaihe/Ctailmine/query",
 						dataType: "JSON",
 						data: {
 							index: obj.project_id
@@ -153,7 +153,7 @@
 				queryItem: function (newId, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/Ctailmine/edit",
+						url: "http://61.136.146.172:8080/huangbaihe/Ctailmine/edit",
 						dataType: "json",
 						data: {
 							index: newId
@@ -166,7 +166,7 @@
 				submit: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/Ctailmine/add",
+						url: "http://61.136.146.172:8080/huangbaihe/Ctailmine/add",
 						data: mainpageVM.form.toForm(mainpageVM.project_id).substr(1),
 						success: function() {
 							new $.nd2Toast({

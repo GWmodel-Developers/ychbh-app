@@ -303,7 +303,7 @@
 				getItems: function(obj) {
 					$.ajax({
 						type: "get",
-						url: "http://39.106.145.68:8080/huangbaihe/River/querybypage",
+						url: "http://61.136.146.172:8080/huangbaihe/River/querybypage",
 						dataType: "JSON",
 						data: {
 							page: obj.page + 1,
@@ -337,7 +337,7 @@
 				submit: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://39.106.145.68:8080/huangbaihe/River/save",
+						url: "http://61.136.146.172:8080/huangbaihe/River/save",
 						data: mainpageVM.form.toForm().substr(1),
 						success: function() {
 							mainpageVM.submit_status = "提交成功";
@@ -367,7 +367,7 @@
 				searchItems: function(searchText) {
 					$.ajax({
 						type:"GET",
-						url:"http://39.106.145.68:8080/huangbaihe/River/query",
+						url:"http://61.136.146.172:8080/huangbaihe/River/query",
 						dataType: "json",
 						data: {
 							yearm: mainpageVM.searchText.year + "年" + mainpageVM.searchText.month + "月",
@@ -394,7 +394,7 @@
 				queryRiver: function () {
 					$.ajax({
 						type: "GET",
-						url: "http://39.106.145.68:8080/huangbaihe/River/queryhl",
+						url: "http://61.136.146.172:8080/huangbaihe/River/queryhl",
 						dataType: "JSON",
 						success: function (data) {
 							River.prototype.nameList = data;
@@ -406,7 +406,7 @@
 				selected_id: function (newId, oldId) {
 					$.ajax({
 						type: "post",
-						url: "http://39.106.145.68:8080/huangbaihe/River/querybyid",
+						url: "http://61.136.146.172:8080/huangbaihe/River/querybyid",
 						dataType: "json",
 						data: {
 							tx_id: newId
