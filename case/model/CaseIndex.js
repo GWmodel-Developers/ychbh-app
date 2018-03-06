@@ -131,7 +131,7 @@ CaseIndex.prototype.docMap = [
             name: "案源登记表",
             link: "registration",
             state: function (params) {
-                return params[this.key] === "2" ? "3" : params[this.key]
+                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
             }
         }]
     },{
@@ -141,7 +141,7 @@ CaseIndex.prototype.docMap = [
             name: "立案呈批表",
             link: "registercase",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] ? params[this.key].toString() : "0"
             }
         }]
     },{
@@ -151,14 +151,14 @@ CaseIndex.prototype.docMap = [
             name: "扣押物品呈批表",
             link: "#",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "formUnRegisterCaseSate",
             name: "先行登记保存物品呈批表",
             link: "keepevidence",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] ? params[this.key].toString() : "0"
             }
         }]
     },{
@@ -209,14 +209,14 @@ CaseIndex.prototype.docMap = [
             name: "撤案呈批表",
             link: "withdrawcase",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "formPunishmentState",
             name: "行政处罚审批表",
             link: "punishmentexam",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "noticePunishmentPretellState",
@@ -279,7 +279,7 @@ CaseIndex.prototype.docMap = [
             name: "行政处罚决定审批表",
             link: "punishmentdecisionexam",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "decisionPunishmentState",
@@ -293,7 +293,7 @@ CaseIndex.prototype.docMap = [
             name: "行政处罚结案报告",
             link: "endcasereport",
             state: function (params) {
-                return params[this.key]
+                return params[this.key] ? params[this.key].toString() : "0"
             }
         }]
     }
