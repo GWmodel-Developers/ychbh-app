@@ -133,7 +133,7 @@ KeepEvidence.prototype.domMap = [
         name: "审核意见",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 4) return "p";
             else if (code < 8) return "textarea";
             else return "p";
@@ -150,7 +150,7 @@ KeepEvidence.prototype.domMap = [
         name: "支队执法负责人",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 2) return "span";
             else if (code < 4) return "select";
             else return "span";
@@ -167,7 +167,7 @@ KeepEvidence.prototype.domMap = [
         name: "审核日期",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 4) return "span";
             else if (code < 8) return "date";
             else return "span";
@@ -184,7 +184,7 @@ KeepEvidence.prototype.domMap = [
         name: "审批意见",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 8) return "p";
             else return "textarea";
         })(),
@@ -200,7 +200,7 @@ KeepEvidence.prototype.domMap = [
         name: "主管领导",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 4) return "span";
             else if (code < 8) return "select";
             else return "span";
@@ -217,7 +217,7 @@ KeepEvidence.prototype.domMap = [
         name: "审批日期",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 8) return "p";
             else return "date";
         })(),

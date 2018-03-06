@@ -2,22 +2,28 @@
  * 案件集体讨论记录
  * @param {Object} params 初始化参数
  */
-function CaseDiscussion(params) {
-    brief = null;
-    discussDate = null;
-    place = null;
-    participants = null;
-    host = null;
-    reporter = null;
-    recorder = null;
-    event = null;
-    discussRecord = null;
-    suggestion = null;
-    if (params) {
-        for (var key in params) {
-            if (params.hasOwnProperty(key)) {
-                var element = params[key];
-                this[key] = element
+function CaseDiscussion(caseinfo, discussion) {
+    this.brief = null;
+    this.discussDate = null;
+    this.place = null;
+    this.participants = null;
+    this.host = null;
+    this.reporter = null;
+    this.recorder = null;
+    this.event = null;
+    this.discussRecord = null;
+    this.suggestion = null;
+    if (caseinfo) {
+        for (var key in this) {
+            if (caseinfo.hasOwnProperty(key)) {
+                this[key] = caseinfo[key]
+            }
+        }
+    }
+    if (discussion) {
+        for (var key in this) {
+            if (discussion.hasOwnProperty(key)) {
+                this[key] = discussion[key]
             }
         }
     }

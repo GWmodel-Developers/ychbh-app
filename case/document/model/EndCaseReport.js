@@ -2,7 +2,7 @@
  * 行政处罚结案报告
  * @param {Object} params 初始化参数
  */
-function EndCaseReport(params) {
+function EndCaseReport(caseinfo, register, punishment, endcase) {
     this.brief = null;
     this.source = null;
     this.objectName = null;
@@ -18,17 +18,64 @@ function EndCaseReport(params) {
     this.endDate = null;
     this.examResponsible = null;
     this.examSuggestion = null;
-    this.examDate = null;
+    this.examDate = Date.today().toString("yyyy-MM-dd");
     this.leader = null;
     this.reExamSuggestion = null;
-    this.reExamDate = null;
-    if (params) {
-        for (var key in params) {
-            if (params.hasOwnProperty(key)) {
-                var element = params[key];
-                this[key] = element
+    this.reExamDate = Date.today().toString("yyyy-MM-dd");
+    if (caseinfo) {
+        for (var key in this) {
+            if (caseinfo.hasOwnProperty(key)) {
+                this[key] = caseinfo[key]
             }
         }
+    }
+    if (register) {
+        for (var key in this) {
+            if (register.hasOwnProperty(key)) {
+                this[key] = register[key]
+            }
+        }
+    }
+    if (punishment) {
+        for (var key in this) {
+            if (punishment.hasOwnProperty(key)) {
+                this[key] = punishment[key]
+            }
+        }
+    }
+    if (endcase) {
+        for (var key in this) {
+            if (endcase.hasOwnProperty(key)) {
+                this[key] = endcase[key]
+            }
+        }
+    }
+    this.examDate = this.examDate? this.examDate.replace(/[年月]/g, "-").replace(/[日]/g, "") : Date.today().toString("yyyy-MM-dd");
+    this.reExamDate = this.reExamDate ? this.reExamDate.replace(/[年月]/g, "-").replace(/[日]/g, "") : Date.today().toString("yyyy-MM-dd");
+}
+
+EndCaseReport.prototype.toExamForm = function (caseID, caseType, reExamResponsible) {
+    return {
+        caseID: caseID,
+        caseId: caseID,
+        caseName: this.caseName,
+        caseType: caseType,
+        documentName: "行政处罚结案报告",
+        examDate: this.examDate,
+        examSuggestion: this.examSuggestion,
+        leader: this.leader,
+        reponsible: this.reponsible,
+        userId: reExamResponsible.uid,
+        userName: reExamResponsible.realname
+    }
+}
+
+EndCaseReport.prototype.toReExamForm = function (caseID) {
+    return {
+        caseID: caseID,
+        leader: this.leader,
+        reExamDate: Date.parse(this.reExamDate).toString("yyyy年MM月dd日"),
+        reExamSuggestion: this.reExamSuggestion
     }
 }
 
@@ -181,7 +228,7 @@ EndCaseReport.prototype.domMap = [
         name: "综合执法支队负责人",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 2) return "span";
             else if (code < 4) return "select";
             else return "span";
@@ -198,7 +245,7 @@ EndCaseReport.prototype.domMap = [
         name: "审核意见",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 4) return "p";
             else if (code < 8) return "textarea";
             else return "p";
@@ -215,7 +262,7 @@ EndCaseReport.prototype.domMap = [
         name: "审核日期",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 4) return "span";
             else if (code < 8) return "date";
             else return "span";
@@ -232,7 +279,7 @@ EndCaseReport.prototype.domMap = [
         name: "主管领导",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 4) return "span";
             else if (code < 8) return "select";
             else return "span";
@@ -246,9 +293,10 @@ EndCaseReport.prototype.domMap = [
     },
     {
         key: "reExamSuggestion",
+        name: "审批意见",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 8) return "p";
             else return "textarea";
         })(),
@@ -264,7 +312,7 @@ EndCaseReport.prototype.domMap = [
         name: "审批日期",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 8) return "p";
             else return "date";
         })(),

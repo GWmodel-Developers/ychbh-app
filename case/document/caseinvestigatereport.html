@@ -110,14 +110,33 @@
 					var obj = this;
 					$.ajax({
 						type: "post",
-						url: "http://localhost:8080/huangbaihe/reportEndInvastigate/getDoc",
+						url: "http://huyg.site:8080/huangbaihe/reportEndInvastigate/getDoc",
 						dataType: "jsonp",
-						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 						data: {
 							caseID: caseId
 						},
-						success: function (data) {
-							obj.detail = new CaseInvestigateReport(data);
+						success: function (caseinfo) {
+							$.ajax({
+								type: "post",
+								url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
+								dataType: "jsonp",
+								data: {
+									caseID: caseId
+								},
+								success: function (register) {
+									$.ajax({
+										type: "post",
+										url: "http://huyg.site:8080/huangbaihe/reportEndInvastigate/getDoc",
+										dataType: "jsonp",
+										data: {
+											caseID: caseId
+										},
+										success: function (invastigate) {
+											obj.detail = new CaseInvestigateReport(caseinfo, register, invastigate);
+										}
+									});
+								}
+							});
 						}
 					});
 				},
@@ -137,16 +156,16 @@
 			},
 			computed: {
 				showSubmit: function () {
-					return true;
+					return false;
 				},
 				showUpdate: function () {
-					return true;
+					return false;
 				},
 				showExam: function () {
 					return false;
 				},
 				showReExam: function () {
-					return true;
+					return false;
 				}
 			},
 			created: function() {

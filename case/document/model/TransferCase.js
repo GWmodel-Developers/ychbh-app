@@ -255,7 +255,7 @@ TransferCase.prototype.domMap = [
         key: "examResponsible",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 2) return "span";
             else if (code < 4) return "select";
             else return "span";
@@ -272,7 +272,7 @@ TransferCase.prototype.domMap = [
         key: "examSuggestion",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 4) return "p";
             else if (code < 8) return "textarea";
             else return "p";
@@ -289,7 +289,7 @@ TransferCase.prototype.domMap = [
         key: "examDate",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 4) return "span";
             else if (code < 8) return "date";
             else return "span";
@@ -306,7 +306,7 @@ TransferCase.prototype.domMap = [
         key: "reExamSuggestion",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 8) return "p";
             else return "textarea";
         })(),
@@ -322,7 +322,7 @@ TransferCase.prototype.domMap = [
         key: "leader",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 4) return "span";
             else if (code < 8) return "select";
             else return "span";
@@ -339,7 +339,7 @@ TransferCase.prototype.domMap = [
         key: "reExamDate",
         type: (function () {
             var au = JSON.parse(localStorage.getItem("au"));
-            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read;
+            var code = au.a_case_reexam * 8 + au.a_case_exam * 4 + au.a_case_submit * 2 + au.a_case_read * 1;
             if (code < 8) return "p";
             else return "date";
         })(),

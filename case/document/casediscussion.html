@@ -109,18 +109,32 @@
 				queryDoc: function(caseId, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://localhost:8080/huangbaihe/discussionCase/getDocument",
+						url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
                         dataType: "jsonp",
-                        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 						data: {
 							"caseID": caseId
 						},
-						success: function (data) {
-							obj.detail = new CaseDiscussion(data);
+						success: function (caseinfo) {
+							$.ajax({
+								type: "post",
+								url: "http://huyg.site:8080/huangbaihe/discussionCase/getDocument",
+								dataType: "jsonp",
+								data: {
+									"caseID": caseId
+								},
+								success: function (discussion) {
+									obj.detail = new CaseDiscussion(caseinfo, discussion);
+								},
+								error: function () {
+									new $.nd2Toast({
+										message: "获取案件集体讨论记录失败"
+									});
+								}
+							});
 						},
 						error: function () {
 							new $.nd2Toast({
-								message: "获取案件集体讨论记录失败"
+								message: "案件信息失败"
 							});
 						}
 					});
@@ -141,16 +155,16 @@
 			},
 			computed: {
 				showSubmit: function () {
-					return true;
+					return false;
 				},
 				showUpdate: function () {
-					return true;
+					return false;
 				},
 				showExam: function () {
 					return false;
 				},
 				showReExam: function () {
-					return true;
+					return false;
 				}
 			},
 			created: function() {
@@ -163,7 +177,7 @@
 		});
 
 		function back() {
-			window.location = "inquirerecordlist.html";
+			window.location = "../caseindex.html#page_document";
 		}
 	</script>
 

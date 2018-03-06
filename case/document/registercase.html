@@ -153,7 +153,7 @@
 						method: "post",
 						url: "http://huyg.site:8080/huangbaihe/formRegisterCase/reExamForm",
 						dataType: "JSONP",
-						data: mainpageVM.detail.toReExamForm(),
+						data: mainpageVM.detail.toReExamForm(mainpageVM.selected_id),
 						success: function (data) {
 							if (data) {
 								new $.nd2Toast({
@@ -185,7 +185,16 @@
 								return {
 									uid: item.uid,
 									realname: item.realname,
-									value: item.realname,
+									value: item.uid,
+									text: item.realname
+								}
+							})
+							var examResponsible = data.filter(function (value, index) {
+								return value.role && value.role === "支队负责人";
+							})
+							context.options.examResponsible = examResponsible.map(function (item) {
+								return {
+									value: item.uid,
 									text: item.realname
 								}
 							})
@@ -200,13 +209,13 @@
 			},
 			computed: {
 				showSubmit: function () {
-					return this.au.a_case_submit == 1;
+					return false;
 				},
 				showUpdate: function () {
 					return false;
 				},
 				showExam: function () {
-					return this.au.a_case_exam == 1;
+					return this.au.a_case_exam == 1 && this.au.a_case_reexam != 1;
 				},
 				showReExam: function () {
 					return this.au.a_case_reexam == 1;
