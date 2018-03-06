@@ -47,7 +47,7 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>行政处罚决定审批表</h1>
+				<h1>行政处罚审批表</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
 				<form action="#">
@@ -108,7 +108,7 @@
 				queryItem: function(caseID, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://huyg.site:8080//huangbaihe/getInfoCaseController/getCaseInfo",
+						url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "JSONP",
 						data: ({
 							caseID: caseID
@@ -117,7 +117,7 @@
 							if (caseinfo.formPunishmentState != 0) {
 								$.ajax({
 									type: "post",
-									url: "http://huyg.site:8080//huangbaihe/formRegisterCase/getOneForm",
+									url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
 									dataType: "JSONP",
 									data: ({
 										caseID: caseID
@@ -125,14 +125,14 @@
 									success: function (registercase) {
 										$.ajax({
 											type: "post",
-											url: "http://39.106.145.68:8080//huangbaihe/Lcommoncase/querycaseid",
+											url: "http://39.106.145.68:8080/huangbaihe/Lcommoncase/querycaseid",
 											data: ({
 												case_name: registercase.brief
 											}),
 											success: function (doc) {
 												$.ajax({
 													type: "post",
-													url: "http://huyg.site:8080//huangbaihe/formPunishment/getOneForm",
+													url: "http://huyg.site:8080/huangbaihe/formPunishment/getOneForm",
 													dataType: "JSONP",
 													data: ({
 														caseID: caseID
@@ -188,7 +188,7 @@
 					try {
 						$.ajax({
 							method: "post",
-							url: "http://huyg.site:8080//huangbaihe/FormPunishmentDecisionExam/reExam",
+							url: "http://huyg.site:8080/huangbaihe/FormPunishmentDecisionExam/reExam",
 							dataType: "JSONP",
 							data: mainpageVM.detail.toReExamForm(),
 							success: function (data) {

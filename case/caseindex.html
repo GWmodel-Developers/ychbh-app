@@ -130,10 +130,10 @@
 							<li v-for="doc in group.docs">
 								<a href="#" v-on:click="gotoDetail(doc.link, doc.state(detail), doc.name)">
 									<span class="nd2-label nd2-label-left" v-if="doc.state(detail)" v-bind:class="{
-										'nd2-label-grey': doc.state(detail) == 0,
-										'nd2-label-amber': doc.state(detail) == 1,
-										'nd2-label-orange': doc.state(detail) == 2,
-										'nd2-label-green': doc.state(detail) == 3
+										'nd2-label-grey': doc.state(detail) == '0',
+										'nd2-label-amber': doc.state(detail) == '1',
+										'nd2-label-orange': doc.state(detail) == '2',
+										'nd2-label-green': doc.state(detail) == '3'
 									}">{{ CaseIndex.prototype.docStateText[doc.state(detail)] }}</span>
 									{{ doc.name }}
 								</a>

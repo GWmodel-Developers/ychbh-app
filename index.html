@@ -237,7 +237,9 @@
 					}
 				},
 				created: function () {
-					this.queryTasks(this);
+					setInterval(function () {
+						vm.queryTasks(vm);
+					}, 1000);
 					this.user = JSON.parse(localStorage.getItem("au"));
 				},
 				beforeCreate: function () {

@@ -68,7 +68,7 @@ PunishmentExam.prototype.toExamForm = function (caseID, caseType, reExamResponsi
 
 PunishmentExam.prototype.toReExamForm = function () {
     return {
-        caseId: this.caseId,
+        caseId: this.case_id,
         leader: this.leader,
         reExamDate: Date.parse(this.reExamDate).toString("yyyy年MM月dd日"),
         reExamSuggestion: this.reExamSuggestion
@@ -114,7 +114,7 @@ PunishmentExam.prototype.domMap = [
             return true;
         },
         get: function (detail) {
-            return Date.parse(detail[this.key]).toString("yyyy年MM月dd日");
+            return detail[this.key];
         }
     },{
         name: "建议给予行政处罚",

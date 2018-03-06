@@ -69,6 +69,14 @@
 	<!-- Vue Model -->
 	<script type="text/javascript" src="model/WithdrawCase.js" ></script>
 	<script type="text/javascript">
+		/**
+		 * 获取GET参数
+		 * @param {String} name 参数名
+		 */
+		 function getURLParameter(name) {  
+			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;  
+		}
+
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
