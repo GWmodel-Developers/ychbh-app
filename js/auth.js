@@ -27,7 +27,7 @@ function auth(page, option, redirect, subdir_level) {
             var user = JSON.parse(localStorage.getItem("au"));
             var privilege_key = (option) ? ["a", page, option].join("_") : ["a", page].join("_");
             if (user[privilege_key] == 0) {
-                window.location = "../".repeat(subdir_level ? subdir_level : 1) + "AuthError.html?redirect=" + (redirect ? redirect : window.location.pathname.substr(1));
+                window.location = "../".repeat(subdir_level > 0 ? subdir_level : 1) + "AuthError.html?redirect=" + (redirect ? redirect : window.location.pathname.substr(1));
                 return false;
             } else {
                 return true;
