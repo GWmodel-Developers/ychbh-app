@@ -15,7 +15,7 @@ function getCookie(name) {
  */
 function auth(page, option, redirect, subdir_level) {
     if (!localStorage.getItem("au")) {
-        window.location = "../login.html";
+        window.location = "../".repeat(subdir_level ? subdir_level : 1) + "../login.html";
         return false;
     }
     switch (page) {
