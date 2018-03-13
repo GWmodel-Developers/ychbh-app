@@ -176,6 +176,7 @@
 							<span class="listview-aside">{{ detail.projectStatus }}</span>
 						</li>
 						<li data-role="list-divider"><h3>其他</h3></li>
+						<li><a href="#" v-on:click="gotoCompany(detail.companyID)"><b>所属企业</b></a></li>
 						<li><a href="#" v-on:click="gotoDetail('approval', detail.projectID)"><b>行政审批情况</b></a></li>
 						<li><a href="#" v-on:click="gotoDetail('mine', detail.projectID)"><b>矿硐</b></a></li>
 						<li><a href="#" v-on:click="gotoDetail('site', detail.projectID)"><b>渣场</b></a></li>
@@ -486,6 +487,10 @@
 					localStorage.removeItem("projectID");
 					mainpageVM.refresh(mainpageVM);
 					window.location = "#";
+				},
+				gotoCompany: function (company_id) {
+					localStorage.setItem("companyID", company_id);
+					window.location = "../company/companybasic.html#page_detail?redirect=project"
 				}
 			},
 			watch: {
@@ -556,6 +561,10 @@
 				});
 			}
 		})
+
+		function getURLParameter(name) {  
+			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;  
+		}
 
 		function back() {
 			localStorage.removeItem("projectID");

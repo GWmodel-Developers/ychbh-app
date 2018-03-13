@@ -312,7 +312,7 @@
 					<b>其他问题 </b>
 					<p class="listview-aside">{{ item.other }}</p>
 				</li>
-				<li data-role="list-divider"><h</h3></3>li>
+				<li data-role="list-divider"><h3>结论</h3>li>
 				<li>
 					<b>检查结论 </b>
 					<p class="listview-aside">{{ item.result }}</p>
@@ -365,10 +365,20 @@
 	
 	$(document).ready(function() {
 		var id = getURLParameter("index");
-		$.getJSON("http://61.136.146.172:8080/huangbaihe/CruIns/querybyid", {
-			id: id
-		}, function(data) {
-			content.item = data
+		// $.ajax({
+		// 	id: id
+		// }, function(data) {
+		// 	content.item = data
+		// })
+		$.ajax({
+			method: "POST",
+			url: "http://61.136.146.172:8080/huangbaihe/CruIns/querybyid",
+			data: {
+				id: id
+			},
+			success: function (data) {
+				content.item = data
+			}
 		})
 	});
 	function back() {

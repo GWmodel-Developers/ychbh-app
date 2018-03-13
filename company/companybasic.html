@@ -241,9 +241,13 @@
 					window.location = ["company-detail/", page, ".html"].join("");
 				},
 				showMain: function () {
-					localStorage.removeItem("companyID");
-					mainpageVM.refresh();
-					window.location = "#";
+					if (getURLParameter("redirect") == "project") {
+						window.location = "../company/projectbasic.html#page_detail";
+					} else {
+						localStorage.removeItem("companyID");
+						mainpageVM.refresh();
+						window.location = "#";
+					}
 				}
 			},
 			watch: {
@@ -306,6 +310,10 @@
 				});
 			}
 		})
+
+		function getURLParameter(name) {  
+			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location)||[,""])[1].replace(/\+/g, '%20'))||null;  
+		}
 
 		function back() {
 			localStorage.removeItem("companyID");

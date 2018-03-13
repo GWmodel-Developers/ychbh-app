@@ -77,6 +77,13 @@
 								</select>
 							</div>
 							<div class="ui-field-contain">
+								<label for="enddate">检测地点</label>
+								<select name="address" v-model="searchText.address" id="address" data-native-menu="false">
+									<option value=""></option>
+									<option v-for="address in searchList" v-bind:value="address">{{ address }}</option>
+								</select>
+							</div>
+							<div class="ui-field-contain">
 								<label for="startdate">开始时间</label>
 								<input type="date" name="startdate" id="startdate" value="" v-model="searchText.startdate"/>
 							</div>
@@ -85,19 +92,19 @@
 								<input type="date" name="enddate" id="enddate" value="" v-model="searchText.enddate"/>
 							</div>
 							<div class="ui-field-contain">
-								<label for="enddate">检测地点</label>
-								<select name="address" v-model="searchText.address" id="address">
+								<label for="hcom">检测单位</label>
+								<select name="hcom" v-model="searchText.hcom" id="hcom">
 									<option value=""></option>
-									<option v-for="address in searchList" v-bind:value="address">{{ address }}</option>
+									<option v-for="hcom in OtherBg.prototype.hcomOptions" v-bind:value="hcom">{{ hcom }}</option>
 								</select>
 							</div>
 						</form>
 						<div class="row between-xs">
 							<div class="col-xs-6">
-								<a href="#" class="ui-btn clr-primary" data-rel="back" v-on:click="searchItems(searchText)">搜索</a>
+								<a href="#" class="ui-btn clr-primary" v-on:click="searchItems(searchText)">搜索</a>
 							</div>
 							<div class="col-xs-6">
-								<a href="#" class="ui-btn" data-rel="back" onclick="$('#popupFilter').popup('close')" data-role="button">取消</a>																
+								<a href="#" class="ui-btn" onclick="$('#popupFilter').popup('close')" data-role="button">取消</a>																
 							</div>
 						</div>
 					</div>
@@ -264,7 +271,8 @@
 					startdate: new Date().add(-1).day().toString("yyyy-MM-dd"),
 					enddate: new Date().toString("yyyy-MM-dd"),
 					address: "",
-					type: ""
+					type: "",
+					hcom: ""
 				},
 				searchList: [],
 				showPagination: true,
@@ -417,10 +425,9 @@
 				}
 			},
 			created: function() {
-				var obj = this;
-				this.getItems(obj);
-				this.queryAddress(obj);
-				this.queryHcom(obj);
+				this.getItems(this);
+				this.queryAddress(this);
+				this.queryHcom(this);
 				// 获取检查地址
 				// 获取检测单位
 			},

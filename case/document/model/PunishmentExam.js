@@ -89,7 +89,7 @@ PunishmentExam.prototype.domMap = [
     },{
         name: "主要违法事实",
         key: "event",
-        type: "span",
+        type: "p",
         show: function (au) {
             return true;
         },
