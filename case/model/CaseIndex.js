@@ -164,28 +164,28 @@ CaseIndex.prototype.docMap = [
     },{
         name: "调查取证文书",
         docs: [
-        // {
-        //     key: "noteSurveyState",
-        //     name: "勘验笔录",
-        //     link: "surveyrecordlist",
-        //     state: function (params) {
-        //         return (params[this.key] ? params[this.key] * 3 : 0).toString()
-        //     }
-        // },{
-        //     key: "noteInspectState",
-        //     name: "检查笔录",
-        //     link: "noteinspectlist",
-        //     state: function (params) {
-        //         return (params[this.key] ? params[this.key] * 3 : 0).toString()
-        //     }
-        // },{
-        //     key: "noteExamState",
-        //     name: "询问笔录",
-        //     link: "noteinspectlist",
-        //     state: function (params) {
-        //         return (params[this.key] ? params[this.key] * 3 : 0).toString()
-        //     }
-        // },
+        {
+            key: "noteSurveyState",
+            name: "勘验笔录",
+            link: "surveyrecordlist",
+            state: function (params) {
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
+            }
+        },{
+            key: "noteInspectState",
+            name: "检查笔录",
+            link: "noteinspectlist",
+            state: function (params) {
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
+            }
+        },{
+            key: "noteExamState",
+            name: "询问笔录",
+            link: "noteinspectlist",
+            state: function (params) {
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
+            }
+        },
         {
             key: "reportEndInvestigateSate",
             name: "案件调查终结报告",
