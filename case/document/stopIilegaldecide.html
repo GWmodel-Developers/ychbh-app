@@ -103,7 +103,7 @@
 											url: "http://huyg.site:8080/huangbaihe/noticeStopAllegedIllegalActs/getOneForm",
 											dataType: "JSONP",
 											data: ({
-												case_name: caseID
+												caseID: caseID
 											}),
 											success: function (commoncase) {
 												$.ajax({
@@ -113,8 +113,8 @@
 													data: ({
 														caseID: caseID
 													}),
-													success: function (StopIllegalDecide) {
-														obj.detail = new StopIllegalDecide(caseinfo, registercase, commoncase, StopIllegalDecide);
+													success: function (stopIllegalDecide) {
+														obj.detail = new StopIllegalDecide(caseinfo, registercase, commoncase.row, stopIllegalDecide);
 													}
 												});
 											}

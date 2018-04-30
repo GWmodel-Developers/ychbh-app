@@ -101,7 +101,7 @@
 										$.ajax({
 											type: "post",
 											url: "http://61.136.146.172:8080/huangbaihe/Lcommoncase/querycaseid",
-											dataType: "JSONP",
+											dataType: "Json",
 											data: ({
 												case_name: registercase.brief
 											}),
@@ -122,7 +122,7 @@
 														caseID: caseID
 													}),
 													success: function (decisionpunishmentinspot) {
-														obj.detail = new DecisionPunishmentInSpot(caseinfo, registercase, commoncase.rows,Punishment, decisionpunishmentinspot);
+														obj.detail = new NoAdministrativePenalty(caseinfo, registercase, commoncase.rows,Punishment, decisionpunishmentinspot);
 													}
 												});
 											}
@@ -132,7 +132,7 @@
 									}
 								});
 							} else {
-								obj.detail = new DecisionPunishmentInSpot(caseinfo);
+								obj.detail = new NoAdministrativePenalty(caseinfo);
 							}
 						}
 					});

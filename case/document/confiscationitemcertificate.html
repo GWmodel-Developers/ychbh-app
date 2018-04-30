@@ -114,7 +114,7 @@
 														caseID: caseID
 													}),
 													success: function (decisionpunishmentinspot) {
-														obj.detail = new DecisionPunishmentInSpot(caseinfo, registercase,commoncase, decisionpunishmentinspot);
+														obj.detail = new ConfiscationItemCertificate(caseinfo, registercase,commoncase, decisionpunishmentinspot);
 													}
 												});
 									}
@@ -122,7 +122,7 @@
 									}
 								});
 							} else {
-								obj.detail = new DecisionPunishmentInSpot(caseinfo);
+								obj.detail = new ConfiscationItemCertificate(caseinfo);
 							}
 						}
 					});

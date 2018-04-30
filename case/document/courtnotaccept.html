@@ -106,13 +106,13 @@
 														caseID: caseID
 													}),
 													success: function (decisionpunishmentinspot) {
-														obj.detail = new DecisionPunishmentInSpot(caseinfo, registercase, decisionpunishmentinspot);
+														obj.detail = new CourtNotAccept(caseinfo, registercase, decisionpunishmentinspot);
 													}
 												});
 									}
 								});
 							} else {
-								obj.detail = new DecisionPunishmentInSpot(caseinfo);
+								obj.detail = new CourtNotAccept(caseinfo);
 							}
 						}
 					});

@@ -103,7 +103,7 @@
 											url: "http://huyg.site:8080/huangbaihe/formDelayFine/getOneForm",
 											dataType: "JSONP",
 											data: ({
-												case_name: registercase.brief
+												caseID: caseID
 											}),
 											success: function (commoncase) {
 												$.ajax({
@@ -114,7 +114,7 @@
 														caseID: caseID
 													}),
 													success: function (decisionpunishmentinspot) {
-														obj.detail = new DecisionPunishmentInSpot(caseinfo, registercase, commoncase.rows, decisionpunishmentinspot);
+														obj.detail = new DelayedPaymentOfFines(caseinfo, registercase, commoncase.rows, decisionpunishmentinspot);
 													}
 												});
 											}
@@ -122,7 +122,7 @@
 									}
 								});
 							} else {
-								obj.detail = new DecisionPunishmentInSpot(caseinfo);
+								obj.detail = new DelayedPaymentOfFines(caseinfo);
 							}
 						}
 					});

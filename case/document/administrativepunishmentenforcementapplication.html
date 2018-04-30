@@ -103,7 +103,7 @@
 											url: "http://huyg.site:8080/huangbaihe/decisionPunishment/getDoc",
 											dataType: "JSONP",
 											data: ({
-												case_name: caseID
+												caseID: caseID
 											}),
 											success: function (Penalty) {
 										$.ajax({
@@ -111,7 +111,7 @@
 											url: "http://huyg.site:8080/huangbaihe/noticeAdministrativePenalty/getOneForm",
 											dataType: "JSONP",
 											data: ({
-												case_name: caseID
+												caseID: caseID
 											}),
 											success: function (commoncase) {
 												$.ajax({
@@ -122,17 +122,17 @@
 														caseID: caseID
 													}),
 													success: function (decisionpunishmentinspot) {
-														obj.detail = new DecisionPunishmentInSpot(caseinfo, registercase,Penalty, commoncase.rows, decisionpunishmentinspot);
+														obj.detail = new AdministrativePunishmentEnforcementApplication(caseinfo, registercase,Penalty, commoncase.rows, decisionpunishmentinspot);
 													}
 												});
-											}
+											} 
 										});
 											}
 										});
 									}
 								});
 							} else {
-								obj.detail = new DecisionPunishmentInSpot(caseinfo);
+								obj.detail = new AdministrativePunishmentEnforcementApplication(caseinfo);
 							}
 						}
 					});

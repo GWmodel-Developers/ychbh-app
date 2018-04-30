@@ -125,9 +125,9 @@
 								url: "http://huyg.site:8080/huangbaihe/decisionPunishment/getDoc",
 								dataType: "JSONP",
 								data: ({
-									case_name: caseID
+									caseID: caseID
 								}),
-								success: function (data) { resolve(data.rows) }
+								success: function (data) { resolve(data) }
 							})
 						})
 					}
@@ -148,7 +148,7 @@
 							})
 						})
 					}
-					obj.detail = new WithdrawCase(caseinfo, registercase, commoncase, withdrawcase);
+					obj.detail = new DeferredPaymentOfLines(caseinfo, registercase, commoncase, withdrawcase);
 				},
 				submit: function () {
 					
