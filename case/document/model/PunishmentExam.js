@@ -60,7 +60,7 @@ PunishmentExam.prototype.toExamForm = function (caseID, caseType, reExamResponsi
         examDate: this.examDate,
         examResponsible: this.examResponsible,
         examSuggestion: this.examSuggestion,
-        leader: this.leader,
+        leader: reExamResponsible.realname,
         userId: reExamResponsible.uid,
         userName: reExamResponsible.realname
     }

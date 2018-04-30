@@ -63,7 +63,7 @@ EndCaseReport.prototype.toExamForm = function (caseID, caseType, reExamResponsib
         documentName: "行政处罚结案报告",
         examDate: this.examDate,
         examSuggestion: this.examSuggestion,
-        leader: this.leader,
+        leader: reExamResponsible.realname,
         reponsible: this.reponsible,
         userId: reExamResponsible.uid,
         userName: reExamResponsible.realname

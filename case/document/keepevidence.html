@@ -70,6 +70,7 @@
                             <p v-else-if="dommap.type === 'p' " class="listview-aside">{{ dommap.get(detail) }}</p>
                             <textarea v-else-if="dommap.type === 'textarea' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]"></textarea>
                             <select v-else-if="dommap.type === 'select' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
+                                <option value="" disabled>请选择</option>
                                 <option v-for="(opt, i) in dommap.options" v-bind:value="opt.value">{{ opt.text }}</option>
                             </select>
                             <input v-else v-bind:type="dommap.type" v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">

@@ -146,92 +146,92 @@ CaseIndex.prototype.docMap = [
         },{
             key: "formTransferCaseState",
             name: "案件移送呈批表",
-            link: "casetransferredform1",
+            link: "casetransferredform",
             state: function (params) {
                 return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "letterTransferState",
             name: "案件移送函",
-            link: "transferletter1",
+            link: "transferletter",
             state: function (params) {
-                return params[this.key] ? params[this.key].toString() : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         }]
     },{
         name: "先行登记保存物品程序流程",
         docs: [{
-            key: "formUnRegisterCaseSate",
+            key: "formPreSaveState",
             name: "先行登记保存物品呈批表",
-            link: "keepevidence",
+            link: "advregsaveitemtbl",
             state: function (params) {
                 return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "noticePreSaveState",
             name: "先行登记保存物品通知书",
-            link: "advregsaveitemnoticetbl1",
+            link: "advregsaveitemnoticetbl",
             state: function (params) {
-                return params[this.key] ? params[this.key].toString() : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
-            key: null,
+            key: "listPreSaveThingState",
             name: "先行登记保存物品凭证",
-            link: "advregsaveitemevidence1",
+            link: "advregsaveitemevidence",
             state: function (params) {
-                return params[this.key] ? params[this.key].toString() : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "relasePreSaveState",
             name: "解除先行登记保存物品通知书",
-            link: "relieveadvregsavenotice1",
+            link: "relieveadvregsavenotice",
             state: function (params) {
-                return params[this.key] ? params[this.key].toString() : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         }]
     },{
         name: "扣押物品文书",
         docs: [{
-            key: "formUnRegisterCaseSate",
+            key: "formDetainGoodsState",
             name: "扣押物品呈批表",
-            link: "#",
+            link: "formDetainGoods",
             state: function (params) {
                 return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "detainInformLetterState",
             name: "扣押通知书",
-            link: "noticesubtract1",
+            link: "noticesubtract",
             state: function (params) {
-                return params[this.key] ? params[this.key].toString() : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "investDetainGoodsState",
             name: "扣押物品审批表",
-            link: "objectsubtrackform1",
+            link: "objectsubtrackform",
             state: function (params) {
                 return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "decisionDetainGoodsState",
             name: "扣押物品决定书",
-            link: "objectsubtrackdecide1",
+            link: "objectsubtrackdecide",
             state: function (params) {
-                return params[this.key] ? params[this.key].toString() : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
-            key: null,
+            key: "listDetainThingState",
             name: "扣押物品凭证",
-            link: "objectsubtrackevidence1",
+            link: "objectsubtrackevidence",
             state: function (params) {
-                return params[this.key] ? params[this.key].toString() : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "redetainInformLetterState",
             name: "解除扣押物品决定书",
-            link: "relievesubtrackobjectdecision1",
+            link: "relievesubtrackobjectdecision",
             state: function (params) {
-                return params[this.key] ? params[this.key].toString() : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         }]
     },{
@@ -279,7 +279,7 @@ CaseIndex.prototype.docMap = [
         docs: [{
             key: "noticeStopAllegedIllegalActsState",
             name: "责令停止涉嫌违法行为通知书",
-            link: "stopIilegalinform1",
+            link: "stopIilegalinform",
             state: function (params) {
                 return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
@@ -399,11 +399,11 @@ CaseIndex.prototype.docMap = [
                 return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
-            key: "ormNotPunishmentDecisionExamSate",
+            key: "formNotPunishmentDecisionExamSate",
             name: "不予行政处罚决定审批表",
             link: "noadministrativepenaltydecision1",
             state: function (params) {
-                return (params[this.key] ? params[this.key] * 3 : 0).toString()
+                return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "decisionNotPunishmentState",
@@ -424,7 +424,7 @@ CaseIndex.prototype.docMap = [
             name: "延（分）期缴纳罚款呈批表",
             link: "deferredpaymentoflines1",
             state: function (params) {
-                return (params[this.key] ? params[this.key] * 3 : 0).toString()
+                return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "noticeDelayPaymentFineState",
@@ -469,84 +469,84 @@ CaseIndex.prototype.docMap = [
             name: "行政强制执行审批表",
             link: "adimienforform1",
             state: function (params) {
-                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
+                return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "noticeAdministrativeEnforcementDecisionState",
             name: "行政强制执行决定书",
             link: "adminenfordecision1",
             state: function (params) {
-                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "noticeAdministrativeEnforcementAnnouncementState",
             name: "行政强制执行公告",
             link: "adimienfornotice1",
             state: function (params) {
-                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "noticeAgreementAdministrativeEnforcementState",
             name: "行政强制执行协议",
             link: "adimienforpro1",
             state: function (params) {
-                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "formEnforceStopExamState",
             name: "行政强制终止（中止）审批表",
             link: "adminenforterapp1",
             state: function (params) {
-                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
+                return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "noticeAdministrativeEnforcementStopImplyState",
             name: "行政强制中止（终止）执行决定书",
             link: "adminenforsusform1",
             state: function (params) {
-                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "noticeAdministrativeEnforcementState",
             name: "行政强制执行催告书",
             link: "adminenforurgform1",
             state: function (params) {
-                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "formImplementExamState",
             name: "待履行审批表",
             link: "pendingapprovalform1",
             state: function (params) {
-                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
+                return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "noticeImplementDecisionState",
             name: "代履行决定书",
             link: "decibehalfofperfor1",
             state: function (params) {
-                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "noticeStopObligationState",
             name: "代履行催告通知书",
             link: "notiperforremin1",
             state: function (params) {
-                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "noticeAdministrativeEnforcementAttorneyState",
             name: "行政强制执行委托书",
             link: "powerattorneyadminenforce1",
             state: function (params) {
-                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "noticeAdministrativeEnforcementRecordState",
             name: "行政强制执行记录",
             link: "adminenforcerecords1",
             state: function (params) {
-                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         }]
     }

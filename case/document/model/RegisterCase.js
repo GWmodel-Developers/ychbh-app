@@ -97,7 +97,7 @@ RegisterCase.prototype.toExamForm = function (caseID, caseType, reExamResponsibl
         documentName: "立案呈批表",
         examDate: this.examDate,
         examSuggestion: this.examSuggestion,
-        leader: this.leader,
+        leader: reExamResponsible.realname,
         reponsible: this.reponsible,
         userId: reExamResponsible.uid,
         userName: reExamResponsible.realname

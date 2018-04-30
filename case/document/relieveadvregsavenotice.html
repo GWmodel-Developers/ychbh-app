@@ -7,7 +7,7 @@
 		<title>黄柏河流域综合执法信息管理系统</title>
 		<link rel="stylesheet" href="../../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
 		<link rel="stylesheet" href="../../nativeDroid2/vendor/waves/waves.min.css" />
-		<link rel="stylesheet" href="../../nativeDroid2/vendor/wow/animate.css" />
+		<link rel="stylesheet" href="../../nativeDroid2/vendor/wow/animate.css"/>
 		<link rel="stylesheet" href="../../nativeDroid2/css/nativedroid2.css" />
 		<link rel="stylesheet" href="../../nativeDroid2/css/nativedroid2.color.green.css" />
 		<link rel="stylesheet" href="../../css/style.css">
@@ -17,29 +17,12 @@
 		<script src="../../nativeDroid2/vendor/waves/waves.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../nativeDroid2/js/nativedroid2.js"></script>
-		<script type="text/javascript" src="../../nativeDroid2/nd2settings.js"></script>
+		<script type="text/javascript" src="../../nativeDroid2/nd2settings.js" ></script>
 		<script src="../../js/auth.js"></script>
 		<script>
 			auth("case", "read", null, 2);
 		</script>
-		<style>
-			.ui-checkbox {
-				margin: 0px 0px;
-			}
-
-			label.ui-checkbox-off, label.ui-checkbox-on {
-				padding-top: 0px;
-				padding-bottom: 0px;
-				font-size: 16px;
-			}
-
-			.card-supporting-text>ul>li>p.listview-aside {
-				font-size: 14px;
-				word-wrap: break-word;
-				white-space: normal;
-			}
-		</style>
-	</head>
+		</head>
 
 	<body>
 		<div data-role="page" id="root">
@@ -47,18 +30,17 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>行政处罚决定呈批表</h1>
+				<h1>解除先行登记保存物品通知书</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
-				<form action="#">
-					<ul data-role="listview" data-inset="true">
+                <form action="#">
+                    <ul data-role="listview" data-inset="true">
                         <li v-for="(dommap, index) in detail.domMap" v-if="dommap.show(au)">
                             <b>{{ dommap.name }}</b>
                             <span v-if="dommap.type === 'span' " class="listview-aside">{{ dommap.get(detail) }}</span>
                             <p v-else-if="dommap.type === 'p' " class="listview-aside">{{ dommap.get(detail) }}</p>
                             <textarea v-else-if="dommap.type === 'textarea' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]"></textarea>
                             <select v-else-if="dommap.type === 'select' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
-                                <option value="" disabled>请选择</option>
                                 <option v-for="(opt, i) in options[dommap.key]" v-bind:value="opt.value">{{ opt.text }}</option>
                             </select>
                             <input v-else v-bind:type="dommap.type" v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
@@ -67,16 +49,17 @@
 				</form>
 				<div class="action-bar">
 					<a v-if="showUpdate" href="#" class="ui-btn clr-btn-teal ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="update()">
-						<i class="md zmdi zmdi-edit"></i>修改 </a>
-					<a v-if="showSubmit" href="#" class="ui-btn clr-btn-light-green ui-btn-icon-left ui-btn-raised ui-btn-inline"
-					 @click="submit()">
-						<i class="md zmdi zmdi-mail-send"></i>提交 </a>
-					<a v-if="showExam" href="#" class="ui-btn clr-btn-orange ui-btn-icon-left ui-btn-raised ui-btn-inline"
-					 @click="exam()">
-						<i class="md zmdi zmdi-eye"></i>审核 </a>
-					<a v-if="showReExam" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline"
-					 @click="reExam()">
-						<i class="md zmdi zmdi-check"></i>审批 </a>
+						<i class="md zmdi zmdi-edit"></i>修改
+					</a>
+					<a v-if="showSubmit" href="#" class="ui-btn clr-btn-light-green ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="submit()">
+						<i class="md zmdi zmdi-mail-send"></i>提交
+					</a>
+					<a v-if="showExam" href="#" class="ui-btn clr-btn-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="exam()">
+						<i class="md zmdi zmdi-eye"></i>审核
+					</a>
+					<a v-if="showReExam" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="reExam()">
+						<i class="md zmdi zmdi-check"></i>审批
+					</a>
 				</div>
 			</div>
 		</div>
@@ -84,26 +67,17 @@
 	<script type="text/javascript" src="../../vuejs/vue.min.js"></script>
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/PunishmentDecisionExam.js"></script>
+	<script type="text/javascript" src="model/RelieveAdvRegSaveNotice.js" ></script>
 	<script type="text/javascript">
-		/**
-		 * 获取GET参数
-		 * @param {String} name 参数名
-		 */
-		function getURLParameter(name) {  
-			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;  
-		}
-
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
 				selected_id: localStorage.getItem("caseID"),
-				detail: new PunishmentDecisionExam(),
+				detail: new RelieveAdvRegSaveNotice(),
 				au: JSON.parse(localStorage.getItem("au")),
 				options: {
 					leader: []
-				},
-				redirect: getURLParameter("redirect")
+				}
 			},
 			methods: {
 				queryItem: function(caseID, obj) {
@@ -118,102 +92,42 @@
 							if (caseinfo.formPunishmentState != 0) {
 								$.ajax({
 									type: "post",
-									url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
+									url: "http://huyg.site:8080/huangbaihe/noticePreSave/getOneForm",
 									dataType: "JSONP",
 									data: ({
 										caseID: caseID
 									}),
-									success: function (registercase) {
+									success: function (noticePreSave) {
 										$.ajax({
 											type: "post",
-											url: "http://61.136.146.172:8080//huangbaihe/Lcommoncase/querycaseid",
+											url: "http://huyg.site:8080/huangbaihe/relasePreSave/getOneForm",
+											dataType: "JSONP",
 											data: ({
-												case_name: registercase.brief
+												caseID: caseID
 											}),
-											success: function (doc) {
-												$.ajax({
-													type: "post",
-													url: "http://huyg.site:8080/huangbaihe/FormPunishmentDecisionExam/getOneForm",
-													dataType: "JSONP",
-													data: ({
-														caseID: caseID
-													}),
-													success: function (decision) {
-														obj.detail = new PunishmentDecisionExam(caseinfo, registercase, doc, decision);
-													}
-												});
+											success: function (relasePreSave) {
+												obj.detail = new RelieveAdvRegSaveNotice(caseinfo, noticePreSave, relasePreSave);
 											}
 										});
 									}
 								});
 							} else {
-								obj.detail = new PunishmentDecisionExam(caseinfo);
+								obj.detail = new RelieveAdvRegSaveNotice(caseinfo);
 							}
 						}
 					});
 				},
 				submit: function () {
-
+					
 				},
 				update: function () {
-
+					
 				},
-				exam: async function () {
-					var reExamResponsible = mainpageVM.options.leader.find(function (item) {
-						return item.value == mainpageVM.detail.leader;
-					})
-					$.ajax({
-						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/formPunishment/exam",
-						dataType: "JSONP",
-						data: mainpageVM.detail.toExamForm(mainpageVM.selected_id, "待审批", reExamResponsible),
-						success: function (data) {
-							if (data) {
-								new $.nd2Toast({
-									message: "操作成功"
-								})
-							} else {
-								new $.nd2Toast({
-									message: "操作失败"
-								})
-							}
-						},
-						error: function () {
-							new $.nd2Toast({
-								message: "操作失败"
-							})
-						}
-					});
+				exam: function () {
+					
 				},
 				reExam: function () {
-					try {
-						$.ajax({
-							method: "post",
-							url: "http://huyg.site:8080/huangbaihe/formPunishment/reExam",
-							dataType: "JSONP",
-							data: mainpageVM.detail.toReExamForm(),
-							success: function (data) {
-								if (data) {
-									new $.nd2Toast({
-										message: "操作成功"
-									})
-								} else {
-									new $.nd2Toast({
-										message: "操作失败"
-									})
-								}
-							},
-							error: function () {
-								new $.nd2Toast({
-									message: "操作失败"
-								})
-							}
-						});
-					} catch (error) {
-						new $.nd2Toast({
-							message: "表单填写有误"
-						})
-					}
+					
 				},
 				queryLeaders: function (context) {
 					$.ajax({
@@ -226,9 +140,7 @@
 							});
 							context.options.leader = leaders.map(function (item) {
 								return {
-									uid: item.uid,
-									realname: item.realname,
-									value: item.realname,
+									value: item.uid,
 									text: item.realname
 								}
 							})
@@ -239,9 +151,6 @@
 							});
 						}
 					})
-				},
-				getQueryParameter: function (params) {
-					getURLParameter(params)
 				}
 			},
 			computed: {
@@ -252,10 +161,10 @@
 					return false;
 				},
 				showExam: function () {
-					return this.au.a_case_exam == 1;
+					return false;
 				},
 				showReExam: function () {
-					return this.au.a_case_reexam == 1;
+					return false;
 				}
 			},
 			created: function() {
@@ -269,11 +178,7 @@
 		});
 
 		function back() {
-			if (getURLParameter("redirect") == "home") {
-				window.location = "../../index.html"
-			} else {
-				window.location = "../caseindex.html#page_document";
-			}
+			window.location = "../caseindex.html#page_document";
 		}
 	</script>
 
