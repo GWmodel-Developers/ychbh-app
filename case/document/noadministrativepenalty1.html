@@ -101,22 +101,32 @@
 										$.ajax({
 											type: "post",
 											url: "http://61.136.146.172:8080/huangbaihe/Lcommoncase/querycaseid",
-											dataType: "json",
+											dataType: "JSONP",
 											data: ({
 												case_name: registercase.brief
 											}),
 											success: function (commoncase) {
 												$.ajax({
 													type: "post",
-													url: "http://huyg.site:8080/huangbaihe/decisionPunishmentInSpot/getDocument",
+													url: "http://huyg.site:8080/huangbaihe/reportEndInvastigate/getDoc",
+													dataType: "JSONP",
+													data: ({
+														caseID: caseID
+													}),
+													success: function (Punishment) {
+												$.ajax({
+													type: "post",
+													url: "http://huyg.site:8080/huangbaihe/decisionNotPunishment/getOneForm",
 													dataType: "JSONP",
 													data: ({
 														caseID: caseID
 													}),
 													success: function (decisionpunishmentinspot) {
-														obj.detail = new DecisionPunishmentInSpot(caseinfo, registercase, commoncase.rows, decisionpunishmentinspot);
+														obj.detail = new DecisionPunishmentInSpot(caseinfo, registercase, commoncase.rows,Punishment, decisionpunishmentinspot);
 													}
 												});
+											}
+										});
 											}
 										});
 									}

@@ -71,9 +71,9 @@ DeferredPaymentOfLines.prototype.toExamForm = function (caseID, caseType, reExam
   }
 }
 
-DeferredPaymentOfLines.prototype.toReExamForm = function () {
+DeferredPaymentOfLines.prototype.toReExamForm = function (caseID) {
   return {
-      caseId: this.case_id,
+      caseID: this.case_id || caseID,
       leader: this.leader,
       reExamDate: Date.parse(this.reExamDate).toString("yyyy年MM月dd日"),
       reExamSuggestion: this.reExamSuggestion

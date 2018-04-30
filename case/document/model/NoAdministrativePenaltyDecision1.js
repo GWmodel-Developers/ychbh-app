@@ -71,9 +71,9 @@ NoAdministrativePenaltyDecision.prototype.toExamForm = function (caseID, caseTyp
   }
 }
 
-NoAdministrativePenaltyDecision.prototype.toReExamForm = function () {
+NoAdministrativePenaltyDecision.prototype.toReExamForm = function (caseID) {
   return {
-      caseId: this.case_id,
+      caseId: this.case_id || caseID,
       leader: this.leader,
       reExamDate: Date.parse(this.reExamDate).toString("yyyy年MM月dd日"),
       reExamSuggestion: this.reExamSuggestion

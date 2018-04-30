@@ -100,23 +100,33 @@
 									success: function (registercase) {
 										$.ajax({
 											type: "post",
-											url: "http://61.136.146.172:8080/huangbaihe/Lcommoncase/querycaseid",
-											dataType: "json",
+											url: "http://huyg.site:8080/huangbaihe/decisionPunishment/getDoc",
+											dataType: "JSONP",
 											data: ({
-												case_name: registercase.brief
+												case_name: caseID
+											}),
+											success: function (Penalty) {
+										$.ajax({
+											type: "post",
+											url: "http://huyg.site:8080/huangbaihe/noticeAdministrativePenalty/getOneForm",
+											dataType: "JSONP",
+											data: ({
+												case_name: caseID
 											}),
 											success: function (commoncase) {
 												$.ajax({
 													type: "post",
-													url: "http://huyg.site:8080/huangbaihe/decisionPunishmentInSpot/getDocument",
+													url: "http://huyg.site:8080/huangbaihe/noticeEnforceAdministrativePenalty/getOneForm",
 													dataType: "JSONP",
 													data: ({
 														caseID: caseID
 													}),
 													success: function (decisionpunishmentinspot) {
-														obj.detail = new DecisionPunishmentInSpot(caseinfo, registercase, commoncase.rows, decisionpunishmentinspot);
+														obj.detail = new DecisionPunishmentInSpot(caseinfo, registercase,Penalty, commoncase.rows, decisionpunishmentinspot);
 													}
 												});
+											}
+										});
 											}
 										});
 									}
