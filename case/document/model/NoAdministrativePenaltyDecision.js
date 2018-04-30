@@ -1,6 +1,6 @@
-// 待履行审批表
-function PendingApprovalForm(param0, param1, param2, param3, param4) {
-  this.case_name = null;
+// 不予行政处罚决定审批表
+function NoAdministrativePenaltyDecision(param0, param1, param2, param3, param4) {
+  this.brief = null;
 	this.objectName = null;
 	this.pretellDocId = null;
 	this.pretellReceiverDate = Date.today().toString("yyyy-MM-dd");
@@ -55,13 +55,13 @@ this.excuteDate = this.excuteDate.replace(/[年月]/g, "-").replace(/[日]/g, ""
   this.reExamDate = this.reExamDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
 }
 
-PendingApprovalForm.prototype.toExamForm = function (caseID, caseType, reExamResponsible) {
+NoAdministrativePenaltyDecision.prototype.toExamForm = function (caseID, caseType, reExamResponsible) {
   return {
       caseID: caseID,
       caseId: caseID,
       caseName: this.brief,
       caseType: caseType,
-      documentName: "待履行审批表",
+      documentName: "不予行政处罚决定审批表",
       examDate: this.examDate,
       examResponsible: this.examResponsible,
       examSuggestion: this.examSuggestion,
@@ -71,19 +71,19 @@ PendingApprovalForm.prototype.toExamForm = function (caseID, caseType, reExamRes
   }
 }
 
-PendingApprovalForm.prototype.toReExamForm = function () {
+NoAdministrativePenaltyDecision.prototype.toReExamForm = function (caseID) {
   return {
-      caseId: this.case_id,
+      caseId: this.case_id || caseID,
       leader: this.leader,
       reExamDate: Date.parse(this.reExamDate).toString("yyyy年MM月dd日"),
       reExamSuggestion: this.reExamSuggestion
   }
 }
 
-PendingApprovalForm.prototype.domMap = [
+NoAdministrativePenaltyDecision.prototype.domMap = [
    {
-    key: "case_name",
-    name: "案由/案件名称",
+    key: "brief",
+    name: "案由",
     type: "span",
     show: function (au) {
       return true;
@@ -124,7 +124,7 @@ PendingApprovalForm.prototype.domMap = [
   }, {
     key: "pretellSuggestion",
     name: "建议处罚内容",
-    type: "p",
+    type: "span",
     show: function (au) {
       return true;
     },
@@ -134,7 +134,7 @@ PendingApprovalForm.prototype.domMap = [
   }, {
     key: "objectReason",
     name: "当事人陈述申辩意见和理由",
-    type: "p",
+    type: "span",
     show: function (au) {
       return true;
     },
@@ -144,7 +144,7 @@ PendingApprovalForm.prototype.domMap = [
   }, {
     key: "excuteSuggestion",
     name: "承办人处理意见",
-    type: "p",
+    type: "span",
     show: function (au) {
       return true;
     },

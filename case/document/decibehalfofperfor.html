@@ -7,7 +7,7 @@
 		<title>黄柏河流域综合执法信息管理系统</title>
 		<link rel="stylesheet" href="../../jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
 		<link rel="stylesheet" href="../../nativeDroid2/vendor/waves/waves.min.css" />
-		<link rel="stylesheet" href="../../nativeDroid2/vendor/wow/animate.css"/>
+		<link rel="stylesheet" href="../../nativeDroid2/vendor/wow/animate.css" />
 		<link rel="stylesheet" href="../../nativeDroid2/css/nativedroid2.css" />
 		<link rel="stylesheet" href="../../nativeDroid2/css/nativedroid2.color.green.css" />
 		<link rel="stylesheet" href="../../css/style.css">
@@ -17,12 +17,11 @@
 		<script src="../../nativeDroid2/vendor/waves/waves.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../nativeDroid2/vendor/wow/wow.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../nativeDroid2/js/nativedroid2.js"></script>
-		<script type="text/javascript" src="../../nativeDroid2/nd2settings.js" ></script>
+		<script type="text/javascript" src="../../nativeDroid2/nd2settings.js"></script>
 		<script src="../../js/auth.js"></script>
 		<script>
 			auth("case", "read", null, 2);
-		</script>
-		</head>
+		</script> </head>
 
 	<body>
 		<div data-role="page" id="root">
@@ -30,36 +29,35 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>履行义务催告通知书</h1>
+				<h1>代履行决定书</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
-                <form action="#">
-                    <ul data-role="listview" data-inset="true">
-                        <li v-for="(dommap, index) in detail.domMap" v-if="dommap.show(au)">
-                            <b>{{ dommap.name }}</b>
-                            <span v-if="dommap.type === 'span' " class="listview-aside">{{ dommap.get(detail) }}</span>
-                            <p v-else-if="dommap.type === 'p' " class="listview-aside">{{ dommap.get(detail) }}</p>
-                            <textarea v-else-if="dommap.type === 'textarea' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]"></textarea>
-                            <select v-else-if="dommap.type === 'select' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
-                                <option v-for="(opt, i) in options[dommap.key]" v-bind:value="opt.value">{{ opt.text }}</option>
-                            </select>
-                            <input v-else v-bind:type="dommap.type" v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
-                        </li>
-                    </ul>
+				<form action="#">
+					<ul data-role="listview" data-inset="true">
+						<li v-for="(dommap, index) in detail.domMap" v-if="dommap.show(au)">
+							<b>{{ dommap.name }}</b>
+							<span v-if="dommap.type === 'span' " class="listview-aside">{{ dommap.get(detail) }}</span>
+							<p v-else-if="dommap.type === 'p' " class="listview-aside">{{ dommap.get(detail) }}</p>
+							<textarea v-else-if="dommap.type === 'textarea' " v-bind:name="dommap.key" v-bind:id="dommap.key"
+							 v-model="detail[dommap.key]"></textarea>
+							<select v-else-if="dommap.type === 'select' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
+								<option v-for="(opt, i) in options[dommap.key]" v-bind:value="opt.value">{{ opt.text }}</option>
+							</select>
+							<input v-else v-bind:type="dommap.type" v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]"> </li>
+					</ul>
 				</form>
 				<div class="action-bar">
 					<a v-if="showUpdate" href="#" class="ui-btn clr-btn-teal ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="update()">
-						<i class="md zmdi zmdi-edit"></i>修改
-					</a>
-					<a v-if="showSubmit" href="#" class="ui-btn clr-btn-light-green ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="submit()">
-						<i class="md zmdi zmdi-mail-send"></i>提交
-					</a>
-					<a v-if="showExam" href="#" class="ui-btn clr-btn-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="exam()">
-						<i class="md zmdi zmdi-eye"></i>审核
-					</a>
-					<a v-if="showReExam" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline" @click="reExam()">
-						<i class="md zmdi zmdi-check"></i>审批
-					</a>
+						<i class="md zmdi zmdi-edit"></i>修改 </a>
+					<a v-if="showSubmit" href="#" class="ui-btn clr-btn-light-green ui-btn-icon-left ui-btn-raised ui-btn-inline"
+					 @click="submit()">
+						<i class="md zmdi zmdi-mail-send"></i>提交 </a>
+					<a v-if="showExam" href="#" class="ui-btn clr-btn-orange ui-btn-icon-left ui-btn-raised ui-btn-inline"
+					 @click="exam()">
+						<i class="md zmdi zmdi-eye"></i>审核 </a>
+					<a v-if="showReExam" href="#" class="ui-btn clr-btn-deep-orange ui-btn-icon-left ui-btn-raised ui-btn-inline"
+					 @click="reExam()">
+						<i class="md zmdi zmdi-check"></i>审批 </a>
 				</div>
 			</div>
 		</div>
@@ -67,20 +65,20 @@
 	<script type="text/javascript" src="../../vuejs/vue.min.js"></script>
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/ObligUrgNotice1.js" ></script>
+	<script type="text/javascript" src="model/Decibehalfofperfor.js"></script>
 	<script type="text/javascript">
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
 				selected_id: localStorage.getItem("caseID"),
-				detail: new ObligUrgNotice(),
+				detail: new Decibehalfofperfor(),
 				au: JSON.parse(localStorage.getItem("au")),
 				options: {
 					leader: []
 				}
 			},
 			methods: {
-				queryItem: function(caseID, obj) {
+				queryItem: function (caseID, obj) {
 					$.ajax({
 						type: "post",
 						url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
@@ -100,21 +98,31 @@
 									success: function (registercase) {
 										$.ajax({
 											type: "post",
-											url: "http://61.136.146.172:8080/huangbaihe/Lcommoncase/querycaseid",
-											dataType: "json",
+											url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
+											dataType: "JSONP",
 											data: ({
-												case_name: registercase.brief
+												caseID: caseID
 											}),
 											success: function (commoncase) {
 												$.ajax({
 													type: "post",
-													url: "http://huyg.site:8080/huangbaihe/ObligUrgNotice/getDocument",
+													url: "http://huyg.site:8080/huangbaihe/noticeAdministrativeEnforcement/getOneForm",
 													dataType: "JSONP",
 													data: ({
 														caseID: caseID
 													}),
-													success: function (ObligUrgNotice) {
-														obj.detail = new ObligUrgNotice(caseinfo, registercase, commoncase.rows, ObligUrgNotice);
+													success: function (AdministrativeEnforcement) {
+														$.ajax({
+															type: "post",
+															url: "http://huyg.site:8080/huangbaihe/noticeImplementDecision/getOneForm",
+															dataType: "JSONP",
+															data: ({
+																caseID: caseID
+															}),
+															success: function (ImplementDecision) {
+																obj.detail = new Decibehalfofperfor(caseinfo, registercase, commoncase, AdministrativeEnforcement, ImplementDecision);
+															}
+														});
 													}
 												});
 											}
@@ -122,22 +130,22 @@
 									}
 								});
 							} else {
-								obj.detail = new ObligUrgNotice(caseinfo);
+								obj.detail = new Decibehalfofperfor(caseinfo);
 							}
 						}
 					});
 				},
 				submit: function () {
-					
+
 				},
 				update: function () {
-					
+
 				},
 				exam: function () {
-					
+
 				},
 				reExam: function () {
-					
+
 				},
 				queryLeaders: function (context) {
 					$.ajax({
@@ -157,7 +165,7 @@
 						},
 						error: function () {
 							new $.nd2Toast({
-								message : "查询主管领导失败", // Required
+								message: "查询主管领导失败", // Required
 							});
 						}
 					})
@@ -177,7 +185,7 @@
 					return false;
 				}
 			},
-			created: function() {
+			created: function () {
 				var obj = this;
 				if (!this.selected_id) {
 					// back();

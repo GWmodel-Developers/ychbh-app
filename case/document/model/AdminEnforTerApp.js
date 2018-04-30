@@ -1,14 +1,14 @@
-// 延（分）期缴纳罚款呈批表
-function DeferredPaymentOfLines(param0, param1, param2, param3, param4) {
-  this.brief = null;
+// 行政强制终止（中止）审批表
+function AdminEnforTerApp(param0, param1, param2, param3, param4) {
+  this.case_name = null;
 	this.objectName = null;
-	this.informantName = null;
-	this.doucumentID2 = null;
-	this.delayReason = null;
-	this.delayDate = Date.today().toString("yyyy-MM-dd");
-	this.discussOpinion = null;
-	this.attendPerson = null;
-	this.discussDate = Date.today().toString("yyyy-MM-dd");
+	this.pretellDocId = null;
+	this.pretellReceiverDate = Date.today().toString("yyyy-MM-dd");
+	this.pretellSuggestion = null;
+	this.objectReason = null;
+	this.excuteSuggestion = null;
+	this.excutor = null;
+	this.excuteDate = Date.today().toString("yyyy-MM-dd");
    this.examSuggestion = null;
   this.examDate = Date.today().toString("yyyy-MM-dd");
   this.leader = null;
@@ -49,19 +49,19 @@ function DeferredPaymentOfLines(param0, param1, param2, param3, param4) {
     }
   }
 }
-  this.delayDate = this.delayDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
-this.discussDate = this.discussDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
+  this.pretellReceiverDate = this.pretellReceiverDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
+this.excuteDate = this.excuteDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
    this.examDate = this.examDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
   this.reExamDate = this.reExamDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
 }
 
-DeferredPaymentOfLines.prototype.toExamForm = function (caseID, caseType, reExamResponsible) {
+AdminEnforTerApp.prototype.toExamForm = function (caseID, caseType, reExamResponsible) {
   return {
       caseID: caseID,
       caseId: caseID,
       caseName: this.brief,
       caseType: caseType,
-      documentName: "延（分）期缴纳罚款呈批表",
+      documentName: "行政强制终止（中止）审批表",
       examDate: this.examDate,
       examResponsible: this.examResponsible,
       examSuggestion: this.examSuggestion,
@@ -71,19 +71,19 @@ DeferredPaymentOfLines.prototype.toExamForm = function (caseID, caseType, reExam
   }
 }
 
-DeferredPaymentOfLines.prototype.toReExamForm = function () {
+AdminEnforTerApp.prototype.toReExamForm = function (caseID) {
   return {
-      caseId: this.case_id,
+      caseID: this.case_id || caseID,
       leader: this.leader,
       reExamDate: Date.parse(this.reExamDate).toString("yyyy年MM月dd日"),
       reExamSuggestion: this.reExamSuggestion
   }
 }
 
-DeferredPaymentOfLines.prototype.domMap = [
+AdminEnforTerApp.prototype.domMap = [
    {
-    key: "brief",
-    name: "案由",
+    key: "case_name",
+    name: "案由/案件名称",
     type: "span",
     show: function (au) {
       return true;
@@ -93,7 +93,7 @@ DeferredPaymentOfLines.prototype.domMap = [
     }
   }, {
     key: "objectName",
-    name: "当事人（单位）",
+    name: "当事人",
     type: "span",
     show: function (au) {
       return true;
@@ -102,8 +102,8 @@ DeferredPaymentOfLines.prototype.domMap = [
       return detail[this.key];
     }
   }, {
-    key: "informantName",
-    name: "法定代表人(负责人)",
+    key: "pretellDocId",
+    name: "事先告知文书编号",
     type: "span",
     show: function (au) {
       return true;
@@ -112,28 +112,8 @@ DeferredPaymentOfLines.prototype.domMap = [
       return detail[this.key];
     }
   }, {
-    key: "doucumentID2",
-    name: "处罚决定文书号",
-    type: "span",
-    show: function (au) {
-      return true;
-    },
-    get: function (detail) {
-      return detail[this.key];
-    }
-  }, {
-    key: "delayReason",
-    name: "请求批准延（分）期缴纳罚款理由",
-    type: "span",
-    show: function (au) {
-      return true;
-    },
-    get: function (detail) {
-      return detail[this.key];
-    }
-  }, {
-    key: "delayDate",
-    name: "请求批准延（分）期缴纳罚款期限",
+    key: "pretellReceiverDate",
+    name: "事先告知文书送达日期",
     type: "span",
     show: function (au) {
       return true;
@@ -142,8 +122,8 @@ DeferredPaymentOfLines.prototype.domMap = [
       return Date.parse(detail[this.key]).toString("yyyy年MM月dd日");
     }
   }, {
-    key: "discussOpinion",
-    name: "讨论意见",
+    key: "pretellSuggestion",
+    name: "建议处罚内容",
     type: "span",
     show: function (au) {
       return true;
@@ -152,8 +132,28 @@ DeferredPaymentOfLines.prototype.domMap = [
       return detail[this.key];
     }
   }, {
-    key: "attendPerson",
-    name: "参加人员",
+    key: "objectReason",
+    name: "当事人陈述申辩意见和理由",
+    type: "p",
+    show: function (au) {
+      return true;
+    },
+    get: function (detail) {
+      return detail[this.key];
+    }
+  }, {
+    key: "excuteSuggestion",
+    name: "承办人处理意见",
+    type: "p",
+    show: function (au) {
+      return true;
+    },
+    get: function (detail) {
+      return detail[this.key];
+    }
+  }, {
+    key: "excutor",
+    name: "承办人",
     type: "span",
     show: function (au) {
       return true;
@@ -162,8 +162,8 @@ DeferredPaymentOfLines.prototype.domMap = [
       return detail[this.key];
     }
   }, {
-    key: "discussDate",
-    name: "讨论日期",
+    key: "excuteDate",
+    name: "办理日期",
     type: "span",
     show: function (au) {
       return true;
