@@ -1,5 +1,5 @@
-// 待履行审批表
-function PendingApprovalForm(param0, param1, param2, param3, param4) {
+// 行政强制执行审批表
+function AdimiEnforForm(param0, param1, param2, param3, param4) {
   this.case_name = null;
 	this.objectName = null;
 	this.pretellDocId = null;
@@ -49,19 +49,19 @@ function PendingApprovalForm(param0, param1, param2, param3, param4) {
     }
   }
 }
-  this.pretellReceiverDate = this.pretellReceiverDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
-this.excuteDate = this.excuteDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
    this.examDate = this.examDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
   this.reExamDate = this.reExamDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
+  this.pretellReceiverDate = this.reExamDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
+  this.excuteDate = this.reExamDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
 }
 
-PendingApprovalForm.prototype.toExamForm = function (caseID, caseType, reExamResponsible) {
+AdimiEnforForm.prototype.toExamForm = function (caseID, caseType, reExamResponsible) {
   return {
       caseID: caseID,
       caseId: caseID,
       caseName: this.brief,
       caseType: caseType,
-      documentName: "待履行审批表",
+      documentName: "行政强制执行审批表",
       examDate: this.examDate,
       examResponsible: this.examResponsible,
       examSuggestion: this.examSuggestion,
@@ -71,16 +71,16 @@ PendingApprovalForm.prototype.toExamForm = function (caseID, caseType, reExamRes
   }
 }
 
-PendingApprovalForm.prototype.toReExamForm = function () {
+AdimiEnforForm.prototype.toReExamForm = function (caseID) {
   return {
-      caseId: this.case_id,
+      caseID: this.case_id || caseID,
       leader: this.leader,
       reExamDate: Date.parse(this.reExamDate).toString("yyyy年MM月dd日"),
       reExamSuggestion: this.reExamSuggestion
   }
 }
 
-PendingApprovalForm.prototype.domMap = [
+AdimiEnforForm.prototype.domMap = [
    {
     key: "case_name",
     name: "案由/案件名称",
