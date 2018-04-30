@@ -55,7 +55,7 @@ WithdrawCase.prototype.cardTypesText = {
 WithdrawCase.prototype.toReExamForm = function () {
     return {
         caseId: this.case_id,
-        leader: reExamResponsible.realname,
+        leader: this.leader,
         reExamDate: this.reExamDate,
         reExamSuggestion: this.reExamSuggestion
     }
@@ -67,7 +67,7 @@ WithdrawCase.prototype.toExamForm = function (caseID, caseType, leader) {
         examSuggestion: this.examSuggestion,
         examResponsible: this.examResponsible,
         examDate: this.examDate,
-        leader: this.leader,
+        leader: leader.realname,
         userId: leader.uid,
         userName: leader.realname,
         caseId: this.case_id,
