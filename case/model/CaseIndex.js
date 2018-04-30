@@ -161,7 +161,7 @@ CaseIndex.prototype.docMap = [
     },{
         name: "先行登记保存物品程序流程",
         docs: [{
-            key: "formUnRegisterCaseSate",
+            key: "formPreSaveState",
             name: "先行登记保存物品呈批表",
             link: "advregsaveitemtbl",
             state: function (params) {
@@ -175,11 +175,11 @@ CaseIndex.prototype.docMap = [
                 return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
-            key: null,
+            key: "listPreSaveThingState",
             name: "先行登记保存物品凭证",
-            link: "advregsaveitemevidence1",
+            link: "advregsaveitemevidence",
             state: function (params) {
-                return params[this.key] ? params[this.key].toString() : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "relasePreSaveState",
@@ -220,11 +220,11 @@ CaseIndex.prototype.docMap = [
                 return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
-            key: null,
+            key: "listDetainThingState",
             name: "扣押物品凭证",
-            link: "objectsubtrackevidence1",
+            link: "objectsubtrackevidence",
             state: function (params) {
-                return params[this.key] ? params[this.key].toString() : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "redetainInformLetterState",

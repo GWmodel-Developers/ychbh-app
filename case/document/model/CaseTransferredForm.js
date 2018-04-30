@@ -62,9 +62,9 @@ CaseTransferredForm.prototype.toExamForm = function (caseID, caseType, reExamRes
   }
 }
 
-CaseTransferredForm.prototype.toReExamForm = function () {
+CaseTransferredForm.prototype.toReExamForm = function (caseID) {
   return {
-    caseId: this.case_id,
+    caseID: this.case_id || caseID,
     leader: this.leader,
     reExamDate: Date.parse(this.reExamDate).toString("yyyy年MM月dd日"),
     reExamSuggestion: this.reExamSuggestion
