@@ -30,7 +30,7 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>不予行政处罚决定审批表</h1>
+				<h1>延（分）期缴纳罚款呈批表</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
                 <form action="#">
@@ -68,7 +68,7 @@
 	<script type="text/javascript" src="../../vuejs/vue.min.js"></script>
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/NoAdministrativePenaltyDecision1.js" ></script>
+	<script type="text/javascript" src="model/DeferredPaymentOfLines.js" ></script>
 	<script type="text/javascript">
 		/**
 		 * 获取GET参数
@@ -82,7 +82,7 @@
 			el: "#root",
 			data: {
 				selected_id: localStorage.getItem("caseID"),
-				detail: new NoAdministrativePenaltyDecision(),
+				detail: new DeferredPaymentOfLines(),
 				au: JSON.parse(localStorage.getItem("au")),
 				options: {
 					leader: [],
@@ -119,7 +119,17 @@
 								success: function (data) { resolve(data) }
 							});
 						});
-
+						commoncase = await new Promise(function (resolve, reject) {
+							$.ajax({
+								type: "post",
+								url: "http://huyg.site:8080/huangbaihe/decisionPunishment/getDoc",
+								dataType: "JSONP",
+								data: ({
+									case_name: caseID
+								}),
+								success: function (data) { resolve(data.rows) }
+							})
+						})
 					}
 					if (caseinfo.formWithdrawCaseState == 0) {
 						new $.nd2Toast({
@@ -129,16 +139,16 @@
 						withdrawcase = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http:///huyg.site:8080/huangbaihe/FormNotPunishmentDecisionExam/getOneForm",
+								url: "http://huyg.site:8080/huangbaihe/formDelayFine/getOneForm",
 								dataType: "JSONP",
 								data: ({
 									caseID: caseID
 								}),
 								success: function (data) { resolve(data) }
-							});
-						});
+							})
+						})
 					}
-					obj.detail = new WithdrawCase(caseinfo, registercase, withdrawcase);
+					obj.detail = new WithdrawCase(caseinfo, registercase, commoncase, withdrawcase);
 				},
 				submit: function () {
 					
@@ -152,7 +162,7 @@
 					})
 					$.ajax({
 						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/FormNotPunishmentDecisionExam/exam",
+						url: "http://huyg.site:8080/huangbaihe/formDelayFine/exam",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toExamForm(mainpageVM.selected_id, "待审批", reExamResponsible),
 						success: function (data) {
@@ -176,7 +186,7 @@
 				reExam: function () {
 					$.ajax({
 						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/FormNotPunishmentDecisionExam/reExam",
+						url: "http://huyg.site:8080/huangbaihe/formDelayFine/reExam",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toReExamForm(mainpageVM.selected_id),
 						success: function (data) {
