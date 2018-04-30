@@ -30,7 +30,7 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>扣押通知书</h1>
+				<h1>先行登记保存物品通知书</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
                 <form action="#">
@@ -67,13 +67,13 @@
 	<script type="text/javascript" src="../../vuejs/vue.min.js"></script>
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/NoticeSubtract1.js" ></script>
+	<script type="text/javascript" src="model/AdvRegSaveItemNoticeTbl.js" ></script>
 	<script type="text/javascript">
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
 				selected_id: localStorage.getItem("caseID"),
-				detail: new NoticeSubtract(),
+				detail: new AdvRegSaveItemNoticeTbl(),
 				au: JSON.parse(localStorage.getItem("au")),
 				options: {
 					leader: []
@@ -100,21 +100,21 @@
 									success: function (registercase) {
 										$.ajax({
 											type: "post",
-											url: "http://61.136.146.172:8080/huangbaihe/Lcommoncase/querycaseid",
-											dataType: "json",
+											url: "http://huyg.site:8080/huangbaihe/formPreSave/getOneForm",
+											dataType: "JSONP",
 											data: ({
-												case_name: registercase.brief
+												caseID: caseID
 											}),
-											success: function (commoncase) {
+											success: function (formPreSave) {
 												$.ajax({
 													type: "post",
-													url: "http://huyg.site:8080/huangbaihe/NoticeSubtract/getDocument",
+													url: "http://huyg.site:8080/huangbaihe/noticePreSave/getOneForm",
 													dataType: "JSONP",
 													data: ({
 														caseID: caseID
 													}),
-													success: function (NoticeSubtract) {
-														obj.detail = new NoticeSubtract(caseinfo, registercase, commoncase.rows, NoticeSubtract);
+													success: function (noticePreSave) {
+														obj.detail = new AdvRegSaveItemNoticeTbl(caseinfo, registercase, formPreSave, noticePreSave);
 													}
 												});
 											}
@@ -122,7 +122,7 @@
 									}
 								});
 							} else {
-								obj.detail = new NoticeSubtract(caseinfo);
+								obj.detail = new AdvRegSaveItemNoticeTbl(caseinfo);
 							}
 						}
 					});

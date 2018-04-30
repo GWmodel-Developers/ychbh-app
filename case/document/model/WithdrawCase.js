@@ -67,7 +67,7 @@ WithdrawCase.prototype.toExamForm = function (caseID, caseType, leader) {
         examSuggestion: this.examSuggestion,
         examResponsible: this.examResponsible,
         examDate: this.examDate,
-        leader: this.leader,
+        leader: leader.realname,
         userId: leader.uid,
         userName: leader.realname,
         caseId: this.case_id,

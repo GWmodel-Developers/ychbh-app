@@ -41,6 +41,7 @@
                             <p v-else-if="dommap.type === 'p' " class="listview-aside">{{ dommap.get(detail) }}</p>
                             <textarea v-else-if="dommap.type === 'textarea' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]"></textarea>
                             <select v-else-if="dommap.type === 'select' " v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
+                                <option value="" disabled>请选择</option>
                                 <option v-for="(opt, i) in options[dommap.key]" v-bind:value="opt.value">{{ opt.text }}</option>
                             </select>
                             <input v-else v-bind:type="dommap.type" v-bind:name="dommap.key" v-bind:id="dommap.key" v-model="detail[dommap.key]">
@@ -121,9 +122,10 @@
 						commoncase = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://61.136.146.172:8080/huangbaihe/Lcommoncase/querycaseid",
+								url: "http://huyg.site:8080/huangbaihe/decisionPunishment/getDoc",
+								dataType: "JSONP",
 								data: ({
-									case_name: registercase.brief
+									case_name: caseID
 								}),
 								success: function (data) { resolve(data.rows) }
 							})
@@ -137,7 +139,7 @@
 						withdrawcase = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://huyg.site:8080/huangbaihe/formWithdrawCase/getOneForm",
+								url: "http://huyg.site:8080/huangbaihe/formDelayFine/getOneForm",
 								dataType: "JSONP",
 								data: ({
 									caseID: caseID
@@ -160,7 +162,7 @@
 					})
 					$.ajax({
 						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/formWithdrawCase/exam",
+						url: "http://huyg.site:8080/huangbaihe/formDelayFine/exam",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toExamForm(mainpageVM.selected_id, "待审批", reExamResponsible),
 						success: function (data) {
@@ -184,9 +186,9 @@
 				reExam: function () {
 					$.ajax({
 						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/formWithdrawCase/reExam",
+						url: "http://huyg.site:8080/huangbaihe/formDelayFine/reExam",
 						dataType: "JSONP",
-						data: mainpageVM.detail.toReExamForm(),
+						data: mainpageVM.detail.toReExamForm(mainpageVM.selected_id),
 						success: function (data) {
 							if (data) {
 								new $.nd2Toast({

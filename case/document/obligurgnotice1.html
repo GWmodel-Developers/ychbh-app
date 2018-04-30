@@ -92,33 +92,23 @@
 							if (caseinfo.formPunishmentState != 0) {
 								$.ajax({
 									type: "post",
-									url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
+									url: "http://huyg.site:8080/huangbaihe/noticeStopAllegedIllegalActs/getOneForm",
 									dataType: "JSONP",
 									data: ({
 										caseID: caseID
 									}),
 									success: function (registercase) {
 										$.ajax({
-											type: "post",
-											url: "http://61.136.146.172:8080/huangbaihe/Lcommoncase/querycaseid",
-											dataType: "json",
-											data: ({
-												case_name: registercase.brief
-											}),
-											success: function (commoncase) {
-												$.ajax({
 													type: "post",
-													url: "http://huyg.site:8080/huangbaihe/ObligUrgNotice/getDocument",
+													url: "http://huyg.site:8080/huangbaihe/noticeFufillObligation/getOneForm",
 													dataType: "JSONP",
 													data: ({
 														caseID: caseID
 													}),
 													success: function (ObligUrgNotice) {
-														obj.detail = new ObligUrgNotice(caseinfo, registercase, commoncase.rows, ObligUrgNotice);
+														obj.detail = new ObligUrgNotice(caseinfo, registercase, ObligUrgNotice);
 													}
 												});
-											}
-										});
 									}
 								});
 							} else {

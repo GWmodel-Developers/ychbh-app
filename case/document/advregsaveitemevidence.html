@@ -24,10 +24,10 @@
 		<div data-role="page" id="main">
 			<div data-role="header" data-position="fixed" data-tap-toggle="false">
 				<a href="#" onclick="back()" class="ui-btn"><i class="zmdi zmdi-arrow-back"></i></a>
-				<h1>扣押物品凭证</h1>
+				<h1>先行登记保存物品凭证</h1>
 			</div>
 			<div data-role="main" class="ui-content">
-				<input data-type="search" id="filterControlgroup-input" placeholder="搜索..." data-clear-btn>
+				<!-- <input data-type="search" id="filterControlgroup-input" placeholder="搜索..." data-clear-btn> -->
 				<ul id="content" data-role="listview" data-inset="true" class="ui-li-has-alt ui-first-child" data-filter="true" data-input="#filterControlgroup-input">
 					<li v-for="item in items" :key="item.noteId">
 						<a class="ui-btn ui-icon-eye ui-btn-icon-right">
@@ -53,7 +53,7 @@
 				showList: function(caseId) {
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/listDetainThing/list",
+						url: "http://61.136.146.172:8080/huangbaihe/listPreSaveThing/list",
 						dataType: 'json',
 						data: {caseID: caseId},
 						success: function(json) {
@@ -61,7 +61,7 @@
 						},
 						error: function() {
 							new $.nd2Toast({
-								message: "获取扣押物品凭证列表失败"
+								message: "获取先行登记保存物品凭证列表失败"
 							});
 						}
 					});

@@ -146,14 +146,14 @@ CaseIndex.prototype.docMap = [
         },{
             key: "formTransferCaseState",
             name: "案件移送呈批表",
-            link: "casetransferredform1",
+            link: "casetransferredform",
             state: function (params) {
                 return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "letterTransferState",
             name: "案件移送函",
-            link: "transferletter1",
+            link: "transferletter",
             state: function (params) {
                 return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
@@ -161,30 +161,30 @@ CaseIndex.prototype.docMap = [
     },{
         name: "先行登记保存物品程序流程",
         docs: [{
-            key: "formUnRegisterCaseSate",
+            key: "formPreSaveState",
             name: "先行登记保存物品呈批表",
-            link: "keepevidence",
+            link: "advregsaveitemtbl",
             state: function (params) {
                 return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "noticePreSaveState",
             name: "先行登记保存物品通知书",
-            link: "advregsaveitemnoticetbl1",
+            link: "advregsaveitemnoticetbl",
             state: function (params) {
                 return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
-            key: null,
+            key: "listPreSaveThingState",
             name: "先行登记保存物品凭证",
-            link: "advregsaveitemevidence1",
+            link: "advregsaveitemevidence",
             state: function (params) {
-                return params[this.key] ? params[this.key].toString() : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "relasePreSaveState",
             name: "解除先行登记保存物品通知书",
-            link: "relieveadvregsavenotice1",
+            link: "relieveadvregsavenotice",
             state: function (params) {
                 return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
@@ -192,44 +192,44 @@ CaseIndex.prototype.docMap = [
     },{
         name: "扣押物品文书",
         docs: [{
-            key: "formUnRegisterCaseSate",
+            key: "formDetainGoodsState",
             name: "扣押物品呈批表",
-            link: "#",
+            link: "formDetainGoods",
             state: function (params) {
                 return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "detainInformLetterState",
             name: "扣押通知书",
-            link: "noticesubtract1",
+            link: "noticesubtract",
             state: function (params) {
                 return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "investDetainGoodsState",
             name: "扣押物品审批表",
-            link: "objectsubtrackform1",
+            link: "objectsubtrackform",
             state: function (params) {
                 return params[this.key] ? params[this.key].toString() : "0"
             }
         },{
             key: "decisionDetainGoodsState",
             name: "扣押物品决定书",
-            link: "objectsubtrackdecide1",
+            link: "objectsubtrackdecide",
             state: function (params) {
                 return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
-            key: null,
+            key: "listDetainThingState",
             name: "扣押物品凭证",
-            link: "objectsubtrackevidence1",
+            link: "objectsubtrackevidence",
             state: function (params) {
-                return params[this.key] ? params[this.key].toString() : "0"
+                return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
         },{
             key: "redetainInformLetterState",
             name: "解除扣押物品决定书",
-            link: "relievesubtrackobjectdecision1",
+            link: "relievesubtrackobjectdecision",
             state: function (params) {
                 return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
@@ -279,7 +279,7 @@ CaseIndex.prototype.docMap = [
         docs: [{
             key: "noticeStopAllegedIllegalActsState",
             name: "责令停止涉嫌违法行为通知书",
-            link: "stopIilegalinform1",
+            link: "stopIilegalinform",
             state: function (params) {
                 return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }

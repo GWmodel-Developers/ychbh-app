@@ -30,7 +30,7 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>责令停止涉嫌违法行为通知书</h1>
+				<h1>案件移送函</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
                 <form action="#">
@@ -67,13 +67,13 @@
 	<script type="text/javascript" src="../../vuejs/vue.min.js"></script>
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/StopIllegalInform1.js" ></script>
+	<script type="text/javascript" src="model/TransferLetter.js" ></script>
 	<script type="text/javascript">
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
 				selected_id: localStorage.getItem("caseID"),
-				detail: new StopIllegalInform(),
+				detail: new TransferLetter(),
 				au: JSON.parse(localStorage.getItem("au")),
 				options: {
 					leader: []
@@ -108,13 +108,23 @@
 											success: function (commoncase) {
 												$.ajax({
 													type: "post",
-													url: "http://huyg.site:8080/huangbaihe/StopIllegalInform/getDocument",
+													url: "http://huyg.site:8080/huangbaihe/formTransferCase/getOneForm",
 													dataType: "JSONP",
 													data: ({
 														caseID: caseID
 													}),
-													success: function (StopIllegalInform) {
-														obj.detail = new StopIllegalInform(caseinfo, registercase, commoncase.rows, StopIllegalInform);
+													success: function (formTransferCase) {
+														$.ajax({
+															type: "post",
+															url: "http://huyg.site:8080/huangbaihe/letterTransfer/getOneForm",
+															dataType: "JSONP",
+															data: ({
+																case_id: caseID
+															}),
+															success: function (letterTransfer) {
+																obj.detail = new TransferLetter(caseinfo, registercase, commoncase.rows, formTransferCase, letterTransfer);
+															}
+														});
 													}
 												});
 											}
@@ -122,7 +132,7 @@
 									}
 								});
 							} else {
-								obj.detail = new StopIllegalInform(caseinfo);
+								obj.detail = new TransferLetter(caseinfo);
 							}
 						}
 					});
