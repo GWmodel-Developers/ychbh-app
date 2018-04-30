@@ -548,6 +548,13 @@ CaseIndex.prototype.docMap = [
             state: function (params) {
                 return (params[this.key] ? params[this.key] * 3 : 0).toString()
             }
+        },{
+            key: "reportEndCaseEnforceState",
+            name: "行政强制结案报告",
+            link: "adimienforendreport",
+            state: function (params) {
+                return params[this.key] ? params[this.key].toString() : "0"
+            }
         }]
     }
 ];
