@@ -30,7 +30,7 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>先行登记保存物品通知书</h1>
+				<h1>扣押物品决定书</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
                 <form action="#">
@@ -67,13 +67,13 @@
 	<script type="text/javascript" src="../../vuejs/vue.min.js"></script>
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/AdvRegSaveItemNoticeTbl1.js" ></script>
+	<script type="text/javascript" src="model/ObjectSubtrackDecide.js" ></script>
 	<script type="text/javascript">
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
 				selected_id: localStorage.getItem("caseID"),
-				detail: new AdvRegSaveItemNoticeTbl(),
+				detail: new ObjectSubtrackDecide(),
 				au: JSON.parse(localStorage.getItem("au")),
 				options: {
 					leader: []
@@ -92,29 +92,29 @@
 							if (caseinfo.formPunishmentState != 0) {
 								$.ajax({
 									type: "post",
-									url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
+									url: "http://huyg.site:8080/huangbaihe/formDetainGoods/getOneForm",
 									dataType: "JSONP",
 									data: ({
 										caseID: caseID
 									}),
-									success: function (registercase) {
+									success: function (formDetainGoods) {
 										$.ajax({
 											type: "post",
-											url: "http://61.136.146.172:8080/huangbaihe/Lcommoncase/querycaseid",
-											dataType: "json",
+											url: "http://huyg.site:8080/huangbaihe/investDetainGoods/getOneForm",
+											dataType: "JSONP",
 											data: ({
-												case_name: registercase.brief
+												caseID: caseID
 											}),
-											success: function (commoncase) {
+											success: function (investDetainGoods) {
 												$.ajax({
 													type: "post",
-													url: "http://huyg.site:8080/huangbaihe/AdvRegSaveItemNoticeTbl/getDocument",
+													url: "http://huyg.site:8080/huangbaihe/decisionDetainGoods/getOneForm",
 													dataType: "JSONP",
 													data: ({
 														caseID: caseID
 													}),
-													success: function (AdvRegSaveItemNoticeTbl) {
-														obj.detail = new AdvRegSaveItemNoticeTbl(caseinfo, registercase, commoncase.rows, AdvRegSaveItemNoticeTbl);
+													success: function (decisionDetainGoods) {
+														obj.detail = new ObjectSubtrackDecide(caseinfo, formDetainGoods, investDetainGoods, decisionDetainGoods);
 													}
 												});
 											}
@@ -122,7 +122,7 @@
 									}
 								});
 							} else {
-								obj.detail = new AdvRegSaveItemNoticeTbl(caseinfo);
+								obj.detail = new ObjectSubtrackDecide(caseinfo);
 							}
 						}
 					});

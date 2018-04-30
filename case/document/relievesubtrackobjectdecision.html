@@ -92,31 +92,21 @@
 							if (caseinfo.formPunishmentState != 0) {
 								$.ajax({
 									type: "post",
-									url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
+									url: "http://huyg.site:8080/huangbaihe/decisionDetainGoods/getOneForm",
 									dataType: "JSONP",
 									data: ({
 										caseID: caseID
 									}),
-									success: function (registercase) {
+									success: function (decisionDetainGoods) {
 										$.ajax({
 											type: "post",
-											url: "http://61.136.146.172:8080/huangbaihe/Lcommoncase/querycaseid",
-											dataType: "json",
+											url: "http://huyg.site:8080/huangbaihe/redetainInformLetter/getOneForm",
+											dataType: "JSONP",
 											data: ({
-												case_name: registercase.brief
+												caseID: caseID
 											}),
-											success: function (commoncase) {
-												$.ajax({
-													type: "post",
-													url: "http://huyg.site:8080/huangbaihe/RelieveSubtrackObjectDecision/getDocument",
-													dataType: "JSONP",
-													data: ({
-														caseID: caseID
-													}),
-													success: function (RelieveSubtrackObjectDecision) {
-														obj.detail = new RelieveSubtrackObjectDecision(caseinfo, registercase, commoncase.rows, RelieveSubtrackObjectDecision);
-													}
-												});
+											success: function (redetainInformLetter) {
+												obj.detail = new RelieveSubtrackObjectDecision(caseinfo, decisionDetainGoods, redetainInformLetter);
 											}
 										});
 									}

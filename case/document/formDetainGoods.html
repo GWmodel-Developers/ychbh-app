@@ -30,7 +30,7 @@
 				<a href="#" class="ui-btn" onclick="back()">
 					<i class="zmdi zmdi-arrow-back"></i>
 				</a>
-				<h1>扣押通知书</h1>
+				<h1>扣押物品呈批表</h1>
 			</div>
 			<div id="detail-listview" data-role="main" class="ui-content">
                 <form action="#">
@@ -67,65 +67,59 @@
 	<script type="text/javascript" src="../../vuejs/vue.min.js"></script>
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/NoticeSubtract1.js" ></script>
+	<script type="text/javascript" src="model/FormDetainGoods.js" ></script>
 	<script type="text/javascript">
+		/**
+		 * 获取GET参数
+		 * @param {String} name 参数名
+		 */
+		 function getURLParameter(name) {  
+			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;  
+		}
+
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {
 				selected_id: localStorage.getItem("caseID"),
-				detail: new NoticeSubtract(),
+				detail: new FormDetainGoods(),
 				au: JSON.parse(localStorage.getItem("au")),
 				options: {
-					leader: []
+					leader: [],
+					examResponsible: []
 				}
 			},
 			methods: {
-				queryItem: function(caseID, obj) {
-					$.ajax({
-						type: "post",
-						url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
-						dataType: "JSONP",
-						data: ({
-							caseID: caseID
-						}),
-						success: function (caseinfo) {
-							if (caseinfo.formPunishmentState != 0) {
-								$.ajax({
-									type: "post",
-									url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
-									dataType: "JSONP",
-									data: ({
-										caseID: caseID
-									}),
-									success: function (registercase) {
-										$.ajax({
-											type: "post",
-											url: "http://61.136.146.172:8080/huangbaihe/Lcommoncase/querycaseid",
-											dataType: "json",
-											data: ({
-												case_name: registercase.brief
-											}),
-											success: function (commoncase) {
-												$.ajax({
-													type: "post",
-													url: "http://huyg.site:8080/huangbaihe/NoticeSubtract/getDocument",
-													dataType: "JSONP",
-													data: ({
-														caseID: caseID
-													}),
-													success: function (NoticeSubtract) {
-														obj.detail = new NoticeSubtract(caseinfo, registercase, commoncase.rows, NoticeSubtract);
-													}
-												});
-											}
-										});
-									}
-								});
-							} else {
-								obj.detail = new NoticeSubtract(caseinfo);
-							}
-						}
-					});
+				queryItem: async function(caseID, obj) {
+					var caseinfo, formDetainGoods;
+					caseinfo = await new Promise(function (resolve, reject) {
+						$.ajax({
+							type: "post",
+							url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+							dataType: "JSONP",
+							data: ({
+								caseID: caseID
+							}),
+							success: function (data) { resolve(data) }
+						});
+					})
+					if (caseinfo.formDetainGoodsState == 0) {
+						new $.nd2Toast({
+							message: "请填写撤案呈批表"
+						})
+					} else {
+						formDetainGoods = await new Promise(function (resolve, reject) {
+							$.ajax({
+								type: "post",
+								url: "http://huyg.site:8080/huangbaihe/formDetainGoods/getOneForm",
+								dataType: "JSONP",
+								data: ({
+									caseID: caseID
+								}),
+								success: function (data) { resolve(data) }
+							})
+						})
+					}
+					obj.detail = new FormDetainGoods(caseinfo, formDetainGoods);
 				},
 				submit: function () {
 					
@@ -134,10 +128,55 @@
 					
 				},
 				exam: function () {
-					
+					var reExamResponsible = mainpageVM.options.leader.find(function (item) {
+						return item.value == mainpageVM.detail.leader;
+					})
+					$.ajax({
+						method: "post",
+						url: "http://huyg.site:8080/huangbaihe/formObjectSubtrackForm/exam",
+						dataType: "JSONP",
+						data: mainpageVM.detail.toExamForm(mainpageVM.selected_id, "待审批", reExamResponsible),
+						success: function (data) {
+							if (data) {
+								new $.nd2Toast({
+									message: "操作成功"
+								})
+							} else {
+								new $.nd2Toast({
+									message: "操作失败"
+								})
+							}
+						},
+						error: function () {
+							new $.nd2Toast({
+								message: "操作失败"
+							})
+						}
+					});
 				},
 				reExam: function () {
-					
+					$.ajax({
+						method: "post",
+						url: "http://huyg.site:8080/huangbaihe/formObjectSubtrackForm/reExam",
+						dataType: "JSONP",
+						data: mainpageVM.detail.toReExamForm(),
+						success: function (data) {
+							if (data) {
+								new $.nd2Toast({
+									message: "操作成功"
+								})
+							} else {
+								new $.nd2Toast({
+									message: "操作失败"
+								})
+							}
+						},
+						error: function () {
+							new $.nd2Toast({
+								message: "操作失败"
+							})
+						}
+					});
 				},
 				queryLeaders: function (context) {
 					$.ajax({
@@ -149,6 +188,17 @@
 								return value.role && value.role === "局内负责人";
 							});
 							context.options.leader = leaders.map(function (item) {
+								return {
+									uid: item.uid,
+									realname: item.realname,
+									value: item.uid,
+									text: item.realname
+								}
+							})
+							var examResponsible = data.filter(function (value, index) {
+								return value.role && value.role === "支队负责人";
+							})
+							context.options.examResponsible = examResponsible.map(function (item) {
 								return {
 									value: item.uid,
 									text: item.realname
@@ -171,10 +221,10 @@
 					return false;
 				},
 				showExam: function () {
-					return false;
+					return this.au.a_case_exam == 1 && this.au.a_case_reexam != 1;
 				},
 				showReExam: function () {
-					return false;
+					return this.au.a_case_reexam == 1;
 				}
 			},
 			created: function() {
@@ -188,7 +238,11 @@
 		});
 
 		function back() {
-			window.location = "../caseindex.html#page_document";
+			if (getURLParameter("redirect") == "home") {
+				window.location = "../../index.html"
+			} else {
+				window.location = "../caseindex.html#page_document";
+			}
 		}
 	</script>
 
