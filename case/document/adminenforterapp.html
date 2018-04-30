@@ -149,6 +149,12 @@
 					var reExamResponsible = mainpageVM.options.leader.find(function (item) {
 						return item.value == mainpageVM.detail.leader;
 					})
+					if (reExamResponsible) {
+						new $.nd2Toast({
+							message: "请选择主管领导"
+						})
+						return;
+					}
 					$.ajax({
 						method: "post",
 						url: "http://huyg.site:8080/huangbaihe/formEnforceStopExam/exam",
