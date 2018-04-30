@@ -202,7 +202,9 @@
 						$.getJSON("http://61.136.146.172:8080/huangbaihe/login/getusermission", {
 							id: obj.user.UID
 						}, function (data) {
-							obj.task_list = data
+							obj.task_list = data.filter(function (value, index) {
+								return value.document_name != null
+							})
 						})
 					},
 					getCaseState: function (caseStateText) {
@@ -232,7 +234,7 @@
 								}
 								if (targetHref) break;
 							}
-							window.location = "case/document/" + targetHref + ".html" + "?redirect=home"
+							window.location = targetHref ? "case/document/" + targetHref + ".html" + "?redirect=home" : "#"
 						}
 					}
 				},
