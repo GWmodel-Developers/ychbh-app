@@ -160,7 +160,7 @@
 					var reExamResponsible = mainpageVM.options.leader.find(function (item) {
 						return item.value == mainpageVM.detail.leader;
 					})
-					if (reExamResponsible) {
+					if (!reExamResponsible) {
 						new $.nd2Toast({
 							message: "请选择主管领导"
 						})
