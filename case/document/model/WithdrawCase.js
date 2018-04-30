@@ -55,7 +55,7 @@ WithdrawCase.prototype.cardTypesText = {
 WithdrawCase.prototype.toReExamForm = function () {
     return {
         caseId: this.case_id,
-        leader: this.leader,
+        leader: reExamResponsible.realname,
         reExamDate: this.reExamDate,
         reExamSuggestion: this.reExamSuggestion
     }
