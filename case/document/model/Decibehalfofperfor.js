@@ -1,5 +1,5 @@
 // 代履行决定书
-function Decibehalfofperfor(param0, param1) {
+function Decibehalfofperfor(param0, param1, param2, param3, param4) {
   this.documentID = null;
 	this.objectName = null;
 	this.address = null;
@@ -27,6 +27,31 @@ function Decibehalfofperfor(param0, param1) {
     }
   }
 }
+
+if (param2) {
+for (var key in this) {
+  if (param2.hasOwnProperty(key)) {
+      this[key] = param2[key];
+  }
+}
+}
+
+if (param3) {
+  for (var key in this) {
+    if (param3.hasOwnProperty(key)) {
+        this[key] = param3[key];
+    }
+  }
+}
+  
+	if (param4) {
+    for (var key in this) {
+      if (param4.hasOwnProperty(key)) {
+          this[key] = param4[key];
+      }
+    }
+  }
+    
   this.replaceTime = this.replaceTime.replace(/[年月]/g, "-").replace(/[日]/g, "");
 this.reportDate = this.reportDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
   
