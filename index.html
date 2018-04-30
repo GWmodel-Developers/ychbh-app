@@ -203,7 +203,7 @@
 							id: obj.user.UID
 						}, function (data) {
 							obj.task_list = data.filter(function (value, index) {
-								return value.document_name != null
+								return value.document_name != null && value.case_name != null
 							})
 						})
 					},

@@ -68,7 +68,7 @@
 	<script type="text/javascript" src="../../vuejs/vue.min.js"></script>
 	<script type="text/javascript" src="../../datejs/date-zh-CN.js"></script>
 	<!-- Vue Model -->
-	<script type="text/javascript" src="model/UnRegisterCase.js" ></script>
+	<script type="text/javascript" src="model/FormUnRegisterCase.js" ></script>
 	<script type="text/javascript">
 		/**
 		 * 获取GET参数
@@ -82,7 +82,7 @@
 			el: "#root",
 			data: {
 				selected_id: localStorage.getItem("caseID"),
-				detail: new UnRegisterCase(),
+				detail: new FormUnRegisterCase(),
 				au: JSON.parse(localStorage.getItem("au")),
 				options: {
 					leader: []
@@ -98,21 +98,17 @@
 							caseID: caseID
 						}),
 						success: function (caseinfo) {
-							if (!caseinfo.formUnRegisterCaseSate) {
-								$.ajax({
-									type: "post",
-									url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
-									dataType: "JSONP",
-									data: ({
-										caseID: caseID
-									}),
-									success: function (unregistercase) {
-										obj.detail = new UnRegisterCase(caseinfo, unregistercase);
-									}
-								});
-							} else {
-								obj.detail = new UnRegisterCase(caseinfo);
-							}
+							$.ajax({
+								type: "post",
+								url: "http://huyg.site:8080/huangbaihe/formUnRegisterCase/getOneForm",
+								dataType: "JSONP",
+								data: ({
+									caseID: caseID
+								}),
+								success: function (Formunregistercase) {
+									obj.detail = new FormUnRegisterCase(caseinfo, Formunregistercase);
+								}
+							});
 						}
 					});
 				},
@@ -123,10 +119,61 @@
 					
 				},
 				exam: function () {
-					
+					var reExamResponsible = mainpageVM.options.leader.find(function (item) {
+						return item.value == mainpageVM.detail.leader;
+					})
+					if (reExamResponsible) {
+						new $.nd2Toast({
+							message: "请选择主管领导"
+						})
+						return;
+					}
+					$.ajax({
+						method: "post",
+						url: "http://huyg.site:8080/huangbaihe/formUnRegisterCase/exam",
+						dataType: "JSONP",
+						data: mainpageVM.detail.toExamForm(mainpageVM.selected_id, "待审批", reExamResponsible),
+						success: function (data) {
+							if (data) {
+								new $.nd2Toast({
+									message: "操作成功"
+								})
+							} else {
+								new $.nd2Toast({
+									message: "操作失败"
+								})
+							}
+						},
+						error: function () {
+							new $.nd2Toast({
+								message: "操作失败"
+							})
+						}
+					});
 				},
 				reExam: function () {
-					
+					$.ajax({
+						method: "post",
+						url: "http://huyg.site:8080/huangbaihe/formUnRegisterCase/reExamForm",
+						dataType: "JSONP",
+						data: mainpageVM.detail.toReExamForm(mainpageVM.selected_id),
+						success: function (data) {
+							if (data) {
+								new $.nd2Toast({
+									message: "操作成功"
+								})
+							} else {
+								new $.nd2Toast({
+									message: "操作失败"
+								})
+							}
+						},
+						error: function () {
+							new $.nd2Toast({
+								message: "操作失败"
+							})
+						}
+					});
 				},
 				queryLeaders: function (context) {
 					$.ajax({
@@ -160,7 +207,7 @@
 					return false;
 				},
 				showExam: function () {
-					return this.au.a_case_exam == 1;
+					return this.au.a_case_exam == 1 && this.au.a_case_reexam != 1;
 				},
 				showReExam: function () {
 					return this.au.a_case_reexam == 1;

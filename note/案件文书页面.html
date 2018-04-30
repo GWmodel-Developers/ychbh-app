@@ -1,635 +1,588 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="stylesheet" type="text/css" href="../statics/jquery-easyui-1.5.3/themes/icon.css">
-        <link rel="stylesheet" type="text/css" href="../statics/jquery-easyui-1.5.3/themes/gray/easyui.css">
-        <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="../statics/jquery-easyui-1.5.3/jquery.easyui.min.js"></script>
-        <title>Insert title here</title>
-        <style type="text/css">
-            .table_select {
-                font-size: 10;
-            }
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../statics/jquery-easyui-1.5.3/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../../statics/jquery-easyui-1.5.3/themes/gray/easyui.css">
+<script
+	src="../../statics/jquery-easyui-1.5.3/jquery.min.js"></script>
+<script src="../../statics/jquery-easyui-1.5.3/jquery.easyui.min.js"></script>
+<script src="../../statics/js/fileprint.js"></script>
+<script src="../date.js"></script>
+<title>Insert title here</title>
+	
+</head>
+<body onload="getCaseInfo()">
+        <div style="width:100%;text-align:center">
+				<h1>不予立案呈批表</h1>
+		</div>
+		<table style="width:100%">
+		   <tr tr style="display:none">
+					<td style="width:25%;text-align:center;"><label>案件编号</label></td>
+					<td style="width:75%">
+						<label id="caseID"></label></td>
 
-            .table_select td {
-                text-align: right;
-            }
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>案由</label></td>
+					<td style="width:75%">
+						<input id="brief" class="easyui-combobox" style="width:70%" data-options="
+						url:'../../Lcommoncase/combox',
+						method:'post',
+						valueField:'id',
+						textField:'text',
+						panelHeight:'auto'" ></td>
 
-            #mainframe {
-                height: 100%;
-                width: 100%;
-                overflow-x: none;
-            }
-        </style>
-    </head>
-    <body onload="initialDetails()">
-        <div id="mainlayout" class="easyui-layout" data-options="fit:true">
-            <div region="west" split="true" title="案件文书" style="width:240px;overflow-x:hidden">
-                <a href="#" plain="true" style="width: 100%;" class="easyui-linkbutton" iconCls="icon-help" onclick="initialDetails()">案件详情</a>
-                <ul id="allTree" class="easyui-tree">
-                    <li>
-                        <span>案源管理文书</span>
-                        <ul>
-                            <li>
-                                <span>
-                                    <a id="formRegistration" onclick="writeFormRegistration()">《案源登记表》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="formUnRegisterCase" onclick="writeFormUnRegisterCase()">《不予立案呈批表》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="formWithdrawCase" onclick="writeFormWithdrawCase()">《撤案呈批表》</a>
-                                </span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span>移送立案文书</span>
-                        <ul>
-                            <li>
-                                <span>
-                                    <a id="formRegisterCase" onclick="writeFormRegisterCase()">《立案呈批表》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="formTransferCase" onclick="writeFormTransferCase()">《案件移送呈批表》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="" onclick="">《案件移送函》</a>
-                                </span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span>调查取证文书</span>
-                        <ul>
-                            <li>
-                                <span>
-                                    <a id="formDetainEvidence" onclick="writeFormDetainEvidence()">《扣押物品呈批表》</a>
-                                </span>
-                            <li>
-                                <span>
-                                    <a id="formKeepEvidence" onclick="writeFormKeepEvidence()">《先行登记保存物品呈批表》</a>
-                                </span>
-                            <li>
-                                <span>
-                                    <a id="noteSurvey" onclick="writeNoteSurvey()">《勘验笔录》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="noteInspect" onclick="writeNoteInspect()">《检查笔录》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="noteExam" onclick="writeNoteExam()">《询问笔录》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="notePlead" onclick="writeNotePlea()">《陈述申辩笔录》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="reportEndInvestigate" onclick="writeReportEndInvestigate()">《案件调查终结报告》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="discussionCase" onclick="writeDiscussionCase()">《案件集体讨论记录》</a>
-                                </span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span>行政命令文书</span>
-                        <ul>
-                            <li>
-                                <span>
-                                    <a id="noticeStop" onclick="">《责令停止涉嫌违法行为告知书》</a>
-                                </span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span>行政处罚文书</span>
-                        <ul>
-                            <li>
-                                <span>
-                                    <a id="formPunishment" onclick="writeFormPunishment()">《行政处罚呈批表》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="noticePunishmentPretell" onclick="writeNoticePunishmentPretell()">《行政处罚事先告知书》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="decisionPunishmentInSpot" onclick="writeDecisionPunishmentInSpot()">《当场行政处罚决定书》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="noteHearingPunishment" onclick="writeNoteHearingPunishment()">《行政处罚听证笔录》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="opinionHearingPunishment" onclick="writeOpinionHearingPunishment()">《行政处罚听证意见书》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="discussionImportantCase" onclick="writeDiscussionImportantCase()">《重大案件集体讨论记录》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="formPunishmentDecisionExam" onclick="writeFormPunishmentDecisionExam()">《行政处罚决定审批表》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="formNotPunishmentDecisionExam" onclick="writeFormNotPunishmentDecisionExam()">《不予行政处罚决定审批表》</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="reportEndCasePunishment" onclick="writeReportEndCasePunishment()">《行政处罚结案报告》</a>
-                                </span>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div id="content" region="center" title="案件详情" style="padding:5px; overflow:hidden">
-                <iframe id="mainframe" frameborder="no" border="0" style="height:100%;width:100%" marginwidth="0" marginheight="0" allowtransparency="yes"></iframe>
-            </div>
-        </div>
-        <input type="hidden" id="transferCaseID"></input>
-        <div>
-            <script>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>接案时间</label></td>
+					<td style="width:75%">
+						<label id="reportDate"></label></td>
 
-                var thisURL = document.URL;
-                var caseId = thisURL.split('?')[1];
-                //alert(caseId);
-                var caseInfoMap;
-                var au = getCookie('au');
-                var user = JSON.parse(au);
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>发案时间</label></td>
+					<td style="width:75%">
+					<input  id="occurTime" class="easyui-datebox"></td>
 
-                function initialDetails() {
-                    $("#mainframe").attr("src", "CaseDetail.html?" + caseId);
-                    console.log(user);
-                    /*  $("#allTree").tree("collapseAll");  */
-                    var testMap = {
-                        "caseID": caseId
-                    };
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>发案地点</label></td>
+					<td style="width:75%">
+						<input style="width:70%"  id="occurPlace" class="easyui-textbox"></td>
 
-                    $.ajax({
-                        async: false,
-                        cache: false,
-                        type: 'POST',
-                        url: '../getInfoCaseController/getCaseInfo',
-                        data: JSON.stringify(testMap),
-                        contentType: 'application/json;charset=utf-8',
-                        dataType: 'json',
-                        success: function(data) {
-                            //alert("peace");
-                            caseInfoMap = data;
-                            //alert(caseInfoMap["reportDate"]);
-                        }
-                    })
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>当事人（单位）</label></td>
+					<td style="width:75%">
+						<input style="width:70%"  id="objectName" class="easyui-textbox"></td>
 
-                    switch (caseInfoMap["decisionPunishmentInSpotState"]) {
-                    case "0":
-                        document.getElementById("decisionPunishmentInSpot").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("decisionPunishmentInSpot").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["discussionCaseState"]) {
-                    case "0":
-                        document.getElementById("discussionCase").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("discussionCase").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["noticePunishmentPretellState"]) {
-                    case "0":
-                        document.getElementById("noticePunishmentPretell").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("noticePunishmentPretell").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["reportEndInvestigateSate"]) {
-                    case "0":
-                        document.getElementById("reportEndInvestigate").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("reportEndInvestigate").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["formRegistrationState"]) {
-                    case "0":
-                        document.getElementById("formRegistration").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("formRegistration").style.color = "yellow";
-                        break;
-                    case "2":
-                        document.getElementById("formRegistration").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["formRegisterCaseSate"]) {
-                    case "0":
-                        document.getElementById("formRegisterCase").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("formRegisterCase").style.color = "yellow";
-                        break;
-                    case "2":
-                        document.getElementById("formRegisterCase").style.color = "yellow";
-                        break;
-                    case "3":
-                        document.getElementById("formRegisterCase").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["formUnRegisterCaseSate"]) {
-                    case "0":
-                        document.getElementById("formUnRegisterCase").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("formUnRegisterCase").style.color = "yellow";
-                        break;
-                    case "2":
-                        document.getElementById("formUnRegisterCase").style.color = "yellow";
-                        break;
-                    case "3":
-                        document.getElementById("formUnRegisterCase").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["reportEndCasePunishmentState"]) {
-                    case "0":
-                        document.getElementById("reportEndCasePunishment").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("reportEndCasePunishment").style.color = "yellow";
-                        break;
-                    case "2":
-                        document.getElementById("reportEndCasePunishment").style.color = "yellow";
-                        break;
-                    case "3":
-                        document.getElementById("reportEndCasePunishment").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["formPunishmentState"]) {
-                    case "0":
-                        document.getElementById("formPunishment").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("formPunishment").style.color = "yellow";
-                        break;
-                    case "2":
-                        document.getElementById("formPunishment").style.color = "yellow";
-                        break;
-                    case "3":
-                        document.getElementById("formPunishment").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["formPunishmentDecisionExamSate"]) {
-                    case "0":
-                        document.getElementById("formPunishmentDecisionExam").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("formPunishmentDecisionExam").style.color = "yellow";
-                        break;
-                    case "2":
-                        document.getElementById("formPunishmentDecisionExam").style.color = "yellow";
-                        break;
-                    case "3":
-                        document.getElementById("formPunishmentDecisionExam").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["formNotPunishmentDecisionExamSate"]) {
-                    case "0":
-                        document.getElementById("formNotPunishmentDecisionExam").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("formNotPunishmentDecisionExam").style.color = "yellow";
-                        break;
-                    case "2":
-                        document.getElementById("formNotPunishmentDecisionExam").style.color = "yellow";
-                        break;
-                    case "3":
-                        document.getElementById("formNotPunishmentDecisionExam").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>法定代表人（负责人）</label></td>
+					<td style="width:75%">
+						<input style="width:70%"  id="informantName" class="easyui-textbox"></td>
 
-                    /////////调查取证
-                    switch (caseInfoMap["reportEndInvestigateSate"]) {
-                    case "0":
-                        document.getElementById("reportEndInvestigate").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("reportEndInvestigate").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["noteInspectState"]) {
-                    case "0":
-                        document.getElementById("noteInspect").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("noteInspect").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["notePleadState"]) {
-                    case "0":
-                        document.getElementById("notePlead").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("notePlead").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["noteExamState"]) {
-                    case "0":
-                        document.getElementById("noteExam").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("noteExam").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    switch (caseInfoMap["noteSurveyState"]) {
-                    case "0":
-                        document.getElementById("noteSurvey").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("noteSurvey").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+		     	<td style="width:25%;text-align:center;"><label>性别</label></td>
+					<td style="width:75%">
+						<select id="informantSex" style="width:200px;border:none;">
+						<option value="男">男</option>
+						<option value="女">女</option>
+						</select>
+					</td>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		    <tr>
+					<td style="width:25%;text-align:center;"><label>年龄</label></td>
+					<td style="width:75%">
+						<input id="informantAge" class="easyui-numberspinner" >
+					</td>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>身份证件号</label></td>
+					<td style="width:75%">
+						<input style="width:70%"  id="informantID" class="easyui-textbox"></td>
 
-                    switch (caseInfoMap["formWithdrawCaseState"]) {
-                    case "0":
-                        document.getElementById("formWithdrawCase").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("formWithdrawCase").style.color = "yellow";
-                        break;
-                    case "2":
-                        document.getElementById("formWithdrawCase").style.color = "yellow";
-                        break;
-                    case "3":
-                        document.getElementById("formWithdrawCase").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>地址</label></td>
+					<td style="width:75%">
+						<input style="width:70%"  id="informantAdress" class="easyui-textbox"></td>
 
-                    switch (caseInfoMap["formKeepEvidenceSate"]) {
-                    case "0":
-                        document.getElementById("formKeepEvidence").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("formKeepEvidence").style.color = "yellow";
-                        break;
-                    case "2":
-                        document.getElementById("formKeepEvidence").style.color = "yellow";
-                        break;
-                    case "3":
-                        document.getElementById("formKeepEvidence").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>联系方式</label></td>
+					<td style="width:75%">
+					<input style="width:70%"  id="informantPhone" class="easyui-textbox"></td>
 
-                    switch (caseInfoMap["formDetainEvidenceSate"]) {
-                    case "0":
-                        document.getElementById("formDetainEvidence").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("formDetainEvidence").style.color = "yellow";
-                        break;
-                    case "2":
-                        document.getElementById("formDetainEvidence").style.color = "yellow";
-                        break;
-                    case "3":
-                        document.getElementById("formDetainEvidence").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>案件来源</label></td>
+					<td style="width:75%">
+						<label id="sourceID"></label></td>
 
-                    //FormTransferCaseState
-                    switch (caseInfoMap["formTransferCaseState"]) {
-                    case "0":
-                        document.getElementById("formTransferCase").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("formTransferCase").style.color = "yellow";
-                        break;
-                    case "2":
-                        document.getElementById("formTransferCase").style.color = "yellow";
-                        break;
-                    case "3":
-                        document.getElementById("formTransferCase").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>	  
+		   <tr>
+					<td style="width:25%;text-align:center;vertical-align:text-top;"><label>案情摘要</label></td>
+					<td style="width:75%">
+					<input style="width:70%; height:200px;"     id="content" class="easyui-textbox" data-options="multiline:true"></input>
+                    </td>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+		   		   
+					<td style="width:25%;text-align:center;"><label>违反规定</label></td>
+					<td style="width:75%">
+					<input style="width:70%"     id="suggestion" class="easyui-textbox"></input>
+                    </td>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>经办人1</label></td>
+					<td style="width:75%">
+						<input  class="easyui-combotree" id="excutor1"  data-options="multiple:true,url:'../../DInspec/getalluser',method:'get'"
+				>
+					</td>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>经办人2</label></td>
+					<td style="width:75%">
+						<input  class="easyui-combotree" id="excutor2"  data-options="multiple:true,url:'../../DInspec/getalluser',method:'get'"
+				 >
+					</td>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>办理日期</label></td>
+					<td style="width:75%">
+						<input class="easyui-datebox" id="excuteDate">
+					</td>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>综合执法支队负责人</label></td>
+					<td style="width:75%">
+						<select id="reponsible"  name="dept" style="width:200px;border:none;">
+						</select>
+					</td>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>审核意见</label></td>
+				<td style="width:75%">
+					<input style="width:70%"   id="examSuggestion"  class="easyui-textbox"></input>
+                </td>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>审核日期</label></td>
+					<td style="width:75%">
+						<input  class="easyui-datebox" id="examDate">
+					</td>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>主管领导</label></td>
+					<td style="width:75%">
+						<select id="leader"  name="dept" style="width:200px;border:none;">
+						</select>
+					</td>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>审批意见</label></td>
+				<td style="width:75%">
+					<textarea  class="easyui-textbox" id="reExamSuggestion"  ></textarea>
+                </td>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
+		   <tr>
+					<td style="width:25%;text-align:center;"><label>审批日期</label></td>
+					<td style="width:75%">
+						<input  type="datetime"  class="easyui-datebox" id="reExamDate">
+					</td>
+		   </tr><tr><td style="width:25%;text-align:center;"></td><td><hr /></td></tr>
 
-                    switch (caseInfoMap["noticeStopState"]) {
-                    case "0":
-                        document.getElementById("noticeStop").style.color = "red";
-                        break;
-                    case "1":
-                        document.getElementById("noticeStop").style.color = "yellow";
-                        break;
-                    case "2":
-                        document.getElementById("noticeStop").style.color = "yellow";
-                        break;
-                    case "3":
-                        document.getElementById("noticeStop").style.color = "green";
-                        break;
-                    default:
-                        break;
-                    }
-                    /*
-		switch(caseInfoMap[""])
-		{
-				  case  "0":document.getElementById("").style.color="red";break;
-				  case  "1":document.getElementById("").style.color="yellow";break;
-				  case  "2":document.getElementById("").style.color="yellow";break;
-				  case  "3":document.getElementById("").style.color="green";break;
-				  default:break;
-		}
-		*/
+		</table>
+		<a style="width:100px;float:right;" class="easyui-linkbutton" id="registerCase">提交</a>
+		<a style="width:100px;float:right;" class="easyui-linkbutton" id="update">修改</a>
+		<a style="width:100px;float:right;" class="easyui-linkbutton" id="exam">审核</a>
+		<a style="width:100px;float:right;" class="easyui-linkbutton" id="reExam">审批</a>
+		
+		<a style="width:100px;float:left;" class="easyui-linkbutton" onclick="FilePrint()" id="print">生成文书</a>
+		</body>
+		    <script>
+			 var thisURL = document.URL;  
+             var caseId=thisURL.split('?')[1];	   
+			 
+			 var au;
+			 var user;
+			 var sourceType;
+			 var sourceID;
+			 var reportTime;
+			 var caseDescription;
+			 var informantID;
+			 var informantAdress;
+			 var informantAge;
+			 var informantName;
+			 var informantSex;
+			 var allResponsibles=new Array();
+			 var allLeaders=new Array()
+			 var lNum=0;
+			 var rNum=0;
+			 var existForm=new Object();
+			 var caseInfoMap=new Object();
+	
+	 
+			 $(function(){
+				    $('#brief').combobox({
+				        onChange:function(n,o){
+				                $('#suggestion').textbox('setValue', n);
+				        }
+				    });
+				});
+			 
+	function checkExamUser()
+	{
+		if(user.realname.toString()==existForm['examResponsible'])
+			return true;
+	}
+	
+	function checkreExamUser()
+	{
+		if(user.realname.toString()==existForm['leader'])
+			return true;
+	}
+			 
+			   
+		function getCaseInfo()
+					{
+		  			function getCookie(name) 
+						{ 
+							var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+	 
+							if(arr=document.cookie.match(reg))
+	 
+							return unescape(arr[2]); 
+							else 
+							return null; 
+						} 
 
-                }
 
-                function writeNotePlea() {
-                    $("#mainframe").attr("src", "addDocument/addNotePleaView.html?" + caseId);
-                }
 
-                ////////////////立案呈批表：提交-审核-审批
-                function writeFormRegisterCase() {
-                    $("#mainframe").attr("src", "addDocument/addFormRegisterCase.html?" + caseId);
-                }
-                function examFormRegisterCase() {
-                    $("#mainframe").attr("src", "addDocument/examFormRegisterCase.html?" + caseId);
-                }
-                function reExamFormRegisterCase() {
-                    $("#mainframe").attr("src", "addDocument/reExamFormRegisterCase.html?" + caseId);
-                }
+					au = getCookie('au');
+					user = JSON.parse(au);	
+					
+					
+					var testMap={
+					  "caseID":caseId
+					};
+					// 案件信息
+					   if(caseId == null){
+						   $.messager.alert("消息","请填写案源登记表！");
+						   $("#registerCase").hide();
+						   $("#update").hide();
+						   $("#exam").hide();
+						   $("#reExam").hide();
+						   return;
+					   }
+					$.ajax({
+					async : false,
+					cache : false,
+					type : 'POST',
+					url : '../../getInfoCaseController/getCaseInfo', 
+					data : JSON.stringify(testMap),
+					contentType : 'application/json;charset=utf-8',
+					dataType : 'json',
+					success : function(data) {
+						if(data==null){
+							return;
+						}
+						caseInfoMap=data;
+					}
+				})
+				$.ajax({
+			url:"../../login/getAllUser",
+			async:false,
+			dataType:'json',
+			type:'Get',
+			contentType:'application/json;charset=UTF-8',
+			success:function(data){
+				if(data==null){
+					return;
+				}
+				for (var i=0;i<data.length;i++){
+					x = data[i];
+					if(x.role!=null&&x.role!=""){											
+						if(x.role.toString()=="支队负责人"){
+							//审核
+							console.log(x.userName.toString());	
+                            allResponsibles[rNum]=x;
+							rNum++;
+						}
+						if(x.role.toString()=="局内负责人"){
+							//审批
+							console.log(x.userName.toString());
+                            allLeaders[lNum]=x;
+							lNum++;
+						}
+					}
+					
+				}
+				 
+			},
+			error:function(){
+				debugger;
+				alert("产生未知错误");
+			}
+		});	
+		  for(i=0;i<allResponsibles.length;i++)
+				{
+				  $("#reponsible").append("<option value="+allResponsibles[i].realname.toString()+">"+allResponsibles[i].realname.toString()+"</option>");
+				}
+				for(i=0;i<allLeaders.length;i++)
+				{
+				  $("#leader").append("<option value='"+allLeaders[i].realname.toString()+"'>"+allLeaders[i].realname.toString()+"</option>");
+				}
+				
+				
+				$("#caseID").html(caseInfoMap["caseID"]);
+			    //显示来源类型
+				sourceType=caseInfoMap["sourceID"];
 
-                /////////////////撤案呈批表：提交-审核-审批
-                function writeFormWithdrawCase() {
-                    $("#mainframe").attr("src", "addDocument/addFormWithdrawCase.html?" + caseId);
-                }
+				//alert(sourceType);
+				$("#sourceID").html(sourceType);
+				/////////显示举报时间
+				reportTime=caseInfoMap["reportDate"];
+				$("#reportDate").html(reportTime);
+				////显示案件描述
+				var caseDescription=caseInfoMap["content"].toString();
+				$('#content').textbox('setValue',caseInfoMap["content"].toString());
+								
+				if(caseInfoMap["formUnRegisterCaseSate"]=="0"){
+					 $("#exam").hide();
+					 $("#reExam").hide();
+					 $("#update").hide();
+				}else{				  
+					 $("#registerCase").hide();
+					$.ajax({
+					async : false,
+					cache : false,
+					type : 'POST',
+					url : '../../formUnRegisterCase/getOneForm', 
+					data : JSON.stringify(testMap),
+					contentType : 'application/json;charset=utf-8',
+					dataType : 'json',
+					success : function(data) {
+						if(data==null){
+							return;
+						}
+						existForm=data;
+						$('#brief').textbox('setValue',existForm["brief"]);
+						$('#reportDate').html(existForm["reportDate"]);
+						$('#informantID').textbox('setValue',existForm["informantID"]);
+						$('#informantName').textbox('setValue',existForm["informantName"]);
+						$('#informantPhone').textbox('setValue',existForm["informantPhone"]);
+						$('#informantAdress').textbox('setValue',existForm["informantAdress"]);
+						$('#informantAge').textbox('setValue',existForm["informantAge"]);
+						$('#informantSex').val(existForm["informantSex"]);
+						$('#content').textbox('setValue',existForm["content"]);
+						$('#suggestion').textbox('setValue',existForm["suggestion"]);
+					   $('#excutor1').combotree('setValue',existForm["excutor1"]);
+					   $('#excutor2').combotree('setValue',existForm["excutor2"]);
+					   $('#excuteDate').datebox('setValue',existForm["excuteDate"]);
+						   // $('#content').textbox('setValue',caseDescription);
+						   // $('#excuteDate').datebox('setValue',existForm["excuteDate"]);
+						   $('#occurTime').datebox('setValue',existForm["occurTime"]);
+						   $('#occurPlace').textbox('setValue',existForm["occurPlace"]);
+						   $('#objectName').textbox('setValue',existForm["objectName"]);
+						   
+						   
+						   $('#examDate').datebox('setValue',existForm["examDate"]);
+						   $('#examSuggestion').textbox('setValue',existForm["examSuggestion"]);
+						   $('#reponsible').val(existForm["examResponsible"]);
+						   $('#leader').val(existForm["leader"]);
+						   $('#reExamSuggestion').textbox('setValue',existForm["reExamSuggestion"]);
+						   $('#reExamDate').datebox('setValue',existForm["reExamDate"]);
 
-                /////////先行登记保存物品呈批表：提交-审核-审批
-                function writeFormKeepEvidence() {
-                    $("#mainframe").attr("src", "addDocument/addFormKeepEvidence.html?" + caseId);
-                }
+						   
+						   if(!checkExamUser())
+							{
+								$("#exam").hide();
+							}
+							if(!checkreExamUser())
+							{
+				 				$("#reExam").hide();
+							}
 
-                ///////////////扣押物品呈批表-提交-审核-审批
-                function writeFormDetainEvidence() {
-                    $("#mainframe").attr("src", "addDocument/addFormDetainEvidence.html?" + caseId);
-                }
+					},
+					error: function(){
+						return;
+					}
+				  });				
+				}				
+			}	
+			   
+			  $("#registerCase").click(function(){
+				  var reponsibleId;
+				   for(i=0;i<allResponsibles.length;i++)
+					{
+							if(allResponsibles[i].realname.toString()==$("#reponsible").val())
+							{
+							reponsibleId=allResponsibles[i].uid;
+							}
+					}
+				   if(reponsibleId == null){
+					   $.messager.alert("消息","请填写审核人！");
+					   return;
+				   }
+				  var addRegisterCaseMap = new Object();
+				  addRegisterCaseMap['brief'] = $('#brief').combobox("getText");
+				  addRegisterCaseMap['caseID'] = caseId;
+				   addRegisterCaseMap['sourceID'] = $("#sourceID").innerHTML;;
+				   addRegisterCaseMap['informantID'] = $("#informantID").val();
+				   addRegisterCaseMap['informantName'] = $("#informantName").val();
+				   addRegisterCaseMap['informantAdress'] = $("#informantAdress").val();
+				   addRegisterCaseMap['informantPhone'] = $("#informantPhone").val()
+				   addRegisterCaseMap['informantAge'] = $("#informantAge").val();
+				   addRegisterCaseMap['informantSex'] = $("#informantSex").val();
+				   addRegisterCaseMap['content'] = $("#content").val();
+				   addRegisterCaseMap['recorder'] = $("#recorder").val();
+				   addRegisterCaseMap['suggestion'] = $("#suggestion").val();
+				   addRegisterCaseMap['reportDate'] = $("#reportDate").html();
+				   addRegisterCaseMap['reponsible'] = $("#reponsible").val();
+				   addRegisterCaseMap['excutor1'] = $("#excutor1").combotree('getText');
+				   addRegisterCaseMap['excutor2'] = $("#excutor2").combotree('getText');
+				   addRegisterCaseMap['excuteDate'] = $("#excuteDate").val();
+				   addRegisterCaseMap['userName'] =  $("#reponsible").val();
+				   addRegisterCaseMap['userId'] = reponsibleId;
+				   addRegisterCaseMap['caseId'] = caseId;
+				   addRegisterCaseMap['caseName'] = caseInfoMap["caseDescription"];
+				   addRegisterCaseMap['objectName'] = $("#objectName").val();
+				   addRegisterCaseMap['occurTime'] = $("#occurTime").val();
+				   addRegisterCaseMap['occurPlace'] = $("#occurPlace").val();
+				   addRegisterCaseMap['caseType'] = "待审核";
+				   addRegisterCaseMap['documentName'] = "不予立案呈批表";
+				  var caseJson=JSON.stringify(addRegisterCaseMap);
+				  	$.ajax({
+					async : false,
+					cache : false,
+					type : 'POST',
+					url : '../../formUnRegisterCase/getSubmitformUnRegisterCase', 
+					data : JSON.stringify(addRegisterCaseMap),
+					contentType : 'application/json;charset=utf-8',
+					dataType : 'json',
+					success : function(data) {
+						if(data==null){
+							return;
+						}
+						$.messager.alert('消息','操作成功！');
+						
+					}
+				})
+			   });
+			   $("#reExam").click(function(){
+				  var caseID=caseId;
+				  var reExamSuggestion=$("#reExamSuggestion").val();
+				  var leader=$("#leader").val();
+				  var reExamDate=$("#reExamDate").val();
+				  var examFormRegisterMap={
+					"caseID":caseID,
+					"reExamSuggestion":reExamSuggestion,
+					"leader":leader,
+					"reExamDate":reExamDate
+				  };
+				  var caseJson=JSON.stringify(examFormRegisterMap);
+				  	$.ajax({
+					async : false,
+					cache : false,
+					type : 'POST',
+					url : '../../formUnRegisterCase/reExamForm', 
+					data : JSON.stringify(examFormRegisterMap),
+					contentType : 'application/json;charset=utf-8',
+					dataType : 'json',
+					success : function(data) {
+						if(data==null){
+							return;
+						}
+						$.messager.alert('消息','操作成功！');
+					}
+				})
+			   });
+			   //reExam
+			   
+			   $("#exam").click(function(){
+				  var caseID=caseId;
+				  var examSuggestion=$("#examSuggestion").val();
+				  var reponsible=$("#reponsible").val();
+				  var examDate=$("#examDate").val();
+				  var leader=$("#leader").val();
+				  var leaderId;
+				  var content=$("#content").val();
+				  for(i=0;i<allLeaders.length;i++)
+					{
+						if(allLeaders[i].realname.toString()==leader)
+						{
+							leaderId=allLeaders[i].uid;
+						}	  
+					}//
+				  if(leaderId == null){
+					   $.messager.alert("消息","请填写审批人！");
+					   return;
+				   }
+				  var examFormRegister={
 
-                function writeNoteInspect() {
-                    $("#mainframe").attr("src", "addDocument/addNoteInspect.html?" + caseId);
+					"caseID":caseID,
+					"examSuggestion":examSuggestion,
+					"reponsible":$("#reponsible").val(),
+					"examDate":examDate,
+					"leader":leader,
+					"userId":leaderId,
+					"userName":leader,
+					"caseId":caseId,
+					"caseName":content,
+					"caseType":"待审批",
+					"documentName":"不予立案呈批表"
+				  };
+				  var caseJson=JSON.stringify(examFormRegister);
+				  	$.ajax({
+					async : false,
+					cache : false,
+					type : 'POST',
+					url : '../../formUnRegisterCase/examForm', 
+					data : JSON.stringify(examFormRegister),
+					contentType : 'application/json;charset=utf-8',
+					dataType : 'json',
+					success : function(data) {
+						$.messager.alert('消息','操作成功！');
+					}
+				})
+			   });
+			   $("#update").click(function(){
+					  var reponsibleId;
+					   for(i=0;i<allResponsibles.length;i++)
+						{
+								if(allResponsibles[i].realname.toString()==$("#reponsible").val())
+								{
+								reponsibleId=allResponsibles[i].uid;
+								}
+						}
+					  var addRegisterCaseMap = new Object();
+					  addRegisterCaseMap['brief'] = $('#brief').combobox("getText");
+					  addRegisterCaseMap['caseID'] = caseId;
+					   addRegisterCaseMap['sourceID'] = sourceID;
+					   addRegisterCaseMap['informantID'] = $("#informantID").val();
+					   addRegisterCaseMap['informantName'] = $("#informantName").val();
+					   addRegisterCaseMap['informantAdress'] = $("#informantAdress").val();
+					   addRegisterCaseMap['informantPhone'] = $("#informantPhone").val()
+					   addRegisterCaseMap['informantAge'] = $("#informantAge").val();
+					   addRegisterCaseMap['informantSex'] = $("#informantSex").val();
+					   addRegisterCaseMap['content'] = $("#content").val();
+					   addRegisterCaseMap['recorder'] = $("#recorder").val();
+					   addRegisterCaseMap['suggestion'] = $("#suggestion").val();
+					   addRegisterCaseMap['reportDate'] = $("#reportDate").html();
+					   addRegisterCaseMap['reponsible'] = $("#reponsible").val();
+					   addRegisterCaseMap['excutor1'] = $("#excutor1").combotree('getText');
+					   addRegisterCaseMap['excutor2'] = $("#excutor2").combotree('getText');
+					   addRegisterCaseMap['excuteDate'] = $("#excuteDate").val();
+					   addRegisterCaseMap['caseName'] = caseInfoMap["caseDescription"];
+					   addRegisterCaseMap['objectName'] = $("#objectName").val();
+					   addRegisterCaseMap['occurTime'] = $("#occurTime").val();
+					   addRegisterCaseMap['occurPlace'] = $("#occurPlace").val();
+					  var caseJson=JSON.stringify(addRegisterCaseMap);
+					  	$.ajax({
+						async : false,
+						cache : false,
+						type : 'POST',
+						url : '../../formUnRegisterCase/updateDoc', 
+						data : JSON.stringify(addRegisterCaseMap),
+						contentType : 'application/json;charset=utf-8',
+						dataType : 'json',
+						success : function(data) {
+							$.messager.alert('消息','操作成功！');
+							
+						}
+					})
+				   });
 
-                }
-
-                function writeNoteExam() {
-                    $("#mainframe").attr("src", "addDocument/listNoteExamView.html?" + caseId);
-
-                }
-
-                function writeNoteSurvey() {
-                    $("#mainframe").attr("src", "addDocument/listNoteSurvey.html?" + caseId);
-
-                }
-
-                function writeFormTransferCase() {
-                    $("#mainframe").attr("src", "addDocument/addFormTransferCase.html?" + caseId);
-                }
-                function writeFormUnRegisterCase() {
-                    $("#mainframe").attr("src", "addDocument/addFormUnRegisterCase.html?" + caseId);
-                }
-
-                function writeNoteHearingPunishment() {
-                    $("#mainframe").attr("src", "addDocument/addNoteHearingPunishment.html?" + caseId);
-                }
-
-                function writeDecisionPunishmentInSpot() {
-                    $("#mainframe").attr("src", "addDocument/addDecisionPunishmentInSpot.html?" + caseId);
-                }
-                function writeOpinionHearingPunishment() {
-                    $("#mainframe").attr("src", "addDocument/addOpinionHearingPunishment.html?" + caseId);
-                }
-                function writeDiscussionImportantCase() {
-                    $("#mainframe").attr("src", "addDocument/addDiscussionImportantCase.html?" + caseId);
-                }
-                function writeFormPunishmentDecisionExam() {
-                    $("#mainframe").attr("src", "addDocument/addFormPunishmentDecisionExam.html?" + caseId);
-                }
-                function writeReportEndCasePunishment() {
-                    $("#mainframe").attr("src", "addDocument/addReportEndCasePunishment.html?" + caseId);
-                }
-                function writeFormNotPunishmentDecisionExam() {
-                    $("#mainframe").attr("src", "addDocument/addFormNotPunishmentDecisionExam.html?" + caseId);
-                }
-                function writeFormRegistration() {
-                    $("#mainframe").attr("src", "addCaseView.html?" + caseId);
-                }
-
-                function writeFormPunishment() {
-                    $("#mainframe").attr("src", "addDocument/addFormPunishment.html?" + caseId);
-                }
-                function writeReportEndInvestigate() {
-                    $("#mainframe").attr("src", "addDocument/addReportEndInvestigate.html?" + caseId);
-                }
-                function writeDiscussionCase() {
-                    $("#mainframe").attr("src", "addDocument/addDiscussionCase.html?" + caseId);
-                }
-                function writeNoticePunishmentPretell() {
-                    $("#mainframe").attr("src", "addDocument/addNoticePunishmentPretell.html?" + caseId);
-                }
-
-                //设置cookie
-                function setCookie(name, value) {
-                    var Days = 1;
-                    var exp = new Date();
-                    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-                    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
-                }
-
-                //读取cookies 
-                function getCookie(name) {
-                    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-
-                    if (arr = document.cookie.match(reg))
-
-                        return unescape(arr[2]);
-                    else
-                        return null;
-                }
-
-                //删除cookies 
-                function delCookie(name) {
-                    var exp = new Date();
-                    exp.setTime(exp.getTime() - 1);
-                    var cval = getCookie(name);
-                    if (cval != null)
-                        document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
-                }
-            </script>
-        </div>
-    </body>
+//文书打印函数 传输文书数据表名称与对应ID			   
+function FilePrint(){
+	getDucument("form_unregister_case",caseId);
+}
+			</script>
 </html>

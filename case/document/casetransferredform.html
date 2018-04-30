@@ -157,7 +157,7 @@
 					}
 					$.ajax({
 						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/formTransferCase/exam",
+						url: "http://huyg.site:8080/huangbaihe/formTransferCase/examForm",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toExamForm(mainpageVM.selected_id, "待审批", reExamResponsible),
 						success: function (data) {

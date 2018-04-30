@@ -133,6 +133,13 @@ CaseIndex.prototype.docMap = [
             state: function (params) {
                 return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
             }
+        },{
+            key: "formUnRegisterCaseSate",
+            name: "不予立案呈批表",
+            link: "unregistercase",
+            state: function (params) {
+                return params[this.key] ? (params[this.key] === "2" ? "3" : params[this.key]) : "0"
+            }
         }]
     },{
         name: "移送立案文书",
