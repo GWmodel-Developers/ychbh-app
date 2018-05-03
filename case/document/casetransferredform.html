@@ -157,7 +157,7 @@
 					}
 					$.ajax({
 						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/formTransferCase/examForm",
+						url: "http://huyg.site:8080/huangbaihe/formTransferCase/exam",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toExamForm(mainpageVM.selected_id, "待审批", reExamResponsible),
 						success: function (data) {
@@ -165,6 +165,9 @@
 								new $.nd2Toast({
 									message: "操作成功"
 								})
+								setTimeout(function () {
+									back();
+								}, 2000);
 							} else {
 								new $.nd2Toast({
 									message: "操作失败"
@@ -189,6 +192,9 @@
 								new $.nd2Toast({
 									message: "操作成功"
 								})
+								setTimeout(function () {
+									back();
+								}, 2000);
 							} else {
 								new $.nd2Toast({
 									message: "操作失败"
