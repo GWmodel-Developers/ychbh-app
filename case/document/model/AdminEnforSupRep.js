@@ -1,40 +1,43 @@
 // 行政执法后督查报告
 function AdminEnforSupRep(param0, param1, param2) {
-	this.objectName = null;
-	this.documentTime = Date.today().toString("yyyy-MM-dd");
-	this.documentID = null;
-	this.documentIID = null;
-	this.signTime = Date.today().toString("yyyy-MM-dd");
-	this.checkTime = Date.today().toString("yyyy-MM-dd");
-	this.correctIllegal = null;
-	this.haveFineshed = null;
-	this.notFineshed = null;
-	this.advice = null;
-	this.reportDate = Date.today().toString("yyyy-MM-dd");
-  
+  this.objectName = null;
+  this.documentTime = Date.today().toString("yyyy-MM-dd");
+  this.documentID = null;
+  this.documentIID = null;
+  this.signTime = Date.today().toString("yyyy-MM-dd");
+  this.checkTime = Date.today().toString("yyyy-MM-dd");
+  this.correctIllegal = null;
+  this.haveFineshed = null;
+  this.notFineshed = null;
+  this.advice = null;
+  this.reportDate = Date.today().toString("yyyy-MM-dd");
+
   if (param0) {
-  for (var key in this) {
-    if (param0.hasOwnProperty(key)) {
+    for (var key in this) {
+      if (param0.hasOwnProperty(key)) {
         this[key] = param0[key];
+      }
     }
   }
-}
-	if (param1) {
-  for (var key in this) {
-    if (param1.hasOwnProperty(key)) {
+  if (param1) {
+    for (var key in this) {
+      if (param1.hasOwnProperty(key)) {
         this[key] = param1[key];
+      }
     }
   }
-}
-	if (param2) {
-  for (var key in this) {
-    if (param2.hasOwnProperty(key)) {
+  if (param2) {
+    for (var key in this) {
+      if (param2.hasOwnProperty(key)) {
         this[key] = param2[key];
+      }
     }
   }
-}
-  
-  
+  this.documentTime = this.documentTime.replace(/[年月]/g, "-").replace(/[日]/g, "");
+  this.signTime = this.signTime.replace(/[年月]/g, "-").replace(/[日]/g, "");
+  this.checkTime = this.checkTime.replace(/[年月]/g, "-").replace(/[日]/g, "");
+  this.reportDate = this.reportDate.replace(/[年月]/g, "-").replace(/[日]/g, "");
+
 }
 
 
