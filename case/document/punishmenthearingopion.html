@@ -109,7 +109,7 @@
 				queryDoc: function(caseId, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://localhost:8080/huangbaihe/opinionHearingPunishment/getDocument",
+						url: "http://huyg.site:8080/huangbaihe/opinionHearingPunishment/getDocument",
                         dataType: "jsonp",
                         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 						data: {
@@ -141,16 +141,16 @@
 			},
 			computed: {
 				showSubmit: function () {
-					return true;
+					return false;
 				},
 				showUpdate: function () {
-					return true;
+					return false;
 				},
 				showExam: function () {
 					return false;
 				},
 				showReExam: function () {
-					return true;
+					return false;
 				}
 			},
 			created: function() {
