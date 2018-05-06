@@ -176,7 +176,7 @@
 							<span class="listview-aside">{{ detail.projectStatus }}</span>
 						</li>
 						<li data-role="list-divider"><h3>其他</h3></li>
-						<li><a href="#" v-on:click="gotoCompany(detail.companyID)"><b>所属企业</b></a></li>
+						<li v-if="mode == 'projectID'"><a href="#" v-on:click="gotoCompany(detail.companyID)"><b>所属企业</b></a></li>
 						<li><a href="#" v-on:click="gotoDetail('approval', detail.projectID)"><b>行政审批情况</b></a></li>
 						<li><a href="#" v-on:click="gotoDetail('mine', detail.projectID)"><b>矿硐</b></a></li>
 						<li><a href="#" v-on:click="gotoDetail('site', detail.projectID)"><b>渣场</b></a></li>
@@ -341,7 +341,8 @@
 			data: {
 				items: [],
 				company_id: localStorage.getItem("companyID"),
-				selected_id: localStorage.getItem("projectID"),
+				selected_id: localStorage.getItem(getURLParameter("mode") == "belong" | localStorage.belongFactoryID ? "belongFactoryID" : "projectID"),
+				mode: getURLParameter("mode") == "belong" | localStorage.belongFactoryID ? "belongFactoryID" : "projectID",
 				total: 0,
 				page: 0,
 				basic_form: new ProjectBasic(),
@@ -484,7 +485,7 @@
 					window.location = ["project-detail/", page, ".html"].join("");
 				},
 				showMain: function () {
-					localStorage.removeItem("projectID");
+					localStorage.removeItem(mainpageVM.mode);
 					mainpageVM.refresh(mainpageVM);
 					window.location = "#";
 				},
@@ -495,7 +496,7 @@
 			},
 			watch: {
 				selected_id: function (newId, oldId) {
-					localStorage.setItem("projectID", newId)
+					localStorage.setItem(mainpageVM.mode, newId)
 					mainpageVM.queryItem(newId, mainpageVM);
 				}
 			},
@@ -567,7 +568,7 @@
 		}
 
 		function back() {
-			localStorage.removeItem("projectID");
+			localStorage.removeItem(mainpageVM.mode);
 			if (mainpageVM.company_id) {
 				window.location = "../company/companybasic.html#page_detail"
 			} else {
