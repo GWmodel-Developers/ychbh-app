@@ -275,6 +275,10 @@
 	<!-- Vue Model -->
 	<script type="text/javascript" src="model/FactoryBasic.js" ></script>
 	<script type="text/javascript">
+		function getURLParameter(name) {  
+			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location)||[,""])[1].replace(/\+/g, '%20'))||null;  
+		}
+
 		var mainpageVM = new Vue({
 			el: "#root",
 			data: {

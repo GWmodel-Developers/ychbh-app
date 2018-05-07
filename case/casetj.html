@@ -78,7 +78,7 @@
             $.ajax({
                 async: false,
                 type: 'get',
-                url: 'http://localhost:8080/huangbaihe/getInfoCaseController/sourceStatistic',
+                url: 'http://huyg.site:8080/huangbaihe/getInfoCaseController/sourceStatistic',
                 dataType: "JSON",
                 success: function (data) {
                     initSourceStatisticsChart(data);
@@ -93,7 +93,7 @@
             $.ajax({
                 async: false,
                 type: 'get',
-                url: 'http://localhost:8080/huangbaihe/getInfoCaseController/caseStateStatistic',
+                url: 'http://huyg.site:8080/huangbaihe/getInfoCaseController/caseStateStatistic',
                 dataType: "JSON",
                 success: function (data) {
                     initStateStatisticsChart(data);

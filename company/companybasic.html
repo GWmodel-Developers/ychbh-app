@@ -96,7 +96,7 @@
 						</li>
 						<li data-role="list-divider"><h3>其他</h3></li>
 						<li><a href="#" v-on:click="gotoDetail('branch')"><b>分公司</b></a></li>
-						<li><a href="#" v-on:click="gotoDetail('../projectbasic')"><b>下属矿硐信息</b></a></li>
+						<li><a href="#" v-on:click="gotoBelongProject()"><b>下属矿硐信息</b></a></li>
 					</ul>
 				</div>
 			</div>
@@ -240,11 +240,14 @@
 				gotoDetail: function (page, index) {
 					window.location = ["company-detail/", page, ".html"].join("");
 				},
+				gotoBelongProject: function () {
+					window.location = "projectbasic.html?mode=belong"	
+				},
 				showMain: function () {
+					localStorage.removeItem("companyID");
 					if (getURLParameter("redirect") == "project") {
 						window.location = "../company/projectbasic.html#page_detail";
 					} else {
-						localStorage.removeItem("companyID");
 						mainpageVM.refresh();
 						window.location = "#";
 					}
@@ -317,7 +320,11 @@
 
 		function back() {
 			localStorage.removeItem("companyID");
-			window.location = "../index.html";
+			if (getURLParameter("redirect") == "project" | localStorage.projectID | localStorage.belongProjectID) {
+				window.location = "./projectbasic.html"
+			} else {
+				window.location = "../index.html";
+			}
 		}
 	</script>
 
