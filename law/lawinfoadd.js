@@ -1,6 +1,6 @@
 function getlawtype() {
 	$.ajax({
-		url: "http://39.106.145.68:8080/huangbaihe/Llaw/getltype",
+		url: "http://61.136.146.172:8080/huangbaihe/Llaw/getltype",
 		async: false,
 		dataType: 'json',
 		success: function(json) {
@@ -29,7 +29,7 @@ function getlawname() {
 		return;
 	$.ajax({
 		type: "post",
-		url: "http://39.106.145.68:8080/huangbaihe/Llaw/getllaw",
+		url: "http://61.136.146.172:8080/huangbaihe/Llaw/getllaw",
 		async: false,
 		dataType: 'json',
 		data: {
@@ -59,7 +59,7 @@ function getlawparagraph() {
 		return;
 	$.ajax({
 		type: "post",
-		url: "http://39.106.145.68:8080/huangbaihe/Llaw/getlparagraph",
+		url: "http://61.136.146.172:8080/huangbaihe/Llaw/getlparagraph",
 		async: false,
 		dataType: 'json',
 		data: {
@@ -94,7 +94,7 @@ function getlawitem() {
 		return;
 	$.ajax({
 		type: "post",
-		url: "http://39.106.145.68:8080/huangbaihe/Llaw/getlitem",
+		url: "http://61.136.146.172:8080/huangbaihe/Llaw/getlitem",
 		async: false,
 		dataType: 'json',
 		data: {
