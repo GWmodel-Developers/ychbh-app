@@ -169,6 +169,7 @@
 			},
 			methods: {
 				getItems: function(obj) {
+					if (!obj) { obj = mainpageVM; }					
 					$.ajax({
 						type: "POST",
 						url: "http://61.136.146.172:8080/huangbaihe/showCaseList/caseList",
