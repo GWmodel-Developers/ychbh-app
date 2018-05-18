@@ -337,7 +337,7 @@
 						propties["人数"] = data[i].regionPopleNumber;
 						propties["主要污染物"] = data[i].regionMinPollutant;
 						propties["治污措施"] = data[i].regionCntrolMeasure;
-						propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
+						// propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
 
 						var center = ol.proj.transform([data[i].regionLocationx, data[i].regionLocationy],
 							'EPSG:4326', 'EPSG:4326');
@@ -377,7 +377,7 @@
 						propties["收集污水范围"] = data[i].masurePlluteArea;
 						propties["排污出口"] = data[i].masureOtlet;
 						propties["运行现状"] = data[i].masureSatus;
-						propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].pojectID + ")'>点击跳转</a>";
+						// propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].pojectID + ")'>点击跳转</a>";
 
 						var center = ol.proj.transform([data[i].masureLocationx, data[i].masureLocationy],
 							'EPSG:4326', 'EPSG:4326');
@@ -417,7 +417,7 @@
 						propties["河域"] = data[i].mineRiver;
 						propties["出水量"] = data[i].mineWaterYield;
 						propties["排水出口"] = data[i].mineDrainOutlet;
-						propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].porjectID + ")'>点击跳转</a>";
+						// propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].porjectID + ")'>点击跳转</a>";
 
 						var center = ol.proj.transform([data[i].mineLocationx, data[i].mineLocationy],
 							'EPSG:4326', 'EPSG:4326');
@@ -457,7 +457,7 @@
 						propties["排污控制指标"] = data[i].outletControlIndex;
 						propties["许可排污水量"] = data[i].outletPermitVolume + "(吨/天)";
 						propties["实际排污水量"] = data[i].outletFactVolume + "(吨/天)";
-						propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
+						// propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
 
 						var center = ol.proj.transform([data[i].outletLocationx, data[i].outletLocationy],
 							'EPSG:4326', 'EPSG:4326');
@@ -498,7 +498,7 @@
 						propties["设施现状"] = data[i].depositStatus;
 						propties["排水出口"] = data[i].depositDrainOutlet;
 						propties["地面/井下"] = data[i].depositOnUnder;
-						propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
+						// propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
 
 						var center = ol.proj.transform([data[i].depositLocationx, data[i].depositLocationy],
 							'EPSG:4326', 'EPSG:4326');
@@ -541,7 +541,7 @@
 						propties["开产时间"] = data[i].opreationTime;
 						propties["河域范围"] = data[i].river;
 						propties["项目现状"] = data[i].projectStatus;
-						propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
+						// propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
 
 						var center = ol.proj.transform([data[i].locationx, data[i].locationy],
 							'EPSG:4326', 'EPSG:4326');
@@ -581,7 +581,7 @@
 						propties["所处河段"] = data[i].projectRiver;
 						propties["开办时间"] = data[i].projectTime;
 						propties["法人代表姓名"] = data[i].projectLegalPerson;
-						propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage2(" + data[i].projectID + ")'>点击跳转</a>";
+						// propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage2(" + data[i].projectID + ")'>点击跳转</a>";
 
 						var center = ol.proj.transform([data[i].projectLocationx, data[i].projectLocationy],
 							'EPSG:4326', 'EPSG:4326');
@@ -621,7 +621,7 @@
 						propties["流域"] = data[i].selectMineRiver;
 						propties["废水排放情况"] = data[i].selectMineWater;
 						propties["废渣处理情况"] = data[i].selectMineWaste;
-						propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
+						// propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
 
 						var center = ol.proj.transform([data[i].selectMineLocationx, data[i].selectMineLocationy],
 							'EPSG:4326', 'EPSG:4326');
@@ -660,7 +660,7 @@
 						propties["河域"] = data[i].siteRiver;
 						propties["设计容积"] = data[i].siteDesignVolume;
 						propties["保护措施"] = data[i].siteProtectMeasure;
-						propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
+						// propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
 
 						var center = ol.proj.transform([data[i].siteLocationx, data[i].siteLocationy],
 							'EPSG:4326', 'EPSG:4326');
@@ -699,7 +699,7 @@
 						propties["河域"] = data[i].tailMineRiver;
 						propties["设计容积"] = data[i].tailMineTreatment;
 						propties["保护措施"] = data[i].tailMineMeasure;
-						propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
+						// propties["所属项目"] = "<a href='#' class='easyui-linkbutton' onclick='gotopage1(" + data[i].projectID + ")'>点击跳转</a>";
 
 						var center = ol.proj.transform([data[i].tailMineLocationx, data[i].tailMineLocationy],
 							'EPSG:4326', 'EPSG:4326');
