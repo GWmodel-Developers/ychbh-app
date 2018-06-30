@@ -110,7 +110,7 @@
 					var obj = this;
 					$.ajax({
 						type: "post",
-						url: "http://huyg.site:8080/huangbaihe/reportEndInvastigate/getDoc",
+						url: "http://61.136.146.172:7769/huangbaihe/reportEndInvastigate/getDoc",
 						dataType: "jsonp",
 						data: {
 							caseID: caseId
@@ -118,7 +118,7 @@
 						success: function (caseinfo) {
 							$.ajax({
 								type: "post",
-								url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
+								url: "http://61.136.146.172:7769/huangbaihe/formRegisterCase/getOneForm",
 								dataType: "jsonp",
 								data: {
 									caseID: caseId
@@ -126,7 +126,7 @@
 								success: function (register) {
 									$.ajax({
 										type: "post",
-										url: "http://huyg.site:8080/huangbaihe/reportEndInvastigate/getDoc",
+										url: "http://61.136.146.172:7769/huangbaihe/reportEndInvastigate/getDoc",
 										dataType: "jsonp",
 										data: {
 											caseID: caseId

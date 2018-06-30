@@ -80,7 +80,7 @@
 				queryItem: function(caseID, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						url: "http://61.136.146.172:7769/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "JSONP",
 						data: ({
 							caseID: caseID
@@ -99,7 +99,7 @@
 				exam: function () {
 					$.ajax({
 						method: "POST",
-						url: "http://huyg.site:8080/huangbaihe/addInfoCase/examForm",
+						url: "http://61.136.146.172:7769/huangbaihe/addInfoCase/examForm",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toExamForm(),
 						success: function (data) {
@@ -126,7 +126,7 @@
 				reExam: function () {
 					$.ajax({
 						method: "POST",
-						url: "http://huyg.site:8080/huangbaihe/addInfoCase/reExamForm",
+						url: "http://61.136.146.172:7769/huangbaihe/addInfoCase/reExamForm",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toReExamForm(),
 						success: function (data) {

@@ -295,7 +295,7 @@
 					if (!obj) { obj = mainpageVM; }
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/Cproject2/showProject2",
+						url: "http://61.136.146.172:8082/huangbaihe/Cproject2/showProject2",
 						dataType: "JSON",
 						data: {
 							page: obj.page + 1,
@@ -328,7 +328,7 @@
 				submit: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/Cproject2/add",
+						url: "http://61.136.146.172:8082/huangbaihe/Cproject2/add",
 						data: mainpageVM.basic_form.toForm().substr(1),
 						dataType: "JSON",
 						success: function(data) {
@@ -354,7 +354,7 @@
 				queryItem: function(projectID, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://61.136.146.172:8080/huangbaihe/Cproject2/qurbyid",
+						url: "http://61.136.146.172:8082/huangbaihe/Cproject2/qurbyid",
 						dataType: "json",
 						data: {
 							index: projectID
@@ -412,7 +412,7 @@
 					source: function (request, response) {
 						$.ajax({
 							method: "POST",
-							url: "http://61.136.146.172:8080/huangbaihe/Cproject2/query",
+							url: "http://61.136.146.172:8082/huangbaihe/Cproject2/query",
 							dataType: "JSON",
 							data: {
 								ProjectName: request.term

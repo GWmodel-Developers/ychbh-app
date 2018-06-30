@@ -289,7 +289,7 @@
                 queryAddress: function(obj) {
 					$.ajax({
 						type:"post",
-						url:"http://61.136.146.172:8080/huangbaihe/WInsR/queryaddress",
+						url:"http://61.136.146.172:8082/huangbaihe/WInsR/queryaddress",
 						dataType: "JSON",
 						success: function(data) {
 							obj.address_list = data;
@@ -302,7 +302,7 @@
                     }
                     $.ajax({
                         type: "POST",
-                        url: "http://61.136.146.172:8080/huangbaihe/WInsR/tj1query",
+                        url: "http://61.136.146.172:8082/huangbaihe/WInsR/tj1query",
                         dataType: "JSON",
                         data: obj.tendency.form,
                         success: function (data) {
@@ -321,7 +321,7 @@
                     }
                     $.ajax({
                         type: "POST",
-                        url: "http://61.136.146.172:8080/huangbaihe/WInsR/tj2query",
+                        url: "http://61.136.146.172:8082/huangbaihe/WInsR/tj2query",
                         dataType: "JSON",
                         data: obj.average.form,
                         success: function (data) {

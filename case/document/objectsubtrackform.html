@@ -95,7 +95,7 @@
 					caseinfo = await new Promise(function (resolve, reject) {
 						$.ajax({
 							type: "post",
-							url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+							url: "http://61.136.146.172:7769/huangbaihe/getInfoCaseController/getCaseInfo",
 							dataType: "JSONP",
 							data: ({
 								caseID: caseID
@@ -111,7 +111,7 @@
 						formDetainGoods = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://huyg.site:8080/huangbaihe/formDetainGoods/getOneForm",
+								url: "http://61.136.146.172:7769/huangbaihe/formDetainGoods/getOneForm",
 								dataType: "JSONP",
 								data: ({
 									caseID: caseID
@@ -128,7 +128,7 @@
 						detainInformLetter = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://huyg.site:8080/huangbaihe/detainInformLetter/getOneForm",
+								url: "http://61.136.146.172:7769/huangbaihe/detainInformLetter/getOneForm",
 								dataType: "JSONP",
 								data: ({
 									caseID: caseID
@@ -145,7 +145,7 @@
 						investDetainGoods = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://huyg.site:8080/huangbaihe/investDetainGoods/getOneForm",
+								url: "http://61.136.146.172:7769/huangbaihe/investDetainGoods/getOneForm",
 								dataType: "JSONP",
 								data: ({
 									caseID: caseID
@@ -174,7 +174,7 @@
 					}
 					$.ajax({
 						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/investDetainGoods/exam",
+						url: "http://61.136.146.172:7769/huangbaihe/investDetainGoods/exam",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toExamForm(mainpageVM.selected_id, "待审批", reExamResponsible),
 						success: function (data) {
@@ -201,7 +201,7 @@
 				reExam: function () {
 					$.ajax({
 						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/investDetainGoods/reExam",
+						url: "http://61.136.146.172:7769/huangbaihe/investDetainGoods/reExam",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toReExamForm(mainpageVM.selected_id),
 						success: function (data) {
@@ -228,7 +228,7 @@
 				queryLeaders: function (context) {
 					$.ajax({
 						method: "GET",
-						url: "http://61.136.146.172:8080/huangbaihe/login/getAllUser",
+						url: "http://61.136.146.172:8082/huangbaihe/login/getAllUser",
 						dataType: "JSON",
 						success: function (data) {
 							var leaders = data.filter(function (value, index) {

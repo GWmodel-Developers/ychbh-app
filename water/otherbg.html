@@ -283,7 +283,7 @@
 				getItems: function(obj) {
 					$.ajax({
 						type: "get",
-						url: "http://61.136.146.172:8080/huangbaihe/WInsR/querybypage",
+						url: "http://61.136.146.172:8082/huangbaihe/WInsR/querybypage",
 						dataType: "JSON",
 						data: {
 							page: obj.page + 1,
@@ -319,7 +319,7 @@
 				submit: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/WInsR/save",
+						url: "http://61.136.146.172:8082/huangbaihe/WInsR/save",
 						data: mainpageVM.form.toForm().substr(1),
 						success: function() {
 							new $.nd2Toast({
@@ -347,7 +347,7 @@
 				searchItems: function(searchText) {
 					$.ajax({
 						type:"POST",
-						url:"http://61.136.146.172:8080/huangbaihe/WInsR/query",
+						url:"http://61.136.146.172:8082/huangbaihe/WInsR/query",
 						dataType: "json",
 						data: {
 							address: searchText.address,
@@ -376,7 +376,7 @@
 				queryAddress: function(obj) {
 					$.ajax({
 						type:"post",
-						url:"http://61.136.146.172:8080/huangbaihe/WInsR/queryaddress",
+						url:"http://61.136.146.172:8082/huangbaihe/WInsR/queryaddress",
 						dataType: "JSON",
 						success: function(data) {
 							obj.searchList = data.map(function(item) {
@@ -388,7 +388,7 @@
 				queryHcom: function(obj) {
 					$.ajax({
 						type: "post",
-						url: "http://61.136.146.172:8080/huangbaihe/WInsR/queryhcom",
+						url: "http://61.136.146.172:8082/huangbaihe/WInsR/queryhcom",
 						dataType: "JSON",
 						success: function(data) {
 							OtherBg.prototype.hcomOptions = data.map(function(item) {
@@ -402,7 +402,7 @@
 				selected_id: function (newId, oldId) {
 					$.ajax({
 						type: "post",
-						url: "http://61.136.146.172:8080/huangbaihe/WInsR/querybyid",
+						url: "http://61.136.146.172:8082/huangbaihe/WInsR/querybyid",
 						dataType: "json",
 						data: {
 							sz_id: newId

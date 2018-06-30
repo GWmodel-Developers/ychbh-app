@@ -100,7 +100,7 @@
 				content.form.date = Date.parse(content.form.date).toString("yyyy年MM月dd日")
 				$.ajax({
 					type: "post",
-					url: "http://61.136.146.172:8080/huangbaihe/InsProb/save",
+					url: "http://61.136.146.172:8082/huangbaihe/InsProb/save",
 					data: content.form,
 					success: function() {
 						new $.nd2Toast({

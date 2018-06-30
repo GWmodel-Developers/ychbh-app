@@ -320,7 +320,7 @@
                 queryRiverNames: function (obj) {
                     $.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/River/queryhl",
+						url: "http://61.136.146.172:8082/huangbaihe/River/queryhl",
 						dataType: "JSON",
 						success: function(data) {
 							obj.river_names = data
@@ -333,7 +333,7 @@
                     }
                     $.ajax({
                         type: "POST",
-                        url: "http://61.136.146.172:8080/huangbaihe/River/hl1tj",
+                        url: "http://61.136.146.172:8082/huangbaihe/River/hl1tj",
                         dataType: "JSON",
                         data: obj.tendency.form,
                         success: function (data) {
@@ -357,7 +357,7 @@
                     }
                     $.ajax({
                         type: "POST",
-                        url: "http://61.136.146.172:8080/huangbaihe/River/hl2tj",
+                        url: "http://61.136.146.172:8082/huangbaihe/River/hl2tj",
                         dataType: "JSON",
                         data: formData,
                         success: function (data) {

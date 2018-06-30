@@ -93,7 +93,7 @@
 					caseinfo = await new Promise(function (resolve, reject) {
 						$.ajax({
 							type: "post",
-							url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+							url: "http://61.136.146.172:7769/huangbaihe/getInfoCaseController/getCaseInfo",
 							dataType: "JSONP",
 							data: ({
 								caseID: caseID
@@ -109,7 +109,7 @@
 						registercase = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
+								url: "http://61.136.146.172:7769/huangbaihe/formRegisterCase/getOneForm",
 								dataType: "JSONP",
 								data: ({
 									caseID: caseID
@@ -126,7 +126,7 @@
 						AdimiEnforEndReportVar = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://huyg.site:8080/huangbaihe/reportEndCaseEnforce/getOneForm",
+								url: "http://61.136.146.172:7769/huangbaihe/reportEndCaseEnforce/getOneForm",
 								dataType: "JSONP",
 								data: ({
 									caseID: caseID
@@ -155,7 +155,7 @@
 					}
 					$.ajax({
 						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/reportEndCaseEnforce/exam",
+						url: "http://61.136.146.172:7769/huangbaihe/reportEndCaseEnforce/exam",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toExamForm(mainpageVM.selected_id, "待审批", reExamResponsible),
 						success: function (data) {
@@ -182,7 +182,7 @@
 				reExam: function () {
 					$.ajax({
 						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/reportEndCaseEnforce/reExam",
+						url: "http://61.136.146.172:7769/huangbaihe/reportEndCaseEnforce/reExam",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toReExamForm(this.selected_id),
 						success: function (data) {
@@ -209,7 +209,7 @@
 				queryLeaders: function (context) {
 					$.ajax({
 						method: "GET",
-						url: "http://61.136.146.172:8080/huangbaihe/login/getAllUser",
+						url: "http://61.136.146.172:8082/huangbaihe/login/getAllUser",
 						dataType: "JSON",
 						success: function (data) {
 							var leaders = data.filter(function (value, index) {

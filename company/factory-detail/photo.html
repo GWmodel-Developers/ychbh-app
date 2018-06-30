@@ -59,7 +59,7 @@
 				<div data-role="main" class="ui-content">
 					<div class="nd2-card" v-for="(item, index) in items">
 						<div class="card-media">
-							<img v-bind:src="'http://61.136.146.172:8080/huangbaihe/Cphoto/showbyid?index=' + item.photoID" v-bind:alt="item.photoName">
+							<img v-bind:src="'http://61.136.146.172:8082/huangbaihe/Cphoto/showbyid?index=' + item.photoID" v-bind:alt="item.photoName">
 						</div>
 						<div class="card-supporting-text has-action">
 							{{ item.photoName.split(".")[0] }}
@@ -102,7 +102,7 @@
 				getItems: function (obj) {
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/Cphoto/query",
+						url: "http://61.136.146.172:8082/huangbaihe/Cphoto/query",
 						dataType: "JSON",
 						data: {
 							index: obj.project_id
@@ -122,7 +122,7 @@
 				submit: function () {
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/Cphoto/add",
+						url: "http://61.136.146.172:8082/huangbaihe/Cphoto/add",
 						data: mainpageVM.form.toForm(mainpageVM.project_id).substr(1),
 						success: function() {
 							new $.nd2Toast({
@@ -139,7 +139,7 @@
 				delete: function (index) {
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/Cphoto/add",
+						url: "http://61.136.146.172:8082/huangbaihe/Cphoto/add",
 						data: {
 							index: index
 						},

@@ -134,7 +134,7 @@
 				getItems: function(obj) {
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/Caddress/query",
+						url: "http://61.136.146.172:8082/huangbaihe/Caddress/query",
 						dataType: "JSON",
 						data: {
 							index: obj.project_id
@@ -154,7 +154,7 @@
 				submit: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/Caddress/add",
+						url: "http://61.136.146.172:8082/huangbaihe/Caddress/add",
 						data: mainpageVM.form.toForm(mainpageVM.project_id).substr(1),
 						success: function() {
 							new $.nd2Toast({
@@ -184,7 +184,7 @@
 				queryItem: function (newId, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://61.136.146.172:8080/huangbaihe/Caddress/edit",
+						url: "http://61.136.146.172:8082/huangbaihe/Caddress/edit",
 						dataType: "json",
 						data: {
 							index: newId

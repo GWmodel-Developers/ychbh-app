@@ -85,7 +85,7 @@
 				searchItems: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/ReNotice/query",
+						url: "http://61.136.146.172:8082/huangbaihe/ReNotice/query",
 						dataType: "json",
 						data: {
 							company: this.searchText
@@ -119,7 +119,7 @@
 		function showLoader() {
 			$.ajax({
 				type: "POST",
-				url: "http://61.136.146.172:8080/huangbaihe/ReNotice/querybypage",
+				url: "http://61.136.146.172:8082/huangbaihe/ReNotice/querybypage",
 				data: {
 					page: content.pageIndex + 1,
 					rows: 10

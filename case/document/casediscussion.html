@@ -109,7 +109,7 @@
 				queryDoc: function(caseId, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						url: "http://61.136.146.172:7769/huangbaihe/getInfoCaseController/getCaseInfo",
                         dataType: "jsonp",
 						data: {
 							"caseID": caseId
@@ -117,7 +117,7 @@
 						success: function (caseinfo) {
 							$.ajax({
 								type: "post",
-								url: "http://huyg.site:8080/huangbaihe/discussionCase/getDocument",
+								url: "http://61.136.146.172:7769/huangbaihe/discussionCase/getDocument",
 								dataType: "jsonp",
 								data: {
 									"caseID": caseId

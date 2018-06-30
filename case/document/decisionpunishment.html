@@ -192,7 +192,7 @@
 					var caseinfo = await new Promise(function (resolve, reject) {
 						$.ajax({
 							type: "post",
-							url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+							url: "http://61.136.146.172:7769/huangbaihe/getInfoCaseController/getCaseInfo",
 							dataType: "JSONP",
 							data: ({
 								caseID: caseID
@@ -208,7 +208,7 @@
 						registercase = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://huyg.site:8080/huangbaihe/formRegisterCase/getOneForm",
+								url: "http://61.136.146.172:7769/huangbaihe/formRegisterCase/getOneForm",
 								dataType: "JSONP",
 								data: ({
 									caseID: caseID
@@ -225,7 +225,7 @@
 						invastigate = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://huyg.site:8080/huangbaihe/reportEndInvastigate/getDoc",
+								url: "http://61.136.146.172:7769/huangbaihe/reportEndInvastigate/getDoc",
 								dataType: "JSONP",
 								data: ({
 									caseID: caseID
@@ -236,7 +236,7 @@
 						commoncase = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://61.136.146.172:8080/huangbaihe/Lcommoncase/querycaseid",
+								url: "http://61.136.146.172:8082/huangbaihe/Lcommoncase/querycaseid",
 								data: {
 									case_name: registercase.brief
 								},
@@ -252,7 +252,7 @@
 						punishment = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://huyg.site:8080/huangbaihe/noticePunishmentPretell/getDoc",
+								url: "http://61.136.146.172:7769/huangbaihe/noticePunishmentPretell/getDoc",
 								dataType: "JSONP",
 								data: ({
 									caseID: caseID
@@ -269,7 +269,7 @@
 						ghearing = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://huyg.site:8080/huangbaihe/noticeGHearingPunishment/getDoc",
+								url: "http://61.136.146.172:7769/huangbaihe/noticeGHearingPunishment/getDoc",
 								dataType: "JSONP",
 								data: ({
 									caseID: caseID
@@ -286,7 +286,7 @@
 						decision = await new Promise(function (resolve, reject) {
 							$.ajax({
 								type: "post",
-								url: "http://huyg.site:8080/huangbaihe/decisionPunishment/getDoc",
+								url: "http://61.136.146.172:7769/huangbaihe/decisionPunishment/getDoc",
 								dataType: "JSONP",
 								data: ({
 									caseID: caseID
@@ -312,7 +312,7 @@
 				queryLeaders: function (context) {
 					$.ajax({
 						method: "GET",
-						url: "http://61.136.146.172:8080/huangbaihe/login/getAllUser",
+						url: "http://61.136.146.172:8082/huangbaihe/login/getAllUser",
 						dataType: "JSON",
 						success: function (data) {
 							var leaders = data.filter(function (value, index) {

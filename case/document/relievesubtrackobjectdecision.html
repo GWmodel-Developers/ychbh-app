@@ -83,7 +83,7 @@
 				queryItem: function(caseID, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						url: "http://61.136.146.172:7769/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "JSONP",
 						data: ({
 							caseID: caseID
@@ -92,7 +92,7 @@
 							if (caseinfo.formPunishmentState != 0) {
 								$.ajax({
 									type: "post",
-									url: "http://huyg.site:8080/huangbaihe/decisionDetainGoods/getOneForm",
+									url: "http://61.136.146.172:7769/huangbaihe/decisionDetainGoods/getOneForm",
 									dataType: "JSONP",
 									data: ({
 										caseID: caseID
@@ -100,7 +100,7 @@
 									success: function (decisionDetainGoods) {
 										$.ajax({
 											type: "post",
-											url: "http://huyg.site:8080/huangbaihe/redetainInformLetter/getOneForm",
+											url: "http://61.136.146.172:7769/huangbaihe/redetainInformLetter/getOneForm",
 											dataType: "JSONP",
 											data: ({
 												caseID: caseID
@@ -132,7 +132,7 @@
 				queryLeaders: function (context) {
 					$.ajax({
 						method: "GET",
-						url: "http://61.136.146.172:8080/huangbaihe/login/getAllUser",
+						url: "http://61.136.146.172:8082/huangbaihe/login/getAllUser",
 						dataType: "JSON",
 						success: function (data) {
 							var leaders = data.filter(function (value, index) {

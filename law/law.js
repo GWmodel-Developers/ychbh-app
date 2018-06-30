@@ -5,7 +5,7 @@ function back() {
 function detail(index) {
 	//	window.location = "lawdetail.html?index=" + index;
 	window.location = "law.html#datailPage";
-	$.getJSON("http://61.136.146.172:8080/huangbaihe/Llaw/getlawtreecontent", {
+	$.getJSON("http://61.136.146.172:8082/huangbaihe/Llaw/getlawtreecontent", {
 		id: index
 	}, function(data) {
 		if(data) {
@@ -18,7 +18,7 @@ function detail(index) {
 
 function getlawtype() {
 	$.ajax({
-		url: "http://61.136.146.172:8080/huangbaihe/Llaw/getltype",
+		url: "http://61.136.146.172:8082/huangbaihe/Llaw/getltype",
 		async: false,
 		dataType: 'json',
 		success: function(json) {
@@ -47,7 +47,7 @@ function getlawname() {
 		return;
 	$.ajax({
 		type: "post",
-		url: "http://61.136.146.172:8080/huangbaihe/Llaw/getllaw",
+		url: "http://61.136.146.172:8082/huangbaihe/Llaw/getllaw",
 		async: false,
 		dataType: 'json',
 		data: {
@@ -77,7 +77,7 @@ function loadlawtree(law_name) {
 		return;
 	$.ajax({
 		type: 'POST',
-		url: "http://61.136.146.172:8080/huangbaihe/Llaw/getlawtree",
+		url: "http://61.136.146.172:8082/huangbaihe/Llaw/getlawtree",
 		data: {
 			"law_name": lawname
 		},
@@ -117,7 +117,7 @@ function doSearch() {
 	}
 	$.ajax({
 		type: 'POST',
-		url: "http://61.136.146.172:8080/huangbaihe/Llaw/getkeyword",
+		url: "http://61.136.146.172:8082/huangbaihe/Llaw/getkeyword",
 		data: {
 			"keyword": keyword,
 			"law_name": law_name

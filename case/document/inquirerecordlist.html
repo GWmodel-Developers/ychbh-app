@@ -52,7 +52,7 @@
 				showList: function(caseId) {
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/noteExamination/getDocList",
+						url: "http://61.136.146.172:8082/huangbaihe/noteExamination/getDocList",
 						dataType: 'json',
 						data: {"caseID": caseId},
 						success: function(json) {

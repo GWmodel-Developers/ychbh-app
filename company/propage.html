@@ -170,7 +170,7 @@ function loadpro(SlectproID) {
 	// 加载项目详细信息
 	$.ajax({
 		type : "POST",
-		url : "http://61.136.146.172:8080/huangbaihe/Cproinfo/qurbyid",
+		url : "http://61.136.146.172:8082/huangbaihe/Cproinfo/qurbyid",
 		data : {
 			'index' : SlectproID
 		},
@@ -192,7 +192,7 @@ function loadpro(SlectproID) {
 	// 加载项目基本信息
 	$.ajax({
 		type : "POST",
-		url : "http://61.136.146.172:8080/huangbaihe/Cprobasic/qurbyid",
+		url : "http://61.136.146.172:8082/huangbaihe/Cprobasic/qurbyid",
 		data : {
 			index : SlectproID
 		},
@@ -224,7 +224,7 @@ function loadapproval(SlectproID) {
 	};
 	$.ajax({
 		type : "POST",
-		url : "http://61.136.146.172:8080/huangbaihe/Capproval/query",
+		url : "http://61.136.146.172:8082/huangbaihe/Capproval/query",
 		data : param,
 		dataType : 'json',
 		success : function(json) {

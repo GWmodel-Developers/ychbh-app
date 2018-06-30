@@ -114,7 +114,7 @@
 	
 	$(document).ready(function() {
 		var id = getURLParameter("index");
-		$.getJSON("http://61.136.146.172:8080/huangbaihe/ReNotice/querybyid", {
+		$.getJSON("http://61.136.146.172:8082/huangbaihe/ReNotice/querybyid", {
 			id: id
 		}, function(data) {
 			content.item = data

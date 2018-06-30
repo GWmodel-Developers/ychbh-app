@@ -91,7 +91,7 @@
 				item: {}
 			},
 			created: function () {
-				$.getJSON("http://61.136.146.172:8080/huangbaihe/DInspec/querybyid", {
+				$.getJSON("http://61.136.146.172:8082/huangbaihe/DInspec/querybyid", {
 					id: getURLParameter("index")
 				}, function (data) {
 					content.item = data

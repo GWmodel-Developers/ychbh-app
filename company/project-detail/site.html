@@ -134,7 +134,7 @@
 				getItems: function(obj) {
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/Csite/query",
+						url: "http://61.136.146.172:8082/huangbaihe/Csite/query",
 						dataType: "JSON",
 						data: {
 							index: obj.project_id
@@ -154,7 +154,7 @@
 				submit: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/Csite/add",
+						url: "http://61.136.146.172:8082/huangbaihe/Csite/add",
 						data: mainpageVM.form.toForm(mainpageVM.project_id).substr(1),
 						success: function() {
 							new $.nd2Toast({
@@ -184,7 +184,7 @@
 				queryItem: function (newId, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://61.136.146.172:8080/huangbaihe/Csite/edit",
+						url: "http://61.136.146.172:8082/huangbaihe/Csite/edit",
 						dataType: "json",
 						data: {
 							index: newId

@@ -118,7 +118,7 @@
 				queryDoc: function(caseId, obj) {
 					$.ajax({
 						type: "post",
-						url: "http://huyg.site:8080/huangbaihe/formKeepEvidence/getDoc",
+						url: "http://61.136.146.172:7769/huangbaihe/formKeepEvidence/getDoc",
                         dataType: "jsonp",
                         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 						data: {
@@ -146,7 +146,7 @@
 				reExam: function () {
 					$.ajax({
 						method: "post",
-						url: "http://huyg.site:8080/huangbaihe/formWithdrawCase/reExam",
+						url: "http://61.136.146.172:7769/huangbaihe/formWithdrawCase/reExam",
 						dataType: "JSONP",
 						data: mainpageVM.detail.toReExamForm(),
 						success: function (data) {

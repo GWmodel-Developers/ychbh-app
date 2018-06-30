@@ -199,7 +199,7 @@
 				},
 				methods: {
 					queryTasks: function (obj) {
-						$.getJSON("http://61.136.146.172:8080/huangbaihe/login/getusermission", {
+						$.getJSON("http://61.136.146.172:8082/huangbaihe/login/getusermission", {
 							id: obj.user.UID
 						}, function (data) {
 							obj.task_list = data.filter(function (value, index) {

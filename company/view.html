@@ -148,87 +148,87 @@ html, body, .map {
 	
 	var branchstream = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:branchstream&styles=&bbox=111.049994798482,30.6967946230315,111.579004951283,31.5079544439425&width=500&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:branchstream&styles=&bbox=111.049994798482,30.6967946230315,111.579004951283,31.5079544439425&width=500&height=768&srs=EPSG:4326&format=application/openlayers'
 	    			})
 	  });
 	var city = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:city&styles=&bbox=111.051394691641,31.2980165824523,111.578762019997,31.5079596936379&width=768&height=330&srs=EPSG:4326&format=application/openlayers',
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:city&styles=&bbox=111.051394691641,31.2980165824523,111.578762019997,31.5079596936379&width=768&height=330&srs=EPSG:4326&format=application/openlayers',
 	    			})
 	  });
 	var controlarea = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:controlarea&styles=&bbox=111.062454223633,30.8361988067627,111.521919250488,31.4797554016113&width=548&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:controlarea&styles=&bbox=111.062454223633,30.8361988067627,111.521919250488,31.4797554016113&width=548&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	var countryroad = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:countryroad&styles=&bbox=111.050587856385,30.6977351511356,111.577451050186,31.5077679169213&width=499&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:countryroad&styles=&bbox=111.050587856385,30.6977351511356,111.577451050186,31.5077679169213&width=499&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	var county = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:county&styles=&bbox=111.050484476481,30.6977631357184,111.575683697588,31.5073517278105&width=498&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:county&styles=&bbox=111.050484476481,30.6977631357184,111.575683697588,31.5073517278105&width=498&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	var government = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:government&styles=&bbox=111.06265329717,30.7134673963248,111.55037724791,31.2949210293824&width=644&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:government&styles=&bbox=111.06265329717,30.7134673963248,111.55037724791,31.2949210293824&width=644&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	var highway = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:highway&styles=&bbox=111.050609070236,30.6973399718958,111.577327421518,31.5077306969199&width=499&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:highway&styles=&bbox=111.050609070236,30.6973399718958,111.577327421518,31.5077306969199&width=499&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	var huangbaihe = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:huangbaihe&styles=&bbox=111.087499746857,30.7421293309092,111.428124276549,31.4133514706135&width=389&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:huangbaihe&styles=&bbox=111.087499746857,30.7421293309092,111.428124276549,31.4133514706135&width=389&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	var influencearea = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:influencearea&styles=&bbox=111.268074035645,30.766544342041,111.431663513184,30.880313873291&width=768&height=534&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:influencearea&styles=&bbox=111.268074035645,30.766544342041,111.431663513184,30.880313873291&width=768&height=534&srs=EPSG:4326&format=application/openlayers'
 	    })
 	  });
 	var mainarea1 = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:mainarea1&styles=&bbox=111.070297241211,30.999870300293,111.462928771973,31.4736785888672&width=636&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:mainarea1&styles=&bbox=111.070297241211,30.999870300293,111.462928771973,31.4736785888672&width=636&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	var mainarea2 = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:mainarea2&styles=&bbox=111.421264648438,30.7972393035889,111.500465393066,30.9068698883057&width=554&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:mainarea2&styles=&bbox=111.421264648438,30.7972393035889,111.500465393066,30.9068698883057&width=554&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	var mainstream = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:mainstream&styles=&bbox=111.050493504431,30.6971782686376,111.578208745179,31.507959915081&width=499&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:mainstream&styles=&bbox=111.050493504431,30.6971782686376,111.578208745179,31.507959915081&width=499&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	var provinceroad = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:provinceroad&styles=&bbox=111.050490753214,30.6973577540029,111.578352241186,31.3007875498263&width=671&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:provinceroad&styles=&bbox=111.050490753214,30.6973577540029,111.578352241186,31.3007875498263&width=671&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	var samllbranch = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:samllbranch&styles=&bbox=111.068175134323,31.0094102642308,111.449945330755,31.4713806747642&width=634&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:samllbranch&styles=&bbox=111.068175134323,31.0094102642308,111.449945330755,31.4713806747642&width=634&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	var town = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:town&styles=&bbox=111.050596033337,30.69740100086,111.578302680642,31.4397332338365&width=545&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:town&styles=&bbox=111.050596033337,30.69740100086,111.578302680642,31.4397332338365&width=545&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	var waterarea = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:waterarea&styles=&bbox=111.050591288671,30.6972967421174,111.57820948709,31.5079094976592&width=499&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:waterarea&styles=&bbox=111.050591288671,30.6972967421174,111.57820948709,31.5079094976592&width=499&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	var vilage = new ol.layer.Tile({
 	    source: new ol.source.TileWMS({
-	      url: 'http://61.136.146.172:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:vilage&styles=&bbox=111.050689697468,30.6979856473004,111.577479432898,31.4344117853524&width=549&height=768&srs=EPSG:4326&format=application/openlayers'
+	      url: 'http://61.136.146.172:8082/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:vilage&styles=&bbox=111.050689697468,30.6979856473004,111.577479432898,31.4344117853524&width=549&height=768&srs=EPSG:4326&format=application/openlayers'
 	    		  })
 	  });
 	
@@ -320,7 +320,7 @@ html, body, .map {
 	function loadlifebasic(){
 		$.ajax({
 			type : "POST",
-			url : "http://61.136.146.172:8080/huangbaihe/Clifebasic/loc",
+			url : "http://61.136.146.172:8082/huangbaihe/Clifebasic/loc",
 			dataType : 'json',
 			success : function(json) {
 				source_lifebasic.clear();
@@ -358,7 +358,7 @@ html, body, .map {
 	function loadlifewaste(){
 		$.ajax({
 			type : "POST",
-			url : "http://61.136.146.172:8080/huangbaihe/Clifewaste/loc",
+			url : "http://61.136.146.172:8082/huangbaihe/Clifewaste/loc",
 			dataType : 'json',
 			success : function(json) {
 				source_lifewaste.clear();
@@ -398,7 +398,7 @@ html, body, .map {
 	function loadmine(){
 		$.ajax({
 			type : "POST",
-			url : "http://61.136.146.172:8080/huangbaihe/Cmine/loc",
+			url : "http://61.136.146.172:8082/huangbaihe/Cmine/loc",
 			dataType : 'json',
 			success : function(json) {
 				source_mine.clear();
@@ -438,7 +438,7 @@ html, body, .map {
 	function loadoutlet(){
 		$.ajax({
 			type : "POST",
-			url : "http://61.136.146.172:8080/huangbaihe/Coutlet/loc",
+			url : "http://61.136.146.172:8082/huangbaihe/Coutlet/loc",
 			dataType : 'json',
 			success : function(json) {
 				source_outlet.clear();
@@ -478,7 +478,7 @@ html, body, .map {
 	function loadprowaste(){
 		$.ajax({
 			type : "POST",
-			url : "http://61.136.146.172:8080/huangbaihe/Cdeposit/loc",
+			url : "http://61.136.146.172:8082/huangbaihe/Cdeposit/loc",
 			dataType : 'json',
 			success : function(json) {
 				source_prowaste.clear();
@@ -519,7 +519,7 @@ html, body, .map {
 	function loadproinfo(){
 		$.ajax({
 			type : "POST",
-			url : "http://61.136.146.172:8080/huangbaihe/Cproinfo/loc",
+			url : "http://61.136.146.172:8082/huangbaihe/Cproinfo/loc",
 			dataType : 'json',
 			success : function(json) {
 				source_proinfo.clear();
@@ -562,7 +562,7 @@ html, body, .map {
 	function loadproject2(){
 		$.ajax({
 			type : "POST",
-			url : "http://61.136.146.172:8080/huangbaihe/Cproject2/loc",
+			url : "http://61.136.146.172:8082/huangbaihe/Cproject2/loc",
 			dataType : 'json',
 			success : function(json) {
 				source_project2.clear();
@@ -602,7 +602,7 @@ html, body, .map {
 	function loadselectmine(){
 		$.ajax({
 			type : "POST",
-			url : "http://61.136.146.172:8080/huangbaihe/Cselectmine/loc",
+			url : "http://61.136.146.172:8082/huangbaihe/Cselectmine/loc",
 			dataType : 'json',
 			success : function(json) {
 				source_selectmine.clear();
@@ -642,7 +642,7 @@ html, body, .map {
 	function loadsite(){
 		$.ajax({
 			type : "POST",
-			url : "http://61.136.146.172:8080/huangbaihe/Csite/loc",
+			url : "http://61.136.146.172:8082/huangbaihe/Csite/loc",
 			dataType : 'json',
 			success : function(json) {
 				source_site.clear();
@@ -681,7 +681,7 @@ html, body, .map {
 	function loadtailmine(){
 		$.ajax({
 			type : "POST",
-			url : "http://61.136.146.172:8080/huangbaihe/Ctailmine/loc",
+			url : "http://61.136.146.172:8082/huangbaihe/Ctailmine/loc",
 			dataType : 'json',
 			success : function(json) {
 				source_tailmine.clear();

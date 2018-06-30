@@ -172,7 +172,7 @@
 					if (!obj) { obj = mainpageVM; }					
 					$.ajax({
 						type: "POST",
-						url: "http://61.136.146.172:8080/huangbaihe/showCaseList/caseList",
+						url: "http://61.136.146.172:8082/huangbaihe/showCaseList/caseList",
 						dataType: "JSON",
 						data: {
 							page: obj.page + 1,
@@ -213,7 +213,7 @@
 				queryItem: function(caseID, obj) {
 					$.ajax({
 						method: "POST",
-						url:"http://huyg.site:8080/huangbaihe/getInfoCaseController/getCaseInfo",
+						url:"http://61.136.146.172:7769/huangbaihe/getInfoCaseController/getCaseInfo",
 						dataType: "JSONP",
 						data: ({
 							caseID: caseID
@@ -231,7 +231,7 @@
 				searchItems: function() {
 					$.ajax({
 						type:"POST",
-						url:"http://huyg.site:8080/huangbaihe/showCaseList/query",
+						url:"http://61.136.146.172:7769/huangbaihe/showCaseList/query",
 						dataType: "JSONP",
 						data: mainpageVM.searchText,
 						success: function(data) {
