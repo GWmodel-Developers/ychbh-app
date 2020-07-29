@@ -1,6 +1,6 @@
 [submodule "nativeDroid2"]
 	path = nativeDroid2
-	url = https://github.com/HPDell/nativeDroid2.git
+	url = git@github.com:WhuRS-FGis/nativeDroid2.git
 [submodule "proxy"]
 	path = proxy
-	url = https://github.com/HPDell/ychbh-middle-proxy.git
+	url = git@github.com:WhuRS-FGis/ychbh-middle-proxy.git
